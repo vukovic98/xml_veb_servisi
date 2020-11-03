@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obavestenje>
+    <osnovni_podaci>
+        <podaci_o_organu>
+            <naziv></naziv>
+            <sediste></sediste>
+            <broj_predmeta></broj_predmeta>
+            <datum></datum>
+        </podaci_o_organu>
+        
+        <podaci_o_podnosiocu>
+            <ime_i_prezime></ime_i_prezime>
+            <naziv></naziv>
+            <adresa></adresa>
+        </podaci_o_podnosiocu>
+    </osnovni_podaci>
+    
+    <sadrzaj>
+        <naslov>
+            О Б А В Е Ш Т Е Њ Е
+            о стављању на увид документа који садржи
+            тражену информацију и о изради копије
+        </naslov>
+        
+        <paragraf id="1">
+            На основу члана 16. ст. 1. Закона о слободном приступу информацијама од јавног значаја, 
+            поступајући по вашем захтеву за слободан приступ информацијама од <godina></godina> 
+            год., којим сте тражили увид у документ/е са информацијама о / у вези са: 
+            <opis_trazene_informacije></opis_trazene_informacije>
+            обавештавамо вас да дана <datum></datum>, у <sat></sat> часова, односно у времену од <sat></sat> до <sat></sat> часова,
+            у просторијама органа у <grad></grad> ул. <adresa></adresa> бр. <adresni_broj></adresni_broj>, канцеларија 
+            бр. <broj_kancelarije></broj_kancelarije> можете извршити увид у документ/е у коме је садржана тражена информација. 
+        </paragraf>
+        <paragraf id="2">
+            Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.
+        </paragraf>
+        <paragraf id="3">
+            Трошкови су утврђени Уредбом Владе Републике Србије („Сл. гласник РС“, бр. 8/06), 
+            и то: копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, 
+            дискете 20 динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање једне 
+            стране документа из физичког у електронски облик – 30 динара.
+        </paragraf>
+        <paragraf id="4">
+            Износ укупних трошкова израде копије документа по вашем захтеву износи <cena></cena> 
+            динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, с 
+            позивом на број 97 – ознака шифре општине/града где се налази орган власти (из Правилника о условима и 
+            начину вођења рачуна – „Сл. гласник РС“, 20/07... 40/10). 
+        </paragraf>
+    </sadrzaj>
+    <podnozje>
+        <dostavljeno>
+            <lice id="1">
+                Именованом
+            </lice>
+            <lice id="2">
+                Архиви
+            </lice>
+        </dostavljeno>
+        
+        <potpis_ovlascenog_lica></potpis_ovlascenog_lica>
+    </podnozje>
+</obavestenje>

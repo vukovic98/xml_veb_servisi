@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtev>
-    <naziv_i_sedište_organa>
-        
-    </naziv_i_sedište_organa>
+<zahtev
+    xmlns="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev file:/C:/FAKS/SEMESTAR%207/XML/Projekat/xml_veb_servisi/modelovani_dokumenti/zahtev.xsd">
+    <podaci_o_organu>
+        <naziv></naziv>
+        <sedište></sedište>
+    </podaci_o_organu>
     <sadržaj_zahteva>
         <naslov>
                         З А Х Т Е В
             за приступ информацији од јавног значаја
         </naslov>
-        <paragraf id="1">
-            На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја
-            („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа
-            захтевам:*
+        <paragraf id="p_1" fusnota="У кућици означити која законска права на приступ информацијама желите да остварите">
+            На основу <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" član="15" stav="1"></zakon>
+           (<službeni_glasnik>
+                <brojevi>
+                    <broj br="120/04"></broj>
+                    <broj br="57/04"></broj>
+                    <broj br="104/09"></broj>
+                    <broj br="36/10"></broj>
+                </brojevi>
+            </službeni_glasnik>), од горе наведеног органа захтевам:
             <stavke>
-                <stavka otkačeno = "false" id="1" >обавештење да ли поседује тражену информацију;</stavka>
-                <stavka otkačeno = "false" id="2" >увид у документ који садржи тражену информацију;</stavka>
-                <stavka otkačeno = "false" id="3" >копију документа који садржи тражену информацију;</stavka>
-                <stavka otkačeno = "false" id="4" >
-                    достављање копије документа који садржи тражену информацију:**
+                <stavka otkačeno = "false" id="s_1" zahtev="обавештење да ли поседује тражену информацију" ></stavka>;
+                <stavka otkačeno = "false" id="s_2" zahtev="увид у документ који садржи тражену информацију" ></stavka>;
+                <stavka otkačeno = "false" id="s_3" zahtev="копију документа који садржи тражену информацију" ></stavka>;
+                <stavka otkačeno = "false" id="s_4" zahtev="достављање копије документа који садржи тражену информацију:" fusnota="У кућици означити начин достављања копије докумената.">
                     <podstavke>
-                        <podstavka otkačeno = "false" id="1">поштом</podstavka>
-                        <podstavka otkačeno = "false" id="2">електронском поштом</podstavka>
-                        <podstavka otkačeno = "false" id="3">факсом</podstavka>
-                        <podstavka otkačeno = "false" id="4">
-                            на други начин:***
+                        <podstavka otkačeno = "false" id="ps_1" način="поштом" fusnota=""></podstavka>
+                        <podstavka otkačeno = "false" id="ps_2" način="електронском поштом" fusnota=""></podstavka>
+                        <podstavka otkačeno = "false" id="ps_3" način="факсом" fusnota=""></podstavka>
+                        <podstavka otkačeno = "false" id="ps_4" način="на други начин:" fusnota="Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.">
                             <drugi_način> </drugi_način>
                         </podstavka>
                     </podstavke>
                 </stavka>
             </stavke>
             Овај захтев се односи на следеће информације:
-            <opis_informacije> </opis_informacije>
-            (навести што прецизнији опис информације која се тражи као 
-            и друге податке који олакшавају
-            проналажење тражене информације)
+            <opis_tražene_informacije></opis_tražene_informacije>
         </paragraf>
     </sadržaj_zahteva>
     <podnožje>
         <mesto_i_datum>
-            У <mesto> </mesto>,
-            дана <dan> </dan> 201<godina> </godina> године
+            <mesto></mesto>
+            <datum>2020-12-04</datum> 
         </mesto_i_datum>
         <informacije_o_tražiocu>
             <ime_i_prezime> </ime_i_prezime>
-            Тражилац информације/Име и презиме
-            <adresa> </adresa>
-            адреса
+            <adresa> 
+                <ulica></ulica>
+                <broj></broj>
+                <mesto></mesto>
+            </adresa>
             <kontakt> </kontakt>
-            други подаци за контакт
             <potpis> </potpis>
-            Потпис
         </informacije_o_tražiocu>
-        <fusnote>
-            <fusnota id="1">* У кућици означити која законска права на приступ информацијама желите да остварите.</fusnota>
-            <fusnota id="2">** У кућици означити начин достављања копије докумената.</fusnota>
-            <fusnota id="3">*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.</fusnota>
-        </fusnote>
     </podnožje>
 </zahtev>

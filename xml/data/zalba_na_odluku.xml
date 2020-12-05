@@ -15,7 +15,7 @@
             <adresa_za_postu>
                 <grad>Београд, </grad>
                 <ulica>Булевар краља Александрa </ulica>
-                <broj>15</broj>
+                <broj>бр. 15</broj>
             </adresa_za_postu>
         </paragraf>
         <paragraf id="p2"> 
@@ -30,7 +30,7 @@
               <podnosilac_adresa>
                   <grad></grad>
                   <ulica></ulica>
-                  <broj>20</broj>
+                  <broj></broj>
               </podnosilac_adresa>
               <podnosilac_sediste></podnosilac_sediste>    
           </podnosilac_zalbe>
@@ -41,7 +41,7 @@
             против решења-закључка
             <naziv_organa></naziv_organa>
             (назив органа који је донео одлуку)
-            Број <broj_input>21</broj_input> од <godina_input></godina_input> године.
+            Број <broj_input></broj_input> од <godina_input></godina_input> године.
         </paragraf>
         <paragraf id = "p4">
                 Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми
@@ -56,16 +56,16 @@
         <podnožje>
             <mesto_i_datum>
                 У <mesto> </mesto>,
-                дана <dan></dan> 201<godina> </godina> године
+                дана <dan> </dan> 201<godina> </godina> године
             </mesto_i_datum>
             <informacije_o_tražiocu>
-                <ime>Milos</ime>
+                <ime></ime>
                 <prezime></prezime>
                 Подносилац жалбе / Име и презиме
                 <adresa>
                     <grad></grad>
                     <ulica></ulica>
-                    <broj>21</broj>
+                    <broj></broj>
                 </adresa>
                 адреса
                 <kontakt> </kontakt>

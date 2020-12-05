@@ -10,7 +10,7 @@
             ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ
         </naslov>     
         <paragraf id="p1">
-              Поверенику за информације од јавног значаја и заштиту података о личности
+            <primalac>Поверенику за информације од јавног значаја и заштиту података о личности</primalac>
             Адреса за пошту: 
             <adresa_za_postu>
                 <grad>Београд, </grad>
@@ -19,13 +19,11 @@
             </adresa_za_postu>
         </paragraf>
         <paragraf id="p2"> 
-            <naslov2>
+            <naslov>
                 Ж А Л Б А 
-            </naslov2>
+            </naslov>
                             
           <podnosilac_zalbe>
-              <podnosilac_ime> </podnosilac_ime>
-              <podnosilac_prezime></podnosilac_prezime>
               <podnosilac_naziv></podnosilac_naziv>
               <podnosilac_adresa>
                   <grad></grad>
@@ -41,22 +39,23 @@
             против решења-закључка
             <naziv_organa></naziv_organa>
             (назив органа који је донео одлуку)
-            Број <broj_input>21</broj_input> од <godina_input></godina_input> године.
+            Број <broj_input>21</broj_input> од <datum>2020-05-13</datum> године.
         </paragraf>
         <paragraf id = "p4">
                 Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми
             са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-
-            упутио/ла дана<godina_input></godina_input>године и тако ми ускраћено-онемогућено остваривање уставног и
+            упутио/ла дана<datum>2020-05-13</datum>године и тако ми ускраћено-онемогућено остваривање уставног и
             законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у
             целости, односно у делу којим <obrazlozenje_zalbe></obrazlozenje_zalbe>
             јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
                 На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
                 Жалбу подносим благовремено, у законском року утврђеном у <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" član="22" stav="1"></zakon>
         </paragraf>
+    </sadrzaj_zalbe>
         <podnožje>
             <mesto_i_datum>
                 У <mesto> </mesto>,
-                дана <dan></dan> 201<godina> </godina> године
+                дана <datum>2020-05-13</datum> године
             </mesto_i_datum>
             <informacije_o_tražiocu>
                 <ime>Milos</ime>
@@ -70,7 +69,7 @@
                 адреса
                 <kontakt> </kontakt>
                 други подаци за контакт
-                <potpis> </potpis>
+                <potpis /> 
                 потпис
             </informacije_o_tražiocu>
             <napomene>
@@ -83,5 +82,5 @@
                 </napomena>
             </napomene>
         </podnožje>   
-    </sadrzaj_zalbe> 
+     
 </zalba_na_odluku>

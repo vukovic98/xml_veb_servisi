@@ -2,7 +2,7 @@
 <resenje_obrazac 
     xmlns="http://ftn.uns.ac.rs/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje resenje.xsd"
+    xsi:schemaLocation="http://ftn.uns.ac.rs/resenje resenje.xsd"
     broj="071-01-1114/2020-03">
     <osnovni_podaci>
         <naslov>

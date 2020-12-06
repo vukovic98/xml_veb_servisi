@@ -13,15 +13,8 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-<<<<<<< HEAD
-
-import com.ftn.jaxb.util.NSPrefixMapper;
-import com.ftn.xml.jaxb.util.MyValidationEventHandler;
-
-=======
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.NSPrefixMapper;
->>>>>>> 9c34d48c71a25c0012e20f9db6a6808df2c67523
 
 public class ResenjeMarshaller {
 

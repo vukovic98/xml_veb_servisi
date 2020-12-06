@@ -83,23 +83,23 @@ public class ZalbaCutanjeMarshaller {
 	
 	private static void printZaglavlje(Zaglavlje zaglavlje) {
 		
-		out.concat("\tZaglavlje: \n");
+		out = out.concat("\tZaglavlje: \n");
 		
-		out.concat("\tNaslov: "+zaglavlje.getNaslov());
+		out = out.concat("\tNaslov: "+zaglavlje.getNaslov());
 		printPrimalac(zaglavlje.getPrimalacZalbe());
 	}
 	
 	private static void printPrimalac(PrimalacZalbe primalac) {
 		
-		out.concat("\t\tPrimalac: \n");
-		out.concat("\t\t\tNaziv primaoca: \n"+primalac.getNazivPrimaoca());
-		out.concat("\t\t\tAdresa primaoca: \n"+primalac.getAdresaZaPostu());
+		out = out.concat("\t\tPrimalac: \n");
+		out = out.concat("\t\t\tNaziv primaoca: \n"+primalac.getNazivPrimaoca());
+		out = out.concat("\t\t\tAdresa primaoca: \n"+primalac.getAdresaZaPostu());
 		
 	}
 	
 	private static void printSadrzaj(Sadrzaj sadrzaj) {
 		
-		out.concat("\tSadrzaj: \n");
+		out = out.concat("\tSadrzaj: \n");
 		
 		for (Paragraf p : sadrzaj.getParagraf()) {
 			printParagraf(p);
@@ -109,26 +109,26 @@ public class ZalbaCutanjeMarshaller {
 	
 	private static void printParagraf(Paragraf paragraf) {
 		
-		out.concat("\t\tParagraf "+paragraf.getId()+"\n");
+		out = out.concat("\t\tParagraf "+paragraf.getId()+"\n");
 		
 		for (Object o : paragraf.getContent()) {
 			if(o.getClass() == Zakon.class) {
 				Zakon z = (Zakon)o;
 				
-				out.concat("\t\t\tZakon: \n");
-				out.concat("\t\t\tClan: "+z.getClan()+"\n");
-				out.concat("\t\t\tNaziv: "+z.getNaziv()+"\n");
+				out = out.concat("\t\t\tZakon: \n");
+				out = out.concat("\t\t\tClan: "+z.getClan()+"\n");
+				out = out.concat("\t\t\tNaziv: "+z.getNaziv()+"\n");
 			}else if(o.getClass() == RazlogZalbe.class) {
 				
 				RazlogZalbe rz = (RazlogZalbe)o;
-				out.concat("\t\t\tRazlog zalbe: "+"\n");
+				out = out.concat("\t\t\tRazlog zalbe: "+"\n");
 				
 				if(rz.getNijePostupio()!=null)
-					out.concat(rz.getNijePostupio().toString());
+					out = out.concat(rz.getNijePostupio().toString());
 				if(rz.getNijePostupioUCelosti()!=null)
-					out.concat(rz.getNijePostupioUCelosti().toString());
+					out = out.concat(rz.getNijePostupioUCelosti().toString());
 				if(rz.getNijePostupioURoku()!=null)
-					out.concat(rz.getNijePostupioURoku().toString());
+					out = out.concat(rz.getNijePostupioURoku().toString());
 				
 			}else {
 
@@ -138,13 +138,13 @@ public class ZalbaCutanjeMarshaller {
 					String[] name = elem.getName().toString().split("}");
 					String ispis = StringUtils.capitalize(name[1]);
 					
-					out.concat("\t\t\t"+ispis+":\n");
+					out = out.concat("\t\t\t"+ispis+":\n");
 					
 					
-					out.concat("\t\t\t"+elem.getValue()+"\n");
+					out = out.concat("\t\t\t"+elem.getValue()+"\n");
 				}
 				else {
-					out.concat("\t\t\t"+o+"\n");
+					out = out.concat("\t\t\t"+o+"\n");
 				}
 				
 			}
@@ -154,40 +154,40 @@ public class ZalbaCutanjeMarshaller {
 	
 	private static void printPodnozje(Podnozje podnozje) {
 		
-		out.concat("\tPodnozje: \n");
+		out = out.concat("\tPodnozje: \n");
 		printDatumMesto(podnozje.getDatumIMestoZalbe());
 		printPodnosilacZalbe(podnozje.getPodnosilacZalbe());
 	}
 	
 	private static void printDatumMesto(DatumIMestoZalbe datumMesto) {
 		
-		out.concat("\t\tDatum i mesto zalbe: \n");
+		out = out.concat("\t\tDatum i mesto zalbe: \n");
 		for (Serializable o : datumMesto.getContent()) {
 			
 			if(o.getClass() == JAXBElement.class) {
 				JAXBElement elem = (JAXBElement) o;
 				
-				out.concat("\t\t\t"+elem.getValue()+"\n");
+				out = out.concat("\t\t\t"+elem.getValue()+"\n");
 			}
 			else
-				out.concat("\t\t\t"+o+"\n");
+				out = out.concat("\t\t\t"+o+"\n");
 		}
 		
 	}
 	
 	private static void printPodnosilacZalbe(PodnosilacZalbe podnosilac) {
 		
-		out.concat("\t\tPodnosilac zalbe: \n");
+		out = out.concat("\t\tPodnosilac zalbe: \n");
 		
-		out.concat("\t\t\tIme i prezime: "+podnosilac.getImeIPrezime()+"\n");
+		out = out.concat("\t\t\tIme i prezime: "+podnosilac.getImeIPrezime()+"\n");
 		
 		for (Object o : podnosilac.getAdresaPodnosiocaOrDrugiPodaciZaKontaktOrPotpis()) {
 			
 			if(o.getClass() == Potpis.class)
-				out.concat("\t\t\tPotpis: \n");
+				out = out.concat("\t\t\tPotpis: \n");
 			else {
 				JAXBElement elem = (JAXBElement) o;
-				out.concat("\t\t\t"+elem.getValue()+"\n");
+				out = out.concat("\t\t\t"+elem.getValue()+"\n");
 			}
 		}
 		

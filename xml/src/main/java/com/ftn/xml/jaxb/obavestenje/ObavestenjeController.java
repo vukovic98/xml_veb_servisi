@@ -1,4 +1,4 @@
-package com.ftn.xml.jaxb.zalba_cutanje;
+package com.ftn.xml.jaxb.obavestenje;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.xml.jaxb.resenje.ResenjeMarshaller;
 
 @RestController
-@RequestMapping("/zalba_cutanje")
-public class ZalbaCutanjeController {
+@RequestMapping("obavestenje")
+public class ObavestenjeController {
 
 	@GetMapping("/test")
 	public ResponseEntity<String> test() throws Exception{
 		
-		return new ResponseEntity<String>(ZalbaCutanjeMarshaller.test(), HttpStatus.OK);
+		return new ResponseEntity<String>(ObavestenjeMarshaller.test(), HttpStatus.OK);
 		
 		
 	}
-	
 	
 }

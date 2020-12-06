@@ -49,9 +49,9 @@
         <informacije_o_traziocu>
             <ime_i_prezime> </ime_i_prezime>
             <adresa> 
-                <ulica></ulica>
-                <broj></broj>
-                <mesto></mesto>
+                <ulica>Kumanovska</ulica>
+                <broj>"8"</broj>
+                <mesto>Backa Palanka</mesto>
             </adresa>
             <kontakt> </kontakt>
             <potpis> </potpis>

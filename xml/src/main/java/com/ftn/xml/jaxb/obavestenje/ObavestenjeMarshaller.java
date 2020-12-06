@@ -11,9 +11,10 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import com.ftn.jaxb.util.MyValidationEventHandler;
+
 import com.ftn.jaxb.util.NSPrefixMapper;
 import com.ftn.xml.jaxb.resenje.ResenjeObrazac;
+import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 
 public class ObavestenjeMarshaller {
 
@@ -32,7 +33,7 @@ public class ObavestenjeMarshaller {
 			unmarshaller.setSchema(schema);
 			unmarshaller.setEventHandler(new MyValidationEventHandler());
 
-			printResenje(obavestenje);
+			//printResenje(obavestenje);
 			
 			Marshaller marshaller = context.createMarshaller();
 			

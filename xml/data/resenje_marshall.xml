@@ -1,16 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<resenje_obrazac 
-    xmlns="http://ftn.uns.ac.rs/resenje"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje resenje.xsd"
-    broj="071-01-1114/2020-03">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resenje_obrazac xmlns="http://ftn.uns.ac.rs/resenje" broj="071-01-1114/2020-03">
     <osnovni_podaci>
         <naslov>
             Решење када је жалба основана – налаже се:
         </naslov>
         <datum>2020-06-09</datum> 
     </osnovni_podaci>
-    
     <sadrzaj>
         <uvod>
             <organ>Повереник за информације од јавног значаја и заштиту података о личности</organ>, у поступку по алби
@@ -20,14 +15,14 @@
                 <ulica>Немањина бб</ulica>
             </ustanova>, по његовом захтеву од <datum_zahteva>2020-04-16</datum_zahteva> године за приступ
             информацијама од јавног значаја, на основу 
-            <zakon> 
+            <zakon>
                 <naziv>акона о слободном приступу информацијама од јавног значаја</naziv>
                 <sekcija_zakona>
                     <clan>35</clan>
                     <stav>1</stav>
                     <tacka>5</tacka>
                 </sekcija_zakona>
-                <sluzbeni_glasnik broj="120/04, 54/07, 104/09, 36/10" />
+                <sluzbeni_glasnik broj="120/04, 54/07, 104/09, 36/10"/>
             </zakon>
             ( ), а у вези са
             <zakon>
@@ -36,7 +31,7 @@
                     <clan>4</clan>
                     <tacka>22</tacka>
                 </sekcija_zakona>
-                <sluzbeni_glasnik broj="87/18" />
+                <sluzbeni_glasnik broj="87/18"/>
             </zakon>, као и 
             <zakon>
                 <naziv>Закона о слободном приступу информацијама од јавног значаја</naziv>
@@ -47,7 +42,7 @@
                     <clan>24</clan>
                     <stav>4</stav>
                 </sekcija_zakona>
-                <sluzbeni_glasnik broj="18/2016, 95/2018" />
+                <sluzbeni_glasnik broj="18/2016, 95/2018"/>
             </zakon> i
             <zakon>
                 <naziv>Закона о општем управном поступку</naziv>
@@ -55,7 +50,7 @@
                     <clan>173</clan>
                     <stav>2</stav>
                 </sekcija_zakona>
-                <sluzbeni_glasnik broj="18/2016, 95/2018" />
+                <sluzbeni_glasnik broj="18/2016, 95/2018"/>
             </zakon> доноси
         </uvod>
         <resenje>
@@ -120,12 +115,10 @@
             Упутство о правном средству:
             Против овог решења није допуштена жалба већ се, у складу са Законом о управним
             споровима, може покренути управни спор тужбом <sud>Управном суду у Београду</sud>, у року од 30 дана од
-            дана пријема решења. Такса на тужбу износи <taksa>390.00</taksa> динара.
+            дана пријема решења. Такса на тужбу износи <taksa>390.0</taksa> динара.
         </obrazlozenje>
     </sadrzaj>
-    
     <poverenik>
         Милан Мариновић
     </poverenik>
-
 </resenje_obrazac>

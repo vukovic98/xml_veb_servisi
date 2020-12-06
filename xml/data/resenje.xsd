@@ -79,9 +79,7 @@
       </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="adresa">
-    <xs:complexType/>
-  </xs:element>
+  <xs:element name="adresa" type="xs:string" />
   <xs:element name="trazeni_dokument" type="xs:string"/>
   <xs:element name="obrazlozenje">
     <xs:complexType mixed="true">

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<obavestenje xmlns="http://ftn.uns.ac.rs/obavestenje">
+    <osnovni_podaci>
+        <podaci_o_organu>
+            <naziv></naziv>
+            <sediste></sediste>
+            <broj_predmeta></broj_predmeta>
+            <datum>2020-12-04</datum>
+        </podaci_o_organu>
+        <podaci_o_podnosiocu>
+            <ime_i_prezime></ime_i_prezime>
+            <naziv></naziv>
+            <adresa/>
+        </podaci_o_podnosiocu>
+    </osnovni_podaci>
+    <sadrzaj>
+        <naslov>
+            О Б А В Е Ш Т Е Њ Е
+            о стављању на увид документа који садржи
+            тражену информацију и о изради копије
+        </naslov>
+        <telo_obavestenja>
+            <paragraf id="p_1">
+                На основу <zakon clan="16" naziv="Закона о слободном приступу информацијама од јавног значаја" stav="1"/> , 
+                поступајући по вашем захтеву за слободан приступ информацијама од <godina>2020</godina> 
+                год., којим сте тражили увид у документ/е са информацијама о / у вези са: 
+                <opis_trazene_informacije></opis_trazene_informacije>
+                обавештавамо вас да дана <datum>2020-12-04</datum>, у <sat>15:30:00</sat> часова, односно у времену од <sat>14:26:30</sat> до <sat>20:26:00</sat> часова,
+                у просторијама органа у 
+                <adresa>
+                    <grad></grad>
+                    <ulica></ulica>
+                    <broj>23</broj>
+                </adresa>
+                , канцеларија бр. <broj_kancelarije>12</broj_kancelarije> можете извршити увид у документ/е у коме је садржана тражена информација. 
+                Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.
+            </paragraf>
+            <paragraf id="p_3">
+                Трошкови су утврђени Уредбом Владе Републике Србије (<sluzbeni_glasnik broj="8/06"/>), 
+                и то: копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, 
+                дискете 20 динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање једне 
+                стране документа из физичког у електронски облик – 30 динара.
+            </paragraf>
+            <paragraf id="p_4">
+                Износ укупних трошкова израде копије документа по вашем захтеву износи <cena>176.0</cena> 
+                динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. <ziro_racun poziv_na_broj="97">840-742328-843-30</ziro_racun>, 
+                – ознака шифре општине/града где се налази орган власти (из Правилника о условима и 
+                начину вођења рачуна – <sluzbeni_glasnik broj="20/07..40/10"/>). 
+            </paragraf>
+        </telo_obavestenja>
+    </sadrzaj>
+    <podnozje>
+        <dostavljeno>
+            <lice id="l_1">
+                Именованом
+            </lice>
+            <lice id="l_2">
+                Архиви
+            </lice>
+        </dostavljeno>
+        <potpis_ovlascenog_lica/>
+    </podnozje>
+</obavestenje>

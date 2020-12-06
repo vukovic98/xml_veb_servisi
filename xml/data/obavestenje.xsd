@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
   targetNamespace="http://ftn.uns.ac.rs/obavestenje" xmlns:ob="http://ftn.uns.ac.rs/obavestenje">
-  <xs:element name="obavestenje" type="ob:TObavestenje"> </xs:element>
+  <xs:element name="obavestenje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ob:osnovni_podaci"/>
+        <xs:element ref="ob:sadrzaj"/>
+        <xs:element ref="ob:podnozje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="osnovni_podaci">
     <xs:complexType>
       <xs:sequence>
@@ -140,11 +148,4 @@
   <xs:element name="grad" type="xs:string"> </xs:element>
   <xs:element name="ulica" type="xs:string"> </xs:element>
   <xs:element name="broj" type="xs:positiveInteger"> </xs:element>
-  <xs:complexType abstract="false" name="TObavestenje">
-    <xs:sequence>
-      <xs:element ref="ob:osnovni_podaci"/>
-      <xs:element ref="ob:sadrzaj"/>
-      <xs:element ref="ob:podnozje"/>
-    </xs:sequence>
-  </xs:complexType>
 </xs:schema>

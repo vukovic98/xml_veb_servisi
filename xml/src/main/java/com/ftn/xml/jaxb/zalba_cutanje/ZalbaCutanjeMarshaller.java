@@ -17,7 +17,7 @@ import javax.xml.validation.SchemaFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.ftn.jaxb.util.NSPrefixMapper;
+import com.ftn.xml.jaxb.util.NSPrefixMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 
 public class ZalbaCutanjeMarshaller {

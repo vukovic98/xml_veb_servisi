@@ -13,14 +13,21 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+<<<<<<< HEAD
 
 import com.ftn.jaxb.util.NSPrefixMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 
+=======
+import com.ftn.xml.jaxb.util.MyValidationEventHandler;
+import com.ftn.xml.jaxb.util.NSPrefixMapper;
+>>>>>>> 9c34d48c71a25c0012e20f9db6a6808df2c67523
 
 public class ResenjeMarshaller {
 
-	public void test() throws Exception {
+	public static String output = "";
+
+	public static String test() throws Exception {
 		try {
 
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.jaxb.resenje");
@@ -36,25 +43,28 @@ public class ResenjeMarshaller {
 			unmarshaller.setEventHandler(new MyValidationEventHandler());
 
 			printResenje(resenje);
-			
+
 			Marshaller marshaller = context.createMarshaller();
-			
+
 			// PodeÅ¡avanje marshaller-a
 			marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NSPrefixMapper());
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			
+
 			// Umesto System.out-a, moÅ¾e se koristiti FileOutputStream
 			FileOutputStream os = new FileOutputStream(new File("./data/resenje_marshall.xml"));
 			marshaller.marshal(resenje, os);
+			
+			
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+		return output;
 
 	}
 
-	private void printResenje(ResenjeObrazac resenje) {
-		System.out.println("Resenje " + resenje.getBroj() + ": ");
+	private static void printResenje(ResenjeObrazac resenje) {
+		output +="Resenje " + resenje.getBroj() + ": \n";
 
 		printOsnovniPodaci(resenje.getOsnovniPodaci());
 		printSadrzaj(resenje.getSadrzaj());
@@ -62,102 +72,101 @@ public class ResenjeMarshaller {
 
 	}
 
-	private void printSadrzaj(Sadrzaj sadrzaj) {
+	private static void printSadrzaj(Sadrzaj sadrzaj) {
 		printSadrzajUvod(sadrzaj.getUvod());
 		printSadrzajResenje(sadrzaj.getResenje());
 		printSadrzajObrazlozenje(sadrzaj.getObrazlozenje());
 	}
 
-	private void printSadrzajObrazlozenje(Obrazlozenje o) {
-		System.out.println("\tObrazlozenje:");
+	private static void printSadrzajObrazlozenje(Obrazlozenje o) {
+		output +="\tObrazlozenje:\n";
 		for (Object s : o.getContent()) {
 			if (s instanceof String) {
-				System.out.println(s);
+				output +=s;
+				output += "\n";
 			} else {
 				JAXBElement el = (JAXBElement) s;
-				System.out.println("\t\t\t" + el.getName());
-				System.out.println("\t\t\t\t" + el.getValue());
+				output +="\t\t\t" + el.getName()+ "\n";
+				output +="\t\t\t\t" + el.getValue()+ "\n";
 			}
 		}
 	}
 
-	private void printSadrzajResenje(Resenje resenje) {
-		System.out.println("\tResenje: ");
+	private static void printSadrzajResenje(Resenje resenje) {
+		output +="\tResenje: \n";
 		for (Object s : resenje.getContent()) {
 			if (s instanceof Ustanova) {
 				Ustanova us = (Ustanova) s;
-				System.out.println("\t\t\tUstanova:");
-				System.out.println("\t\t\t\t" + us.getNaziv());
-				System.out.println("\t\t\t\t" + us.getUlica());
+				output +="\t\t\tUstanova:\n";
+				output +="\t\t\t\t" + us.getNaziv()+ "\n";
+				output +="\t\t\t\t" + us.getUlica()+ "\n";
 			} else if (s instanceof String) {
-				System.out.println(s);
+				output +=s;
+				output += "\n";
 			} else {
 
 				JAXBElement el = (JAXBElement) s;
-				System.out.println("\t\t\t" + el.getName());
-				System.out.println("\t\t\t\t" + el.getValue());
+				output +="\t\t\t" + el.getName()+ "\n";
+				output +="\t\t\t\t" + el.getValue()+ "\n";
 			}
 		}
 	}
 
-	private void printSadrzajUvod(Uvod uvod) {
-		System.out.println("\t\tUvod:");
+	private static void printSadrzajUvod(Uvod uvod) {
+		output +="\t\tUvod:\n";
 
 		for (Object s : uvod.getContent()) {
 			if (s instanceof Ustanova) {
 				Ustanova us = (Ustanova) s;
-				System.out.println("\t\t\tUstanova:");
-				System.out.println("\t\t\t\t" + us.getNaziv());
-				System.out.println("\t\t\t\t" + us.getUlica());
+				output +="\t\t\tUstanova:\n";
+				output +="\t\t\t\t" + us.getNaziv()+ "\n";
+				output +="\t\t\t\t" + us.getUlica()+ "\n";
 			} else if (s instanceof Zakon) {
 				Zakon z = (Zakon) s;
 				printZakon(z);
 			} else if (s instanceof String) {
-				System.out.println(s);
+				output +=s;
+				output += "\n";
 			} else {
 				JAXBElement el = (JAXBElement) s;
-				System.out.println("\t\t\t" + el.getName());
-				System.out.println("\t\t\t\t" + el.getValue());
+				output +="\t\t\t" + el.getName()+ "\n";
+				output +="\t\t\t\t" + el.getValue()+ "\n";
 			}
 		}
 	}
 
-	private void printZakon(Zakon z) {
-		System.out.println("\t\t\tZakon:");
-		System.out.println("\t\t\t\t" + z.getNaziv());
-		System.out.println("\t\t\t\t\tSekcije:");
+	private static void printZakon(Zakon z) {
+		output +="\t\t\tZakon:\n";
+		output +="\t\t\t\t" + z.getNaziv()+ "\n";
+		output +="\t\t\t\t\tSekcije:\n";
 		for (SekcijaZakona s : z.getSekcijaZakona()) {
-			System.out.println("\t\t\t\t\t\tStav: " + s.getStav());
-			System.out.println("\t\t\t\t\t\tTacka: " + s.getTacka());
+			output +="\t\t\t\t\t\tStav: " + s.getStav()+ "\n";
+			output +="\t\t\t\t\t\tTacka: " + s.getTacka()+ "\n";
 		}
 		printSluzbeniGlasnik(z.getSluzbeniGlasnik());
 	}
 
-	private void printSluzbeniGlasnik(SluzbeniGlasnik g) {
-		System.out.println("\t\t\t\tSluzbeni glasnik broj: " + g.getBroj());
+	private static void printSluzbeniGlasnik(SluzbeniGlasnik g) {
+		output += "\t\t\t\tSluzbeni glasnik broj: " + g.getBroj()+ "\n";
 	}
 
-	private void printPoverenik(String poverenik) {
-		System.out.println("\tPoverenik: ");
-		System.out.println("\t\t" + poverenik);
+	private static void printPoverenik(String poverenik) {
+		output += "\tPoverenik: \n";
+		output += "\t\t" + poverenik+ "\n";
 	}
 
-	private void printOsnovniPodaci(OsnovniPodaci osnovniPodaci) {
-		System.out.println("\tOsnovni podaci:");
+	private static void printOsnovniPodaci(OsnovniPodaci osnovniPodaci) {
+		output +="\tOsnovni podaci:\n";
 		for (Serializable s : osnovniPodaci.getContent()) {
 			if (s instanceof String) {
-				System.out.println(s);
+				output +=s;
+				output += "\n";
 			} else {
 				JAXBElement el = (JAXBElement) s;
-				System.out.println("\t\t" + el.getName());
-				System.out.println("\t\t\t" + el.getValue());
+				output +="\t\t" + el.getName()+ "\n";
+				output +="\t\t\t" + el.getValue()+ "\n";
 			}
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		ResenjeMarshaller r = new ResenjeMarshaller();
-
-		r.test();
-	}
 }

@@ -1,4 +1,4 @@
-package com.ftn.jaxb.util;
+package com.ftn.xml.jaxb.util;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

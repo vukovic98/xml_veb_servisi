@@ -1,4 +1,7 @@
-# Projekat iz predmeta XML i Web Servisi 2020/21 
+# Informacioni sistem za pristup informacijama od javnog značaja
+
+# ---------Projekat iz predmeta XML i Web Servisi 2020/21---------
+
 
 Tim 3
 ------
@@ -8,5 +11,5 @@ SW78-2017	Vlaisavljević Ivana	ivanazvucnik@gmail.com
 
 SW9-2017	Madžarević Dušan	ducom98@gmail.com
 
-SW43-2015	Petrovic Nikola	petrovicnik96@gmail.com
+SW43-2015	Petrović Nikola	petrovicnik96@gmail.com
 

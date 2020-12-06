@@ -5,8 +5,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="podaci_o_organu"/>
-        <xs:element ref="sadrzaj_zahteva"/>
-        <xs:element ref="podnozje"/>
+        <xs:element ref="sadržaj_zahteva"/>
+        <xs:element ref="podnožje"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -14,13 +14,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="naziv"/>
-        <xs:element ref="sediste"/>
+        <xs:element ref="sedište"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="naziv" type="xs:string"> </xs:element>
-  <xs:element name="sediste" type="xs:string"> </xs:element>
-  <xs:element name="sadrzaj_zahteva">
+  <xs:element name="sedište" type="xs:string"> </xs:element>
+  <xs:element name="sadržaj_zahteva">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="naslov"/>
@@ -32,8 +32,8 @@
   <xs:element name="paragraf">
     <xs:complexType mixed="true">
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="opis_trazene_informacije"/>
-        <xs:element ref="sluzbeni_glasnik"/>
+        <xs:element ref="opis_tražene_informacije"/>
+        <xs:element ref="službeni_glasnik"/>
         <xs:element ref="stavke"/>
         <xs:element ref="zakon"/>
       </xs:choice>
@@ -41,10 +41,10 @@
       <xs:attribute name="id" use="required" type="xs:ID"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="opis_trazene_informacije">
+  <xs:element name="opis_tražene_informacije">
     <xs:complexType/>
   </xs:element>
-  <xs:element name="sluzbeni_glasnik">
+  <xs:element name="službeni_glasnik">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="brojevi"/>
@@ -72,7 +72,7 @@
       </xs:sequence>
       <xs:attribute name="fusnota" type="xs:string"/>
       <xs:attribute name="id" use="required" type="xs:ID"/>
-      <xs:attribute name="otkaceno" use="optional" type="xs:boolean" default="false"/>
+      <xs:attribute name="otkačeno" use="optional" type="xs:boolean" default="false"/>
       <xs:attribute name="zahtev" use="required" type="xs:string"/>
     </xs:complexType>
   </xs:element>
@@ -86,27 +86,27 @@
   <xs:element name="podstavka">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="drugi_nacin"/>
+        <xs:element minOccurs="0" ref="drugi_način"/>
       </xs:sequence>
       <xs:attribute name="fusnota" use="optional" type="xs:string"/>
       <xs:attribute name="id" use="required" type="xs:ID"/>
-      <xs:attribute name="nacin" use="required" type="xs:string"/>
-      <xs:attribute name="otkaceno" use="optional" type="xs:boolean" default="false"/>
+      <xs:attribute name="način" use="required" type="xs:string"/>
+      <xs:attribute name="otkačeno" use="optional" type="xs:boolean" default="false"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="drugi_nacin" type="xs:string"> </xs:element>
+  <xs:element name="drugi_način" type="xs:string"> </xs:element>
   <xs:element name="zakon">
     <xs:complexType>
       <xs:attribute name="naziv" use="required" type="xs:string"/>
       <xs:attribute name="stav" use="required" type="xs:integer"/>
-      <xs:attribute name="clan" use="required" type="xs:integer"/>
+      <xs:attribute name="član" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="podnozje">
+  <xs:element name="podnožje">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="mesto_i_datum"/>
-        <xs:element ref="informacije_o_traziocu"/>
+        <xs:element ref="informacije_o_tražiocu"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,7 +119,7 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="datum" type="xs:date"> </xs:element>
-  <xs:element name="informacije_o_traziocu">
+  <xs:element name="informacije_o_tražiocu">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="ime_i_prezime"/>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="http://ftn.uns.ac.rs/resenje" xmlns:res="http://ftn.uns.ac.rs/resenje">
+  <xs:element name="resenje_obrazac">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="res:osnovni_podaci"/>
+        <xs:element ref="res:sadrzaj"/>
+        <xs:element ref="res:poverenik"/>
+      </xs:sequence>
+      <xs:attribute name="broj" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="osnovni_podaci">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="res:naslov"/>
+        <xs:element ref="res:datum"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum" type="xs:date"/>
+  <xs:element name="naslov" type="xs:string"/>
+  <xs:element name="sadrzaj">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="res:uvod"/>
+        <xs:element ref="res:resenje"/>
+        <xs:element ref="res:obrazlozenje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="uvod">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="res:podnosilac"/>
+        <xs:element ref="res:ustanova"/>
+        <xs:element ref="res:datum_zahteva"/>
+        <xs:element ref="res:organ"/>
+        <xs:element ref="res:zakon"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum_zahteva" type="xs:date"/>
+  <xs:element name="organ" type="xs:string"/>
+  <xs:element name="zakon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="res:naziv"/>
+        <xs:element maxOccurs="unbounded" ref="res:sekcija_zakona"/>
+        <xs:element ref="res:sluzbeni_glasnik"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sekcija_zakona">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="res:clan"/>
+        <xs:element minOccurs="0" ref="res:stav"/>
+        <xs:element minOccurs="0" ref="res:tacka"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="clan" type="xs:integer"/>
+  <xs:element name="stav" type="xs:integer"/>
+  <xs:element name="tacka" type="xs:integer"/>
+  <xs:element name="sluzbeni_glasnik">
+    <xs:complexType>
+      <xs:attribute name="broj" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resenje">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="res:podnosilac"/>
+        <xs:element ref="res:ustanova"/>
+        <xs:element ref="res:adresa"/>
+        <xs:element ref="res:trazeni_dokument"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adresa">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="trazeni_dokument" type="xs:string"/>
+  <xs:element name="obrazlozenje">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="res:sud"/>
+        <xs:element ref="res:taksa"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sud" type="xs:string"/>
+  <xs:element name="taksa" type="xs:float"/>
+  <xs:element name="poverenik" type="xs:string"/>
+  <xs:element name="podnosilac" type="xs:string"/>
+  <xs:element name="ustanova">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="res:naziv"/>
+        <xs:element minOccurs="0" ref="res:ulica"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ulica" type="xs:string"/>
+  <xs:element name="naziv" type="xs:string"/>
+</xs:schema>

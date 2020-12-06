@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba_na_odluku
+    xmlns="http://ftn.uns.ac.rs/zalba_na_odluku"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ftn.uns.ac.rs/zalba_na_odluku zalba_na_odluku.xsd">
+   
+    <sadrzaj_zalbe>
+        <naslov>
+                ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ 
+            ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ
+        </naslov>     
+        <paragraf id="p1">
+              Поверенику за информације од јавног значаја и заштиту података о личности
+            Адреса за пошту: 
+            <adresa_za_postu>
+                <grad>Београд, </grad>
+                <ulica>Булевар краља Александрa </ulica>
+                <broj>бр. 15</broj>
+            </adresa_za_postu>
+        </paragraf>
+        <paragraf id="p2"> 
+            <naslov2>
+                Ж А Л Б А 
+            </naslov2>
+                            
+          <podnosilac_zalbe>
+              <podnosilac_ime> </podnosilac_ime>
+              <podnosilac_prezime></podnosilac_prezime>
+              <podnosilac_naziv></podnosilac_naziv>
+              <podnosilac_adresa>
+                  <grad></grad>
+                  <ulica></ulica>
+                  <broj></broj>
+              </podnosilac_adresa>
+              <podnosilac_sediste></podnosilac_sediste>    
+          </podnosilac_zalbe>
+          (Име, презиме, односно назив, адреса и седиште жалиоца)
+           
+        </paragraf> 
+        <paragraf id="p3">
+            против решења-закључка
+            <naziv_organa></naziv_organa>
+            (назив органа који је донео одлуку)
+            Број <broj_input></broj_input> од <godina_input></godina_input> године.
+        </paragraf>
+        <paragraf id = "p4">
+                Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми
+            са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-
+            упутио/ла дана<godina_input></godina_input>године и тако ми ускраћено-онемогућено остваривање уставног и
+            законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у
+            целости, односно у делу којим <obrazlozenje_zalbe></obrazlozenje_zalbe>
+            јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
+                На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
+                Жалбу подносим благовремено, у законском року утврђеном у <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" član="22" stav="1"></zakon>
+        </paragraf>
+        <podnožje>
+            <mesto_i_datum>
+                У <mesto> </mesto>,
+                дана <dan> </dan> 201<godina> </godina> године
+            </mesto_i_datum>
+            <informacije_o_tražiocu>
+                <ime></ime>
+                <prezime></prezime>
+                Подносилац жалбе / Име и презиме
+                <adresa>
+                    <grad></grad>
+                    <ulica></ulica>
+                    <broj></broj>
+                </adresa>
+                адреса
+                <kontakt> </kontakt>
+                други подаци за контакт
+                <potpis> </potpis>
+                потпис
+            </informacije_o_tražiocu>
+            <napomene>
+                <napomena id="n1">• У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив
+                    органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у
+                    жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. 
+                </napomena>
+                <napomena id="n2">• Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу
+                    као и копију одлуке органа која се оспорава жалбом.
+                </napomena>
+            </napomene>
+        </podnožje>   
+    </sadrzaj_zalbe> 
+</zalba_na_odluku>

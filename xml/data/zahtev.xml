@@ -5,48 +5,48 @@
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev zahtev.xsd">
     <podaci_o_organu>
         <naziv></naziv>
-        <sedište></sedište>
+        <sediste></sediste>
     </podaci_o_organu>
-    <sadržaj_zahteva>
+    <sadrzaj_zahteva>
         <naslov>
                         З А Х Т Е В
             за приступ информацији од јавног значаја
         </naslov>
         <paragraf id="p_1" fusnota="У кућици означити која законска права на приступ информацијама желите да остварите">
-            На основу <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" član="15" stav="1"></zakon>
-           (<službeni_glasnik>
+            На основу <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" clan="15" stav="1"></zakon>
+           (<sluzbeni_glasnik>
                 <brojevi>
                     <broj br="120/04"></broj>
                     <broj br="57/04"></broj>
                     <broj br="104/09"></broj>
                     <broj br="36/10"></broj>
                 </brojevi>
-            </službeni_glasnik>), од горе наведеног органа захтевам:
+            </sluzbeni_glasnik>), од горе наведеног органа захтевам:
             <stavke>
-                <stavka otkačeno = "false" id="s_1" zahtev="обавештење да ли поседује тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_2" zahtev="увид у документ који садржи тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_3" zahtev="копију документа који садржи тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_4" zahtev="достављање копије документа који садржи тражену информацију:" fusnota="У кућици означити начин достављања копије докумената.">
+                <stavka otkaceno = "false" id="s_1" zahtev="обавештење да ли поседује тражену информацију" ></stavka>;
+                <stavka otkaceno = "false" id="s_2" zahtev="увид у документ који садржи тражену информацију" ></stavka>;
+                <stavka otkaceno = "false" id="s_3" zahtev="копију документа који садржи тражену информацију" ></stavka>;
+                <stavka otkaceno = "false" id="s_4" zahtev="достављање копије документа који садржи тражену информацију:" fusnota="У кућици означити начин достављања копије докумената.">
                     <podstavke>
-                        <podstavka otkačeno = "false" id="ps_1" način="поштом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_2" način="електронском поштом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_3" način="факсом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_4" način="на други начин:" fusnota="Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.">
-                            <drugi_način> </drugi_način>
+                        <podstavka otkaceno = "false" id="ps_1" nacin="поштом" fusnota=""></podstavka>
+                        <podstavka otkaceno = "false" id="ps_2" nacin="електронском поштом" fusnota=""></podstavka>
+                        <podstavka otkaceno = "false" id="ps_3" nacin="факсом" fusnota=""></podstavka>
+                        <podstavka otkaceno = "false" id="ps_4" nacin="на други начин:" fusnota="Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.">
+                            <drugi_nacin> </drugi_nacin>
                         </podstavka>
                     </podstavke>
                 </stavka>
             </stavke>
             Овај захтев се односи на следеће информације:
-            <opis_tražene_informacije></opis_tražene_informacije>
+            <opis_trazene_informacije></opis_trazene_informacije>
         </paragraf>
-    </sadržaj_zahteva>
-    <podnožje>
+    </sadrzaj_zahteva>
+    <podnozje>
         <mesto_i_datum>
             <mesto></mesto>
             <datum>2020-12-04</datum> 
         </mesto_i_datum>
-        <informacije_o_tražiocu>
+        <informacije_o_traziocu>
             <ime_i_prezime> </ime_i_prezime>
             <adresa> 
                 <ulica></ulica>
@@ -55,6 +55,6 @@
             </adresa>
             <kontakt> </kontakt>
             <potpis> </potpis>
-        </informacije_o_tražiocu>
-    </podnožje>
+        </informacije_o_traziocu>
+    </podnozje>
 </zahtev>

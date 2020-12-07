@@ -6,7 +6,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="zal:sadrzaj_zalbe"/>
-        <xs:element ref="zal:podnožje"/>
+        <xs:element ref="zal:podnozje"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -73,14 +73,14 @@
     <xs:complexType>
       <xs:attribute name="naziv" use="required" type="xs:string"/>
       <xs:attribute name="stav" use="required" type="xs:positiveInteger"/>
-      <xs:attribute name="član" use="required" type="xs:positiveInteger"/>
+      <xs:attribute name="clan" use="required" type="xs:positiveInteger"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="podnožje">
+  <xs:element name="podnozje">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="zal:mesto_i_datum"/>
-        <xs:element ref="zal:informacije_o_tražiocu"/>
+        <xs:element ref="zal:informacije_o_traziocu"/>
         <xs:element ref="zal:napomene"/>
       </xs:sequence>
     </xs:complexType>
@@ -94,8 +94,8 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="mesto" type="xs:string"> </xs:element>
-  <xs:element name="informacije_o_tražiocu">
-    <xs:complexType mixed="true">
+  <xs:element name="informacije_o_traziocu">
+    <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element ref="zal:adresa"/>
         <xs:element ref="zal:ime"/>

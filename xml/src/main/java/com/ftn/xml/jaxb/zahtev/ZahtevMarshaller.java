@@ -17,7 +17,9 @@ import com.ftn.xml.jaxb.util.NSPrefixMapper;
 
 public class ZahtevMarshaller {
 
-	public void test() throws Exception {
+	public static String output = "";
+
+	public static String test() throws Exception {
 		try {
 
 			System.out.println("[INFO] Zahtev: JAXB unmarshalling/marshalling.\n");
@@ -29,86 +31,85 @@ public class ZahtevMarshaller {
 			// XML schema validacija
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 			Schema schema = schemaFactory.newSchema(new File("./data/zahtev.xsd"));
-			
+
 			Zahtev zahtev = (Zahtev) unmarshaller.unmarshal(new File("./data/zahtev.xml"));
-			
+
 			// Izmena nad OM
-			//zahtev.getSadrzajZahteva().setNaslov("NOVI NASLOV ZAHTEVA");
+			// zahtev.getSadrzajZahteva().setNaslov("NOVI NASLOV ZAHTEVA");
 
 			// Podesavanje unmarshaller-a za XML schema validaciju
 			unmarshaller.setSchema(schema);
 			unmarshaller.setEventHandler(new MyValidationEventHandler());
-			
+
 			printZahtev(zahtev);
-			
+
 			Marshaller marshaller = context.createMarshaller();
-			
+
 			marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NSPrefixMapper());
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			FileOutputStream os = new FileOutputStream(new File("./data/zahtev_marshall.xml"));
 
-			marshaller.marshal(zahtev, System.out);
+			//marshaller.marshal(zahtev, System.out);
 			marshaller.marshal(zahtev, os);
-
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return output;
 
 	}
 
-	public void printZahtev(Zahtev zahtev) {
+	public static void printZahtev(Zahtev zahtev) {
 		printPodaciOOrganu(zahtev.getPodaciOOrganu());
 		printSadrzajZahteva(zahtev.getSadrzajZahteva());
 		printPodnozje(zahtev.getPodnozje());
 	}
 
-	private void printPodnozje(Podnozje podnozje) {
-		System.out.println("Podnozje:");
+	private static void printPodnozje(Podnozje podnozje) {
+		output = output + "Podnozje:\n";
 		printMestoIDatum(podnozje.getMestoIDatum());
 		printInformacijeOTraziocu(podnozje.getInformacijeOTraziocu());
 	}
 
-	private void printMestoIDatum(MestoIDatum mestoIDatum) {
-		System.out.println("\tMesto i Datum:");
-		System.out.println("\t\tMesto: " + mestoIDatum.getMesto());
-		System.out.println("\t\tDatum: " + mestoIDatum.getDatum());
+	private static void printMestoIDatum(MestoIDatum mestoIDatum) {
+		output = output + "\tMesto i Datum:\n";
+		output = output + "\t\tMesto: " + mestoIDatum.getMesto() + "\n";
+		output = output + "\t\tDatum: " + mestoIDatum.getDatum() + "\n";
 
 	}
 
-	private void printInformacijeOTraziocu(InformacijeOTraziocu info) {
-		System.out.println("\tInformacije o traziocu:");
-		System.out.println("\t\tIme i prezime: " + info.getImeIPrezime());
-		System.out.println("\t\tAdresa:");
-		System.out.println("\t\t\t" + info.getAdresa().getUlica() + " " + info.getAdresa().getBrojUlice() + ", "
-				+ info.getAdresa().getMesto());
-		System.out.println("\t\tKontakt: " + info.getKontakt());
-		System.out.println("\t\tPotpis: " + info.getPotpis());
+	private static void printInformacijeOTraziocu(InformacijeOTraziocu info) {
+		output = output + "\tInformacije o traziocu:\n";
+		output = output + "\t\tIme i prezime: " + info.getImeIPrezime() + "\n";
+		output = output + "\t\tAdresa:\n";
+		output = output + "\t\t\t" + info.getAdresa().getUlica() + " " + info.getAdresa().getBrojUlice() + ", "
+				+ info.getAdresa().getMesto() + "\n";
+		output = output + "\t\tKontakt: " + info.getKontakt() + "\n";
+		output = output + "\t\tPotpis: " + info.getPotpis() + "\n";
 
 	}
 
-	private void printSadrzajZahteva(SadrzajZahteva sadrzaj) {
-		System.out.println("Sadrzaj zahteva:");
-		System.out.println("\tNaslov: " + sadrzaj.getNaslov());
+	private static void printSadrzajZahteva(SadrzajZahteva sadrzaj) {
+		output = output + "Sadrzaj zahteva:\n";
+		output = output + "\tNaslov: " + sadrzaj.getNaslov() + "\n";
 		printParagraf(sadrzaj.getParagraf());
 
 	}
 
-	private void printParagraf(Paragraf paragraf) {
-		System.out.println("\tParagraf[ id=" + paragraf.getId() + ", fusnota=" + paragraf.getFusnota() + "]");
+	private static void printParagraf(Paragraf paragraf) {
+		output = output + "\tParagraf[ id=" + paragraf.getId() + ", fusnota=" + paragraf.getFusnota() + "]\n";
 
 		for (Object s : paragraf.getContent()) {
 			if (s instanceof String) {
-				System.out.println(s);
+				output = output + s + "\n";
 
 			} else if (s instanceof SluzbeniGlasnik) {
 				SluzbeniGlasnik sg = (SluzbeniGlasnik) s;
-				System.out.println("\t\tSluzbeni glasnik:");
+				output = output + "\t\tSluzbeni glasnik:\n";
 
-				System.out.println("\t\t\tBrojevi:");
+				output = output + "\t\t\tBrojevi:\n";
 				for (String b : sg.getBrojevi().getBroj()) {
-					System.out.println("\t\t\t\t"+b);
+					output = output + "\t\t\t\t" + b + "\n";
 				}
 
 			} else if (s instanceof Stavke) {
@@ -116,23 +117,23 @@ public class ZahtevMarshaller {
 
 			} else if (s instanceof Zakon) {
 				Zakon zakon = (Zakon) s;
-				System.out.println("\t\tZakon:");
-				System.out.println("\t\t\tNaziv: " + zakon.getNaziv());
-				System.out.println("\t\t\tStav: " + zakon.getStav());
+				output = output + "\t\tZakon:\n";
+				output = output + "\t\t\tNaziv: " + zakon.getNaziv() + "\n";
+				output = output + "\t\t\tStav: " + zakon.getStav() + "\n";
 
 			} else {
 				JAXBElement el = (JAXBElement) s;
-				//System.out.println("\t\t" + el.getName().getLocalPart());
-				System.out.println("\t\tOpis trazene informacije:");
+				// System.out.println("\t\t" + el.getName().getLocalPart());
+				output = output + "\t\tOpis trazene informacije:\n";
 				if (!el.getValue().toString().equals(""))
-					System.out.println("\t\t\t\t" + el.getValue());
+					output = output + "\t\t\t\t" + el.getValue() + "\n";
 
 			}
 		}
 	}
 
-	private void printStavke(Stavke s) {
-		System.out.println("\t\tStavke:");
+	private static void printStavke(Stavke s) {
+		output = output + "\t\tStavke:\n";
 		Stavke stavke = (Stavke) s;
 		for (Object o : stavke.getContent()) {
 			if (o instanceof Stavka) {
@@ -143,11 +144,11 @@ public class ZahtevMarshaller {
 		}
 	}
 
-	private void printStavka(Stavka st) {
-		if(st.isOtkaceno())
-			System.out.println("\t\t\tStavka[*] : " + st.getZahtev());
+	private static void printStavka(Stavka st) {
+		if (st.isOtkaceno())
+			output = output + "\t\t\tStavka[*] : " + st.getZahtev() + "\n";
 		else
-			System.out.println("\t\t\tStavka[ ] : " + st.getZahtev());
+			output = output + "\t\t\tStavka[ ] : " + st.getZahtev() + "\n";
 		Object p = st.getPodstavke();
 
 		if (p != null) {
@@ -156,35 +157,29 @@ public class ZahtevMarshaller {
 
 	}
 
-	private void printPodstavke(Podstavke p) {
+	private static void printPodstavke(Podstavke p) {
 		List<Podstavka> podstavke = p.getPodstavka();
-		System.out.println("\t\t\t\tPodstavke:");
+		output = output + "\t\t\t\tPodstavke:\n";
 		for (Podstavka ps : podstavke) {
-			if(ps.isOtkaceno())
-				System.out.println("\t\t\t\t\tPodstavka[*] : " + ps.getNacin());
+			if (ps.isOtkaceno())
+				output = output + "\t\t\t\t\tPodstavka[*] : " + ps.getNacin() + "\n";
 			else
-				System.out.println("\t\t\t\t\tPodstavka[ ] : " + ps.getNacin());
+				output = output + "\t\t\t\t\tPodstavka[ ] : " + ps.getNacin() + "\n";
 
 			Object drugiNacin = ps.getDrugiNacin();
 			if (drugiNacin != null) {
-				System.out.println("\t\t\t\t\t\tDrugi nacin:");
-				System.out.println("\t\t\t\t\t\t\t"+ps.getDrugiNacin());
+				output = output + "\t\t\t\t\t\tDrugi nacin:\n";
+				output = output + "\t\t\t\t\t\t\t" + ps.getDrugiNacin() + "\n";
 			}
-				
+
 		}
 
 	}
 
-	private void printPodaciOOrganu(PodaciOOrganu podaci) {
-		System.out.println("Podaci o organu:");
-		System.out.println("\tNaziv: " + podaci.getNaziv());
-		System.out.println("\tSediste: " + podaci.getSediste());
-
-	}
-
-	public static void main(String[] args) throws Exception {
-		ZahtevMarshaller test = new ZahtevMarshaller();
-		test.test();
+	private static void printPodaciOOrganu(PodaciOOrganu podaci) {
+		output = output + "Podaci o organu:\n";
+		output = output + "\tNaziv: " + podaci.getNaziv() + "\n";
+		output = output + "\tSediste: " + podaci.getSediste() + "\n";
 
 	}
 

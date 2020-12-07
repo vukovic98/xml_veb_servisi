@@ -16,10 +16,10 @@
             На основу <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" clan="15" stav="1"></zakon>
            (<sluzbeni_glasnik>
                 <brojevi>
-                    <broj br="120/04"></broj>
-                    <broj br="57/04"></broj>
-                    <broj br="104/09"></broj>
-                    <broj br="36/10"></broj>
+                    <broj>120/04</broj>
+                    <broj>57/04</broj>
+                    <broj>104/09</broj>
+                    <broj>36/10</broj>
                 </brojevi>
             </sluzbeni_glasnik>), од горе наведеног органа захтевам:
             <stavke>
@@ -50,7 +50,7 @@
             <ime_i_prezime> </ime_i_prezime>
             <adresa> 
                 <ulica>Kumanovska</ulica>
-                <broj>"8"</broj>
+                <brojUlice>8</brojUlice>
                 <mesto>Backa Palanka</mesto>
             </adresa>
             <kontakt> </kontakt>

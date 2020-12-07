@@ -41,8 +41,7 @@
       <xs:attribute name="id" use="required" type="xs:ID"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="opis_trazene_informacije">
-    <xs:complexType/>
+  <xs:element name="opis_trazene_informacije" type="xs:string">
   </xs:element>
   <xs:element name="sluzbeni_glasnik">
     <xs:complexType>
@@ -58,6 +57,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="broj" type="xs:string"></xs:element>
   <xs:element name="stavke">
     <xs:complexType mixed="true">
       <xs:sequence>
@@ -134,7 +134,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="ulica"/>
-        <xs:element ref="broj"/>
+        <xs:element ref="brojUlice"/>
         <xs:element ref="mesto"/>
       </xs:sequence>
     </xs:complexType>
@@ -142,10 +142,6 @@
   <xs:element name="ulica" type="xs:string"> </xs:element>
   <xs:element name="kontakt" type="xs:string"> </xs:element>
   <xs:element name="potpis" type="xs:string"> </xs:element>
-  <xs:element name="broj">
-    <xs:complexType>
-      <xs:attribute name="br" type="xs:string"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="brojUlice" type="xs:positiveInteger"> </xs:element>
   <xs:element name="mesto" type="xs:string"> </xs:element>
 </xs:schema>

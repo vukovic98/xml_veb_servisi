@@ -142,10 +142,6 @@
   <xs:element name="ulica" type="xs:string"> </xs:element>
   <xs:element name="kontakt" type="xs:string"> </xs:element>
   <xs:element name="potpis" type="xs:string"> </xs:element>
-  <xs:element name="broj">
-    <xs:complexType>
-      <xs:attribute name="br" type="xs:string"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="broj" type="xs:positiveInteger"> </xs:element>
   <xs:element name="mesto" type="xs:string"> </xs:element>
 </xs:schema>

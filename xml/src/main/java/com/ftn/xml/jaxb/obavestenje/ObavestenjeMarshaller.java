@@ -13,12 +13,17 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import com.ftn.xml.jaxb.util.NSPrefixMapper;
+import com.ftn.xml.jaxb.resenje.ResenjeObrazac;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.NSPrefixMapper;
 
-public class ObavestenjeMarshaller {
 
-	public void test() throws Exception {
+public class ObavestenjeMarshaller {
+	
+	public static String output = "";
+
+	public static String test() throws Exception {
 		try {
 
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.jaxb.obavestenje");
@@ -44,15 +49,17 @@ public class ObavestenjeMarshaller {
 			// Umesto System.out-a, moÅ¾e se koristiti FileOutputStream
 			FileOutputStream os = new FileOutputStream(new File("./data/obavestenje_marshall.xml"));
 			marshaller.marshal(obavestenje, os);
-
+			
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+		
+		return output;
 
 	}
 	
-	private void printObavestenje(Obavestenje o) {
-		System.out.println("Obavestenje:");
+	private static void printObavestenje(Obavestenje o) {
+		output +="Obavestenje:" + "\n";
 		printOsnovniPodaci(o.getOsnovniPodaci());
 		printSadrzaj(o.getSadrzaj());
 		printPodnozje(o.getPodnozje());
@@ -60,86 +67,79 @@ public class ObavestenjeMarshaller {
 	
 	
 
-	private void printSadrzaj(Sadrzaj s) {
-		System.out.println("\tSadrzaj:");
-		System.out.println("\t\tNaslov: " + s.getNaslov());
+	private static void printSadrzaj(Sadrzaj s) {
+		output +="\tSadrzaj:" + "\n";
+		output +="\t\tNaslov: " + s.getNaslov() + "\n";
 		printTeloObavestenja(s.getTeloObavestenja());
 	}
 
-	private void printTeloObavestenja(TeloObavestenja t) {
-		System.out.println("\t\tTelo obavestenja: ");
+	private static void printTeloObavestenja(TeloObavestenja t) {
+		output +="\t\tTelo obavestenja: " + "\n";
 		for(Paragraf p : t.getParagraf()) {
-			System.out.println("\t\t\tParagraf[" + p.getId() + "]");
+			output +="\t\t\tParagraf[" + p.getId() + "]" + "\n";
 			printParagraf(p.getContent());
 		}
 	}
 	
-	private void printSluzbeniGlasnik(SluzbeniGlasnik g) {
-		System.out.println("\t\t\t\tSluzbeni glasnik broj: " + g.getBroj());
+	private static void printSluzbeniGlasnik(SluzbeniGlasnik g) {
+		output +="\t\t\t\tSluzbeni glasnik broj: " + g.getBroj() + "\n";
 	}
 
-	private void printParagraf(List<Object> content) {
+	private static void printParagraf(List<Object> content) {
 		for(Object o : content) {
 			if(o instanceof Zakon) {
 				
 			} else if(o instanceof Adresa) {
 				Adresa a = (Adresa)o;
-				System.out.println("\t\t\t\tAdresa: ");
-				System.out.println("\t\t\t\t\tGrad: " + a.getGrad());
-				System.out.println("\t\t\t\t\tUlica: " + a.getUlica());
-				System.out.println("\t\t\t\t\tBroj: " + a.getBroj());
+				output +="\t\t\t\tAdresa: " + "\n";
+				output +="\t\t\t\t\tGrad: " + a.getGrad() + "\n";
+				output +="\t\t\t\t\tUlica: " + a.getUlica() + "\n";
+				output +="\t\t\t\t\tBroj: " + a.getBroj() + "\n";
 			} else if(o instanceof SluzbeniGlasnik) {
 				SluzbeniGlasnik s = (SluzbeniGlasnik) o;
 				printSluzbeniGlasnik(s);
 			} else if(o instanceof ZiroRacun) {
 				ZiroRacun z = (ZiroRacun) o;
-				System.out.println("\t\t\t\tZiro racun:");
-				System.out.println("\t\t\t\t\tVrednost: " + z.getValue());
-				System.out.println("\t\t\t\t\tPoziv na broj: " + z.getPozivNaBroj());
+				output +="\t\t\t\tZiro racun:" + "\n";
+				output +="\t\t\t\t\tVrednost: " + z.getValue() + "\n";
+				output +="\t\t\t\t\tPoziv na broj: " + z.getPozivNaBroj() + "\n";
 			} else if(o instanceof String) {
-				System.out.println("\t\t\t\t" + o);
+				output +="\t\t\t\t" + o + "\n";
 			} else {
 				JAXBElement el = (JAXBElement) o;
-				System.out.println("\t\t\t\t" + el.getName());
-				System.out.println("\t\t\t\t\t" + el.getValue());
+				output +="\t\t\t\t" + el.getName() + "\n";
+				output +="\t\t\t\t\t" + el.getValue() + "\n";
 			}
 		}
 	}
 
-	private void printPodnozje(Podnozje p) {
-		System.out.println("\tPodnozje:");
-		System.out.println("\t\tDostavljeno:");
+	private static void printPodnozje(Podnozje p) {
+		output +="\tPodnozje:\n";
+		output +="\t\tDostavljeno:\n";
 		for(Lice l : p.getDostavljeno().getLice()) {
-			System.out.println("\t\t\tLice[" + l.getId() + "]: " + l.getValue());
+			output +="\t\t\tLice[" + l.getId() + "]: " + l.getValue() + "\n";
 		}
-		System.out.println("\t\tPotpis i pecat" + p.getPotpisOvlascenogLica());
+		output +="\t\tPotpis i pecat" + p.getPotpisOvlascenogLica() + "\n";
 	}
 
-	private void printOsnovniPodaci(OsnovniPodaci osnovniPodaci) {
-		System.out.println("\tOsnovni podaci:");
+	private static void printOsnovniPodaci(OsnovniPodaci osnovniPodaci) {
+		output +="\tOsnovni podaci:\n";
 		printPodaciOOrganu(osnovniPodaci.getPodaciOOrganu());
 		printPodaciOPodnosiocu(osnovniPodaci.getPodaciOPodnosiocu());
 	}
 
-	private void printPodaciOPodnosiocu(PodaciOPodnosiocu p) {
-		System.out.println("\t\tPodaci o podnosiocu:");
-		System.out.println("\t\t\tIme i prezime: " + p.getImeIPrezime());
-		System.out.println("\t\t\tNaziv: " + p.getNaziv());
-		System.out.println("\t\t\tAdresa: " + p.getAdresa());
+	private static void printPodaciOPodnosiocu(PodaciOPodnosiocu p) {
+		output +="\t\tPodaci o podnosiocu:" + "\n";
+		output +="\t\t\tIme i prezime: " + p.getImeIPrezime() + "\n";
+		output +="\t\t\tNaziv: " + p.getNaziv() + "\n";
+		output +="\t\t\tAdresa: " + p.getAdresa() + "\n";
 	}
 
-	private void printPodaciOOrganu(PodaciOOrganu p) {
-		System.out.println("\t\tPodaci o organu:");
-		System.out.println("\t\t\tNaziv: " + p.getNaziv());
-		System.out.println("\t\t\tSediste: " + p.getSediste());
-		System.out.println("\t\t\tBroj predmeta: " + p.getBrojPredmeta());
-		System.out.println("\t\t\tDatum: " + p.getDatum());
+	private static void printPodaciOOrganu(PodaciOOrganu p) {
+		output +="\t\tPodaci o organu:" + "\n";
+		output +="\t\t\tNaziv: " + p.getNaziv() + "\n";
+		output +="\t\t\tSediste: " + p.getSediste() + "\n";
+		output +="\t\t\tBroj predmeta: " + p.getBrojPredmeta() + "\n";
+		output +="\t\t\tDatum: " + p.getDatum() + "\n";
 	}
-
-	public static void main(String[] args) throws Exception {
-		ObavestenjeMarshaller o = new ObavestenjeMarshaller();
-		o.test();
-
-	}
-
 }

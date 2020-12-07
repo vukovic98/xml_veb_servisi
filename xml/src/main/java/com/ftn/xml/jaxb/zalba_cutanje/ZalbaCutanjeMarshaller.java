@@ -14,13 +14,17 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.ftn.xml.jaxb.util.NSPrefixMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 
 public class ZalbaCutanjeMarshaller {
 
-	public void test() throws Exception {
+	public static String out = "";
+	
+	public static String test() throws Exception {
 		try {
 			
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.jaxb.zalba_cutanje");
@@ -37,6 +41,8 @@ public class ZalbaCutanjeMarshaller {
 			
 			printZalba(zalba);
 			
+			
+			
 			// Marshaller je objekat zaduÅ¾en za konverziju iz objektnog u XML model
 			Marshaller marshaller = context.createMarshaller();
 			
@@ -46,47 +52,54 @@ public class ZalbaCutanjeMarshaller {
 			// Umesto System.out-a, moÅ¾e se koristiti FileOutputStream
 			
 			FileOutputStream stream = new FileOutputStream(new File("./data/zalba_cutanje_marshalled.xml"));
-			
+			marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NSPrefixMapper());
 			marshaller.setSchema(schema);
 			
+			
 			marshaller.marshal(zalba, stream);
+			
             
 		}catch(JAXBException e) {
 			e.printStackTrace();
 		}
+		return out;
 		
 		
 	}
 	
-	private void printZalba(ZalbaCutanje zalba) {
+	private static void printZalba(ZalbaCutanje zalba) {
 		
-		System.out.println("Zalba: ");
+		out = out.concat("Zalba: \n");
+		
+		
 		
 		printZaglavlje(zalba.getZaglavlje());
 		printSadrzaj(zalba.getSadrzaj());
 		printPodnozje(zalba.getPodnozje());
 		
+		System.out.println(out);
+		
 	}
 	
-	private void printZaglavlje(Zaglavlje zaglavlje) {
+	private static void printZaglavlje(Zaglavlje zaglavlje) {
 		
-		System.out.println("\tZaglavlje: ");
+		out = out.concat("\tZaglavlje: \n");
 		
-		System.out.println("\tNaslov: "+zaglavlje.getNaslov());
+		out = out.concat("\tNaslov: "+zaglavlje.getNaslov());
 		printPrimalac(zaglavlje.getPrimalacZalbe());
 	}
 	
-	private void printPrimalac(PrimalacZalbe primalac) {
+	private static void printPrimalac(PrimalacZalbe primalac) {
 		
-		System.out.println("\t\tPrimalac: ");
-		System.out.println("\t\t\tNaziv primaoca: "+primalac.getNazivPrimaoca());
-		System.out.println("\t\t\tAdresa primaoca: "+primalac.getAdresaZaPostu());
+		out = out.concat("\t\tPrimalac: \n");
+		out = out.concat("\t\t\tNaziv primaoca: \n"+primalac.getNazivPrimaoca());
+		out = out.concat("\t\t\tAdresa primaoca: \n"+primalac.getAdresaZaPostu());
 		
 	}
 	
-	private void printSadrzaj(Sadrzaj sadrzaj) {
+	private static void printSadrzaj(Sadrzaj sadrzaj) {
 		
-		System.out.println("\tSadrzaj: ");
+		out = out.concat("\tSadrzaj: \n");
 		
 		for (Paragraf p : sadrzaj.getParagraf()) {
 			printParagraf(p);
@@ -94,28 +107,28 @@ public class ZalbaCutanjeMarshaller {
 		
 	}
 	
-	private void printParagraf(Paragraf paragraf) {
+	private static void printParagraf(Paragraf paragraf) {
 		
-		System.out.println("\t\tParagraf "+paragraf.getId());
+		out = out.concat("\t\tParagraf "+paragraf.getId()+"\n");
 		
 		for (Object o : paragraf.getContent()) {
 			if(o.getClass() == Zakon.class) {
 				Zakon z = (Zakon)o;
 				
-				System.out.println("\t\t\tZakon: ");
-				System.out.println("\t\t\tClan: "+z.getClan());
-				System.out.println("\t\t\tNaziv: "+z.getNaziv());
+				out = out.concat("\t\t\tZakon: \n");
+				out = out.concat("\t\t\tClan: "+z.getClan()+"\n");
+				out = out.concat("\t\t\tNaziv: "+z.getNaziv()+"\n");
 			}else if(o.getClass() == RazlogZalbe.class) {
 				
 				RazlogZalbe rz = (RazlogZalbe)o;
-				System.out.println("\t\t\tRazlog zalbe: ");
+				out = out.concat("\t\t\tRazlog zalbe: "+"\n");
 				
 				if(rz.getNijePostupio()!=null)
-					System.out.println(rz.getNijePostupio());
+					out = out.concat(rz.getNijePostupio().toString());
 				if(rz.getNijePostupioUCelosti()!=null)
-					System.out.println(rz.getNijePostupioUCelosti());
+					out = out.concat(rz.getNijePostupioUCelosti().toString());
 				if(rz.getNijePostupioURoku()!=null)
-					System.out.println(rz.getNijePostupioURoku());
+					out = out.concat(rz.getNijePostupioURoku().toString());
 				
 			}else {
 
@@ -125,13 +138,13 @@ public class ZalbaCutanjeMarshaller {
 					String[] name = elem.getName().toString().split("}");
 					String ispis = StringUtils.capitalize(name[1]);
 					
-					System.out.println("\t\t\t"+ispis+":");
+					out = out.concat("\t\t\t"+ispis+":\n");
 					
 					
-					System.out.println("\t\t\t"+elem.getValue());
+					out = out.concat("\t\t\t"+elem.getValue()+"\n");
 				}
 				else {
-					System.out.println("\t\t\t"+o);
+					out = out.concat("\t\t\t"+o+"\n");
 				}
 				
 			}
@@ -139,50 +152,46 @@ public class ZalbaCutanjeMarshaller {
 		
 	}
 	
-	private void printPodnozje(Podnozje podnozje) {
+	private static void printPodnozje(Podnozje podnozje) {
 		
-		System.out.println("\tPodnozje: ");
+		out = out.concat("\tPodnozje: \n");
 		printDatumMesto(podnozje.getDatumIMestoZalbe());
 		printPodnosilacZalbe(podnozje.getPodnosilacZalbe());
 	}
 	
-	private void printDatumMesto(DatumIMestoZalbe datumMesto) {
+	private static void printDatumMesto(DatumIMestoZalbe datumMesto) {
 		
-		System.out.println("\t\tDatum i mesto zalbe: ");
+		out = out.concat("\t\tDatum i mesto zalbe: \n");
 		for (Serializable o : datumMesto.getContent()) {
 			
 			if(o.getClass() == JAXBElement.class) {
 				JAXBElement elem = (JAXBElement) o;
 				
-				System.out.println("\t\t\t"+elem.getValue());
+				out = out.concat("\t\t\t"+elem.getValue()+"\n");
 			}
 			else
-				System.out.println("\t\t\t"+o);
+				out = out.concat("\t\t\t"+o+"\n");
 		}
 		
 	}
 	
-	private void printPodnosilacZalbe(PodnosilacZalbe podnosilac) {
+	private static void printPodnosilacZalbe(PodnosilacZalbe podnosilac) {
 		
-		System.out.println("\t\tPodnosilac zalbe: ");
+		out = out.concat("\t\tPodnosilac zalbe: \n");
 		
-		System.out.println("\t\t\tIme i prezime: "+podnosilac.getImeIPrezime());
+		out = out.concat("\t\t\tIme i prezime: "+podnosilac.getImeIPrezime()+"\n");
 		
 		for (Object o : podnosilac.getAdresaPodnosiocaOrDrugiPodaciZaKontaktOrPotpis()) {
 			
 			if(o.getClass() == Potpis.class)
-				System.out.println("\t\t\tPotpis: ");
+				out = out.concat("\t\t\tPotpis: \n");
 			else {
 				JAXBElement elem = (JAXBElement) o;
-				System.out.println("\t\t\t"+elem.getValue());
+				out = out.concat("\t\t\t"+elem.getValue()+"\n");
 			}
 		}
 		
 	}
 	
-	public static void main(String[] args) throws Exception {
-		ZalbaCutanjeMarshaller test = new ZalbaCutanjeMarshaller();
-		test.test();
-	}
 	
 }

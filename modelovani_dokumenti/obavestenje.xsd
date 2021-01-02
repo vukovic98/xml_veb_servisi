@@ -1,108 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-  targetNamespace="http://ftn.uns.ac.rs/obavestenje" xmlns:ob="http://ftn.uns.ac.rs/obavestenje">
+  targetNamespace="http://www.w3.org/ns/obavestenje" xmlns:o="http://www.w3.org/ns/obavestenje"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xs:element name="lista_obavestenja">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="o:obavestenje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="obavestenje">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:osnovni_podaci"/>
-        <xs:element ref="ob:sadrzaj"/>
-        <xs:element ref="ob:podnozje"/>
+        <xs:element ref="o:osnovni_podaci"/>
+        <xs:element ref="o:sadrzaj"/>
+        <xs:element ref="o:podnozje"/>
       </xs:sequence>
+      <xs:attribute name="about" use="required" type="xs:anyURI"/>
+      <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="osnovni_podaci">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:podaci_o_organu"/>
-        <xs:element ref="ob:podaci_o_podnosiocu"/>
+        <xs:element ref="o:podaci_o_organu"/>
+        <xs:element ref="o:podaci_o_podnosiocu"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="podaci_o_organu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:naziv"/>
-        <xs:element ref="ob:sediste"/>
-        <xs:element ref="ob:broj_predmeta"/>
-        <xs:element ref="ob:datum"/>
+        <xs:element ref="o:naziv"/>
+        <xs:element ref="o:sediste"/>
+        <xs:element ref="o:broj_predmeta"/>
+        <xs:element ref="o:datum_zahteva"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="sediste" type="xs:string"> </xs:element>
-  <xs:element name="broj_predmeta" type="xs:string"> </xs:element>
+  <xs:element name="sediste">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj_predmeta">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum_zahteva">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="podaci_o_podnosiocu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:ime_i_prezime"/>
-        <xs:element ref="ob:naziv"/>
-        <xs:element ref="ob:adresa"/>
+        <xs:element ref="o:ime_i_prezime"/>
+        <xs:element ref="o:naziv"/>
+        <xs:element ref="o:adresa"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ime_i_prezime" type="xs:string"> </xs:element>
+  <xs:element name="ime_i_prezime">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="sadrzaj">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:naslov"/>
-        <xs:element ref="ob:telo_obavestenja"/>
+        <xs:element ref="o:godina_zahteva"/>
+        <xs:element ref="o:opis_trazene_informacije"/>
+        <xs:element ref="o:datum_uvida"/>
+        <xs:element ref="o:cas_uvida"/>
+        <xs:element ref="o:sat_od"/>
+        <xs:element ref="o:sat_do"/>
+        <xs:element ref="o:adresa"/>
+        <xs:element ref="o:broj_kancelarije"/>
+        <xs:element ref="o:cena"/>
+        <xs:element ref="o:ziro_racun"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="naslov" type="xs:string"/>
-  <xs:element name="telo_obavestenja">
+  <xs:element name="godina_zahteva">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="ob:paragraf"/>
-      </xs:sequence>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="paragraf">
+  <xs:element name="opis_trazene_informacije">
     <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="ob:adresa"/>
-        <xs:element ref="ob:datum"/>
-        <xs:element ref="ob:broj_kancelarije"/>
-        <xs:element ref="ob:cena"/>
-        <xs:element ref="ob:godina" minOccurs="1"/>
-        <xs:element ref="ob:opis_trazene_informacije"/>
-        <xs:element ref="ob:sat"/>
-        <xs:element ref="ob:sluzbeni_glasnik"/>
-        <xs:element ref="ob:zakon"/>
-        <xs:element ref="ob:ziro_racun"/>
-      </xs:choice>
-      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="broj_kancelarije" type="xs:positiveInteger"> </xs:element>
-  <xs:element name="cena" type="xs:float"> </xs:element>
-  <xs:element name="godina">
-    <xs:simpleType>
-      <xs:restriction base="xs:positiveInteger">
-        <xs:minInclusive value="1900"/>
-        <xs:maxInclusive value="2100"/>
-        <xs:totalDigits value="4"/>
-      </xs:restriction>
-    </xs:simpleType>
-  </xs:element>
-  <xs:element name="opis_trazene_informacije" type="xs:string"> </xs:element>
-  <xs:element name="sat" type="xs:time"> </xs:element>
-  <xs:element name="sluzbeni_glasnik">
-    <xs:complexType>
-      <xs:attribute name="broj" type="xs:string"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="zakon">
-    <xs:complexType>
-      <xs:attribute name="clan" use="required" type="xs:integer"/>
-      <xs:attribute name="naziv" use="required" type="xs:string"/>
-      <xs:attribute name="stav" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="datum_uvida" type="xs:date"/>
+  <xs:element name="cas_uvida" type="xs:time"/>
+  <xs:element name="sat_od" type="xs:time"/>
+  <xs:element name="sat_do" type="xs:time"/>
+  <xs:element name="broj_kancelarije" type="xs:integer"/>
+  <xs:element name="cena" type="xs:decimal"/>
   <xs:element name="ziro_racun">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:string">
-          <xs:attribute name="poziv_na_broj" type="xs:positiveInteger"/>
+        <xs:extension base="xs:NMTOKEN">
+          <xs:attribute name="poziv_na_broj" use="required" type="xs:integer"/>
         </xs:extension>
       </xs:simpleContent>
     </xs:complexType>
@@ -110,42 +129,35 @@
   <xs:element name="podnozje">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ob:dostavljeno"/>
-        <xs:element ref="ob:potpis_ovlascenog_lica" minOccurs="1"/>
+        <xs:element ref="o:potpis_ovlascenog_lica"/>
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="dostavljeno">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="ob:lice"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="lice">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:string">
-          <xs:attribute name="id" type="xs:ID"/>
-        </xs:extension>
-      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
   <xs:element name="potpis_ovlascenog_lica">
     <xs:complexType/>
   </xs:element>
-  <xs:element name="naziv" type="xs:string"> </xs:element>
-  <xs:element name="datum" type="xs:date"> </xs:element>
-  <xs:element name="adresa">
+  <xs:element name="naziv">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element ref="ob:grad"/>
-        <xs:element ref="ob:ulica"/>
-        <xs:element ref="ob:broj"/>
-      </xs:sequence>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="grad" type="xs:string"> </xs:element>
-  <xs:element name="ulica" type="xs:string"> </xs:element>
-  <xs:element name="broj" type="xs:positiveInteger"> </xs:element>
+  <xs:element name="adresa">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="o:broj"/>
+        <xs:element ref="o:grad"/>
+        <xs:element ref="o:ulica"/>
+      </xs:choice>
+      <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj" type="xs:integer"/>
+  <xs:element name="grad" type="xs:string"/>
+  <xs:element name="ulica" type="xs:string"/>
 </xs:schema>

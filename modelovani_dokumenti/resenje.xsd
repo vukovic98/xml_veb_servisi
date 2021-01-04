@@ -1,108 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-  targetNamespace="http://ftn.uns.ac.rs/resenje" xmlns:res="http://ftn.uns.ac.rs/resenje">
-  <xs:element name="resenje_obrazac">
+  targetNamespace="http://ftn.uns.ac.rs/resenje"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:resenje="http://ftn.uns.ac.rs/resenje">
+  <xs:element name="lista_resenja">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:osnovni_podaci"/>
-        <xs:element ref="res:sadrzaj"/>
-        <xs:element ref="res:poverenik"/>
+        <xs:element maxOccurs="unbounded" ref="resenje:resenje"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resenje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="resenje:osnovni_podaci"/>
+        <xs:element ref="resenje:sadrzaj"/>
+        <xs:element ref="resenje:poverenik"/>
+      </xs:sequence>
+      <xs:attribute name="about" use="required" type="xs:anyURI"/>
       <xs:attribute name="broj" use="required"/>
+      <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="osnovni_podaci">
-    <xs:complexType mixed="true">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:naslov"/>
-        <xs:element ref="res:datum"/>
+        <xs:element ref="resenje:naslov"/>
+        <xs:element ref="resenje:datum"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="datum" type="xs:date"/>
-  <xs:element name="naslov" type="xs:string"/>
+  <xs:element name="naslov">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="sadrzaj">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:uvod"/>
-        <xs:element ref="res:resenje"/>
-        <xs:element ref="res:obrazlozenje"/>
+        <xs:element ref="resenje:uvod"/>
+        <xs:element ref="resenje:doneto_resenje"/>
+        <xs:element ref="resenje:obrazlozenje"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="uvod">
-    <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="res:podnosilac"/>
-        <xs:element ref="res:ustanova"/>
-        <xs:element ref="res:datum_zahteva"/>
-        <xs:element ref="res:organ"/>
-        <xs:element ref="res:zakon"/>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="datum_zahteva" type="xs:date"/>
-  <xs:element name="organ" type="xs:string"/>
-  <xs:element name="zakon">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:naziv"/>
-        <xs:element maxOccurs="unbounded" ref="res:sekcija_zakona"/>
-        <xs:element ref="res:sluzbeni_glasnik"/>
+        <xs:element ref="resenje:organ"/>
+        <xs:element ref="resenje:podnosilac"/>
+        <xs:element ref="resenje:ustanova"/>
+        <xs:element ref="resenje:datum_zahteva"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="sekcija_zakona">
+  <xs:element name="organ">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum_zahteva">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="doneto_resenje">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:clan"/>
-        <xs:element minOccurs="0" ref="res:stav"/>
-        <xs:element minOccurs="0" ref="res:tacka"/>
+        <xs:element ref="resenje:ustanova"/>
+        <xs:element ref="resenje:podnosilac"/>
+        <xs:element ref="resenje:trazeni_dokument"/>
+        <xs:element ref="resenje:adresa"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="clan" type="xs:integer"/>
-  <xs:element name="stav" type="xs:integer"/>
-  <xs:element name="tacka" type="xs:integer"/>
-  <xs:element name="sluzbeni_glasnik">
-    <xs:complexType>
-      <xs:attribute name="broj" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="resenje">
+  <xs:element name="trazeni_dokument">
     <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="res:podnosilac"/>
-        <xs:element ref="res:ustanova"/>
-        <xs:element ref="res:adresa"/>
-        <xs:element ref="res:trazeni_dokument"/>
-      </xs:choice>
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="adresa">
-    <xs:complexType/>
-  </xs:element>
-  <xs:element name="trazeni_dokument" type="xs:string"/>
+  <xs:element name="adresa" type="xs:string"/>
   <xs:element name="obrazlozenje">
-    <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="res:sud"/>
-        <xs:element ref="res:taksa"/>
-      </xs:choice>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="resenje:sud"/>
+        <xs:element ref="resenje:taksa"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="sud" type="xs:string"/>
-  <xs:element name="taksa" type="xs:float"/>
-  <xs:element name="poverenik" type="xs:string"/>
-  <xs:element name="podnosilac" type="xs:string"/>
+  <xs:element name="taksa">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="poverenik">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="podnosilac">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ustanova">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="res:naziv"/>
-        <xs:element minOccurs="0" ref="res:ulica"/>
+        <xs:element ref="resenje:naziv"/>
+        <xs:element minOccurs="0" ref="resenje:ulica"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="naziv">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ulica" type="xs:string"/>
-  <xs:element name="naziv" type="xs:string"/>
 </xs:schema>

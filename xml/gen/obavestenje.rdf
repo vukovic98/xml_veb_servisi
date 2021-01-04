@@ -1,0 +1,56 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:naziv_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FTN</pred:naziv_ustanove>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:sediste_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Novi Sad</pred:sediste_ustanove>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:br_predmeta xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12345</pred:br_predmeta>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-12-24</pred:datum_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:ime_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vladimir Vukovic</pred:ime_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:naziv_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raska</pred:naziv_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:adresa_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomice Aleksic 25</pred:adresa_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:godina_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2020</pred:godina_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
+    <pred:opis xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Uvid u spisak polozenih ispita</pred:opis>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:naziv_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FTN</pred:naziv_ustanove>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:sediste_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Novi Sad</pred:sediste_ustanove>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:br_predmeta xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">45678</pred:br_predmeta>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-12-24</pred:datum_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:ime_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vladimir Vukovic</pred:ime_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:naziv_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raska</pred:naziv_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:adresa_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomice Aleksic 25</pred:adresa_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:godina_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2020</pred:godina_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <pred:opis xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Uvid u spisak polozenih ispita</pred:opis>
+  </rdf:Description>
+</rdf:RDF>

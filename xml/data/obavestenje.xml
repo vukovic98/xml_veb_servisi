@@ -1,71 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<obavestenje xmlns="http://ftn.uns.ac.rs/obavestenje"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje obavestenje.xsd">
+<lista_obavestenja
+	xmlns="http://ftn.uns.ac.rs/obavestenje" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje obavestenje.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    >
+    <obavestenje  vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" 
+    			about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/12345">
     <osnovni_podaci>
         <podaci_o_organu>
-            <naziv></naziv>
-            <sediste></sediste>
-            <broj_predmeta></broj_predmeta>
-            <datum>2020-12-04</datum>
+            <naziv property="pred:naziv_ustanove" datatype="xs:string">FTN</naziv>
+            <sediste property="pred:sediste_ustanove" datatype="xs:string">Novi Sad</sediste>
+            <broj_predmeta property="pred:br_predmeta" datatype="xs:string">12345</broj_predmeta>
+            <datum_zahteva property="pred:datum_zahteva" datatype="xs:string">2020-12-24</datum_zahteva>
         </podaci_o_organu>
         
         <podaci_o_podnosiocu>
-            <ime_i_prezime></ime_i_prezime>
-            <naziv></naziv>
-            <adresa></adresa>
+            <ime_i_prezime property="pred:ime_podnosioca" datatype="xs:string">Vladimir Vukovic</ime_i_prezime>
+            <naziv property="pred:naziv_podnosioca" datatype="xs:string">Raska</naziv>
+            <adresa property="pred:adresa_podnosioca" datatype="xs:string">Tomice Aleksic 25</adresa>
         </podaci_o_podnosiocu>
     </osnovni_podaci>
     
     <sadrzaj>
-        
-        <naslov>
-            О Б А В Е Ш Т Е Њ Е
-            о стављању на увид документа који садржи
-            тражену информацију и о изради копије
-        </naslov>
-        
-        <telo_obavestenja>
-            <paragraf id="p_1">
-                На основу <zakon naziv="Закона о слободном приступу информацијама од јавног значаја" clan="16" stav="1"></zakon> , 
-                поступајући по вашем захтеву за слободан приступ информацијама од <godina>2020</godina> 
-                год., којим сте тражили увид у документ/е са информацијама о / у вези са: 
-                <opis_trazene_informacije></opis_trazene_informacije>
-                обавештавамо вас да дана <datum>2020-12-04</datum>, у <sat>15:30:00</sat> часова, односно у времену од <sat>14:26:30</sat> до <sat>20:26:00</sat> часова,
-                у просторијама органа у 
-                <adresa>
-                    <grad></grad>
-                    <ulica></ulica>
-                    <broj>23</broj>
-                </adresa>
-                , канцеларија бр. <broj_kancelarije>12</broj_kancelarije> можете извршити увид у документ/е у коме је садржана тражена информација. 
-                Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.
-            </paragraf>
-            <paragraf id="p_3">
-                Трошкови су утврђени Уредбом Владе Републике Србије (<sluzbeni_glasnik broj="8/06"></sluzbeni_glasnik>), 
-                и то: копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, 
-                дискете 20 динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање једне 
-                стране документа из физичког у електронски облик – 30 динара.
-            </paragraf>
-            <paragraf id="p_4">
-                Износ укупних трошкова израде копије документа по вашем захтеву износи <cena>176.00</cena> 
-                динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. <ziro_racun poziv_na_broj="97">840-742328-843-30</ziro_racun>, 
-                – ознака шифре општине/града где се налази орган власти (из Правилника о условима и 
-                начину вођења рачуна – <sluzbeni_glasnik broj="20/07..40/10"></sluzbeni_glasnik>). 
-            </paragraf>
-        </telo_obavestenja>
+        <godina_zahteva property="pred:godina_zahteva" datatype="xs:integer">2020</godina_zahteva> 
+        <opis_trazene_informacije property="pred:opis" datatype="xs:string">Uvid u spisak polozenih ispita</opis_trazene_informacije>
+        <datum_uvida>2020-12-04</datum_uvida>
+        <cas_uvida>15:30:00</cas_uvida>
+        <sat_od>14:26:30</sat_od>
+        <sat_do>20:26:00</sat_do>
+        <adresa>
+            <grad>Novi Sad</grad>
+            <ulica>Adresa fakulteta</ulica>
+            <broj>23</broj>
+        </adresa>
+        <broj_kancelarije>12</broj_kancelarije>
+        <cena>176.00</cena> 
+        <ziro_racun poziv_na_broj="97">840-74232884311-30</ziro_racun> 
     </sadrzaj>
     
     <podnozje>
-        <dostavljeno>
-            <lice id="l_1">
-                Именованом
-            </lice>
-            <lice id="l_2">
-                Архиви
-            </lice>
-        </dostavljeno>
-        
         <potpis_ovlascenog_lica></potpis_ovlascenog_lica>
     </podnozje>
 </obavestenje>
+	
+	<obavestenje  vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" 
+    			about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/45678">
+    <osnovni_podaci>
+        <podaci_o_organu>
+            <naziv property="pred:naziv_ustanove" datatype="xs:string">FTN</naziv>
+            <sediste property="pred:sediste_ustanove" datatype="xs:string">Novi Sad</sediste>
+            <broj_predmeta property="pred:br_predmeta" datatype="xs:string">45678</broj_predmeta>
+            <datum_zahteva property="pred:datum_zahteva" datatype="xs:string">2020-12-24</datum_zahteva>
+        </podaci_o_organu>
+        
+        <podaci_o_podnosiocu>
+            <ime_i_prezime property="pred:ime_podnosioca" datatype="xs:string">Vladimir Vukovic</ime_i_prezime>
+            <naziv property="pred:naziv_podnosioca" datatype="xs:string">Raska</naziv>
+            <adresa property="pred:adresa_podnosioca" datatype="xs:string">Tomice Aleksic 25</adresa>
+        </podaci_o_podnosiocu>
+    </osnovni_podaci>
+    
+    <sadrzaj>
+        <godina_zahteva property="pred:godina_zahteva" datatype="xs:integer">2020</godina_zahteva> 
+        <opis_trazene_informacije property="pred:opis" datatype="xs:string">Uvid u spisak polozenih ispita</opis_trazene_informacije>
+        <datum_uvida>2020-12-04</datum_uvida>
+        <cas_uvida>15:30:00</cas_uvida>
+        <sat_od>14:26:30</sat_od>
+        <sat_do>20:26:00</sat_do>
+        <adresa>
+            <grad>Novi Sad</grad>
+            <ulica>Adresa fakulteta</ulica>
+            <broj>23</broj>
+        </adresa>
+        <broj_kancelarije>12</broj_kancelarije>
+        <cena>176.00</cena> 
+        <ziro_racun poziv_na_broj="97">840-74232884311-30</ziro_racun> 
+    </sadrzaj>
+    
+    <podnozje>
+        <potpis_ovlascenog_lica></potpis_ovlascenog_lica>
+    </podnozje>
+</obavestenje>
+
+</lista_obavestenja>

@@ -1,5 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zahtev="http://www.ftn.uns.ac.rs/zahtev">
-  <xs:import namespace="http://www.ftn.uns.ac.rs/zahtev" schemaLocation="zahtev.xsd"/>
-  <xs:attribute name="schemaLocation"/>
-</xs:schema>
+

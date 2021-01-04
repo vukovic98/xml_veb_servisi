@@ -1,147 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-  targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns="http://www.ftn.uns.ac.rs/zahtev">
-  <xs:element name="zahtev">
+  targetNamespace="http://www.ftn.uns.ac.rs/zahtev"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:zahtev="http://www.ftn.uns.ac.rs/zahtev">
+  <xs:element name="lista_zahteva_za_pristup_informacijama">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="podaci_o_organu"/>
-        <xs:element ref="sadržaj_zahteva"/>
-        <xs:element ref="podnožje"/>
+        <xs:element ref="zahtev:zahtev_za_pristup_informacijama"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="zahtev_za_pristup_informacijama">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="zahtev:podaci_o_organu"/>
+        <xs:element ref="zahtev:sadrzaj"/>
+        <xs:element ref="zahtev:podnozje"/>
+      </xs:sequence>
+      <xs:attribute name="about" use="required" type="xs:anyURI"/>
+      <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="podaci_o_organu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="naziv"/>
-        <xs:element ref="sedište"/>
+        <xs:element ref="zahtev:naziv"/>
+        <xs:element ref="zahtev:sediste"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="naziv" type="xs:string"> </xs:element>
-  <xs:element name="sedište" type="xs:string"> </xs:element>
-  <xs:element name="sadržaj_zahteva">
+  <xs:element name="naziv">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sediste">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="property" type="xs:NMTOKEN"/>
+          <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sadrzaj">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="naslov"/>
-        <xs:element ref="paragraf"/>
+        <xs:element ref="zahtev:zahtevi"/>
+        <xs:element ref="zahtev:opis_trazene_informacije"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="naslov" type="xs:string"/>
-  <xs:element name="paragraf">
-    <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="opis_tražene_informacije"/>
-        <xs:element ref="službeni_glasnik"/>
-        <xs:element ref="stavke"/>
-        <xs:element ref="zakon"/>
-      </xs:choice>
-      <xs:attribute name="fusnota" use="optional"/>
-      <xs:attribute name="id" use="required" type="xs:ID"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="opis_tražene_informacije">
-    <xs:complexType/>
-  </xs:element>
-  <xs:element name="službeni_glasnik">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="brojevi"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="brojevi">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="broj"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="stavke">
+  <xs:element name="zahtevi">
     <xs:complexType mixed="true">
       <xs:sequence>
-        <xs:element minOccurs="1" maxOccurs="unbounded" ref="stavka"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="zahtev:zahtev"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="stavka">
+  <xs:element name="zahtev">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element minOccurs="0" ref="podstavke"/>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="zahtev:nacini_dostave"/>
       </xs:sequence>
-      <xs:attribute name="fusnota" type="xs:string"/>
-      <xs:attribute name="id" use="required" type="xs:ID"/>
-      <xs:attribute name="otkačeno" use="optional" type="xs:boolean" default="false"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
       <xs:attribute name="zahtev" use="required" type="xs:string"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="podstavke">
+  <xs:element name="nacini_dostave">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="podstavka"/>
+        <xs:element maxOccurs="unbounded" ref="zahtev:nacin"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="podstavka">
+  <xs:element name="nacin">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="drugi_način"/>
+        <xs:element minOccurs="0" ref="zahtev:drugi_nacin"/>
       </xs:sequence>
-      <xs:attribute name="fusnota" use="optional" type="xs:string"/>
-      <xs:attribute name="id" use="required" type="xs:ID"/>
-      <xs:attribute name="način" use="required" type="xs:string"/>
-      <xs:attribute name="otkačeno" use="optional" type="xs:boolean" default="false"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="nacin" use="required" type="xs:string"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="drugi_način" type="xs:string"> </xs:element>
-  <xs:element name="zakon">
+  <xs:element name="drugi_nacin" type="xs:string"> </xs:element>
+  <xs:element name="opis_trazene_informacije">
     <xs:complexType>
-      <xs:attribute name="naziv" use="required" type="xs:string"/>
-      <xs:attribute name="stav" use="required" type="xs:integer"/>
-      <xs:attribute name="član" use="required" type="xs:integer"/>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="property" type="xs:NMTOKEN"/>
+          <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="podnožje">
+  <xs:element name="podnozje">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="mesto_i_datum"/>
-        <xs:element ref="informacije_o_tražiocu"/>
+        <xs:element ref="zahtev:mesto_i_datum"/>
+        <xs:element ref="zahtev:informacije_o_traziocu"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="mesto_i_datum">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="mesto"/>
-        <xs:element ref="datum"/>
+        <xs:element ref="zahtev:mesto"/>
+        <xs:element ref="zahtev:datum_zahteva"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="datum" type="xs:date"> </xs:element>
-  <xs:element name="informacije_o_tražiocu">
+  <xs:element name="datum_zahteva" type="xs:date"/>
+  <xs:element name="informacije_o_traziocu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ime_i_prezime"/>
-        <xs:element ref="adresa"/>
-        <xs:element ref="kontakt"/>
-        <xs:element ref="potpis"/>
+        <xs:element ref="zahtev:ime_i_prezime"/>
+        <xs:element ref="zahtev:adresa"/>
+        <xs:element ref="zahtev:kontakt"/>
+        <xs:element ref="zahtev:potpis"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ime_i_prezime" type="xs:string"> </xs:element>
+  <xs:element name="ime_i_prezime">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="adresa">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="ulica"/>
-        <xs:element ref="broj"/>
-        <xs:element ref="mesto"/>
+        <xs:element ref="zahtev:ulica"/>
+        <xs:element ref="zahtev:broj"/>
+        <xs:element ref="zahtev:mesto"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ulica" type="xs:string"> </xs:element>
-  <xs:element name="kontakt" type="xs:string"> </xs:element>
-  <xs:element name="potpis" type="xs:string"> </xs:element>
-  <xs:element name="broj" type="xs:positiveInteger"> </xs:element>
-  <xs:element name="mesto" type="xs:string"> </xs:element>
+  <xs:element name="ulica">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="kontakt">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="potpis">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="mesto">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="property" type="xs:NMTOKEN"/>
+          <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

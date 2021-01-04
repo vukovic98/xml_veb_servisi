@@ -8,6 +8,7 @@
 
 package com.ftn.xml.jaxb.zahtev;
 
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,9 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *       &lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
- *       &lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>integer">
+ *       &lt;attribute name="datatype" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
+ *       &lt;attribute name="property" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -41,29 +42,29 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "opis_trazene_informacije")
-public class OpisTrazeneInformacije {
+@XmlRootElement(name = "kontakt")
+public class Kontakt {
 
     @XmlValue
-    protected String value;
-    @XmlAttribute(name = "property")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String property;
-    @XmlAttribute(name = "datatype")
+    protected BigInteger value;
+    @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
     protected String datatype;
+    @XmlAttribute(name = "property", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NMTOKEN")
+    protected String property;
 
     /**
      * Gets the value of the value property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getValue() {
+    public BigInteger getValue() {
         return value;
     }
 
@@ -72,35 +73,11 @@ public class OpisTrazeneInformacije {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setValue(String value) {
+    public void setValue(BigInteger value) {
         this.value = value;
-    }
-
-    /**
-     * Gets the value of the property property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProperty() {
-        return property;
-    }
-
-    /**
-     * Sets the value of the property property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProperty(String value) {
-        this.property = value;
     }
 
     /**
@@ -125,6 +102,30 @@ public class OpisTrazeneInformacije {
      */
     public void setDatatype(String value) {
         this.datatype = value;
+    }
+
+    /**
+     * Gets the value of the property property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProperty() {
+        return property;
+    }
+
+    /**
+     * Sets the value of the property property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProperty(String value) {
+        this.property = value;
     }
 
 }

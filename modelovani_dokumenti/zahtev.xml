@@ -1,60 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtev
+<lista_zahteva_za_pristup_informacijama 
     xmlns="http://www.ftn.uns.ac.rs/zahtev"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev file:/C:/FAKS/SEMESTAR%207/XML/Projekat/xml_veb_servisi/modelovani_dokumenti/zahtev.xsd">
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev zahtev.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:z="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+<zahtev_za_pristup_informacijama 
+    vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" 
+    about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/27">
     <podaci_o_organu>
-        <naziv></naziv>
-        <sedište></sedište>
+        <naziv property="pred:naziv_ustanove" datatype="xs:string">FTN</naziv>
+        <sediste property="pred:sediste_ustanove" datatype="xs:string">Novi Sad</sediste>
     </podaci_o_organu>
-    <sadržaj_zahteva>
-        <naslov>
-                        З А Х Т Е В
-            за приступ информацији од јавног значаја
-        </naslov>
-        <paragraf id="p_1" fusnota="У кућици означити која законска права на приступ информацијама желите да остварите">
-            На основу <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" član="15" stav="1"></zakon>
-           (<službeni_glasnik>
-                <brojevi>
-                    <broj br="120/04"></broj>
-                    <broj br="57/04"></broj>
-                    <broj br="104/09"></broj>
-                    <broj br="36/10"></broj>
-                </brojevi>
-            </službeni_glasnik>), од горе наведеног органа захтевам:
-            <stavke>
-                <stavka otkačeno = "false" id="s_1" zahtev="обавештење да ли поседује тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_2" zahtev="увид у документ који садржи тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_3" zahtev="копију документа који садржи тражену информацију" ></stavka>;
-                <stavka otkačeno = "false" id="s_4" zahtev="достављање копије документа који садржи тражену информацију:" fusnota="У кућици означити начин достављања копије докумената.">
-                    <podstavke>
-                        <podstavka otkačeno = "false" id="ps_1" način="поштом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_2" način="електронском поштом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_3" način="факсом" fusnota=""></podstavka>
-                        <podstavka otkačeno = "false" id="ps_4" način="на други начин:" fusnota="Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.">
-                            <drugi_način> </drugi_način>
-                        </podstavka>
-                    </podstavke>
-                </stavka>
-            </stavke>
-            Овај захтев се односи на следеће информације:
-            <opis_tražene_informacije></opis_tražene_informacije>
-        </paragraf>
-    </sadržaj_zahteva>
-    <podnožje>
+    <sadrzaj>
+        <zahtevi>
+            <zahtev otkaceno = "false" id="s_1" zahtev="обавештење да ли поседује тражену информацију"  ></zahtev>;
+            <zahtev otkaceno = "false" id="s_2" zahtev="увид у документ који садржи тражену информацију" ></zahtev>;
+            <zahtev otkaceno = "false" id="s_3" zahtev="копију документа који садржи тражену информацију" ></zahtev>;
+            <zahtev otkaceno = "false" id="s_4" zahtev="достављање копије документа који садржи тражену информацију">
+                <nacini_dostave>
+                    <nacin otkaceno = "false" id="ps_1" nacin="поштом" ></nacin>
+                    <nacin otkaceno = "false" id="ps_2" nacin="електронском поштом" ></nacin>
+                    <nacin otkaceno = "false" id="ps_3" nacin="факсом"></nacin>
+                    <nacin otkaceno = "false" id="ps_4" nacin="на други начин:">
+                        <drugi_nacin></drugi_nacin>
+                    </nacin>
+                </nacini_dostave>
+            </zahtev>
+        </zahtevi>
+        <opis_trazene_informacije property="pred:opis_informacije" datatype="xs:string">Informacija</opis_trazene_informacije>
+        
+    </sadrzaj>
+    <podnozje>
         <mesto_i_datum>
-            <mesto></mesto>
-            <datum>2020-12-04</datum> 
+            <mesto>Novi Sad</mesto>
+            <datum_zahteva>2020-12-04</datum_zahteva> 
         </mesto_i_datum>
-        <informacije_o_tražiocu>
-            <ime_i_prezime> </ime_i_prezime>
+        <informacije_o_traziocu>
+            <ime_i_prezime property="pred:ime_trazioca" datatype="xs:string" >Milan Vasic</ime_i_prezime>
             <adresa> 
-                <ulica></ulica>
-                <broj></broj>
-                <mesto></mesto>
+                <ulica property="pred:ulica_trazioca" datatype="xs:string">Jevrejska</ulica>
+                <broj property="pred:broj_kuce_trazioca" datatype="xs:integer">10</broj>
+                <mesto property="pred:mesto_trazioca" datatype="xs:string">Novi Sad</mesto>
             </adresa>
-            <kontakt> </kontakt>
-            <potpis> </potpis>
-        </informacije_o_tražiocu>
-    </podnožje>
-</zahtev>
+            <kontakt property="pred:kontakt_trazioca" datatype="xs:string">021748896</kontakt>
+            <potpis></potpis>
+        </informacije_o_traziocu>
+    </podnozje>
+</zahtev_za_pristup_informacijama>
+</lista_zahteva_za_pristup_informacijama>

@@ -41,8 +41,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "opis_trazene_informacije")
-public class OpisTrazeneInformacije {
+@XmlRootElement(name = "mesto")
+public class Mesto {
 
     @XmlValue
     protected String value;

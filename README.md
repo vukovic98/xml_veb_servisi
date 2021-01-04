@@ -1,6 +1,6 @@
 # Informacioni sistem za pristup informacijama od javnog značaja
 
-# ---------Projekat iz predmeta XML i Web Servisi 2020/21---------
+# --Projekat iz predmeta XML i Web Servisi 2020/21--
 
 
 Tim 3

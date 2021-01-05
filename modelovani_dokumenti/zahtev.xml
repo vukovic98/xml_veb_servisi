@@ -35,7 +35,7 @@
     <podnozje>
         <mesto_i_datum>
             <mesto>Novi Sad</mesto>
-            <datum_zahteva>2020-12-04</datum_zahteva> 
+            <datum_zahteva property="pred:datum_zahteva" datatype="xs:string">2020-12-04</datum_zahteva> 
         </mesto_i_datum>
         <informacije_o_traziocu>
             <ime_i_prezime property="pred:ime_trazioca" datatype="xs:string" >Milan Vasic</ime_i_prezime>

@@ -1,6 +1,6 @@
 package com.ftn.xml.controllers;
 
-import static com.ftn.xml.jaxb.util.XUpdateTemplate.APPEND;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -15,8 +15,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.TransformerException;
 
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
@@ -49,6 +53,7 @@ import com.ftn.xml.jaxb.util.AuthenticationUtilities.ConnectionProperties;
 public class ZahtevController {
 
 	private static final String SPARQL_NAMED_GRAPH_URI = "/zahtevi";
+	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
 
 	private static com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist.ConnectionProperties conn;
 
@@ -200,7 +205,7 @@ public class ZahtevController {
     				" <podnozje>" + 
     				"  <mesto_i_datum>" + 
     				" <mesto>Novi Sad</mesto>" + 
-    				" <datum_zahteva>2020-12-05</datum_zahteva>" + 
+    				" <datum_zahteva property=\"pred:datum_zahteva\" datatype=\"xs:string\" >2020-12-05</datum_zahteva>" + 
     				" </mesto_i_datum>" + 
     				" <informacije_o_traziocu>" + 
     				" <ime_i_prezime property=\"pred:ime_trazioca\" datatype=\"xs:string\" >Maja Milic</ime_i_prezime>" + 
@@ -235,6 +240,77 @@ public class ZahtevController {
                 }
             }
         }
+        
+        //Adding metadata to RDF database
+        
+        ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		// Making the changes manually 
+		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/zahtev/333");
+		
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naziv_ustanove");
+		Literal literal1 = model.createLiteral("FTN");
+		
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "sediste_ustanove");
+		Literal literal2 = model.createLiteral("Novi Pazar");
+		
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "opis_informacije");
+		Literal literal3 = model.createLiteral("Informacija mala");
+		
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
+		Literal literal4 = model.createLiteral("2020-12-05");
+		
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "ime_trazioca");
+		Literal literal5 = model.createLiteral("Maja Milic");
+		
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ulica_trazioca");
+		Literal literal6 = model.createLiteral("Jevrejska");
+		
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "broj_kuce_trazioca");
+		Literal literal7 = model.createTypedLiteral(19);
+		
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "mesto_trazioca");
+		Literal literal8 = model.createLiteral("Novi Pazar");
+		
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "kontakt_trazioca");
+		Literal literal9 = model.createLiteral("021228896");
+		
+		// Adding the statements to the model
+		Statement statement1 = model.createStatement(resource, property1, literal1);
+		Statement statement2 = model.createStatement(resource, property2, literal2);
+		Statement statement3 = model.createStatement(resource, property3, literal3);
+		Statement statement4 = model.createStatement(resource, property4, literal4);
+		Statement statement5 = model.createStatement(resource, property5, literal5);
+		Statement statement6 = model.createStatement(resource, property6, literal6);
+		Statement statement7 = model.createStatement(resource, property7, literal7);
+		Statement statement8 = model.createStatement(resource, property8, literal8);
+		Statement statement9 = model.createStatement(resource, property9, literal9);
+
+		model.add(statement1);
+		model.add(statement2);
+		model.add(statement3);
+		model.add(statement4);
+		model.add(statement5);
+		model.add(statement6);
+		model.add(statement7);
+		model.add(statement8);
+		model.add(statement9);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+		
+		String sparqlUpdate = SparqlUtil.insertData(conn.dataEndpoint + SPARQL_NAMED_GRAPH_URI, new String(out.toByteArray()));
+		
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
+        
         
         return new ResponseEntity<>(HttpStatus.OK);
 	}

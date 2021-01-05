@@ -118,7 +118,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="datum_zahteva" type="xs:date"/>
+  <xs:element name="datum_zahteva">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="informacije_o_traziocu">
     <xs:complexType>
       <xs:sequence>

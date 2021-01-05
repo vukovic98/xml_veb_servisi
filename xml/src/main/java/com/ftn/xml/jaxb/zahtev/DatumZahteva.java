@@ -8,7 +8,6 @@
 
 package com.ftn.xml.jaxb.zahtev;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -18,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>integer">
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>date">
  *       &lt;attribute name="datatype" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
  *       &lt;attribute name="property" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
  *     &lt;/extension>
@@ -42,11 +42,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "broj")
-public class Broj {
+@XmlRootElement(name = "datum_zahteva")
+public class DatumZahteva {
 
     @XmlValue
-    protected BigInteger value;
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -61,10 +62,10 @@ public class Broj {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public BigInteger getValue() {
+    public XMLGregorianCalendar getValue() {
         return value;
     }
 
@@ -73,10 +74,10 @@ public class Broj {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setValue(BigInteger value) {
+    public void setValue(XMLGregorianCalendar value) {
         this.value = value;
     }
 

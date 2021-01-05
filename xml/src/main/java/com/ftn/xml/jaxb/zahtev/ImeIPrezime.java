@@ -26,12 +26,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  * <pre>
  * &lt;complexType>
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *       &lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
- *       &lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="datatype" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
+ *       &lt;attribute name="property" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
  * 
@@ -39,68 +39,44 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "value"
+    "content"
 })
-@XmlRootElement(name = "opis_trazene_informacije")
-public class OpisTrazeneInformacije {
+@XmlRootElement(name = "ime_i_prezime")
+public class ImeIPrezime {
 
     @XmlValue
-    protected String value;
-    @XmlAttribute(name = "property")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String property;
-    @XmlAttribute(name = "datatype")
+    protected String content;
+    @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
     protected String datatype;
+    @XmlAttribute(name = "property", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NMTOKEN")
+    protected String property;
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the content property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getValue() {
-        return value;
+    public String getContent() {
+        return content;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the content property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Gets the value of the property property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProperty() {
-        return property;
-    }
-
-    /**
-     * Sets the value of the property property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProperty(String value) {
-        this.property = value;
+    public void setContent(String value) {
+        this.content = value;
     }
 
     /**
@@ -125,6 +101,30 @@ public class OpisTrazeneInformacije {
      */
     public void setDatatype(String value) {
         this.datatype = value;
+    }
+
+    /**
+     * Gets the value of the property property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProperty() {
+        return property;
+    }
+
+    /**
+     * Sets the value of the property property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProperty(String value) {
+        this.property = value;
     }
 
 }

@@ -6,7 +6,7 @@ import org.exist.xupdate.XUpdateProcessor;
  * http://xmldb-org.sourceforge.net/xupdate/xupdate-wd.html
  * 
  */
-public class XUpdateTemplate {
+public class XUpdateTemplateObavestenje {
 
 	public static final String TARGET_NAMESPACE = "http://ftn.uns.ac.rs/obavestenje";
 	

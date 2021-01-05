@@ -13,8 +13,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.TransformerException;
 
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
@@ -34,7 +38,6 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XUpdateQueryService;
-import static com.ftn.xml.jaxb.util.XUpdateTemplate.APPEND;
 
 import com.ftn.xml.jaxb.obavestenje.ListaObavestenja;
 import com.ftn.xml.jaxb.util.AuthenticationUtilities;
@@ -42,12 +45,15 @@ import com.ftn.xml.jaxb.util.AuthenticationUtilities.ConnectionProperties;
 import com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist;
 import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.jaxb.util.SparqlUtil;
+import com.ftn.xml.jaxb.util.XUpdateTemplateObavestenje;
 
 @RestController
 @RequestMapping("/obavestenje")
 public class ObavestenjeController {
 	
 	private static final String SPARQL_NAMED_GRAPH_URI = "/obavestenja";
+	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
+	
 	private static com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist.ConnectionProperties conn;
 
 	@PostMapping("/initializeRDF")
@@ -115,7 +121,6 @@ public class ObavestenjeController {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			ListaObavestenja listaObavestenja = (ListaObavestenja) unmarshaller.unmarshal(new File(filePath));
-//			bookstore.getBook().add(createTestBook());
 			
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -169,7 +174,7 @@ public class ObavestenjeController {
 
     		String contextXPath = "/lista_obavestenja";
     		
-    		String xmlFragment = "<obavestenje  vocab=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" about=\"http://www.ftn.uns.ac.rs/rdf/examples/resenje/77777\">"+
+    		String xmlFragment = "<obavestenje  vocab=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" about=\"http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/77777\">"+
         			"<osnovni_podaci>"	+
         			"<podaci_o_organu>"	+
         			"<naziv property=\"pred:naziv_ustanove\" datatype=\"xs:string\">FTN</naziv>"	+
@@ -211,7 +216,7 @@ public class ObavestenjeController {
             xupdateService.setProperty("indent", "yes");
 
             
-            xupdateService.updateResource(documentId, String.format(APPEND, contextXPath, xmlFragment));
+            xupdateService.updateResource(documentId, String.format(XUpdateTemplateObavestenje.APPEND, contextXPath, xmlFragment));
             
         } finally {
         	
@@ -224,6 +229,76 @@ public class ObavestenjeController {
                 }
             }
         }
+        
+        //ADD TO RDF DATABASE
+        
+        ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		// Making the changes manually 
+		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/77777");
+		
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naziv_ustanove");
+		Literal literal1 = model.createLiteral("FTN");
+		
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "sediste_ustanove");
+		Literal literal2 = model.createLiteral("Novi Sad");
+		
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "br_predmeta");
+		Literal literal3 = model.createLiteral("77777");
+		
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
+		Literal literal4 = model.createLiteral("2020-12-24");
+		
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "ime_podnosioca");
+		Literal literal5 = model.createLiteral("Vladimir Vukovic");
+		
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "naziv_podnosioca");
+		Literal literal6 = model.createLiteral("Raska");
+		
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "adresa_podnosioca");
+		Literal literal7 = model.createLiteral("Tomice Aleksic 25");
+		
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "godina_zahteva");
+		Literal literal8 = model.createLiteral("2020");
+		
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "opis");
+		Literal literal9 = model.createLiteral("Uvid u spisak polozenih ispita");
+		
+		// Adding the statements to the model
+		Statement statement1 = model.createStatement(resource, property1, literal1);
+		Statement statement2 = model.createStatement(resource, property2, literal2);
+		Statement statement3 = model.createStatement(resource, property3, literal3);
+		Statement statement4 = model.createStatement(resource, property4, literal4);
+		Statement statement5 = model.createStatement(resource, property5, literal5);
+		Statement statement6 = model.createStatement(resource, property6, literal6);
+		Statement statement7 = model.createStatement(resource, property7, literal7);
+		Statement statement8 = model.createStatement(resource, property8, literal8);
+		Statement statement9 = model.createStatement(resource, property9, literal9);
+
+		model.add(statement1);
+		model.add(statement2);
+		model.add(statement3);
+		model.add(statement4);
+		model.add(statement5);
+		model.add(statement6);
+		model.add(statement7);
+		model.add(statement8);
+		model.add(statement9);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+		
+		String sparqlUpdate = SparqlUtil.insertData(conn.dataEndpoint + SPARQL_NAMED_GRAPH_URI, new String(out.toByteArray()));
+		
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
         
         return new ResponseEntity<>(HttpStatus.OK);
 	}

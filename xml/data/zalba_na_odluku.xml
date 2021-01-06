@@ -1,86 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba_na_odluku
+<lista_zalbi_na_odluku
     xmlns="http://ftn.uns.ac.rs/zalba_na_odluku"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ftn.uns.ac.rs/zalba_na_odluku zalba_na_odluku.xsd">
+    xsi:schemaLocation="http://ftn.uns.ac.rs/zalba_na_odluku zalba_na_odluku.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    >
+    <zalba_na_odluku vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" 
+    			about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/101">
+    <osnovni_podaci>            
+    	<podaci_o_zaliocu>
+    		<zalioc_ime property="pred:ime_zalioca" datatype="xs:string">Nikola</zalioc_ime>
+    		<zalioc_prezime property="pred:prezime_zalioca" datatype="xs:string">Petrovic</zalioc_prezime>
+    		<zalioc_naziv_zalbe property="pred:naziv_zalbe" datatype="xs:string">Zalba1</zalioc_naziv_zalbe>
+    		<zalioc_adresa property="pred:adresa_zalioca" datatype="xs:string">Mise Dimitrijevica 44</zalioc_adresa>
+    		<zalioc_sediste property="pred:sediste_zalioca" datatype="xs:string">Novi Sad</zalioc_sediste>
+       
+		</podaci_o_zaliocu>
+        
+        <podaci_o_organu>
+        	<naziv property="pred:naziv_organa" datatype="xs:string">FTN</naziv>
+        </podaci_o_organu>
+
+	</osnovni_podaci>   
+    
+   <sadrzaj>
+   		<broj_zalbe property="pred:broj_zalbe" datatype="xs:integer">101</broj_zalbe>
+   		<godina_zalbe property="pred:godina_zalbe" datatype="xs:string">2020</godina_zalbe>
+   		<datum_odbijenog_zahteva property="pred:datum_odbijenog_zahteva" datatype="xs:string">2020-12-04</datum_odbijenog_zahteva>
+   		<odluka_organa_vlasti property="pred:odluka" datatype="xs:string">Odluka organa vlasti</odluka_organa_vlasti>
+   </sadrzaj>
    
-    <sadrzaj_zalbe>
-        <naslov>
-                ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ 
-            ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ
-        </naslov>     
-        <paragraf id="p1">
-            <primalac>Поверенику за информације од јавног значаја и заштиту података о личности</primalac>
-            Адреса за пошту: 
-            <adresa_za_postu>
-                <grad>Београд, </grad>
-                <ulica>Булевар краља Александрa </ulica>
-                <broj>15</broj>
-            </adresa_za_postu>
-        </paragraf>
-        <paragraf id="p2"> 
-            <naslov>
-                Ж А Л Б А 
-            </naslov>
-                            
-          <podnosilac_zalbe>
-              <podnosilac_naziv></podnosilac_naziv>
-              <podnosilac_adresa>
-                  <grad></grad>
-                  <ulica></ulica>
-                  <broj>20</broj>
-              </podnosilac_adresa>
-              <podnosilac_sediste></podnosilac_sediste>    
-          </podnosilac_zalbe>
-          (Име, презиме, односно назив, адреса и седиште жалиоца)
+   <podnozje>
+   		<mesto_zakljucka_zalbe property="pred:mesto_zakljucka_zalbe" datatype="xs:string">Novi Sad</mesto_zakljucka_zalbe>
+   		<datum_zakljucka_zalbe property="pred:datum_zakljucka_zalbe" datatype="xs:string">2021-01-12</datum_zakljucka_zalbe>
+   		
+   		<podaci_o_zaliocu>
+    		<zalioc_ime property="pred:ime_zalioca" datatype="xs:string">Nikola</zalioc_ime>
+    		<zalioc_prezime property="pred:prezime_zalioca" datatype="xs:string">Petrovic</zalioc_prezime>
+    		<zalioc_adresa property="pred:adresa_zalioca" datatype="xs:string">Mise Dimitrijevica 44</zalioc_adresa>
+    		<drugi_podaci_za_kontakt property="pred:kontakt_zalioca" datatype="xs:string">petrovicnik96@gmail.com</drugi_podaci_za_kontakt>
+    		<potpis_zalioca property="pred:potpis_zalioca" datatype="xs:string">NikolaPetrovic</potpis_zalioca>
+    		
+		</podaci_o_zaliocu>
+   </podnozje>
            
-        </paragraf> 
-        <paragraf id="p3">
-            против решења-закључка
-            <naziv_organa></naziv_organa>
-            (назив органа који је донео одлуку)
-            Број <broj_input>21</broj_input> од <datum>2020-05-13</datum> године.
-        </paragraf>
-        <paragraf id = "p4">
-                Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми
-            са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-
-            упутио/ла дана<datum>2020-05-13</datum>године и тако ми ускраћено-онемогућено остваривање уставног и
-            законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у
-            целости, односно у делу којим <obrazlozenje_zalbe></obrazlozenje_zalbe>
-            јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
-                На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
-                Жалбу подносим благовремено, у законском року утврђеном у <zakon naziv="Закон о слободном приступу информацијама од јавног значаја" clan="22" stav="1"></zakon>
-        </paragraf>
-    </sadrzaj_zalbe>
-        <podnozje>
-            <mesto_i_datum>
-                У <mesto> </mesto>,
-                дана <datum>2020-05-13</datum> године
-            </mesto_i_datum>
-            <informacije_o_traziocu>
-                <ime></ime>
-                <prezime></prezime>
-                Подносилац жалбе / Име и презиме
-                <adresa>
-                    <grad></grad>
-                    <ulica></ulica>
-                    <broj></broj>
-                </adresa>
-                адреса
-                <kontakt> </kontakt>
-                други подаци за контакт
-                <potpis /> 
-                потпис
-            </informacije_o_traziocu>
-            <napomene>
-                <napomena id="n1">• У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив
-                    органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у
-                    жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити. 
-                </napomena>
-                <napomena id="n2">• Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу
-                    као и копију одлуке органа која се оспорава жалбом.
-                </napomena>
-            </napomene>
-        </podnozje>   
-     
-</zalba_na_odluku>
+     </zalba_na_odluku>
+</lista_zalbi_na_odluku>

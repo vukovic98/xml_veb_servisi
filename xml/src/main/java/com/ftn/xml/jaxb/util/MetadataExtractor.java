@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
 
+
 public class MetadataExtractor {
 	private TransformerFactory transformerFactory;
 

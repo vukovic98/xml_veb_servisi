@@ -9,6 +9,9 @@
     <pred:opis_informacije xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Informacija</pred:opis_informacije>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/27">
+    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-12-04</pred:datum_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/27">
     <pred:ime_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Milan Vasic</pred:ime_trazioca>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/27">

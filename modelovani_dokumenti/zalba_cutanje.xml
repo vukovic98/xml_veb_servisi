@@ -1,53 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba_cutanje xmlns="http://ftn.uns.ac.rs/zalba_cutanje"
+<lista_zalbi_cutanje
+    xmlns="http://ftn.uns.ac.rs/zalba_cutanje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje file:/D:/faks/XML/dokumentiProj/modelovani_dokumenti/zalba_cutanje.xsd">
+    xsi:schemaLocation="http://ftn.uns.ac.rs/zalba_cutanje zalba_cutanje.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+<zalba_cutanje
+    vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" 
+    about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/27">
     <zaglavlje>
-        <naslov>
-            ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)
-        </naslov>
         <primalac_zalbe>
-            <naziv_primaoca>            
+            <naziv_primaoca property="pred:naziv_primaoca" datatype="xs:string">            
                 Повереникy за информације од јавног значаја и заштиту података о личности
             </naziv_primaoca>
-            <adresa_za_postu>
-                Београд, Булевар краља Александрa бр. 15
-            </adresa_za_postu>
+            <adresa>
+                <ulica property="pred:ulica_poverenika" datatype="xs:string">Булевар краља Александрa</ulica>
+                <broj property="pred:broj_kuce_poverenika" datatype="xs:integer">15</broj>
+                <mesto property="pred:mesto_poverenika" datatype="xs:string">Београд</mesto>
+            </adresa>
         </primalac_zalbe>
     </zaglavlje>
     <sadrzaj>
-        <paragraf id="p1">
-            У складу са <zakon naziv="Закона о слободном приступу информацијама од јавног значаја" clan="22"></zakon> подносим:
-            Ж А Л Б У
-            против
-            <naziv_organa></naziv_organa>
-            због тога што орган власти:
-            <razlog_zalbe></razlog_zalbe>
-            по мом захтеву  за слободан приступ информацијама од јавног значаја који сам поднео  том органу  дана <datum>2020-12-01</datum> године, а којим сам тражио/ла да ми се у складу са <zakon naziv="Законом о слободном приступу информацијама од јавног значаја"></zakon> омогући увид- копија документа који садржи информације  о /у вези са :
-        </paragraf>
-        <paragraf id="p2">
-              На основу изнетог, предлажем да Повереник уважи моју жалбу и омогући ми приступ траженој/им  информацији/ма.
-            Као доказ , уз жалбу достављам копију захтева са доказом о предаји органу власти.
-            <napomena> Код жалбе  због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.</napomena>
-        </paragraf>
-        
+        <naziv_organa property="pred:naziv_organa" datatype="xs:string">ФТН</naziv_organa>
+         <razlozi_zalbe>
+             <razlog otkaceno="false" id="r_1" razlog="nije_postupio"></razlog>
+             <razlog otkaceno="false" id="r_2" razlog="nije_postupio_u_celosti"></razlog>
+             <razlog otkaceno="false" id="r_3" razlog="nije_postupio_u_zakonskom_roku"></razlog>  
+         </razlozi_zalbe>
+        <datum_zahteva>2020-12-20</datum_zahteva>
+        <podaci_o_zahtevu_i_informacijama>Тражени захтев односио се на увид у информације о положеним испитима.</podaci_o_zahtevu_i_informacijama>
     </sadrzaj>
     <podnozje>
         <podnosilac_zalbe>
-            <ime_i_prezime>
-                
+            <ime_i_prezime property="pred:ime_prezime_podnosioca" datatype="xs:string">
+               Марко Марковић 
             </ime_i_prezime>
             <potpis></potpis>
-            <adresa_podnosioca>
-                
-            </adresa_podnosioca>
+            <adresa>
+                <ulica property="pred:ulica_podnosioca" datatype="xs:string">Булевар деспота Стефана</ulica>
+                <broj property="pred:broj_kuce_podnosioca" datatype="xs:integer">7</broj>
+                <mesto property="pred:mesto_podnosioca" datatype="xs:string">Нови Сад</mesto>
+            </adresa>
             <drugi_podaci_za_kontakt>
-                
+                Мобилни телефон: 0605873456
             </drugi_podaci_za_kontakt>
             <potpis></potpis>
         </podnosilac_zalbe>
-        <datum_i_mesto_zalbe>
-            У <mesto>Novom Sadu</mesto>, дана <datum>2020-12-04</datum>
-        </datum_i_mesto_zalbe>
+        <mesto_i_datum>
+            <mesto>Нови Сад</mesto>
+            <datum_zalbe property="pred:datum_zalbe" datatype="xs:string">2020-12-20</datum_zalbe> 
+        </mesto_i_datum>
     </podnozje>
 </zalba_cutanje>
+</lista_zalbi_cutanje>

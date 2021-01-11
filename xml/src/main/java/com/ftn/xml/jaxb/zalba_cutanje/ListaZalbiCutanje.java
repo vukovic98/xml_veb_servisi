@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}naziv_primaoca"/>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}adresa"/>
+ *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}zalba_cutanje"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "nazivPrimaoca",
-    "adresa"
+    "zalbaCutanje"
 })
-@XmlRootElement(name = "primalac_zalbe")
-public class PrimalacZalbe {
+@XmlRootElement(name = "lista_zalbi_cutanje")
+public class ListaZalbiCutanje {
 
-    @XmlElement(name = "naziv_primaoca", required = true)
-    protected NazivPrimaoca nazivPrimaoca;
-    @XmlElement(required = true)
-    protected Adresa adresa;
+    @XmlElement(name = "zalba_cutanje", required = true)
+    protected ZalbaCutanje zalbaCutanje;
 
     /**
-     * Gets the value of the nazivPrimaoca property.
+     * Gets the value of the zalbaCutanje property.
      * 
      * @return
      *     possible object is
-     *     {@link NazivPrimaoca }
+     *     {@link ZalbaCutanje }
      *     
      */
-    public NazivPrimaoca getNazivPrimaoca() {
-        return nazivPrimaoca;
+    public ZalbaCutanje getZalbaCutanje() {
+        return zalbaCutanje;
     }
 
     /**
-     * Sets the value of the nazivPrimaoca property.
+     * Sets the value of the zalbaCutanje property.
      * 
      * @param value
      *     allowed object is
-     *     {@link NazivPrimaoca }
+     *     {@link ZalbaCutanje }
      *     
      */
-    public void setNazivPrimaoca(NazivPrimaoca value) {
-        this.nazivPrimaoca = value;
-    }
-
-    /**
-     * Gets the value of the adresa property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Adresa }
-     *     
-     */
-    public Adresa getAdresa() {
-        return adresa;
-    }
-
-    /**
-     * Sets the value of the adresa property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Adresa }
-     *     
-     */
-    public void setAdresa(Adresa value) {
-        this.adresa = value;
+    public void setZalbaCutanje(ZalbaCutanje value) {
+        this.zalbaCutanje = value;
     }
 
 }

@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}naziv_primaoca"/>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}adresa"/>
+ *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}ulica"/>
+ *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}broj"/>
+ *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}mesto"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +38,90 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "nazivPrimaoca",
-    "adresa"
+    "ulica",
+    "broj",
+    "mesto"
 })
-@XmlRootElement(name = "primalac_zalbe")
-public class PrimalacZalbe {
+@XmlRootElement(name = "adresa")
+public class Adresa {
 
-    @XmlElement(name = "naziv_primaoca", required = true)
-    protected NazivPrimaoca nazivPrimaoca;
     @XmlElement(required = true)
-    protected Adresa adresa;
+    protected Ulica ulica;
+    @XmlElement(required = true)
+    protected Broj broj;
+    @XmlElement(required = true)
+    protected Mesto mesto;
 
     /**
-     * Gets the value of the nazivPrimaoca property.
+     * Gets the value of the ulica property.
      * 
      * @return
      *     possible object is
-     *     {@link NazivPrimaoca }
+     *     {@link Ulica }
      *     
      */
-    public NazivPrimaoca getNazivPrimaoca() {
-        return nazivPrimaoca;
+    public Ulica getUlica() {
+        return ulica;
     }
 
     /**
-     * Sets the value of the nazivPrimaoca property.
+     * Sets the value of the ulica property.
      * 
      * @param value
      *     allowed object is
-     *     {@link NazivPrimaoca }
+     *     {@link Ulica }
      *     
      */
-    public void setNazivPrimaoca(NazivPrimaoca value) {
-        this.nazivPrimaoca = value;
+    public void setUlica(Ulica value) {
+        this.ulica = value;
     }
 
     /**
-     * Gets the value of the adresa property.
+     * Gets the value of the broj property.
      * 
      * @return
      *     possible object is
-     *     {@link Adresa }
+     *     {@link Broj }
      *     
      */
-    public Adresa getAdresa() {
-        return adresa;
+    public Broj getBroj() {
+        return broj;
     }
 
     /**
-     * Sets the value of the adresa property.
+     * Sets the value of the broj property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Adresa }
+     *     {@link Broj }
      *     
      */
-    public void setAdresa(Adresa value) {
-        this.adresa = value;
+    public void setBroj(Broj value) {
+        this.broj = value;
+    }
+
+    /**
+     * Gets the value of the mesto property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Mesto }
+     *     
+     */
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    /**
+     * Sets the value of the mesto property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Mesto }
+     *     
+     */
+    public void setMesto(Mesto value) {
+        this.mesto = value;
     }
 
 }

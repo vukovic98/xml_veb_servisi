@@ -1,7 +1,5 @@
 package com.ftn.xml.controllers;
 
-
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,17 +38,20 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XUpdateQueryService;
-import com.ftn.xml.jaxb.util.XUpdateTemplateZahtev;
+
 import com.ftn.xml.jaxb.util.AuthenticationUtilities;
 import com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist;
 import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.jaxb.util.SparqlUtil;
-import com.ftn.xml.jaxb.zahtev.ListaZahtevaZaPristupInformacijama;
+import com.ftn.xml.jaxb.util.XUpdateTemplateZahtev;
+import com.ftn.xml.jaxb.util.XUpdateTemplateZalbaCutanje;
 import com.ftn.xml.jaxb.util.AuthenticationUtilities.ConnectionProperties;
+import com.ftn.xml.jaxb.zahtev.ListaZahtevaZaPristupInformacijama;
+import com.ftn.xml.jaxb.zalba_cutanje.ListaZalbiCutanje;
 
 @RestController
-@RequestMapping("/zahtev")
-public class ZahtevController {
+@RequestMapping("/zalba_cutanje")
+public class ZalbaCutanjeController {
 
 	private static final String SPARQL_NAMED_GRAPH_URI = "/zalbe_cutanje";
 	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
@@ -62,9 +63,9 @@ public class ZahtevController {
 
 		ConnectionProperties conn = AuthenticationUtilities.loadProperties();
 
-		String xmlFilePath = "data/zahtev.xml";
+		String xmlFilePath = "data/zalba_cutanje.xml";
 
-		String rdfFilePath = "gen/zahtev.rdf";
+		String rdfFilePath = "gen/zalba_cutanje.rdf";
 
 		MetadataExtractor metadataExtractor = new MetadataExtractor();
 
@@ -96,8 +97,8 @@ public class ZahtevController {
 		this.conn = AuthenticationUtilitiesExist.loadProperties();
 		// initialize collection and document identifiers
 		String collectionId = "/db/documents";
-		String documentId = "zahtev.xml";
-		String filePath = "data/zahtev.xml";
+		String documentId = "zalba_cutanje.xml";
+		String filePath = "data/zalba_cutanje.xml";
 
 		Class<?> cl = Class.forName(conn.driver);
 
@@ -118,11 +119,11 @@ public class ZahtevController {
 
 			res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
-			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.jaxb.zahtev");
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.jaxb.zalba_cutanje");
 
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ListaZahtevaZaPristupInformacijama listaZahteva = (ListaZahtevaZaPristupInformacijama) unmarshaller
+			ListaZalbiCutanje listaZahteva = (ListaZalbiCutanje) unmarshaller
 					.unmarshal(new File(filePath));
 //			bookstore.getBook().add(createTestBook());
 
@@ -164,7 +165,7 @@ public class ZahtevController {
 		this.conn = AuthenticationUtilitiesExist.loadProperties();
 		
 		String collectionId = "/db/documents";
-    	String documentId = "zahtev.xml";
+    	String documentId = "zalba_cutanje.xml";
 
         Class<?> cl = Class.forName(conn.driver);
         
@@ -177,48 +178,55 @@ public class ZahtevController {
         
         try { 
 
-    		String contextXPath = "/lista_zahteva_za_pristup_informacijama";
+    		String contextXPath = "/lista_zalbi_cutanje";
     		
-    		String xmlFragment ="<zahtev_za_pristup_informacijama vocab=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" about=\"http://www.ftn.uns.ac.rs/rdf/examples/zahtev/333\">" + 
-    				" <podaci_o_organu>" + 
-    				" <naziv property=\"pred:naziv_ustanove\" datatype=\"xs:string\">FPN</naziv>" + 
-    				" <sediste property=\"pred:sediste_ustanove\" datatype=\"xs:string\">Novi Pazar</sediste>" + 
-    				" </podaci_o_organu>" + 
-    				" <sadrzaj>" + 
-    				" <zahtevi>" + 
-    				" <zahtev otkaceno = \"false\" id=\"s_1\" zahtev=\"обавештење да ли поседује тражену информацију\"  ></zahtev>;" + 
-    			    " <zahtev otkaceno = \"false\" id=\"s_2\" zahtev=\"увид у документ који садржи тражену информацију\" ></zahtev>;" + 
-    				" <zahtev otkaceno = \"false\" id=\"s_3\" zahtev=\"копију документа који садржи тражену информацију\" ></zahtev>;" + 
-    				" <zahtev otkaceno = \"false\" id=\"s_4\" zahtev=\"достављање копије документа који садржи тражену информацију\">" + 
-    				" <nacini_dostave>" + 
-    				" <nacin otkaceno = \"false\" id=\"ps_1\" nacin=\"поштом\" ></nacin>" + 
-    				" <nacin otkaceno = \"false\" id=\"ps_2\" nacin=\"електронском поштом\" ></nacin>" + 
-    				" <nacin otkaceno = \"false\" id=\"ps_3\" nacin=\"факсом\"></nacin>" + 
-    				" <nacin otkaceno = \"false\" id=\"ps_4\" nacin=\"на други начин:\">" + 
-    				"  <drugi_nacin></drugi_nacin>" + 
-    				"  </nacin>" + 
-    				" </nacini_dostave>" + 
-    				"  </zahtev>" + 
-    				"  </zahtevi>" + 
-    				" <opis_trazene_informacije property=\"pred:opis_informacije\" datatype=\"xs:string\">Informacija mala</opis_trazene_informacije>" + 
-    				" </sadrzaj>" + 
-    				" <podnozje>" + 
-    				"  <mesto_i_datum>" + 
-    				" <mesto>Novi Sad</mesto>" + 
-    				" <datum_zahteva property=\"pred:datum_zahteva\" datatype=\"xs:string\" >2020-12-05</datum_zahteva>" + 
-    				" </mesto_i_datum>" + 
-    				" <informacije_o_traziocu>" + 
-    				" <ime_i_prezime property=\"pred:ime_trazioca\" datatype=\"xs:string\" >Maja Milic</ime_i_prezime>" + 
-    				" <adresa>" + 
-    				" <ulica property=\"pred:ulica_trazioca\" datatype=\"xs:string\">Jevrejska</ulica>" + 
-    				"  <broj property=\"pred:broj_kuce_trazioca\" datatype=\"xs:integer\">19</broj>" + 
-    				" <mesto property=\"pred:mesto_trazioca\" datatype=\"xs:string\">Novi Pazar</mesto>" + 
-    				" </adresa>" + 
-    				"  <kontakt property=\"pred:kontakt_trazioca\" datatype=\"xs:string\">021228896</kontakt>" + 
-    				"   <potpis></potpis>" + 
-    				" </informacije_o_traziocu>" + 
-    				"  </podnozje>" + 
-    				" </zahtev_za_pristup_informacijama>" ;
+    		String xmlFragment ="<zalba_cutanje\r\n" + 
+    				"    vocab=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" \r\n" + 
+    				"    about=\"http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/30\">\r\n" + 
+    				"    <zaglavlje>\r\n" + 
+    				"    <primalac_zalbe>\r\n" + 
+    				"    <naziv_primaoca property=\"pred:naziv_primaoca\" datatype=\"xs:string\">            \r\n" + 
+    				"    Повереникy за информације од јавног значаја и заштиту података о личности\r\n" + 
+    				"    </naziv_primaoca>\r\n" + 
+    				"    <adresa>\r\n" + 
+    				"    <ulica property=\"pred:ulica_poverenika\" datatype=\"xs:string\">Булевар деспота Стефана</ulica>\r\n" + 
+    				"    <broj property=\"pred:broj_kuce_poverenika\" datatype=\"xs:integer\">15</broj>\r\n" + 
+    				"    <mesto property=\"pred:mesto_poverenika\" datatype=\"xs:string\">Нови Сад</mesto>\r\n" + 
+    				"    </adresa>\r\n" + 
+    				"    </primalac_zalbe>\r\n" + 
+    				"    </zaglavlje>\r\n" + 
+    				"    <sadrzaj>\r\n" + 
+    				"    <naziv_organa property=\"pred:naziv_organa\" datatype=\"xs:string\">Универзитет у Новом Саду</naziv_organa>\r\n" + 
+    				"    <razlozi_zalbe>\r\n" + 
+    				"    <razlog otkaceno=\"false\" id=\"r_1\" razlog=\"nije_postupio\"></razlog>\r\n" + 
+    				"    <razlog otkaceno=\"true\" id=\"r_2\" razlog=\"nije_postupio_u_celosti\"></razlog>\r\n" + 
+    				"    <razlog otkaceno=\"false\" id=\"r_3\" razlog=\"nije_postupio_u_zakonskom_roku\"></razlog>  \r\n" + 
+    				"    </razlozi_zalbe>\r\n" + 
+    				"    <datum_zahteva>2020-12-25</datum_zahteva>\r\n" + 
+    				"    <podaci_o_zahtevu_i_informacijama>Тражени захтев односио се на увид у информације о буџету.</podaci_o_zahtevu_i_informacijama>\r\n" + 
+    				"    </sadrzaj>\r\n" + 
+    				"    <podnozje>\r\n" + 
+    				"    <podnosilac_zalbe>\r\n" + 
+    				"    <ime_i_prezime property=\"pred:ime_prezime_podnosioca\" datatype=\"xs:string\">\r\n" + 
+    				"    Марија Матић \r\n" + 
+    				"    </ime_i_prezime>\r\n" + 
+    				"    <potpis></potpis>\r\n" + 
+    				"    <adresa>\r\n" + 
+    				"    <ulica property=\"pred:ulica_podnosioca\" datatype=\"xs:string\">Хаџи Рувимова</ulica>\r\n" + 
+    				"    <broj property=\"pred:broj_kuce_podnosioca\" datatype=\"xs:integer\">15</broj>\r\n" + 
+    				"    <mesto property=\"pred:mesto_podnosioca\" datatype=\"xs:string\">Нови Сад</mesto>\r\n" + 
+    				"    </adresa>\r\n" + 
+    				"    <drugi_podaci_za_kontakt>\r\n" + 
+    				"    Мобилни телефон: 0605123456\r\n" + 
+    				"    </drugi_podaci_za_kontakt>\r\n" + 
+    				"    <potpis></potpis>\r\n" + 
+    				"    </podnosilac_zalbe>\r\n" + 
+    				"    <mesto_i_datum>\r\n" + 
+    				"    <mesto>Нови Сад</mesto>\r\n" + 
+    				"    <datum_zalbe property=\"pred:datum_zalbe\" datatype=\"xs:string\">2021-01-05</datum_zalbe> \r\n" + 
+    				"    </mesto_i_datum>\r\n" + 
+    				"    </podnozje>\r\n" + 
+    				"</zalba_cutanje>" ;
         	
             col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user, conn.password);
             col.setProperty("indent", "yes");
@@ -227,7 +235,7 @@ public class ZahtevController {
             xupdateService.setProperty("indent", "yes");
 
             
-            xupdateService.updateResource(documentId, String.format(XUpdateTemplateZahtev.APPEND, contextXPath, xmlFragment));
+            xupdateService.updateResource(documentId, String.format(XUpdateTemplateZalbaCutanje.APPEND, contextXPath, xmlFragment));
             
         } finally {
         	
@@ -249,34 +257,37 @@ public class ZahtevController {
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
 
 		// Making the changes manually 
-		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/zahtev/333");
+		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/30");
 		
-		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naziv_ustanove");
-		Literal literal1 = model.createLiteral("FTN");
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naziv_primaoca");
+		Literal literal1 = model.createLiteral("Повереникy за информације од јавног значаја и заштиту података о личности");
 		
-		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "sediste_ustanove");
-		Literal literal2 = model.createLiteral("Novi Pazar");
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "ulica_poverenika");
+		Literal literal2 = model.createLiteral("Булевар деспота Стефана");
 		
-		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "opis_informacije");
-		Literal literal3 = model.createLiteral("Informacija mala");
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "broj_kuce_poverenika");
+		Literal literal3 = model.createTypedLiteral(15);
 		
-		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
-		Literal literal4 = model.createLiteral("2020-12-05");
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "mesto_poverenika");
+		Literal literal4 = model.createLiteral("Нови Сад");
 		
-		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "ime_trazioca");
-		Literal literal5 = model.createLiteral("Maja Milic");
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "naziv_organa");
+		Literal literal5 = model.createLiteral("Универзитет у Новом Саду");
 		
-		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ulica_trazioca");
-		Literal literal6 = model.createLiteral("Jevrejska");
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ime_prezime_podnosioca");
+		Literal literal6 = model.createLiteral("Марија Матић");
 		
-		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "broj_kuce_trazioca");
-		Literal literal7 = model.createTypedLiteral(19);
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "ulica_podnosioca");
+		Literal literal7 = model.createLiteral("Хаџи Рувимова");
 		
-		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "mesto_trazioca");
-		Literal literal8 = model.createLiteral("Novi Pazar");
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "broj_kuce_podnosioca");
+		Literal literal8 = model.createTypedLiteral(15);
 		
-		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "kontakt_trazioca");
-		Literal literal9 = model.createLiteral("021228896");
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "mesto_podnosioca");
+		Literal literal9 = model.createLiteral("Нови Сад");
+		
+		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "datum_zalbe");
+		Literal literal10 = model.createLiteral("2021-01-05");
 		
 		// Adding the statements to the model
 		Statement statement1 = model.createStatement(resource, property1, literal1);
@@ -288,7 +299,8 @@ public class ZahtevController {
 		Statement statement7 = model.createStatement(resource, property7, literal7);
 		Statement statement8 = model.createStatement(resource, property8, literal8);
 		Statement statement9 = model.createStatement(resource, property9, literal9);
-
+		Statement statement10 = model.createStatement(resource, property10, literal10);
+		
 		model.add(statement1);
 		model.add(statement2);
 		model.add(statement3);
@@ -298,6 +310,7 @@ public class ZahtevController {
 		model.add(statement7);
 		model.add(statement8);
 		model.add(statement9);
+		model.add(statement10);
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		model.write(out, SparqlUtil.NTRIPLES);
@@ -367,5 +380,5 @@ public class ZahtevController {
 			return col;
 		}
 	}
-
+	
 }

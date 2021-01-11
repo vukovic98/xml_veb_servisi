@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://ftn.uns.ac.rs/zalba_cutanje">
+  <xs:import schemaLocation="zalba_cutanje.xsd"/>
+  <xs:import namespace="http://ftn.uns.ac.rs/zalba_cutanje" schemaLocation="z.xsd"/>
+  <xs:attribute name="schemaLocation"/>
+</xs:schema>

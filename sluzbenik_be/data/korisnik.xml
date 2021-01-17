@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lista_korisnika 
+    xmlns="http://ftn.uns.ac.rs/korisnik"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ftn.uns.ac.rs/korisnik korisnik.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#">
+    
+    <korisnik>
+        <ime_i_prezime>Sluzbenik Sluzbenik</ime_i_prezime>
+        <email>sluzbenik@maildrop.cc</email>
+        <lozinka>sluzbenik</lozinka>
+        <uloga>S</uloga>
+    </korisnik>
+    
+    <korisnik>
+        <ime_i_prezime>Vladimir Vukovic</ime_i_prezime>
+        <email>vladimirvukovic98@maildrop.cc</email>
+        <lozinka>vukovic</lozinka>
+        <uloga>K</uloga>
+    </korisnik>
+    
+    <korisnik>
+        <ime_i_prezime>Ivana Vlaisavljevic</ime_i_prezime>
+        <email>ivanazvucnik@maildrop.cc</email>
+        <lozinka>zvucnik</lozinka>
+        <uloga>K</uloga>
+    </korisnik>
+</lista_korisnika>

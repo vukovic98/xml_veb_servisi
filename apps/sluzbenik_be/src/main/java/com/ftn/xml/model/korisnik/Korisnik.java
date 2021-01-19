@@ -6,13 +6,16 @@
 //
 
 
-package com.ftn.xml.model.user;
+package com.ftn.xml.model.korisnik;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 
 /**
@@ -45,9 +48,11 @@ import javax.xml.bind.annotation.XmlType;
     "uloga"
 })
 @XmlRootElement(name = "korisnik")
+@JsonRootName(value = "korisnik")
 public class Korisnik {
 
     @XmlElement(name = "ime_i_prezime", required = true)
+    @JsonProperty("ime_i_prezime")
     protected String imeIPrezime;
     @XmlElement(required = true)
     protected String email;

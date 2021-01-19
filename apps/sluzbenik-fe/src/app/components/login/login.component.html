@@ -1,0 +1,28 @@
+<div class="backgroundImg">
+    <div class="container ml-auto mr-auto mt-5 col-md-3 border pt-5 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="m-3">
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" formControlName="email" id="email" placeholder="Unesite email">
+          <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="ml-1 mt-0 mb-0">
+            <small *ngIf="loginForm.controls['email'].errors?.required" class="text-danger">Email je obavezan</small>
+            <small *ngIf="loginForm.controls['email'].errors?.email" class="text-danger">Email nije ispravan</small>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="lozinka">Lozinka</label>
+          <input type="password" class="form-control" formControlName="lozinka" id="lozinka" placeholder="Unesite lozinku">
+          <div *ngIf="loginForm.controls['lozinka'].invalid && loginForm.controls['lozinka'].touched" class="ml-1 mt-0 mb-0">
+            <small *ngIf="loginForm.controls['lozinka'].errors?.required" class="text-danger">Lozinka je obavezna</small>
+          </div>
+        </div>
+        <div class="pt-3 text-center">
+          <button id="loginBtn" class="btn btn-block mt-3 btn-danger" [disabled]="!loginForm.valid" (click)="loginUser()">Prijava</button>
+        </div>
+      </form>
+      <div class="text-center pt-3">
+        <p>Nemate nalog? <a routerLink="/auth/sign-up" class="signUpLink">Registracija</a></p>
+      </div>
+    </div>
+  </div>

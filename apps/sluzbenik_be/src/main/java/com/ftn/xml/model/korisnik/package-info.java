@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://ftn.uns.ac.rs/korisnik", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.ftn.xml.model.user;
+package com.ftn.xml.model.korisnik;

@@ -6,7 +6,7 @@
 //
 
 
-package com.ftn.xml.model.user;
+package com.ftn.xml.model.korisnik;
 
 import java.util.ArrayList;
 import java.util.List;

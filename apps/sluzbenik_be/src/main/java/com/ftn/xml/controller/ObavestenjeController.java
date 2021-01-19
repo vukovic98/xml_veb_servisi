@@ -1,4 +1,4 @@
-package com.ftn.xml.controllers;
+package com.ftn.xml.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

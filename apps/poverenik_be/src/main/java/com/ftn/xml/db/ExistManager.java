@@ -4,9 +4,7 @@ import java.io.File;
 
 import javax.xml.transform.OutputKeys;
 
-import org.exist.xmldb.DatabaseImpl;
 import org.exist.xmldb.EXistResource;
-import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xmldb.api.DatabaseManager;

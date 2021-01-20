@@ -1,4 +1,4 @@
-package com.ftn.xml.poverenik;
+package com.ftn.xml;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

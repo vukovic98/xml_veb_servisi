@@ -3,8 +3,12 @@ package com.ftn.xml.repository;
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.xmldb.api.base.ResourceSet;
 
-import com.ftn.xml.db.ExistManager;
+import com.ftn.xml.db.*;
+import com.ftn.xml.dto.KorisnikPrijavaDto;
+
+
 
 @Repository
 public class KorisnikRepository {
@@ -37,7 +41,22 @@ public class KorisnikRepository {
 	}
 
 	public boolean postojiPoMejlu(String email) {
-		// TODO Auto-generated method stub
-		return true;
+		String xPath = "/lista_korisnika/korisnik[email='" + email + "']";
+		try {
+			ResourceSet s = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return s.getSize()!=0;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean prijava(KorisnikPrijavaDto korisnik) {
+		String xPath = "/lista_korisnika/korisnik[email='" + korisnik.getEmail() + "' and lozinka='"+korisnik.getLozinka()+"']";
+		try {
+			ResourceSet s = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return s.getSize()!=0;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

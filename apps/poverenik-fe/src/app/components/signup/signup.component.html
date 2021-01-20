@@ -1,0 +1,37 @@
+<div>
+  <div class="container ml-auto mr-auto mt-5 w-25 border pt-4 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
+    <form [formGroup]="signupForm" (ngSubmit)="registrujSe()">
+      <div class="form-group">
+        <label for="ime_i_prezime">Ime i prezime</label>
+        <input type="text" class="form-control" formControlName="ime_i_prezime" name="ime_i_prezime"  id="ime_i_prezime" placeholder="Unesite ime i prezime" required>
+        <div *ngIf="signupForm.controls['ime_i_prezime'].touched && signupForm.controls['ime_i_prezime'].errors?.required" class="mt-1 pl-1 inputError">
+          <small>Ime je obavezno.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" name="email"  id="email" placeholder="Unesite email" required pattern="^[a-z0-9._%+-]+@maildrop.cc">
+        <div *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors?.required" class="mt-1 pl-1 inputError">
+          <small>Email je obavezan.</small>
+        </div>
+        <div *ngIf=" signupForm.controls['email'].errors?.pattern " class="mt-1 pl-1 inputError">
+          <small>Pogresan format email-a. Primer: "jovan123@maildrop.cc".</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lozinka">Lozinka</label>
+        <input type="password" class="form-control" formControlName="lozinka" name="lozinka" id="lozinka" placeholder="Unesite lozinku" required >
+        <div *ngIf="signupForm.controls['lozinka'].touched && signupForm.controls['lozinka'].errors?.required" class="mt-1 pl-1 inputError">
+          <small>Lozinka je obavezna.</small>
+        </div>
+      </div>
+      <div class="pt-3 text-center">
+        <button id="signUpBtn" class="btn btn-block mt-3 btn-success btnColor"  [disabled]="!signupForm.valid" >Registruj se</button>
+      </div>
+    </form>
+    <div class="text-center pt-3">
+      <p>Već imate nalog? <a routerLink="/log-in" >Prijavite se ovde!</a></p>
+    </div>
+  </div>
+</div>
+

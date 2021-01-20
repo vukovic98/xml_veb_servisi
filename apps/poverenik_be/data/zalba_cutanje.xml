@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lista_zalbi_cutanje
+    xmlns="http://ftn.uns.ac.rs/zalba_cutanje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ftn.uns.ac.rs/zalba_cutanje zalba_cutanje.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    
+    <zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <zaglavlje>
+            <primalac_zalbe>
+                <naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">            
+                    Повереникy за информације од јавног значаја и заштиту података о личности
+                </naziv_primaoca>
+                <adresa>
+                    <ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica>
+                    <broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj>
+                    <mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto>
+                </adresa>
+            </primalac_zalbe>
+        </zaglavlje>
+        <sadrzaj>
+            <naziv_organa datatype="xs:string" property="pred:naziv_organa">ФТН</naziv_organa>
+            <razlozi_zalbe>
+                <razlog id="r_1" otkaceno="false" razlog="nije_postupio"/>
+                <razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/>
+                <razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/>
+            </razlozi_zalbe>
+            <datum_zahteva>2020-12-20</datum_zahteva>
+            <podaci_o_zahtevu_i_informacijama>Тражени захтев односио се на увид у информације о положеним испитима.</podaci_o_zahtevu_i_informacijama>
+        </sadrzaj>
+        <podnozje>
+            <podnosilac_zalbe>
+                <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
+                <ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">
+                    Vladimir Vukovic
+                </ime_i_prezime>
+                <potpis/>
+                <adresa>
+                    <ulica datatype="xs:string" property="pred:ulica_podnosioca">Булевар деспота Стефана</ulica>
+                    <broj datatype="xs:integer" property="pred:broj_kuce_podnosioca">7</broj>
+                    <mesto datatype="xs:string" property="pred:mesto_podnosioca">Нови Сад</mesto>
+                </adresa>
+                <drugi_podaci_za_kontakt>
+                    Мобилни телефон: 0605873456
+                </drugi_podaci_za_kontakt>
+                <potpis/>
+            </podnosilac_zalbe>
+            <mesto_i_datum>
+                <mesto>Нови Сад</mesto>
+                <datum_zalbe datatype="xs:string" property="pred:datum_zalbe">2020-12-20</datum_zalbe>
+            </mesto_i_datum>
+        </podnozje>
+        <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">2</broj_zahteva>
+    </zalba_cutanje>
+</lista_zalbi_cutanje>

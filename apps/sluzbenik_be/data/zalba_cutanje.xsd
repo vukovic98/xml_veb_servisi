@@ -55,7 +55,7 @@
   <xs:element name="naziv_organa">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>

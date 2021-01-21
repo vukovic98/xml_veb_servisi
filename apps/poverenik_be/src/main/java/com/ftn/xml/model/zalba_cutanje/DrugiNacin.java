@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "potpis")
-public class Potpis {
+@XmlRootElement(name = "drugi_nacin")
+public class DrugiNacin {
 
 
 }

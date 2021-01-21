@@ -16,12 +16,12 @@
                 <adresa>
                     <ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica>
                     <broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj>
-                    <mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto>
+                    <mesto datatype="xs:string" property="pred:mesto_poverenika">Novi Београд</mesto>
                 </adresa>
             </primalac_zalbe>
         </zaglavlje>
         <sadrzaj>
-            <naziv_organa datatype="xs:string" property="pred:naziv_organa">ФТН</naziv_organa>
+            <naziv_organa datatype="xs:string" property="pred:naziv_organa">v v</naziv_organa>
             <razlozi_zalbe>
                 <razlog id="r_1" otkaceno="false" razlog="nije_postupio"/>
                 <razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/>

@@ -8,6 +8,7 @@
 
 package com.ftn.xml.model.zalba_cutanje;
 
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -26,12 +27,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  * <pre>
  * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *   &lt;simpleContent>
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>integer">
  *       &lt;attribute name="datatype" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
  *       &lt;attribute name="property" use="required" type="{http://www.w3.org/2001/XMLSchema}NMTOKEN" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
+ *     &lt;/extension>
+ *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
  * 
@@ -39,13 +40,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "content"
+    "value"
 })
-@XmlRootElement(name = "korisnik_email")
-public class KorisnikEmail {
+@XmlRootElement(name = "kontakt")
+public class Kontakt {
 
     @XmlValue
-    protected String content;
+    protected BigInteger value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -56,27 +57,27 @@ public class KorisnikEmail {
     protected String property;
 
     /**
-     * Gets the value of the content property.
+     * Gets the value of the value property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getContent() {
-        return content;
+    public BigInteger getValue() {
+        return value;
     }
 
     /**
-     * Sets the value of the content property.
+     * Sets the value of the value property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setContent(String value) {
-        this.content = value;
+    public void setValue(BigInteger value) {
+        this.value = value;
     }
 
     /**

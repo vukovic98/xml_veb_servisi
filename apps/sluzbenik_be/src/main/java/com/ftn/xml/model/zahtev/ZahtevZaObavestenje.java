@@ -10,7 +10,7 @@ package com.ftn.xml.model.zahtev;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,10 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://www.ftn.uns.ac.rs/zahtev}naziv"/>
- *         &lt;element ref="{http://www.ftn.uns.ac.rs/zahtev}sediste"/>
- *       &lt;/sequence>
+ *       &lt;attribute name="opis_zahteva" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="otkaceno" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -36,64 +34,53 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "naziv",
-    "sediste"
-})
-@XmlRootElement(name = "podaci_o_organu")
-public class PodaciOOrganu {
+@XmlType(name = "")
+@XmlRootElement(name = "zahtev_za_obavestenje")
+public class ZahtevZaObavestenje {
 
-    @XmlElement(required = true)
-    protected Naziv naziv;
-    @XmlElement(required = true)
-    protected Sediste sediste;
+    @XmlAttribute(name = "opis_zahteva", required = true)
+    protected String opisZahteva;
+    @XmlAttribute(name = "otkaceno", required = true)
+    protected boolean otkaceno;
 
     /**
-     * Gets the value of the naziv property.
+     * Gets the value of the opisZahteva property.
      * 
      * @return
      *     possible object is
-     *     {@link Naziv }
+     *     {@link String }
      *     
      */
-    public Naziv getNaziv() {
-        return naziv;
+    public String getOpisZahteva() {
+        return opisZahteva;
     }
 
     /**
-     * Sets the value of the naziv property.
+     * Sets the value of the opisZahteva property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Naziv }
+     *     {@link String }
      *     
      */
-    public void setNaziv(Naziv value) {
-        this.naziv = value;
+    public void setOpisZahteva(String value) {
+        this.opisZahteva = value;
     }
 
     /**
-     * Gets the value of the sediste property.
+     * Gets the value of the otkaceno property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Sediste }
-     *     
      */
-    public Sediste getSediste() {
-        return sediste;
+    public boolean isOtkaceno() {
+        return otkaceno;
     }
 
     /**
-     * Sets the value of the sediste property.
+     * Sets the value of the otkaceno property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Sediste }
-     *     
      */
-    public void setSediste(Sediste value) {
-        this.sediste = value;
+    public void setOtkaceno(boolean value) {
+        this.otkaceno = value;
     }
 
 }

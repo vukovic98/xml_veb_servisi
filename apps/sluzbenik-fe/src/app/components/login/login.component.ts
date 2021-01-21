@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import {Router} from '@angular/router';
 import * as JsonToXML from "js2xmlparser";
 import Swal from "sweetalert2";
+import xml2js from 'xml2js';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
     "lozinka": new FormControl('', Validators.required)
   });
 
+  parser = new DOMParser();
+
   constructor(
     private service: AuthService,
     private route: Router
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginUser(): void {
+    loginUser(): void {
     let loginDto = {
       "email": this.loginForm.value.email,
       "lozinka": this.loginForm.value.lozinka
@@ -42,8 +45,13 @@ export class LoginComponent implements OnInit {
 
     this.service.prijava(data)
       .subscribe(response => {
-        console.log(response);
-        this.route.navigate(['/sign-up']);
+
+        let xmlDoc = this.parser.parseFromString(response,"text/xml");
+        let uloga = xmlDoc.getElementsByTagName("uloga")[0].childNodes[0].nodeValue;
+
+        localStorage.setItem("uloga", uloga);
+
+        this.route.navigate(['/home']);
       }, error => {
         Swal.fire({
           title: 'Greška!',

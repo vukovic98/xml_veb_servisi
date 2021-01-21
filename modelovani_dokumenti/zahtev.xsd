@@ -6,7 +6,7 @@
   <xs:element name="lista_zahteva_za_pristup_informacijama">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="zahtev:zahtev_za_pristup_informacijama"/>
+        <xs:element ref="zahtev:zahtev_za_pristup_informacijama" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -30,13 +30,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="naziv">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:NCName">
-          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
-          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
-        </xs:extension>
-      </xs:simpleContent>
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="sediste">
@@ -55,49 +51,83 @@
   </xs:element>
   <xs:element name="zahtevi">
     <xs:complexType mixed="true">
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="zahtev:zahtev"/>
-      </xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="zahtev:zahtev_za_dostavu"/>
+        <xs:element ref="zahtev:zahtev_za_kopiju"/>
+        <xs:element ref="zahtev:zahtev_za_obavestenje"/>
+        <xs:element ref="zahtev:zahtev_za_uvid"/>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="zahtev">
+  <xs:element name="zahtev_za_dostavu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="zahtev:nacini_dostave"/>
+        <xs:element ref="zahtev:nacini_dostave"/>
       </xs:sequence>
-      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="opis_zahteva" use="required" type="xs:string"/>
       <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
-      <xs:attribute name="zahtev" use="required"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="nacini_dostave">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="zahtev:nacin"/>
+        <xs:element ref="zahtev:nacin_posta"/>
+        <xs:element ref="zahtev:nacin_e_posta"/>
+        <xs:element ref="zahtev:nacin_faks"/>
+        <xs:element ref="zahtev:nacin_drugi"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="nacin">
+  <xs:element name="nacin_posta">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="zahtev:drugi_nacin"/>
-      </xs:sequence>
-      <xs:attribute name="id" use="required" type="xs:NCName"/>
-      <xs:attribute name="nacin" use="required"/>
+      <xs:attribute name="opis_nacina" use="required" type="xs:NCName"/>
       <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="drugi_nacin">
-    <xs:complexType/>
+  <xs:element name="nacin_e_posta">
+    <xs:complexType>
+      <xs:attribute name="opis_nacina" use="required"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nacin_faks">
+    <xs:complexType>
+      <xs:attribute name="opis_nacina" use="required" type="xs:NCName"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nacin_drugi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="zahtev:drugi_nacin"/>
+      </xs:sequence>
+      <xs:attribute name="opis_nacina" use="required" type="xs:string"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="drugi_nacin" type="xs:string"/>
+  <xs:element name="zahtev_za_kopiju">
+    <xs:complexType>
+      <xs:attribute name="opis_zahteva" use="required" type="xs:string"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="zahtev_za_obavestenje">
+    <xs:complexType>
+      <xs:attribute name="opis_zahteva" use="required" type="xs:string"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="zahtev_za_uvid">
+    <xs:complexType>
+      <xs:attribute name="opis_zahteva" use="required" type="xs:string"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+    </xs:complexType>
   </xs:element>
   <xs:element name="opis_trazene_informacije">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:NCName">
-          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
-          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
-        </xs:extension>
-      </xs:simpleContent>
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="podnozje">
@@ -159,13 +189,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ulica">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:NCName">
-          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
-          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
-        </xs:extension>
-      </xs:simpleContent>
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="broj">

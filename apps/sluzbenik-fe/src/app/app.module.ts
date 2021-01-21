@@ -7,12 +7,29 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { CommonModule } from "@angular/common";
+import { MatListModule } from "@angular/material/list";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
+    NavigationBarComponent,
+    HomeComponent,
 
   ],
   imports: [
@@ -20,7 +37,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSelectModule,MatGridListModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatDialogModule,
+    CommonModule,
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,13 +11,14 @@ public class ZahtevKorisnikaDTO {
 	public String opis_trazene_informacije;
 	public String datum_zahteva;
 	public String kontakt;
+	public boolean odobren;
 
 	public ZahtevKorisnikaDTO() {
 		super();
 	}
 
 	public ZahtevKorisnikaDTO(long id, String naziv_ustanove, String opis_zahteva, String opis_trazene_informacije,
-			String datum_zahteva, String kontakt) {
+			String datum_zahteva, String kontakt, boolean odobren) {
 		super();
 		this.id = id;
 		this.naziv_ustanove = naziv_ustanove;
@@ -25,6 +26,7 @@ public class ZahtevKorisnikaDTO {
 		this.opis_trazene_informacije = opis_trazene_informacije;
 		this.datum_zahteva = datum_zahteva;
 		this.kontakt = kontakt;
+		this.odobren = odobren;
 	}
 
 	public long getId() {
@@ -33,6 +35,14 @@ public class ZahtevKorisnikaDTO {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public boolean isOdobren() {
+		return odobren;
+	}
+
+	public void setOdobren(boolean odobren) {
+		this.odobren = odobren;
 	}
 
 	public String getNaziv_ustanove() {

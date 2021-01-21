@@ -45,10 +45,9 @@ public class ZahtevService {
 				try {
 					Unmarshaller unmarshaller = context.createUnmarshaller();
 					res = i.nextResource();
-					System.out.println(res.getContent());
+					
 					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
 					
-					System.out.println("prodje");
 					lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {

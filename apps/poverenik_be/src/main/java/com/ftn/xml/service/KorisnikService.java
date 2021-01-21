@@ -10,7 +10,7 @@ import com.ftn.xml.repository.KorisnikRepository;
 public class KorisnikService {
 	
 	@Autowired
-	KorisnikRepository korisnikRepository;
+	private KorisnikRepository korisnikRepository;
 
 	
 	public boolean registruj(String email, String korisnik) {

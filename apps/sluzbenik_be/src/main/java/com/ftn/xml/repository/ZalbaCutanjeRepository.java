@@ -6,13 +6,14 @@ import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
+
 @Repository
-public class ZahtevRepository {
+public class ZalbaCutanjeRepository {
 
 	private String collectionId = "/db/poverenik";
-	private String documentId = "zahtev.xml";
+	private String documentId = "zalba_cutanje.xml";
 	
-	private static final String TARGET_NAMESPACE = "http://www.ftn.uns.ac.rs/zahtev";
+	private static final String TARGET_NAMESPACE = "http://ftn.uns.ac.rs/zalba_cutanje";
 
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:append select=\"%1$s\" child=\"last()\">%2$s</xu:append>"
@@ -26,7 +27,7 @@ public class ZahtevRepository {
 	private ExistManager existManager;
 	
 	public ResourceSet getAll() {
-		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama";
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
 		} catch (Exception e) {
@@ -34,13 +35,12 @@ public class ZahtevRepository {
 		}
 	}
 	
-	public ResourceSet getAllForUser() {
-		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama";
+	public ResourceSet getAllByUserEmail(String email) {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/podnozje/podnosilac_zalbe[korisnik_email='" + email + "']";
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
 }

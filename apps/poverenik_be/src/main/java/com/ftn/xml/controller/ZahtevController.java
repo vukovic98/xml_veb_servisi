@@ -38,4 +38,20 @@ public class ZahtevController {
 		}
 		
 	}
+	
+
+	@GetMapping()
+	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAllForUser() throws XMLDBException{
+		try {
+			ArrayList<ZahtevZaPristupInformacijama> zahtevi = this.zahtevService.getAll();
+			return new ResponseEntity<>(zahtevi, HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+		
+	}
 }

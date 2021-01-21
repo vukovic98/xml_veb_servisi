@@ -22,6 +22,8 @@ import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ListaZahtevaComponent } from './components/lista-zahteva/lista-zahteva.component';
+import { ZahtevComponent } from './components/zahtev/zahtev.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     LoginComponent,
     NavigationBarComponent,
     HomeComponent,
+    ListaZahtevaComponent,
+    ZahtevComponent,
 
   ],
   imports: [

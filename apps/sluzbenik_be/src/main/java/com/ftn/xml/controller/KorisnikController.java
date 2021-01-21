@@ -1,13 +1,15 @@
 package com.ftn.xml.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,14 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.xmldb.api.base.ResourceSet;
-import org.xmldb.api.modules.XMLResource;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.ftn.xml.dto.KorisnikLoginDTO;
 import com.ftn.xml.dto.KorisnikSignUpDTO;
 import com.ftn.xml.dto.TrenutnoUlogovanKorisnikDTO;
+import com.ftn.xml.dto.UserTokenStateDTO;
 import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.security.TokenUtils;
+import com.ftn.xml.service.CustomUserDetailsService;
 import com.ftn.xml.service.KorisnikService;
 
 @RestController
@@ -32,26 +35,63 @@ public class KorisnikController {
 
 	@Autowired
 	private KorisnikService korisnikService;
+	
+
+	@Autowired
+	private TokenUtils tokenUtils;
+
+	@Autowired
+	private CustomUserDetailsService userDetailsService;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	@RequestMapping(path = "/prijava", method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Korisnik> prijava(@RequestBody KorisnikLoginDTO korisnik, HttpServletRequest req)
+	public ResponseEntity<UserTokenStateDTO> prijava(@RequestBody KorisnikLoginDTO authenticationRequest)
 			throws Exception {
 
-		ResourceSet s = this.korisnikService.prijavaKorisnika(korisnik.getEmail(), korisnik.getLozinka());
-
-		if (s.getSize() == 0)
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//
+//		ResourceSet s = this.korisnikService.prijavaKorisnika(korisnik.getEmail(), korisnik.getLozinka());
+//
+//		if (s.getSize() == 0)
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		
+//		req.getSession().setAttribute("email", korisnik.getEmail());
+//		
+//		System.out.println("KOR:"+req.getSession().getAttribute("email"));
+//
+//		try {
+//			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.korisnik");
+//
+//			Unmarshaller unmarshaller = context.createUnmarshaller();
+//			Korisnik k = (Korisnik) unmarshaller.unmarshal(((XMLResource) s.getResource(0)).getContentAsDOM());
+//
+//			return new ResponseEntity<>(k, HttpStatus.OK);
+//
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
 		
-		req.getSession().setAttribute("email", korisnik.getEmail());
-
 		try {
-			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.korisnik");
+			
+			boolean verified = true;
 
-			Unmarshaller unmarshaller = context.createUnmarshaller();
-			Korisnik k = (Korisnik) unmarshaller.unmarshal(((XMLResource) s.getResource(0)).getContentAsDOM());
+			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+					authenticationRequest.getEmail(), authenticationRequest.getLozinka()));
 
-			return new ResponseEntity<>(k, HttpStatus.OK);
+			// Ubaci korisnika u trenutni security kontekst
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 
+			// Kreiraj token za tog korisnika
+			Korisnik user = (Korisnik) authentication.getPrincipal();
+
+			String email = user.getEmail();
+			String jwt = tokenUtils.generateToken(user.getEmail()); // prijavljujemo se na sistem sa email adresom
+			int expiresIn = tokenUtils.getExpiredIn();
+
+			// Vrati token kao odgovor na uspesnu autentifikaciju
+			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn, email, verified));
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

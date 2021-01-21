@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
 
         let xmlDoc = this.parser.parseFromString(response,"text/xml");
-        let uloga = xmlDoc.getElementsByTagName("uloga")[0].childNodes[0].nodeValue;
+        let token = xmlDoc.getElementsByTagName("authenticationToken")[0].childNodes[0].nodeValue;
 
-        localStorage.setItem("uloga", uloga);
+        localStorage.setItem('accessToken', token);
 
         this.route.navigate(['/home']);
       }, error => {

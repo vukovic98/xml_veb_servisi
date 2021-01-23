@@ -3,10 +3,12 @@ package com.ftn.xml.repository;
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.*;
 import com.ftn.xml.dto.KorisnikPrijavaDto;
+import com.ftn.xml.model.korisnik.Korisnik;
 
 
 
@@ -57,6 +59,19 @@ public class KorisnikRepository {
 			return s.getSize()!=0;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public Resource pronadjiPoEmailu(String email) {
+		String xPath = "/lista_korisnika/korisnik[email = '" + email + "']";
+		try {
+			ResourceSet set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			if(set.getSize() == 1)
+				return set.getResource(0);
+			else
+				return null;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 }

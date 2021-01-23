@@ -14,6 +14,7 @@ public class ZahtevRepository {
 	private String documentId = "zahtev.xml";
 	
 	private static final String TARGET_NAMESPACE = "http://www.ftn.uns.ac.rs/zahtev";
+	private static final String ID_STRING = "http://www.ftn.uns.ac.rs/rdf/examples/zahtev/";
 
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:append select=\"%1$s\" child=\"last()\">%2$s</xu:append>"
@@ -39,4 +40,20 @@ public class ZahtevRepository {
 			return null;
 		}
 	}
+
+	public ResourceSet pronadjiPoId(long id) {
+		String id_Str = ID_STRING + id;
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[@about='" + id_Str + "']";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

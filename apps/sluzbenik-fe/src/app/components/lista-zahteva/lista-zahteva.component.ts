@@ -23,10 +23,6 @@ export class ListaZahtevaComponent implements OnInit {
         let obj: any = txml.parse(data);
 
         this.zahtevi = obj[0].children;
-
-        for(let p of this.zahtevi) {
-          console.log(p.children)
-        }
       });
   }
 

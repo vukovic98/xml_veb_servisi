@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="zahtev.xsl"?>
+
 <lista_zahteva_za_pristup_informacijama 
     xmlns="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:b="http://www.ftn.uns.ac.rs/xpath/examples" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev zahtev.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema#"
     xmlns:z="http://www.ftn.uns.ac.rs/rdf/example"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    
+    <zahtev_za_pristup_informacijama about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <podaci_o_organu>
+            <naziv datatype="xs:string" property="pred:naziv_ustanove">Fakultet tehnickih nauka</naziv>
+            <sediste property="pred:sediste_ustanove" datatype="xs:string">Novi Sad</sediste>
+        </podaci_o_organu>
+        <sadrzaj>
+            <zahtevi>
+                <zahtev id="zahtev_obavestenje" otkaceno="false" opis_zahteva="обавештење да ли поседује тражену информацију"/>;
+                <zahtev id="zahtev_uvid" otkaceno="false" opis_zahteva="увид у документ који садржи тражену информацију"/>;
+                <zahtev id="zahtev_kopija" otkaceno="false" opis_zahteva="копију документа који садржи тражену информацију"/>;
+                <zahtev id="zahtev_dostava" otkaceno="true" opis_zahteva="достављање копије документа који садржи тражену информацију">
+                    <nacini_dostave>
+                        <nacin id="posta" opis_nacina="поштом" otkaceno="false"/>
+                        <nacin id="e_posta" opis_nacina="електронском поштом" otkaceno="true"/>
+                        <nacin id="faks" opis_nacina="факсом" otkaceno="false"/>
+                        <nacin id="drugi" opis_nacina="на други начин:" otkaceno="false">
+                            <drugi_nacin>Ovo je drugi nacin</drugi_nacin>
+                        </nacin>
+                    </nacini_dostave>
+                </zahtev>
+            </zahtevi>
+            <opis_trazene_informacije property="pred:opis_informacije" datatype="xs:string">Informacija koja predstavlja opis</opis_trazene_informacije>
+        </sadrzaj>
+        <podnozje>
+            <mesto_i_datum>
+                <mesto>Novi Sad</mesto>
+                <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-04</datum_zahteva>
+            </mesto_i_datum>
+            <informacije_o_traziocu>
+                <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
+                <ime_i_prezime datatype="xs:string" property="pred:ime_trazioca">Vladimir Vukovic</ime_i_prezime>
+                <adresa>
+                    <ulica datatype="xs:string" property="pred:ulica_trazioca">Jevrejska ulica</ulica>
+                    <broj datatype="xs:integer" property="pred:broj_kuce_trazioca">10</broj>
+                    <mesto property="pred:mesto_trazioca" datatype="xs:string">Novi Sad</mesto>
+                </adresa>
+                <kontakt datatype="xs:string" property="pred:kontakt_trazioca">0669074444</kontakt>
+                <potpis/>
+            </informacije_o_traziocu>
+        </podnozje>
+    </zahtev_za_pristup_informacijama>
     
     <zahtev_za_pristup_informacijama about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/3" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
         <podaci_o_organu>

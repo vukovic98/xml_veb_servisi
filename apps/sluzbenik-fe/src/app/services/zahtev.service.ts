@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ZahtevService {
 
   private korisnikoviZahteviApi: string = "zahtev/ulogovanKorisnik";
+  private preuzmiPDFApi: string = "zahtev/generisiPDF/";
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,13 @@ export class ZahtevService {
     });
 
     return this.http.get(environment.SLUZBENIK_APP + this.korisnikoviZahteviApi, {headers: headers, responseType: 'text'});
+  }
+
+  preuzmiPDF(zahtev_id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiPDFApi + zahtev_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
   }
 
 }

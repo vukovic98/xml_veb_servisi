@@ -1,16 +1,21 @@
 package com.ftn.xml.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -81,4 +86,22 @@ public class ZahtevController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}
 
+	@GetMapping("/generisiPDF/{zahtev_id}")
+	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zahtev_id") long zahtev_id) {
+
+		String file_path = this.zahtevService.generisiPDF(zahtev_id);
+		
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	
+	}
+	
+	
 }

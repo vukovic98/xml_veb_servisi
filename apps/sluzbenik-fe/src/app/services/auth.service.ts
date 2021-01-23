@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SignUpModel } from '../model/sign-up.model';
 import { environment } from 'src/environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class AuthService {
   private korisnikPrijavaApi: string = "korisnik/prijava";
   private ulogovanKorisnikApi: string = "korisnik/ulogovanKorisnik"
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private route: Router
+  ) { }
 
   ulogovanKorisnik(): Observable<any> {
     const headers = new HttpHeaders({
@@ -70,6 +74,11 @@ export class AuthService {
       payload = window.atob(payload);
       return JSON.parse(payload);
     } else return null;
+  }
+
+  logout() {
+    localStorage.removeItem("accessToken");
+    this.route.navigate(['/log-in']);
   }
 
 }

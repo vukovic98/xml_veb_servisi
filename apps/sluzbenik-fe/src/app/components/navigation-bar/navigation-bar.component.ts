@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class NavigationBarComponent implements OnInit {
 
-  public userRole: string | null = "";
+  public userRole: boolean;
 
   constructor(
     private authService: AuthService,
@@ -17,7 +17,15 @@ export class NavigationBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userRole = localStorage.getItem("uloga");
+    this.userRole = this.authService.isUser();
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

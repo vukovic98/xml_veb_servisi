@@ -4,14 +4,18 @@
       <a class="navbar-brand" href="#">Portal organa vlasti</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngIf="userRole != null">
-            <a class="nav-link" id="zahteviLink" routerLink="/">Zahtevi</a>
+          <li class="nav-item" *ngIf="userRole">
+            <a class="nav-link active" id="zahteviLink" routerLink="/home">Zahtevi</a>
+          </li>
+          <li class="nav-item" *ngIf="userRole">
+            <a class="nav-link" id="podnesiZahteviLink" routerLink="/home">Podnesi zahtev</a>
           </li>
         </ul>
       </div>
-      <span class="float-right w-25 text-end" *ngIf="userRole == null">
-        <a routerLink="/log-in"><button mat-raised-button color="warn" id="loginBtn" style="margin-right: 20px;">Login</button></a>
-        <a routerLink="/sign-up"><button mat-raised-button color="warn" id="signUpBtn">Sign Up</button></a>
+      <span class="float-right w-25 text-end">
+        <a *ngIf="!isLoggedIn()" routerLink="/log-in"><button class="btn btn-light" id="loginBtn" style="margin-right: 20px;">Prijava</button></a>
+        <a *ngIf="!isLoggedIn()" routerLink="/sign-up"><button class="btn btn-light" id="signUpBtn">Registracija</button></a>
+        <a *ngIf="isLoggedIn()"><button class="btn btn-light" id="logoutBtn" (click)="logout()">Odjava</button></a>
       </span>
     </div>
   </nav>

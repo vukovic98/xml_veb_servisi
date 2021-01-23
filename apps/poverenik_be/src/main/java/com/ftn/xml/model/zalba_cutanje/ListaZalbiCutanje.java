@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}mesto"/>
- *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}datum_zalbe"/>
+ *         &lt;element ref="{http://ftn.uns.ac.rs/zalba_cutanje}zalba_cutanje"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,63 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "mesto",
-    "datumZalbe"
+    "zalbaCutanje"
 })
-@XmlRootElement(name = "mesto_i_datum")
-public class MestoIDatum {
+@XmlRootElement(name = "lista_zalbi_cutanje")
+public class ListaZalbiCutanje {
 
-    @XmlElement(required = true)
-    protected Mesto mesto;
-    @XmlElement(name = "datum_zalbe", required = true)
-    protected DatumZalbe datumZalbe;
+    @XmlElement(name = "zalba_cutanje", required = true)
+    protected ZalbaCutanje zalbaCutanje;
 
     /**
-     * Gets the value of the mesto property.
+     * Gets the value of the zalbaCutanje property.
      * 
      * @return
      *     possible object is
-     *     {@link Mesto }
+     *     {@link ZalbaCutanje }
      *     
      */
-    public Mesto getMesto() {
-        return mesto;
+    public ZalbaCutanje getZalbaCutanje() {
+        return zalbaCutanje;
     }
 
     /**
-     * Sets the value of the mesto property.
+     * Sets the value of the zalbaCutanje property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Mesto }
+     *     {@link ZalbaCutanje }
      *     
      */
-    public void setMesto(Mesto value) {
-        this.mesto = value;
-    }
-
-    /**
-     * Gets the value of the datumZalbe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DatumZalbe }
-     *     
-     */
-    public DatumZalbe getDatumZalbe() {
-        return datumZalbe;
-    }
-
-    /**
-     * Sets the value of the datumZalbe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DatumZalbe }
-     *     
-     */
-    public void setDatumZalbe(DatumZalbe value) {
-        this.datumZalbe = value;
+    public void setZalbaCutanje(ZalbaCutanje value) {
+        this.zalbaCutanje = value;
     }
 
 }

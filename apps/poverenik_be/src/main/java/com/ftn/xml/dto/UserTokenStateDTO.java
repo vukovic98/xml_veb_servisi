@@ -6,6 +6,7 @@ public class UserTokenStateDTO {
 	private String authenticationToken;
 	private int expiresAt;
 	private String email;
+	private String uloga;
 
 
     public UserTokenStateDTO() {
@@ -26,6 +27,22 @@ public class UserTokenStateDTO {
 	}
 
     
+	public UserTokenStateDTO(String authenticationToken, int expiresAt, String email, String uloga) {
+		super();
+		this.authenticationToken = authenticationToken;
+		this.expiresAt = expiresAt;
+		this.email = email;
+		this.uloga = uloga;
+	}
+
+	public String getUloga() {
+		return uloga;
+	}
+
+	public void setUloga(String uloga) {
+		this.uloga = uloga;
+	}
+
 	public String getAuthenticationToken() {
 		return authenticationToken;
 	}

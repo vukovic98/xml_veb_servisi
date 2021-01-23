@@ -12,10 +12,13 @@ import Swal from "sweetalert2";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     lozinka: new FormControl('', Validators.required)
   });
+
+  parser = new DOMParser();
 
   constructor(
     private service: AuthService,
@@ -36,7 +39,13 @@ export class LoginComponent implements OnInit {
 
     this.service.prijava(data)
       .subscribe(response => {
-        console.log(response);
+        let xmlDoc = this.parser.parseFromString(response,"text/xml");
+        let token = xmlDoc.getElementsByTagName("authenticationToken")[0].childNodes[0].nodeValue;
+        let uloga = xmlDoc.getElementsByTagName("uloga")[0].childNodes[0].nodeValue;
+        localStorage.setItem('accessToken', token);
+        localStorage.setItem('uloga', uloga);
+
+
         this.route.navigate(['/home-page']);
       }, error => {
         Swal.fire({

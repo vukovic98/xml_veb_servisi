@@ -43,8 +43,13 @@ export class SignupComponent implements OnInit {
     let data: any = JsonToXML.parse("korisnikRegistracijaDto", korisnik, options);
 
     this.service.registrujSe(data).subscribe(response => {
-      console.log(response);
-      this.route.navigate(['/home-page']);
+      Swal.fire({
+        title: 'Uspešna registracija!',
+        icon: 'success',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'Prijavi se'
+      })
+      this.route.navigate(['/log-in']);
     }, error => {
       Swal.fire({
         title: 'Greška!',

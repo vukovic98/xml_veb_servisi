@@ -40,7 +40,7 @@ public class ZahtevController {
 	}
 	
 
-	@GetMapping()
+	@GetMapping("/korisnik")
 	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAllForUser() throws XMLDBException{
 		try {
 			ArrayList<ZahtevZaPristupInformacijama> zahtevi = this.zahtevService.getAll();

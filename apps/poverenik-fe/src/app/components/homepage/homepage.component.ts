@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
+  public uloga: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+    this.uloga = localStorage.getItem("uloga");
   }
 
 }

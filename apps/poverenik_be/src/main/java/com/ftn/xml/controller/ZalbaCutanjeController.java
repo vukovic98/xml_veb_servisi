@@ -87,4 +87,21 @@ public class ZalbaCutanjeController {
 		}
 	
 	}
+	
+	@GetMapping("/generisiHTML/{zalba_cutanje_id}")
+	public ResponseEntity<byte[]> generisiHTML(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
+
+		String file_path = this.zalbaCutanjeService.generisiHTML(zalba_id);
+		
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	
+	}
 }

@@ -260,4 +260,31 @@ public class ZalbaCutanjeService {
 		}
 	}
 
+	public String generisiHTML(long zalba_id) throws XMLDBException {
+		XSLFORTransformerZalbaCutanje transformer = null;
+
+		try {
+			transformer = new XSLFORTransformerZalbaCutanje();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		String zalba = this.pronadjiZalbuPoId_Raw(zalba_id);
+
+		boolean ok = false;
+		String html_path = "src/main/resources/static/html/zalba_cutanje_" + zalba_id + ".html";
+
+		try {
+			ok = transformer.generateHTML(zalba, html_path);
+			if (ok)
+				return html_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

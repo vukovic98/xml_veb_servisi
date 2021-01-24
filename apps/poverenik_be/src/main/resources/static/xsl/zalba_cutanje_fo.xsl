@@ -32,7 +32,7 @@
                         text-align="left" margin-top="28pt" font-weight="bold">
                         <xsl:value-of select="/zalba_cutanje/zaglavlje/primalac_zalbe/naziv_primaoca"></xsl:value-of>
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="12pt"
+                    <fo:block font-family="Times New Roman" font-size="11pt"
                         text-align="left">
                         Адреса за пошту:
                         <xsl:value-of select="/zalba_cutanje/zaglavlje/primalac_zalbe/adresa/mesto"></xsl:value-of>,
@@ -136,24 +136,24 @@
                     <fo:block font-family="Times New Roman" font-size="11pt"
                         text-align="justify">
                         <fo:inline font-family="Times New Roman" font-size="11pt"
-                            text-align="justify" margin-top="28pt" font-weight="bold">Напомена:</fo:inline>
+                            text-align="justify" font-weight="bold">Напомена:</fo:inline>
                        Код жалбе због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="10pt">
+                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="10pt" margin-bottom="-7pt">
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/ime_i_prezime"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-bottom="3pt" >
                     	<fo:block font-size="11pt" text-align="right">.........................................................................</fo:block>
                         Подносилац жалбе / Име и презиме
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="10pt" text-align="right" margin-top="3pt" >
+                    <fo:block font-family="Times New Roman" font-size="10pt" text-align="right" margin-top="3pt"  margin-bottom="-7pt" >
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/potpis"></xsl:value-of>
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" >
+                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="3pt" >
                     <fo:block font-size="11pt" text-align="right">.........................................................................</fo:block>
                         потпис
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="3pt">
+                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="3pt"  margin-bottom="-7pt">
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/adresa/mesto"></xsl:value-of>,
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/adresa/ulica"></xsl:value-of> бр.
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/adresa/broj"></xsl:value-of>
@@ -162,7 +162,7 @@
                     	<fo:block font-size="11pt" text-align="right">.........................................................................</fo:block>
                         адреса
                     </fo:block>
-                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="3pt">
+                    <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" margin-top="3pt"  margin-bottom="-7pt">
                         <xsl:value-of select="/zalba_cutanje/podnozje/podnosilac_zalbe/drugi_podaci_za_kontakt"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" font-size="11pt" text-align="right" >

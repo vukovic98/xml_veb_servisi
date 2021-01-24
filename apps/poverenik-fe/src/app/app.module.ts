@@ -25,7 +25,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ZalbeCutanjeComponent } from './components/zalbe-cutanje-lista/zalbe-cutanje.component';
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
-import { ZalbaCutanjePregledComponent } from './components/zalba-cutanje-pregled/zalba-cutanje-pregled.component';
+import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,7 @@ import { ZalbaCutanjePregledComponent } from './components/zalba-cutanje-pregled
     ZalbeCutanjeComponent,
     ZalbaCutanjeComponent,
     ZalbeComponent,
-    ZalbaCutanjePregledComponent
+    PodnosenjeZalbeCutanjeComponent
   ],
     imports: [
       BrowserModule,

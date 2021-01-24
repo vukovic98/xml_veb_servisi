@@ -38,7 +38,8 @@ public class ZalbaCutanjeRepository {
 	}
 	
 	public ResourceSet dobaviSvePoEmailu(String email) {
-		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/podnozje/podnosilac_zalbe[korisnik_email='" + email + "']";
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje"
+				+ "[podnozje/podnosilac_zalbe/korisnik_email='" + email + "']";
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
 		} catch (Exception e) {

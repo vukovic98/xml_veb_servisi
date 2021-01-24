@@ -19,7 +19,7 @@
       <a routerLink="/home">Sastavi rešenje</a>
     </mat-grid-tile>
     <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
-    <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u XHTML</button></mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
   </mat-grid-list>
   <mat-grid-list *ngIf="resi==false" cols="8" rowHeight="40">
     <mat-grid-tile>
@@ -41,7 +41,7 @@
       {{zalba[5].children[0]}}
     </mat-grid-tile>
     <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
-    <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u XHTML</button></mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
   </mat-grid-list>
   <mat-divider></mat-divider>
 </div>

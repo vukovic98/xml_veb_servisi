@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  POVERENIK_APP: "http://localhost:8081/"
+  POVERENIK_APP: "http://localhost:8082/"
 };
 
 /*

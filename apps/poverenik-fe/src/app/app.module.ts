@@ -22,7 +22,10 @@ import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { ZalbeCutanjeComponent } from './components/zalbe-cutanje/zalbe-cutanje.component';
+import { ZalbeCutanjeComponent } from './components/zalbe-cutanje-lista/zalbe-cutanje.component';
+import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
+import { ZalbeComponent } from './components/zalbe/zalbe.component';
+import { ZalbaCutanjePregledComponent } from './components/zalba-cutanje-pregled/zalba-cutanje-pregled.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { ZalbeCutanjeComponent } from './components/zalbe-cutanje/zalbe-cutanje.
     SignupComponent,
     HomepageComponent,
     NavigationBarComponent,
-    ZalbeCutanjeComponent
+    ZalbeCutanjeComponent,
+    ZalbaCutanjeComponent,
+    ZalbeComponent,
+    ZalbaCutanjePregledComponent
   ],
     imports: [
       BrowserModule,

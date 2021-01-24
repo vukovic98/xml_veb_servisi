@@ -85,6 +85,7 @@ public class KorisnikController {
 			
 			// Ubaci korisnika u trenutni security kontekst
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 
 			// Kreiraj token za tog korisnika
 			Korisnik user = (Korisnik) authentication.getPrincipal();

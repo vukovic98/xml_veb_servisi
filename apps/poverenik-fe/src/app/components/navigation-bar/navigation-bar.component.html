@@ -1,23 +1,16 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: cornflowerblue; color: white; text-decoration: none;">
     <div id="navbarDiv" class="container-fluid">
-      <a class="navbar-brand" href="#">Portal poverenika</a>
+      <a class="navbar-brand" href="/home-page">Portal poverenika</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngIf="uloga == 'K'">
-            <a class="nav-link" id="mojeZalbeLink" routerLink="/mojeZalbe">Moje žalbe</a>
+          <li class="nav-item">
+            <a *ngIf="uloga == 'K'" class="nav-link" id="mojeZalbeLink" routerLink="/zalbe">Moje žalbe</a>
+            <a *ngIf="uloga == 'P'" class="nav-link" id="zalbeLink" routerLink="/zalbe">Žalbe</a>
           </li>
-          <li class="nav-item" *ngIf="uloga == 'K'">
-            <a class="nav-link" id="mojaResenjaLink" routerLink="/mojaResenja">Moja rešenja</a>
-          </li>
-          <li class="nav-item" *ngIf="uloga == 'P'">
-            <a class="nav-link" id="zalbeLink" routerLink="/zalbe-cutanje">Žalbe na ćutanje</a>
-          </li>
-          <li class="nav-item" *ngIf="uloga == 'P'">
-            <a class="nav-link" id="zalbeLink" routerLink="/zalbe-odbijanje">Žalbe zbog odbijanja</a>
-          </li>
-          <li class="nav-item" *ngIf="uloga == 'P'">
-            <a class="nav-link" id="resenjaLink" routerLink="/resenja">Rešenja</a>
+          <li class="nav-item" >
+            <a *ngIf="uloga == 'K'" class="nav-link" id="mojaResenjaLink" routerLink="/resenja">Moja rešenja</a>
+            <a *ngIf="uloga == 'P'" class="nav-link" id="resenjaLink" routerLink="/resenja">Rešenja</a>
           </li>
           <li class="nav-item" *ngIf="uloga == 'P'">
             <a class="nav-link" id="izvestajiLink" routerLink="/izvestaji">Izveštaji</a>
@@ -25,11 +18,7 @@
         </ul>
       </div>
       <span class="float-right w-25 text-end" *ngIf="uloga != ''">
-        <a><button (click)="odjaviSe()" mat-raised-button color="warn" id="logoutBtn" style="margin-right: 20px;">Odjava</button></a>
-      </span>
-      <span class="float-right w-25 text-end" *ngIf="uloga == ''">
-        <a routerLink="/log-in"><button mat-raised-button color="warn" id="loginBtn" style="margin-right: 20px;">Prijava</button></a>
-        <a routerLink="/sign-up"><button mat-raised-button color="warn" id="signUpBtn">Registracija</button></a>
+        <a><button (click)="odjaviSe()" mat-raised-button color="primary" id="logoutBtn" style="margin-right: 20px;">Odjava</button></a>
       </span>
     </div>
   </nav>

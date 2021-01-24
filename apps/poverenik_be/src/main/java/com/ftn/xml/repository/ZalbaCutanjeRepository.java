@@ -13,6 +13,8 @@ public class ZalbaCutanjeRepository {
 	private String collectionId = "/db/poverenik";
 	private String documentId = "zalba_cutanje.xml";
 	
+	private static final String ID_STRING = "http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/";
+
 	private static final String TARGET_NAMESPACE = "http://ftn.uns.ac.rs/zalba_cutanje";
 
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
@@ -26,7 +28,7 @@ public class ZalbaCutanjeRepository {
 	@Autowired
 	private ExistManager existManager;
 	
-	public ResourceSet getAll() {
+	public ResourceSet dobaviSve() {
 		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
@@ -35,11 +37,25 @@ public class ZalbaCutanjeRepository {
 		}
 	}
 	
-	public ResourceSet getAllByUserEmail(String email) {
+	public ResourceSet dobaviSvePoEmailu(String email) {
 		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/podnozje/podnosilac_zalbe[korisnik_email='" + email + "']";
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
 		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public ResourceSet pronadjiPoId(long id) {
+		String id_Str = ID_STRING + id;
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[@about='" + id_Str + "']";
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

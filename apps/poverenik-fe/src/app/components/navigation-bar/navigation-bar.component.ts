@@ -26,6 +26,6 @@ export class NavigationBarComponent implements OnInit {
     localStorage.setItem("accessToken","");
     localStorage.setItem("uloga","");
     this.uloga = '';
-    this.route.navigate(["/home-page"]);
+    this.route.navigate(["/log-in"]);
   }
 }

@@ -35,7 +35,6 @@ public class KorisnikController {
 
 	@Autowired
 	private KorisnikService korisnikService;
-	
 
 	@Autowired
 	private TokenUtils tokenUtils;
@@ -50,31 +49,8 @@ public class KorisnikController {
 	public ResponseEntity<UserTokenStateDTO> prijava(@RequestBody KorisnikLoginDTO authenticationRequest)
 			throws Exception {
 
-//		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//
-//		ResourceSet s = this.korisnikService.prijavaKorisnika(korisnik.getEmail(), korisnik.getLozinka());
-//
-//		if (s.getSize() == 0)
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		
-//		req.getSession().setAttribute("email", korisnik.getEmail());
-//		
-//		System.out.println("KOR:"+req.getSession().getAttribute("email"));
-//
-//		try {
-//			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.korisnik");
-//
-//			Unmarshaller unmarshaller = context.createUnmarshaller();
-//			Korisnik k = (Korisnik) unmarshaller.unmarshal(((XMLResource) s.getResource(0)).getContentAsDOM());
-//
-//			return new ResponseEntity<>(k, HttpStatus.OK);
-//
-//		} catch (Exception e) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-		
 		try {
-			
+
 			boolean verified = true;
 
 			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

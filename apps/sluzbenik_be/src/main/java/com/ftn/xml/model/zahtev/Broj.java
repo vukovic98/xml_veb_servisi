@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Broj {
 
     @XmlValue
-    protected BigInteger value;
+    protected int value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -64,7 +64,7 @@ public class Broj {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -76,7 +76,7 @@ public class Broj {
      *     {@link BigInteger }
      *     
      */
-    public void setValue(BigInteger value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

@@ -29,6 +29,10 @@ public class ZahtevService {
 	@Autowired
 	private ZahtevRepository zahtevRepository;
 
+	public boolean dodajZahtev(String z) {
+		return this.zahtevRepository.sacuvajZahtev(z);
+	}
+	
 	public ListaZahtevaZaPristupInformacijama pronadjiZahteveZaKorisnika(String email) {
 		ResourceSet set = this.zahtevRepository.pronadjiZahteveZaKorisnika(email);
 
@@ -159,6 +163,33 @@ public class ZahtevService {
 			ok = transformer.generatePDF(zahtev, pdf_path);
 			if (ok)
 				return pdf_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String generisiHTML(long zahtev_id) {
+		XSLFOTransformerZahtev transformer = null;
+
+		try {
+			transformer = new XSLFOTransformerZahtev();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		String zahtev = this.pronadjiZahtevPoId_Raw(zahtev_id);
+
+		boolean ok = false;
+		String html_path = "src/main/resources/static/html/zahtev_" + zahtev_id + ".html";
+
+		try {
+			ok = transformer.generateHTML(zahtev, html_path);
+			if (ok)
+				return html_path;
 			else
 				return null;
 		} catch (Exception e) {

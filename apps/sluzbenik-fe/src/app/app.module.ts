@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ListaZahtevaComponent } from './components/lista-zahteva/lista-zahteva.component';
 import { ZahtevComponent } from './components/zahtev/zahtev.component';
+import { DodajZahtevComponent } from './components/dodaj-zahtev/dodaj-zahtev.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ZahtevComponent } from './components/zahtev/zahtev.component';
     HomeComponent,
     ListaZahtevaComponent,
     ZahtevComponent,
+    DodajZahtevComponent,
 
   ],
   imports: [

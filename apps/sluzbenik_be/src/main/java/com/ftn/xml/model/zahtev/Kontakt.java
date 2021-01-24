@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Kontakt {
 
     @XmlValue
-    protected BigInteger value;
+    protected String value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -64,7 +64,7 @@ public class Kontakt {
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -76,7 +76,7 @@ public class Kontakt {
      *     {@link BigInteger }
      *     
      */
-    public void setValue(BigInteger value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

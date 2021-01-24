@@ -11,6 +11,8 @@ export class ZahtevService {
 
   private korisnikoviZahteviApi: string = "zahtev/ulogovanKorisnik";
   private preuzmiPDFApi: string = "zahtev/generisiPDF/";
+  private preuzmiHTMLApi: string = "zahtev/generisiHTML/";
+
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +30,13 @@ export class ZahtevService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.get(environment.SLUZBENIK_APP + this.preuzmiPDFApi + zahtev_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+
+  preuzmiHTML(zahtev_id: number): any{
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiHTMLApi + zahtev_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
   }
 
 }

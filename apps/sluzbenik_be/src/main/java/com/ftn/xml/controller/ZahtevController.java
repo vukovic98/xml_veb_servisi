@@ -16,15 +16,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.ZahtevKorisnikaDTO;
+import com.ftn.xml.mapper.DodajZahtevMaper;
+import com.ftn.xml.model.korisnik.Korisnik;
 import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
 import com.ftn.xml.model.zahtev.Zahtev;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
+import com.ftn.xml.service.KorisnikService;
 import com.ftn.xml.service.ObavestenjeService;
 import com.ftn.xml.service.ZahtevService;
 
@@ -37,10 +42,15 @@ public class ZahtevController {
 	
 	@Autowired
 	private ObavestenjeService obavestenjeService;
+	
+	@Autowired
+	private KorisnikService korisnikService;
+	
+	@Autowired
+	private DodajZahtevMaper mapper;
 
 	@GetMapping(path = "/ulogovanKorisnik")
 	public ResponseEntity<ArrayList<ZahtevKorisnikaDTO>> pronadjiZahteveZaKorisnika() {
-		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		
 		String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -60,9 +70,8 @@ public class ZahtevController {
 					n.setId(id);
 					n.setOdobren(this.obavestenjeService.proveraPotvrdeZahteva(id));
 
-					XMLGregorianCalendar xmlDate = z.getPodnozje().getMestoIDatum().getDatumZahteva().getValue();
-					String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-					n.setDatum_zahteva(date);
+					String xmlDate = z.getPodnozje().getMestoIDatum().getDatumZahteva().getValue();
+					n.setDatum_zahteva(xmlDate);
 					n.setKontakt(z.getPodnozje().getInformacijeOTraziocu().getKontakt().getValue().toString());
 					n.setNaziv_ustanove(z.getPodaciOOrganu().getNaziv().getContent());
 					n.setOpis_trazene_informacije(z.getSadrzaj().getOpisTrazeneInformacije().getContent());
@@ -103,5 +112,36 @@ public class ZahtevController {
 	
 	}
 	
+	@GetMapping("/generisiHTML/{zahtev_id}")
+	public ResponseEntity<byte[]> generisiHTML(@PathVariable("zahtev_id") long zahtev_id) {
+
+		String file_path = this.zahtevService.generisiHTML(zahtev_id);
+		
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	
+	}
+	
+	@PostMapping
+	public ResponseEntity<ZahtevZaPristupInformacijama> kreirajZahtev(@RequestBody DodajZahtevDTO zahtevDto) {
+		
+		
+		String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+
+		
+		Korisnik k = this.korisnikService.pronadjiPoMejlu(email);
+		
+		ZahtevZaPristupInformacijama z = mapper.dtoUKlasu(zahtevDto, k.getEmail(), k.getImeIPrezime());
+		
+		//this.zahtevService.dodajZahtev(z)
+		
+		return new ResponseEntity<>(z, HttpStatus.OK);
+	}
 }

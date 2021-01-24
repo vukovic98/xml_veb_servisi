@@ -1,5 +1,5 @@
-<div class="mt-2 pt-2">
-  <mat-grid-list cols="5" rowHeight="40">
+<div class="pt-2">
+  <mat-grid-list cols="5" rowHeight="40" class="pt-2">
     <mat-grid-tile>
       {{zahtev[0].children[0]}}
     </mat-grid-tile>
@@ -13,8 +13,10 @@
       <mat-icon *ngIf="isApproved()" title="Odobren">check</mat-icon>
       <mat-icon *ngIf="!isApproved()" title="Odbijen">close</mat-icon>
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="!isApproved()"><a routerLink="/home">Priloži žalbu</a></mat-grid-tile>
-    <mat-grid-tile *ngIf="isApproved()"><button mat-button (click)="preuzmiPDF()">Preuzmi u PDF-u</button></mat-grid-tile>
+    <mat-grid-tile >
+      <button mat-button (click)="preuzmiPDF()">Preuzmi PDF</button>
+      <button mat-button (click)="preuzmiHTML()">Preuzmi HTML</button>
+    </mat-grid-tile>
   </mat-grid-list>
   <mat-divider></mat-divider>
 </div>

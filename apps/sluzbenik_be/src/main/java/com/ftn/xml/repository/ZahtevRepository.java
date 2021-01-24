@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 
 @Repository
 public class ZahtevRepository {
@@ -56,4 +57,15 @@ public class ZahtevRepository {
 		}
 	}
 
+	public boolean sacuvajZahtev(String z) {
+		try {
+			this.existManager.append(collectionId, documentId, "/lista_zahteva_za_pristup_informacijama", z, APPEND);
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 }

@@ -47,7 +47,7 @@ public class DatumZahteva {
 
     @XmlValue
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar value;
+    protected String value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -65,7 +65,7 @@ public class DatumZahteva {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -77,7 +77,7 @@ public class DatumZahteva {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setValue(XMLGregorianCalendar value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

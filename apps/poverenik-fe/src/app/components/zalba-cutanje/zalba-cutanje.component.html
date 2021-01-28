@@ -1,0 +1,47 @@
+<div class="mt-2 pt-2">
+  <mat-grid-list *ngIf="resi==true" cols="8" rowHeight="40">
+    <mat-grid-tile>
+      {{zalba[0].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[2].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[3].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[4].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a routerLink="/home">Sastavi rešenje</a>
+    </mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list *ngIf="resi==false" cols="8" rowHeight="40">
+    <mat-grid-tile>
+      {{zalba[0].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[2].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[3].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[4].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zalba[5].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
+    <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+</div>

@@ -1,16 +1,17 @@
 <div>
+  <button class="btn btn-light ml-2 mt-2 btn-sm" routerLink="/home-page"><mat-icon>arrow_back</mat-icon></button>
   <div class="container ml-auto mr-auto mt-5 w-25 border pt-4 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
     <form [formGroup]="signupForm" (ngSubmit)="registrujSe()">
       <div class="form-group">
-        <label for="ime_i_prezime">Ime i prezime</label>
-        <input type="text" class="form-control" formControlName="ime_i_prezime" name="ime_i_prezime"  id="ime_i_prezime" placeholder="Unesite ime i prezime" required>
+        <label class="mb-1" for="ime_i_prezime">Ime i prezime</label>
+        <input type="text" class="form-control mb-3" formControlName="ime_i_prezime" name="ime_i_prezime"  id="ime_i_prezime" placeholder="Unesite ime i prezime" required>
         <div *ngIf="signupForm.controls['ime_i_prezime'].touched && signupForm.controls['ime_i_prezime'].errors?.required" class="mt-1 pl-1 inputError">
           <small>Ime je obavezno.</small>
         </div>
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" formControlName="email" name="email"  id="email" placeholder="Unesite email" required pattern="^[a-z0-9._%+-]+@maildrop.cc">
+        <label class="mb-1 " for="email">Email</label>
+        <input type="email" class="form-control mb-3" formControlName="email" name="email"  id="email" placeholder="Unesite email" required pattern="^[a-z0-9._%+-]+@maildrop.cc">
         <div *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors?.required" class="mt-1 pl-1 inputError">
           <small>Email je obavezan.</small>
         </div>
@@ -19,7 +20,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="lozinka">Lozinka</label>
+        <label class="mb-1" for="lozinka">Lozinka</label>
         <input type="password" class="form-control" formControlName="lozinka" name="lozinka" id="lozinka" placeholder="Unesite lozinku" required >
         <div *ngIf="signupForm.controls['lozinka'].touched && signupForm.controls['lozinka'].errors?.required" class="mt-1 pl-1 inputError">
           <small>Lozinka je obavezna.</small>

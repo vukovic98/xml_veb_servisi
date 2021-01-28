@@ -1,0 +1,25 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: cornflowerblue; color: white; text-decoration: none;">
+    <div id="navbarDiv" class="container-fluid">
+      <a class="navbar-brand" href="/home-page">Portal poverenika</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a *ngIf="uloga == 'K'" class="nav-link" id="mojeZalbeLink" routerLink="/zalbe">Moje žalbe</a>
+            <a *ngIf="uloga == 'P'" class="nav-link" id="zalbeLink" routerLink="/zalbe">Žalbe</a>
+          </li>
+          <li class="nav-item" >
+            <a *ngIf="uloga == 'K'" class="nav-link" id="mojaResenjaLink" routerLink="/resenja">Moja rešenja</a>
+            <a *ngIf="uloga == 'P'" class="nav-link" id="resenjaLink" routerLink="/resenja">Rešenja</a>
+          </li>
+          <li class="nav-item" *ngIf="uloga == 'P'">
+            <a class="nav-link" id="izvestajiLink" routerLink="/izvestaji">Izveštaji</a>
+          </li>
+        </ul>
+      </div>
+      <span class="float-right w-25 text-end" *ngIf="uloga != ''">
+        <a><button (click)="odjaviSe()" mat-raised-button color="primary" id="logoutBtn" style="margin-right: 20px;">Odjava</button></a>
+      </span>
+    </div>
+  </nav>
+</div>

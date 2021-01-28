@@ -25,7 +25,7 @@ export class DodajZahtevComponent implements OnInit {
     "drugi_nacin": new FormControl('', []),
   });
 
-  constructor(private xonomyService: XonomyService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -52,7 +52,6 @@ export class DodajZahtevComponent implements OnInit {
 
     let data: any = JsonToXML.parse("dodajZahtevDTO", zahtevDto, options);
 
-    console.log(data);
   }
 
 }

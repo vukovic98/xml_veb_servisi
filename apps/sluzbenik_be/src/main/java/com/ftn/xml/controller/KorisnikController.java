@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.ftn.xml.dto.KorisnikDB;
 import com.ftn.xml.dto.KorisnikLoginDTO;
 import com.ftn.xml.dto.KorisnikSignUpDTO;
 import com.ftn.xml.dto.TrenutnoUlogovanKorisnikDTO;
@@ -96,10 +98,13 @@ public class KorisnikController {
 	@PostMapping(path = "/registracija")
 	public ResponseEntity<HttpStatus> registracija(@RequestBody KorisnikSignUpDTO entitet) {
 
-		Korisnik k = new Korisnik();
+		KorisnikDB k = new KorisnikDB();
 		k.setEmail(entitet.getEmail());
-		k.setImeIPrezime(entitet.getIme_i_prezime());
-		k.setLozinka(entitet.getLozinka());
+		k.setIme_i_prezime(entitet.getIme_i_prezime());
+		
+		BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
+		k.setLozinka(enc.encode(entitet.getLozinka()));
+		
 		k.setUloga("K");
 
 		String userXML = null;

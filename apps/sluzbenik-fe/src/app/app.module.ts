@@ -25,6 +25,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ListaZahtevaComponent } from './components/lista-zahteva/lista-zahteva.component';
 import { ZahtevComponent } from './components/zahtev/zahtev.component';
 import { DodajZahtevComponent } from './components/dodaj-zahtev/dodaj-zahtev.component';
+import { SviZahteviComponent } from './components/svi-zahtevi/svi-zahtevi.component';
+import { ZahtevSluzbenikComponent } from './components/zahtev-sluzbenik/zahtev-sluzbenik.component';
+import { ObavestenjaKorisnikComponent } from './components/obavestenja-korisnik/obavestenja-korisnik.component';
+import { ObavestenjaSluzbenikComponent } from './components/obavestenja-sluzbenik/obavestenja-sluzbenik.component';
+import { ObavestenjeStavkaSluzbenikComponent } from './components/obavestenje-stavka-sluzbenik/obavestenje-stavka-sluzbenik.component';
+import { ObavestenjeStavkaKorisnikComponent } from './components/obavestenje-stavka-korisnik/obavestenje-stavka-korisnik.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +42,12 @@ import { DodajZahtevComponent } from './components/dodaj-zahtev/dodaj-zahtev.com
     ListaZahtevaComponent,
     ZahtevComponent,
     DodajZahtevComponent,
+    SviZahteviComponent,
+    ZahtevSluzbenikComponent,
+    ObavestenjaKorisnikComponent,
+    ObavestenjaSluzbenikComponent,
+    ObavestenjeStavkaSluzbenikComponent,
+    ObavestenjeStavkaKorisnikComponent,
 
   ],
   imports: [

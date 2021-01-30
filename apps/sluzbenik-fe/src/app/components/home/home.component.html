@@ -3,7 +3,10 @@
   <div class="col-md-12">
     <app-navigation-bar></app-navigation-bar>
   </div>
-  <div class="jumbotron col-md-10 m-auto bg-light shadow mt-3 pt-3">
+  <div *ngIf="isUser()" class="jumbotron col-md-10 m-auto bg-light shadow mt-3 pt-3">
     <app-lista-zahteva></app-lista-zahteva>
+  </div>
+  <div *ngIf="isSluzbenik()" class="jumbotron col-md-10 m-auto bg-light shadow mt-3 pt-3">
+    <app-svi-zahtevi></app-svi-zahtevi>
   </div>
 </div>

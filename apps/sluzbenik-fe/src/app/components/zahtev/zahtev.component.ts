@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ZahtevService} from '../../services/zahtev.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-zahtev',
@@ -11,7 +12,8 @@ export class ZahtevComponent implements OnInit {
   @Input() zahtev: any;
 
   constructor(
-    private service: ZahtevService
+    private service: ZahtevService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class ZahtevComponent implements OnInit {
       a.remove();
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
+  }
+
+  isUser(): boolean {
+    return this.authService.isUser();
   }
 
   preuzmiPDF() {

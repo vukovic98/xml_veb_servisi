@@ -30,13 +30,12 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
 
 public class XSLFORTransformerZalbaCutanje {
-	
+
 	private FopFactory fopFactory;
 
 	private TransformerFactory transformerFactory;
-	
-	private DocumentBuilderFactory documentFactory;
 
+	private DocumentBuilderFactory documentFactory;
 
 	public static final String XSL_FILE = "src/main/resources/static/xsl/zalba_cutanje_fo.xsl";
 	public static final String XHTML_FILE = "src/main/resources/static/xsl/zalba_cutanje.xsl";
@@ -44,7 +43,7 @@ public class XSLFORTransformerZalbaCutanje {
 	public XSLFORTransformerZalbaCutanje() throws SAXException, IOException {
 		fopFactory = FopFactory.newInstance(new File("src/main/java/fop.xconf"));
 		transformerFactory = new TransformerFactoryImpl();
-		
+
 		documentFactory = DocumentBuilderFactory.newInstance();
 		documentFactory.setNamespaceAware(true);
 		documentFactory.setIgnoringComments(true);
@@ -78,14 +77,14 @@ public class XSLFORTransformerZalbaCutanje {
 			xslFoTransformer.transform(source, res);
 
 			File pdfFile = new File(OUTPUT_FILE);
-			
+
 			if (!pdfFile.getParentFile().exists()) {
 				pdfFile.getParentFile().mkdir();
 			}
 
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(pdfFile));
 			out.write(outStream.toByteArray());
-			
+
 			out.close();
 			return true;
 		} catch (Exception e) {
@@ -93,7 +92,7 @@ public class XSLFORTransformerZalbaCutanje {
 			return false;
 		}
 	}
-	
+
 	public boolean generateHTML(String xmlPath, String OUTPUT_FILE) {
 		try {
 			StreamSource transformSource = new StreamSource(new File(XHTML_FILE));

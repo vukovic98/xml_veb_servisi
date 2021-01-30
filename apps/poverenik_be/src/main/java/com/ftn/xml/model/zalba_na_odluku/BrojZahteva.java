@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:12:56 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_na_odluku;
 
 import java.math.BigInteger;
@@ -19,11 +18,13 @@ import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -39,93 +40,79 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "value"
-})
+@XmlType(name = "", propOrder = { "value" })
 @XmlRootElement(name = "broj_zahteva")
 public class BrojZahteva {
 
-    @XmlValue
-    protected BigInteger value;
-    @XmlAttribute(name = "datatype", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String datatype;
-    @XmlAttribute(name = "property", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String property;
+	@XmlValue
+	protected BigInteger value;
+	@XmlAttribute(name = "datatype", required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NMTOKEN")
+	protected String datatype;
+	@XmlAttribute(name = "property", required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NMTOKEN")
+	protected String property;
 
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getValue() {
-        return value;
-    }
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return possible object is {@link BigInteger }
+	 * 
+	 */
+	public BigInteger getValue() {
+		return value;
+	}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setValue(BigInteger value) {
-        this.value = value;
-    }
+	/**
+	 * Sets the value of the value property.
+	 * 
+	 * @param value allowed object is {@link BigInteger }
+	 * 
+	 */
+	public void setValue(BigInteger value) {
+		this.value = value;
+	}
 
-    /**
-     * Gets the value of the datatype property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDatatype() {
-        return datatype;
-    }
+	/**
+	 * Gets the value of the datatype property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getDatatype() {
+		return datatype;
+	}
 
-    /**
-     * Sets the value of the datatype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDatatype(String value) {
-        this.datatype = value;
-    }
+	/**
+	 * Sets the value of the datatype property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setDatatype(String value) {
+		this.datatype = value;
+	}
 
-    /**
-     * Gets the value of the property property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProperty() {
-        return property;
-    }
+	/**
+	 * Gets the value of the property property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getProperty() {
+		return property;
+	}
 
-    /**
-     * Sets the value of the property property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProperty(String value) {
-        this.property = value;
-    }
+	/**
+	 * Sets the value of the property property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setProperty(String value) {
+		this.property = value;
+	}
 
 }

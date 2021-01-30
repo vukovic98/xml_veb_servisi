@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:02:09 PM CET 
 //
 
-
 package com.ftn.xml.model.obavestenje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,118 +39,97 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "naziv",
-    "sediste",
-    "brojPredmeta",
-    "datumZahteva"
-})
+@XmlType(name = "", propOrder = { "naziv", "sediste", "brojPredmeta", "datumZahteva" })
 @XmlRootElement(name = "podaci_o_organu")
 public class PodaciOOrganu {
 
-    @XmlElement(required = true)
-    protected Naziv naziv;
-    @XmlElement(required = true)
-    protected Sediste sediste;
-    @XmlElement(name = "broj_predmeta", required = true)
-    protected BrojPredmeta brojPredmeta;
-    @XmlElement(name = "datum_zahteva", required = true)
-    protected DatumZahteva datumZahteva;
+	@XmlElement(required = true)
+	protected Naziv naziv;
+	@XmlElement(required = true)
+	protected Sediste sediste;
+	@XmlElement(name = "broj_predmeta", required = true)
+	protected BrojPredmeta brojPredmeta;
+	@XmlElement(name = "datum_zahteva", required = true)
+	protected DatumZahteva datumZahteva;
 
-    /**
-     * Gets the value of the naziv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Naziv }
-     *     
-     */
-    public Naziv getNaziv() {
-        return naziv;
-    }
+	/**
+	 * Gets the value of the naziv property.
+	 * 
+	 * @return possible object is {@link Naziv }
+	 * 
+	 */
+	public Naziv getNaziv() {
+		return naziv;
+	}
 
-    /**
-     * Sets the value of the naziv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Naziv }
-     *     
-     */
-    public void setNaziv(Naziv value) {
-        this.naziv = value;
-    }
+	/**
+	 * Sets the value of the naziv property.
+	 * 
+	 * @param value allowed object is {@link Naziv }
+	 * 
+	 */
+	public void setNaziv(Naziv value) {
+		this.naziv = value;
+	}
 
-    /**
-     * Gets the value of the sediste property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Sediste }
-     *     
-     */
-    public Sediste getSediste() {
-        return sediste;
-    }
+	/**
+	 * Gets the value of the sediste property.
+	 * 
+	 * @return possible object is {@link Sediste }
+	 * 
+	 */
+	public Sediste getSediste() {
+		return sediste;
+	}
 
-    /**
-     * Sets the value of the sediste property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Sediste }
-     *     
-     */
-    public void setSediste(Sediste value) {
-        this.sediste = value;
-    }
+	/**
+	 * Sets the value of the sediste property.
+	 * 
+	 * @param value allowed object is {@link Sediste }
+	 * 
+	 */
+	public void setSediste(Sediste value) {
+		this.sediste = value;
+	}
 
-    /**
-     * Gets the value of the brojPredmeta property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BrojPredmeta }
-     *     
-     */
-    public BrojPredmeta getBrojPredmeta() {
-        return brojPredmeta;
-    }
+	/**
+	 * Gets the value of the brojPredmeta property.
+	 * 
+	 * @return possible object is {@link BrojPredmeta }
+	 * 
+	 */
+	public BrojPredmeta getBrojPredmeta() {
+		return brojPredmeta;
+	}
 
-    /**
-     * Sets the value of the brojPredmeta property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BrojPredmeta }
-     *     
-     */
-    public void setBrojPredmeta(BrojPredmeta value) {
-        this.brojPredmeta = value;
-    }
+	/**
+	 * Sets the value of the brojPredmeta property.
+	 * 
+	 * @param value allowed object is {@link BrojPredmeta }
+	 * 
+	 */
+	public void setBrojPredmeta(BrojPredmeta value) {
+		this.brojPredmeta = value;
+	}
 
-    /**
-     * Gets the value of the datumZahteva property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DatumZahteva }
-     *     
-     */
-    public DatumZahteva getDatumZahteva() {
-        return datumZahteva;
-    }
+	/**
+	 * Gets the value of the datumZahteva property.
+	 * 
+	 * @return possible object is {@link DatumZahteva }
+	 * 
+	 */
+	public DatumZahteva getDatumZahteva() {
+		return datumZahteva;
+	}
 
-    /**
-     * Sets the value of the datumZahteva property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DatumZahteva }
-     *     
-     */
-    public void setDatumZahteva(DatumZahteva value) {
-        this.datumZahteva = value;
-    }
+	/**
+	 * Sets the value of the datumZahteva property.
+	 * 
+	 * @param value allowed object is {@link DatumZahteva }
+	 * 
+	 */
+	public void setDatumZahteva(DatumZahteva value) {
+		this.datumZahteva = value;
+	}
 
 }

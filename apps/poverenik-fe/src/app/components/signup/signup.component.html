@@ -1,37 +1,37 @@
 <div>
-  <button class="btn btn-light ml-2 mt-2 btn-sm" routerLink="/home-page"><mat-icon>arrow_back</mat-icon></button>
+  <h1 align="center" style="font-size:60px;margin-top: 30px;">eПОВЕРЕНИК</h1>
   <div class="container ml-auto mr-auto mt-5 w-25 border pt-4 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
     <form [formGroup]="signupForm" (ngSubmit)="registrujSe()">
       <div class="form-group">
-        <label class="mb-1" for="ime_i_prezime">Ime i prezime</label>
-        <input type="text" class="form-control mb-3" formControlName="ime_i_prezime" name="ime_i_prezime"  id="ime_i_prezime" placeholder="Unesite ime i prezime" required>
+        <label class="mb-1" for="ime_i_prezime">Име и презиме</label>
+        <input type="text" class="form-control mb-3" formControlName="ime_i_prezime" name="ime_i_prezime"  id="ime_i_prezime" placeholder="Унесите име и презиме" required>
         <div *ngIf="signupForm.controls['ime_i_prezime'].touched && signupForm.controls['ime_i_prezime'].errors?.required" class="mt-1 pl-1 inputError">
-          <small>Ime je obavezno.</small>
+          <small>Име је обавезно.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="mb-1 " for="email">Email</label>
-        <input type="email" class="form-control mb-3" formControlName="email" name="email"  id="email" placeholder="Unesite email" required pattern="^[a-z0-9._%+-]+@maildrop.cc">
+        <input type="email" class="form-control mb-3" formControlName="email" name="email"  id="email" placeholder="Унесите email" required pattern="^[a-z0-9._%+-]+@maildrop.cc">
         <div *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].errors?.required" class="mt-1 pl-1 inputError">
-          <small>Email je obavezan.</small>
+          <small>Email је обавезан.</small>
         </div>
         <div *ngIf=" signupForm.controls['email'].errors?.pattern " class="mt-1 pl-1 inputError">
-          <small>Pogresan format email-a. Primer: "jovan123@maildrop.cc".</small>
+          <small>Погрешан формат email-a. Пример: "jovan123@maildrop.cc".</small>
         </div>
       </div>
       <div class="form-group">
-        <label class="mb-1" for="lozinka">Lozinka</label>
-        <input type="password" class="form-control" formControlName="lozinka" name="lozinka" id="lozinka" placeholder="Unesite lozinku" required >
+        <label class="mb-1" for="lozinka">Лозинка</label>
+        <input type="password" class="form-control" formControlName="lozinka" name="lozinka" id="lozinka" placeholder="Унесите лозинку" required >
         <div *ngIf="signupForm.controls['lozinka'].touched && signupForm.controls['lozinka'].errors?.required" class="mt-1 pl-1 inputError">
-          <small>Lozinka je obavezna.</small>
+          <small>Лозинка је обавезна.</small>
         </div>
       </div>
       <div class="pt-3 text-center">
-        <button id="signUpBtn" class="btn btn-block mt-3 btn-success btnColor"  [disabled]="!signupForm.valid" >Registruj se</button>
+        <button id="signUpBtn" class="btn btn-block mt-3 btn-success btnColor"  [disabled]="!signupForm.valid" >Региструј се</button>
       </div>
     </form>
     <div class="text-center pt-3">
-      <p>Već imate nalog? <a routerLink="/log-in" >Prijavite se ovde!</a></p>
+      <p>Већ имате налог? <a routerLink="/log-in" >Пријавите се овде!</a></p>
     </div>
   </div>
 </div>

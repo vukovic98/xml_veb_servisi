@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:05:34 PM CET 
 //
 
-
 package com.ftn.xml.model.resenje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,118 +39,97 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "organ",
-    "podnosilac",
-    "ustanova",
-    "datumZahteva"
-})
+@XmlType(name = "", propOrder = { "organ", "podnosilac", "ustanova", "datumZahteva" })
 @XmlRootElement(name = "uvod")
 public class Uvod {
 
-    @XmlElement(required = true)
-    protected Organ organ;
-    @XmlElement(required = true)
-    protected Podnosilac podnosilac;
-    @XmlElement(required = true)
-    protected Ustanova ustanova;
-    @XmlElement(name = "datum_zahteva", required = true)
-    protected DatumZahteva datumZahteva;
+	@XmlElement(required = true)
+	protected Organ organ;
+	@XmlElement(required = true)
+	protected Podnosilac podnosilac;
+	@XmlElement(required = true)
+	protected Ustanova ustanova;
+	@XmlElement(name = "datum_zahteva", required = true)
+	protected DatumZahteva datumZahteva;
 
-    /**
-     * Gets the value of the organ property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Organ }
-     *     
-     */
-    public Organ getOrgan() {
-        return organ;
-    }
+	/**
+	 * Gets the value of the organ property.
+	 * 
+	 * @return possible object is {@link Organ }
+	 * 
+	 */
+	public Organ getOrgan() {
+		return organ;
+	}
 
-    /**
-     * Sets the value of the organ property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Organ }
-     *     
-     */
-    public void setOrgan(Organ value) {
-        this.organ = value;
-    }
+	/**
+	 * Sets the value of the organ property.
+	 * 
+	 * @param value allowed object is {@link Organ }
+	 * 
+	 */
+	public void setOrgan(Organ value) {
+		this.organ = value;
+	}
 
-    /**
-     * Gets the value of the podnosilac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Podnosilac }
-     *     
-     */
-    public Podnosilac getPodnosilac() {
-        return podnosilac;
-    }
+	/**
+	 * Gets the value of the podnosilac property.
+	 * 
+	 * @return possible object is {@link Podnosilac }
+	 * 
+	 */
+	public Podnosilac getPodnosilac() {
+		return podnosilac;
+	}
 
-    /**
-     * Sets the value of the podnosilac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Podnosilac }
-     *     
-     */
-    public void setPodnosilac(Podnosilac value) {
-        this.podnosilac = value;
-    }
+	/**
+	 * Sets the value of the podnosilac property.
+	 * 
+	 * @param value allowed object is {@link Podnosilac }
+	 * 
+	 */
+	public void setPodnosilac(Podnosilac value) {
+		this.podnosilac = value;
+	}
 
-    /**
-     * Gets the value of the ustanova property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Ustanova }
-     *     
-     */
-    public Ustanova getUstanova() {
-        return ustanova;
-    }
+	/**
+	 * Gets the value of the ustanova property.
+	 * 
+	 * @return possible object is {@link Ustanova }
+	 * 
+	 */
+	public Ustanova getUstanova() {
+		return ustanova;
+	}
 
-    /**
-     * Sets the value of the ustanova property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Ustanova }
-     *     
-     */
-    public void setUstanova(Ustanova value) {
-        this.ustanova = value;
-    }
+	/**
+	 * Sets the value of the ustanova property.
+	 * 
+	 * @param value allowed object is {@link Ustanova }
+	 * 
+	 */
+	public void setUstanova(Ustanova value) {
+		this.ustanova = value;
+	}
 
-    /**
-     * Gets the value of the datumZahteva property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DatumZahteva }
-     *     
-     */
-    public DatumZahteva getDatumZahteva() {
-        return datumZahteva;
-    }
+	/**
+	 * Gets the value of the datumZahteva property.
+	 * 
+	 * @return possible object is {@link DatumZahteva }
+	 * 
+	 */
+	public DatumZahteva getDatumZahteva() {
+		return datumZahteva;
+	}
 
-    /**
-     * Sets the value of the datumZahteva property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DatumZahteva }
-     *     
-     */
-    public void setDatumZahteva(DatumZahteva value) {
-        this.datumZahteva = value;
-    }
+	/**
+	 * Sets the value of the datumZahteva property.
+	 * 
+	 * @param value allowed object is {@link DatumZahteva }
+	 * 
+	 */
+	public void setDatumZahteva(DatumZahteva value) {
+		this.datumZahteva = value;
+	}
 
 }

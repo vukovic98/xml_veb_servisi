@@ -18,14 +18,14 @@ import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.service.ZahtevService;
 
 @RestController
-@RequestMapping(path = "/zahtevi",produces = MediaType.APPLICATION_XML_VALUE)
+@RequestMapping(path = "/zahtevi", produces = MediaType.APPLICATION_XML_VALUE)
 public class ZahtevController {
 
 	@Autowired
 	private ZahtevService zahtevService;
-	
+
 	@GetMapping()
-	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAll() throws XMLDBException{
+	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAll() throws XMLDBException {
 		try {
 			ArrayList<ZahtevZaPristupInformacijama> zahtevi = this.zahtevService.getAll();
 			return new ResponseEntity<>(zahtevi, HttpStatus.OK);
@@ -36,12 +36,11 @@ public class ZahtevController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
-	
 
 	@GetMapping("/korisnik")
-	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAllForUser() throws XMLDBException{
+	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> getAllForUser() throws XMLDBException {
 		try {
 			ArrayList<ZahtevZaPristupInformacijama> zahtevi = this.zahtevService.getAll();
 			return new ResponseEntity<>(zahtevi, HttpStatus.OK);
@@ -52,6 +51,6 @@ public class ZahtevController {
 			e.printStackTrace();
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
 }

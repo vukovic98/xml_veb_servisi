@@ -16,7 +16,7 @@ export class ZalbeCutanjeComponent implements OnInit {
   parser = new DOMParser();
 
   ngOnInit(): void {
-    this.naslov = "Nerešene žalbe na ćutanje";
+    this.naslov = "Нерешене жалбе на ћутање";
 
     this.service.dobaviNereseneZalbe().subscribe( zalbe => {
       let data: any = txml.parse(zalbe);

@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:05:34 PM CET 
 //
 
-
 package com.ftn.xml.model.resenje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -37,91 +38,75 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "uvod",
-    "donetoResenje",
-    "obrazlozenje"
-})
+@XmlType(name = "", propOrder = { "uvod", "donetoResenje", "obrazlozenje" })
 @XmlRootElement(name = "sadrzaj")
 public class Sadrzaj {
 
-    @XmlElement(required = true)
-    protected Uvod uvod;
-    @XmlElement(name = "doneto_resenje", required = true)
-    protected DonetoResenje donetoResenje;
-    @XmlElement(required = true)
-    protected Obrazlozenje obrazlozenje;
+	@XmlElement(required = true)
+	protected Uvod uvod;
+	@XmlElement(name = "doneto_resenje", required = true)
+	protected DonetoResenje donetoResenje;
+	@XmlElement(required = true)
+	protected Obrazlozenje obrazlozenje;
 
-    /**
-     * Gets the value of the uvod property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Uvod }
-     *     
-     */
-    public Uvod getUvod() {
-        return uvod;
-    }
+	/**
+	 * Gets the value of the uvod property.
+	 * 
+	 * @return possible object is {@link Uvod }
+	 * 
+	 */
+	public Uvod getUvod() {
+		return uvod;
+	}
 
-    /**
-     * Sets the value of the uvod property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Uvod }
-     *     
-     */
-    public void setUvod(Uvod value) {
-        this.uvod = value;
-    }
+	/**
+	 * Sets the value of the uvod property.
+	 * 
+	 * @param value allowed object is {@link Uvod }
+	 * 
+	 */
+	public void setUvod(Uvod value) {
+		this.uvod = value;
+	}
 
-    /**
-     * Gets the value of the donetoResenje property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DonetoResenje }
-     *     
-     */
-    public DonetoResenje getDonetoResenje() {
-        return donetoResenje;
-    }
+	/**
+	 * Gets the value of the donetoResenje property.
+	 * 
+	 * @return possible object is {@link DonetoResenje }
+	 * 
+	 */
+	public DonetoResenje getDonetoResenje() {
+		return donetoResenje;
+	}
 
-    /**
-     * Sets the value of the donetoResenje property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DonetoResenje }
-     *     
-     */
-    public void setDonetoResenje(DonetoResenje value) {
-        this.donetoResenje = value;
-    }
+	/**
+	 * Sets the value of the donetoResenje property.
+	 * 
+	 * @param value allowed object is {@link DonetoResenje }
+	 * 
+	 */
+	public void setDonetoResenje(DonetoResenje value) {
+		this.donetoResenje = value;
+	}
 
-    /**
-     * Gets the value of the obrazlozenje property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Obrazlozenje }
-     *     
-     */
-    public Obrazlozenje getObrazlozenje() {
-        return obrazlozenje;
-    }
+	/**
+	 * Gets the value of the obrazlozenje property.
+	 * 
+	 * @return possible object is {@link Obrazlozenje }
+	 * 
+	 */
+	public Obrazlozenje getObrazlozenje() {
+		return obrazlozenje;
+	}
 
-    /**
-     * Sets the value of the obrazlozenje property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Obrazlozenje }
-     *     
-     */
-    public void setObrazlozenje(Obrazlozenje value) {
-        this.obrazlozenje = value;
-    }
+	/**
+	 * Sets the value of the obrazlozenje property.
+	 * 
+	 * @param value allowed object is {@link Obrazlozenje }
+	 * 
+	 */
+	public void setObrazlozenje(Obrazlozenje value) {
+		this.obrazlozenje = value;
+	}
 
 }

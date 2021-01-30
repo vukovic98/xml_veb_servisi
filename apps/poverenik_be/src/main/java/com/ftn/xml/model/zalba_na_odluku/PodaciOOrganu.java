@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:12:56 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_na_odluku;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -35,37 +36,31 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "naziv"
-})
+@XmlType(name = "", propOrder = { "naziv" })
 @XmlRootElement(name = "podaci_o_organu")
 public class PodaciOOrganu {
 
-    @XmlElement(required = true)
-    protected Naziv naziv;
+	@XmlElement(required = true)
+	protected Naziv naziv;
 
-    /**
-     * Gets the value of the naziv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Naziv }
-     *     
-     */
-    public Naziv getNaziv() {
-        return naziv;
-    }
+	/**
+	 * Gets the value of the naziv property.
+	 * 
+	 * @return possible object is {@link Naziv }
+	 * 
+	 */
+	public Naziv getNaziv() {
+		return naziv;
+	}
 
-    /**
-     * Sets the value of the naziv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Naziv }
-     *     
-     */
-    public void setNaziv(Naziv value) {
-        this.naziv = value;
-    }
+	/**
+	 * Sets the value of the naziv property.
+	 * 
+	 * @param value allowed object is {@link Naziv }
+	 * 
+	 */
+	public void setNaziv(Naziv value) {
+		this.naziv = value;
+	}
 
 }

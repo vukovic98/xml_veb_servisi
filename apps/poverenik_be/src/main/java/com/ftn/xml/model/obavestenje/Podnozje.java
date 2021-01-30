@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:02:09 PM CET 
 //
 
-
 package com.ftn.xml.model.obavestenje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -35,37 +36,31 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "potpisOvlascenogLica"
-})
+@XmlType(name = "", propOrder = { "potpisOvlascenogLica" })
 @XmlRootElement(name = "podnozje")
 public class Podnozje {
 
-    @XmlElement(name = "potpis_ovlascenog_lica", required = true)
-    protected PotpisOvlascenogLica potpisOvlascenogLica;
+	@XmlElement(name = "potpis_ovlascenog_lica", required = true)
+	protected PotpisOvlascenogLica potpisOvlascenogLica;
 
-    /**
-     * Gets the value of the potpisOvlascenogLica property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PotpisOvlascenogLica }
-     *     
-     */
-    public PotpisOvlascenogLica getPotpisOvlascenogLica() {
-        return potpisOvlascenogLica;
-    }
+	/**
+	 * Gets the value of the potpisOvlascenogLica property.
+	 * 
+	 * @return possible object is {@link PotpisOvlascenogLica }
+	 * 
+	 */
+	public PotpisOvlascenogLica getPotpisOvlascenogLica() {
+		return potpisOvlascenogLica;
+	}
 
-    /**
-     * Sets the value of the potpisOvlascenogLica property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PotpisOvlascenogLica }
-     *     
-     */
-    public void setPotpisOvlascenogLica(PotpisOvlascenogLica value) {
-        this.potpisOvlascenogLica = value;
-    }
+	/**
+	 * Sets the value of the potpisOvlascenogLica property.
+	 * 
+	 * @param value allowed object is {@link PotpisOvlascenogLica }
+	 * 
+	 */
+	public void setPotpisOvlascenogLica(PotpisOvlascenogLica value) {
+		this.potpisOvlascenogLica = value;
+	}
 
 }

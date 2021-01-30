@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:02:09 PM CET 
 //
 
-
 package com.ftn.xml.model.obavestenje;
 
 import java.math.BigDecimal;
@@ -18,11 +17,13 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -48,284 +49,234 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "godinaZahteva",
-    "opisTrazeneInformacije",
-    "datumUvida",
-    "casUvida",
-    "satOd",
-    "satDo",
-    "adresa",
-    "brojKancelarije",
-    "cena",
-    "ziroRacun"
-})
+@XmlType(name = "", propOrder = { "godinaZahteva", "opisTrazeneInformacije", "datumUvida", "casUvida", "satOd", "satDo",
+		"adresa", "brojKancelarije", "cena", "ziroRacun" })
 @XmlRootElement(name = "sadrzaj")
 public class Sadrzaj {
 
-    @XmlElement(name = "godina_zahteva", required = true)
-    protected GodinaZahteva godinaZahteva;
-    @XmlElement(name = "opis_trazene_informacije", required = true)
-    protected OpisTrazeneInformacije opisTrazeneInformacije;
-    @XmlElement(name = "datum_uvida", required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datumUvida;
-    @XmlElement(name = "cas_uvida", required = true)
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar casUvida;
-    @XmlElement(name = "sat_od", required = true)
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar satOd;
-    @XmlElement(name = "sat_do", required = true)
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar satDo;
-    @XmlElement(required = true)
-    protected Adresa adresa;
-    @XmlElement(name = "broj_kancelarije", required = true)
-    protected BigInteger brojKancelarije;
-    @XmlElement(required = true)
-    protected BigDecimal cena;
-    @XmlElement(name = "ziro_racun", required = true)
-    protected ZiroRacun ziroRacun;
+	@XmlElement(name = "godina_zahteva", required = true)
+	protected GodinaZahteva godinaZahteva;
+	@XmlElement(name = "opis_trazene_informacije", required = true)
+	protected OpisTrazeneInformacije opisTrazeneInformacije;
+	@XmlElement(name = "datum_uvida", required = true)
+	@XmlSchemaType(name = "date")
+	protected XMLGregorianCalendar datumUvida;
+	@XmlElement(name = "cas_uvida", required = true)
+	@XmlSchemaType(name = "time")
+	protected XMLGregorianCalendar casUvida;
+	@XmlElement(name = "sat_od", required = true)
+	@XmlSchemaType(name = "time")
+	protected XMLGregorianCalendar satOd;
+	@XmlElement(name = "sat_do", required = true)
+	@XmlSchemaType(name = "time")
+	protected XMLGregorianCalendar satDo;
+	@XmlElement(required = true)
+	protected Adresa adresa;
+	@XmlElement(name = "broj_kancelarije", required = true)
+	protected BigInteger brojKancelarije;
+	@XmlElement(required = true)
+	protected BigDecimal cena;
+	@XmlElement(name = "ziro_racun", required = true)
+	protected ZiroRacun ziroRacun;
 
-    /**
-     * Gets the value of the godinaZahteva property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link GodinaZahteva }
-     *     
-     */
-    public GodinaZahteva getGodinaZahteva() {
-        return godinaZahteva;
-    }
+	/**
+	 * Gets the value of the godinaZahteva property.
+	 * 
+	 * @return possible object is {@link GodinaZahteva }
+	 * 
+	 */
+	public GodinaZahteva getGodinaZahteva() {
+		return godinaZahteva;
+	}
 
-    /**
-     * Sets the value of the godinaZahteva property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GodinaZahteva }
-     *     
-     */
-    public void setGodinaZahteva(GodinaZahteva value) {
-        this.godinaZahteva = value;
-    }
+	/**
+	 * Sets the value of the godinaZahteva property.
+	 * 
+	 * @param value allowed object is {@link GodinaZahteva }
+	 * 
+	 */
+	public void setGodinaZahteva(GodinaZahteva value) {
+		this.godinaZahteva = value;
+	}
 
-    /**
-     * Gets the value of the opisTrazeneInformacije property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link OpisTrazeneInformacije }
-     *     
-     */
-    public OpisTrazeneInformacije getOpisTrazeneInformacije() {
-        return opisTrazeneInformacije;
-    }
+	/**
+	 * Gets the value of the opisTrazeneInformacije property.
+	 * 
+	 * @return possible object is {@link OpisTrazeneInformacije }
+	 * 
+	 */
+	public OpisTrazeneInformacije getOpisTrazeneInformacije() {
+		return opisTrazeneInformacije;
+	}
 
-    /**
-     * Sets the value of the opisTrazeneInformacije property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OpisTrazeneInformacije }
-     *     
-     */
-    public void setOpisTrazeneInformacije(OpisTrazeneInformacije value) {
-        this.opisTrazeneInformacije = value;
-    }
+	/**
+	 * Sets the value of the opisTrazeneInformacije property.
+	 * 
+	 * @param value allowed object is {@link OpisTrazeneInformacije }
+	 * 
+	 */
+	public void setOpisTrazeneInformacije(OpisTrazeneInformacije value) {
+		this.opisTrazeneInformacije = value;
+	}
 
-    /**
-     * Gets the value of the datumUvida property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatumUvida() {
-        return datumUvida;
-    }
+	/**
+	 * Gets the value of the datumUvida property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getDatumUvida() {
+		return datumUvida;
+	}
 
-    /**
-     * Sets the value of the datumUvida property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatumUvida(XMLGregorianCalendar value) {
-        this.datumUvida = value;
-    }
+	/**
+	 * Sets the value of the datumUvida property.
+	 * 
+	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setDatumUvida(XMLGregorianCalendar value) {
+		this.datumUvida = value;
+	}
 
-    /**
-     * Gets the value of the casUvida property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getCasUvida() {
-        return casUvida;
-    }
+	/**
+	 * Gets the value of the casUvida property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getCasUvida() {
+		return casUvida;
+	}
 
-    /**
-     * Sets the value of the casUvida property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setCasUvida(XMLGregorianCalendar value) {
-        this.casUvida = value;
-    }
+	/**
+	 * Sets the value of the casUvida property.
+	 * 
+	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setCasUvida(XMLGregorianCalendar value) {
+		this.casUvida = value;
+	}
 
-    /**
-     * Gets the value of the satOd property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getSatOd() {
-        return satOd;
-    }
+	/**
+	 * Gets the value of the satOd property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getSatOd() {
+		return satOd;
+	}
 
-    /**
-     * Sets the value of the satOd property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setSatOd(XMLGregorianCalendar value) {
-        this.satOd = value;
-    }
+	/**
+	 * Sets the value of the satOd property.
+	 * 
+	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setSatOd(XMLGregorianCalendar value) {
+		this.satOd = value;
+	}
 
-    /**
-     * Gets the value of the satDo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getSatDo() {
-        return satDo;
-    }
+	/**
+	 * Gets the value of the satDo property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public XMLGregorianCalendar getSatDo() {
+		return satDo;
+	}
 
-    /**
-     * Sets the value of the satDo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setSatDo(XMLGregorianCalendar value) {
-        this.satDo = value;
-    }
+	/**
+	 * Sets the value of the satDo property.
+	 * 
+	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setSatDo(XMLGregorianCalendar value) {
+		this.satDo = value;
+	}
 
-    /**
-     * Gets the value of the adresa property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Adresa }
-     *     
-     */
-    public Adresa getAdresa() {
-        return adresa;
-    }
+	/**
+	 * Gets the value of the adresa property.
+	 * 
+	 * @return possible object is {@link Adresa }
+	 * 
+	 */
+	public Adresa getAdresa() {
+		return adresa;
+	}
 
-    /**
-     * Sets the value of the adresa property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Adresa }
-     *     
-     */
-    public void setAdresa(Adresa value) {
-        this.adresa = value;
-    }
+	/**
+	 * Sets the value of the adresa property.
+	 * 
+	 * @param value allowed object is {@link Adresa }
+	 * 
+	 */
+	public void setAdresa(Adresa value) {
+		this.adresa = value;
+	}
 
-    /**
-     * Gets the value of the brojKancelarije property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getBrojKancelarije() {
-        return brojKancelarije;
-    }
+	/**
+	 * Gets the value of the brojKancelarije property.
+	 * 
+	 * @return possible object is {@link BigInteger }
+	 * 
+	 */
+	public BigInteger getBrojKancelarije() {
+		return brojKancelarije;
+	}
 
-    /**
-     * Sets the value of the brojKancelarije property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setBrojKancelarije(BigInteger value) {
-        this.brojKancelarije = value;
-    }
+	/**
+	 * Sets the value of the brojKancelarije property.
+	 * 
+	 * @param value allowed object is {@link BigInteger }
+	 * 
+	 */
+	public void setBrojKancelarije(BigInteger value) {
+		this.brojKancelarije = value;
+	}
 
-    /**
-     * Gets the value of the cena property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public BigDecimal getCena() {
-        return cena;
-    }
+	/**
+	 * Gets the value of the cena property.
+	 * 
+	 * @return possible object is {@link BigDecimal }
+	 * 
+	 */
+	public BigDecimal getCena() {
+		return cena;
+	}
 
-    /**
-     * Sets the value of the cena property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
-     */
-    public void setCena(BigDecimal value) {
-        this.cena = value;
-    }
+	/**
+	 * Sets the value of the cena property.
+	 * 
+	 * @param value allowed object is {@link BigDecimal }
+	 * 
+	 */
+	public void setCena(BigDecimal value) {
+		this.cena = value;
+	}
 
-    /**
-     * Gets the value of the ziroRacun property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ZiroRacun }
-     *     
-     */
-    public ZiroRacun getZiroRacun() {
-        return ziroRacun;
-    }
+	/**
+	 * Gets the value of the ziroRacun property.
+	 * 
+	 * @return possible object is {@link ZiroRacun }
+	 * 
+	 */
+	public ZiroRacun getZiroRacun() {
+		return ziroRacun;
+	}
 
-    /**
-     * Sets the value of the ziroRacun property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ZiroRacun }
-     *     
-     */
-    public void setZiroRacun(ZiroRacun value) {
-        this.ziroRacun = value;
-    }
+	/**
+	 * Sets the value of the ziroRacun property.
+	 * 
+	 * @param value allowed object is {@link ZiroRacun }
+	 * 
+	 */
+	public void setZiroRacun(ZiroRacun value) {
+		this.ziroRacun = value;
+	}
 
 }

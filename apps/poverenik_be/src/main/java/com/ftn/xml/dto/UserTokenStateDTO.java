@@ -8,25 +8,23 @@ public class UserTokenStateDTO {
 	private String email;
 	private String uloga;
 
+	public UserTokenStateDTO() {
+	}
 
-    public UserTokenStateDTO() {
-    }
-
-    public UserTokenStateDTO(String authenticationToken, int expiresAt) {
+	public UserTokenStateDTO(String authenticationToken, int expiresAt) {
 		super();
 		this.authenticationToken = authenticationToken;
 		this.expiresAt = expiresAt;
 	}
-    
-    public UserTokenStateDTO(String authenticationToken, int expiresAt, String email) {
+
+	public UserTokenStateDTO(String authenticationToken, int expiresAt, String email) {
 		super();
 		this.authenticationToken = authenticationToken;
 		this.expiresAt = expiresAt;
 		this.email = email;
-	
+
 	}
 
-    
 	public UserTokenStateDTO(String authenticationToken, int expiresAt, String email, String uloga) {
 		super();
 		this.authenticationToken = authenticationToken;
@@ -59,7 +57,7 @@ public class UserTokenStateDTO {
 		this.expiresAt = expiresAt;
 	}
 
-	public String getEmail() { 
+	public String getEmail() {
 		return email;
 	}
 
@@ -67,6 +65,4 @@ public class UserTokenStateDTO {
 		this.email = email;
 	}
 
-	
-    
 }

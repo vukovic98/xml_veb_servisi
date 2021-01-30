@@ -5,22 +5,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthenticationManager {
-	
+
 	@Value("${conn.user}")
 	private String user;
-	
+
 	@Value("${conn.password}")
 	private String password;
-	
+
 	@Value("${conn.host}")
 	private String host;
-	
+
 	@Value("${conn.port}")
 	private String port;
-	
+
 	@Value("${conn.driver}")
 	private String driver;
-	
+
 	@Value("${conn.uri}")
 	private String uri;
 
@@ -71,7 +71,5 @@ public class AuthenticationManager {
 	public void setUri(String uri) {
 		this.uri = uri;
 	}
-	
-	
 
 }

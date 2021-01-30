@@ -1,5 +1,5 @@
 <div class="backgroundImg">
-  <h1 align="center">eПОВЕРЕНИК</h1>
+  <h1 align="center" style="font-size:60px;margin-top: 30px;">eПОВЕРЕНИК</h1>
   <div class="container ml-auto mr-auto mt-5 col-md-3 border pt-5 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
     <form [formGroup]="loginForm" (ngSubmit)="prijava()" class="m-3">
       <div class="form-group">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="pt-3 text-center">
-        <button id="loginBtn" class="btn btn-block mt-3 btn-danger" [disabled]="!loginForm.valid" >Пријава</button>
+        <button id="loginBtn" class="btn btn-block mt-3 btn-danger btnColor" [disabled]="!loginForm.valid" >Пријава</button>
       </div>
     </form>
     <div class="text-center pt-3">

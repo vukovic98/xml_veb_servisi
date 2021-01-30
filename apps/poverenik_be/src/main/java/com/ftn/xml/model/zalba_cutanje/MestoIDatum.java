@@ -5,7 +5,6 @@
 // Generated on: 2021.01.21 at 07:35:32 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_cutanje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -36,64 +37,53 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "mesto",
-    "datumZalbe"
-})
+@XmlType(name = "", propOrder = { "mesto", "datumZalbe" })
 @XmlRootElement(name = "mesto_i_datum")
 public class MestoIDatum {
 
-    @XmlElement(required = true)
-    protected Mesto mesto;
-    @XmlElement(name = "datum_zalbe", required = true)
-    protected DatumZalbe datumZalbe;
+	@XmlElement(required = true)
+	protected Mesto mesto;
+	@XmlElement(name = "datum_zalbe", required = true)
+	protected DatumZalbe datumZalbe;
 
-    /**
-     * Gets the value of the mesto property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Mesto }
-     *     
-     */
-    public Mesto getMesto() {
-        return mesto;
-    }
+	/**
+	 * Gets the value of the mesto property.
+	 * 
+	 * @return possible object is {@link Mesto }
+	 * 
+	 */
+	public Mesto getMesto() {
+		return mesto;
+	}
 
-    /**
-     * Sets the value of the mesto property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Mesto }
-     *     
-     */
-    public void setMesto(Mesto value) {
-        this.mesto = value;
-    }
+	/**
+	 * Sets the value of the mesto property.
+	 * 
+	 * @param value allowed object is {@link Mesto }
+	 * 
+	 */
+	public void setMesto(Mesto value) {
+		this.mesto = value;
+	}
 
-    /**
-     * Gets the value of the datumZalbe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DatumZalbe }
-     *     
-     */
-    public DatumZalbe getDatumZalbe() {
-        return datumZalbe;
-    }
+	/**
+	 * Gets the value of the datumZalbe property.
+	 * 
+	 * @return possible object is {@link DatumZalbe }
+	 * 
+	 */
+	public DatumZalbe getDatumZalbe() {
+		return datumZalbe;
+	}
 
-    /**
-     * Sets the value of the datumZalbe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DatumZalbe }
-     *     
-     */
-    public void setDatumZalbe(DatumZalbe value) {
-        this.datumZalbe = value;
-    }
+	/**
+	 * Sets the value of the datumZalbe property.
+	 * 
+	 * @param value allowed object is {@link DatumZalbe }
+	 * 
+	 */
+	public void setDatumZalbe(DatumZalbe value) {
+		this.datumZalbe = value;
+	}
 
 }

@@ -15,7 +15,7 @@ export class ZalbeComponent implements OnInit {
   constructor(private cutanjeService: ZalbeCutanjeService) { }
 
   ngOnInit(): void {
-    this.naslov = "Žalbe na ćutanje";
+    this.naslov = "Жалбе на ћутање";
     this.uloga = localStorage.getItem('uloga');
     if(this.uloga == 'K'){
       this.cutanjeService.dobaviZalbeZaKorisnika().subscribe( zalbe => {

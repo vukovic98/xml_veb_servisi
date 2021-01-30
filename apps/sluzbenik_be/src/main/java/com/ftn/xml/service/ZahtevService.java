@@ -1,8 +1,10 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.exist.xmldb.EXistResource;
@@ -29,8 +31,74 @@ public class ZahtevService {
 	@Autowired
 	private ZahtevRepository zahtevRepository;
 
-	public boolean dodajZahtev(String z) {
-		return this.zahtevRepository.sacuvajZahtev(z);
+	public boolean dodajZahtev(ZahtevZaPristupInformacijama z) {
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
+
+			Marshaller marshaller = context.createMarshaller();
+
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.setProperty("com.sun.xml.bind.xmlDeclaration", false);
+
+			StringWriter zahtevSW = new StringWriter();
+			
+			marshaller.marshal(z, zahtevSW);
+			
+			String zahtev = zahtevSW.toString();
+			
+			String changedZahtev = this.removeNamespace(zahtev);
+			
+			System.out.println(changedZahtev);
+
+			return this.zahtevRepository.sacuvajZahtev(changedZahtev);
+			
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public ListaZahtevaZaPristupInformacijama pronadjiSveZahteve() {
+		ResourceSet set = this.zahtevRepository.pronadjiSveZahteve();
+
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getZahtevZaPristupInformacijama().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public ListaZahtevaZaPristupInformacijama pronadjiZahteveZaKorisnika(String email) {

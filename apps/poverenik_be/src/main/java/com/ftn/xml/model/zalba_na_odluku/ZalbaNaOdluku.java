@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:12:56 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_na_odluku;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,11 +15,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -42,172 +43,143 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "osnovniPodaci",
-    "sadrzaj",
-    "podnozje",
-    "brojZahteva"
-})
+@XmlType(name = "", propOrder = { "osnovniPodaci", "sadrzaj", "podnozje", "brojZahteva" })
 @XmlRootElement(name = "zalba_na_odluku")
 public class ZalbaNaOdluku {
 
-    @XmlElement(name = "osnovni_podaci", required = true)
-    protected OsnovniPodaci osnovniPodaci;
-    @XmlElement(required = true)
-    protected Sadrzaj sadrzaj;
-    @XmlElement(required = true)
-    protected Podnozje podnozje;
-    @XmlElement(name = "broj_zahteva", required = true)
-    protected BrojZahteva brojZahteva;
-    @XmlAttribute(name = "about", required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String about;
-    @XmlAttribute(name = "vocab", required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String vocab;
+	@XmlElement(name = "osnovni_podaci", required = true)
+	protected OsnovniPodaci osnovniPodaci;
+	@XmlElement(required = true)
+	protected Sadrzaj sadrzaj;
+	@XmlElement(required = true)
+	protected Podnozje podnozje;
+	@XmlElement(name = "broj_zahteva", required = true)
+	protected BrojZahteva brojZahteva;
+	@XmlAttribute(name = "about", required = true)
+	@XmlSchemaType(name = "anyURI")
+	protected String about;
+	@XmlAttribute(name = "vocab", required = true)
+	@XmlSchemaType(name = "anyURI")
+	protected String vocab;
 
-    /**
-     * Gets the value of the osnovniPodaci property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link OsnovniPodaci }
-     *     
-     */
-    public OsnovniPodaci getOsnovniPodaci() {
-        return osnovniPodaci;
-    }
+	/**
+	 * Gets the value of the osnovniPodaci property.
+	 * 
+	 * @return possible object is {@link OsnovniPodaci }
+	 * 
+	 */
+	public OsnovniPodaci getOsnovniPodaci() {
+		return osnovniPodaci;
+	}
 
-    /**
-     * Sets the value of the osnovniPodaci property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OsnovniPodaci }
-     *     
-     */
-    public void setOsnovniPodaci(OsnovniPodaci value) {
-        this.osnovniPodaci = value;
-    }
+	/**
+	 * Sets the value of the osnovniPodaci property.
+	 * 
+	 * @param value allowed object is {@link OsnovniPodaci }
+	 * 
+	 */
+	public void setOsnovniPodaci(OsnovniPodaci value) {
+		this.osnovniPodaci = value;
+	}
 
-    /**
-     * Gets the value of the sadrzaj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Sadrzaj }
-     *     
-     */
-    public Sadrzaj getSadrzaj() {
-        return sadrzaj;
-    }
+	/**
+	 * Gets the value of the sadrzaj property.
+	 * 
+	 * @return possible object is {@link Sadrzaj }
+	 * 
+	 */
+	public Sadrzaj getSadrzaj() {
+		return sadrzaj;
+	}
 
-    /**
-     * Sets the value of the sadrzaj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Sadrzaj }
-     *     
-     */
-    public void setSadrzaj(Sadrzaj value) {
-        this.sadrzaj = value;
-    }
+	/**
+	 * Sets the value of the sadrzaj property.
+	 * 
+	 * @param value allowed object is {@link Sadrzaj }
+	 * 
+	 */
+	public void setSadrzaj(Sadrzaj value) {
+		this.sadrzaj = value;
+	}
 
-    /**
-     * Gets the value of the podnozje property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Podnozje }
-     *     
-     */
-    public Podnozje getPodnozje() {
-        return podnozje;
-    }
+	/**
+	 * Gets the value of the podnozje property.
+	 * 
+	 * @return possible object is {@link Podnozje }
+	 * 
+	 */
+	public Podnozje getPodnozje() {
+		return podnozje;
+	}
 
-    /**
-     * Sets the value of the podnozje property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Podnozje }
-     *     
-     */
-    public void setPodnozje(Podnozje value) {
-        this.podnozje = value;
-    }
+	/**
+	 * Sets the value of the podnozje property.
+	 * 
+	 * @param value allowed object is {@link Podnozje }
+	 * 
+	 */
+	public void setPodnozje(Podnozje value) {
+		this.podnozje = value;
+	}
 
-    /**
-     * Gets the value of the brojZahteva property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BrojZahteva }
-     *     
-     */
-    public BrojZahteva getBrojZahteva() {
-        return brojZahteva;
-    }
+	/**
+	 * Gets the value of the brojZahteva property.
+	 * 
+	 * @return possible object is {@link BrojZahteva }
+	 * 
+	 */
+	public BrojZahteva getBrojZahteva() {
+		return brojZahteva;
+	}
 
-    /**
-     * Sets the value of the brojZahteva property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BrojZahteva }
-     *     
-     */
-    public void setBrojZahteva(BrojZahteva value) {
-        this.brojZahteva = value;
-    }
+	/**
+	 * Sets the value of the brojZahteva property.
+	 * 
+	 * @param value allowed object is {@link BrojZahteva }
+	 * 
+	 */
+	public void setBrojZahteva(BrojZahteva value) {
+		this.brojZahteva = value;
+	}
 
-    /**
-     * Gets the value of the about property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAbout() {
-        return about;
-    }
+	/**
+	 * Gets the value of the about property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getAbout() {
+		return about;
+	}
 
-    /**
-     * Sets the value of the about property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAbout(String value) {
-        this.about = value;
-    }
+	/**
+	 * Sets the value of the about property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setAbout(String value) {
+		this.about = value;
+	}
 
-    /**
-     * Gets the value of the vocab property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVocab() {
-        return vocab;
-    }
+	/**
+	 * Gets the value of the vocab property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getVocab() {
+		return vocab;
+	}
 
-    /**
-     * Sets the value of the vocab property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVocab(String value) {
-        this.vocab = value;
-    }
+	/**
+	 * Sets the value of the vocab property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setVocab(String value) {
+		this.vocab = value;
+	}
 
 }

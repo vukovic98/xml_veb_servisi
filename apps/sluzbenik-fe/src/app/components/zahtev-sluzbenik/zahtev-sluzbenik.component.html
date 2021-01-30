@@ -1,0 +1,25 @@
+<div class="pt-2">
+  <mat-grid-list cols="6" rowHeight="40" class="pt-2">
+    <mat-grid-tile>
+      {{zahtev[0].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zahtev[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zahtev[4].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{zahtev[6].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-icon *ngIf="isApproved()" title="Одобрен">check</mat-icon>
+      <mat-icon *ngIf="!isApproved()" title="Одбијен">close</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile >
+      <button mat-button (click)="preuzmiPDF()" style="padding-left: 5px!important;">Преузми PDF</button>
+      <button mat-button (click)="preuzmiHTML()" style="padding-left: 5px!important;">Преузми HTML</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+</div>

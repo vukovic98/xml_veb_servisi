@@ -50,11 +50,11 @@ export class SignUpComponent implements OnInit {
         this.route.navigate(['/']);
       }, error => {
         Swal.fire({
-          title: 'Greška!',
-          text: 'Korisnik sa unetim email-om već postoji!',
+          title: 'Грешка!',
+          text: 'Корисник са унетом мејл адресом већ постоји!',
           icon: 'error',
           confirmButtonColor: '#DC143C',
-          confirmButtonText: 'U redu'
+          confirmButtonText: 'У реду'
         })
       })
   }

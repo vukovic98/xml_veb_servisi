@@ -5,7 +5,6 @@
 // Generated on: 2021.01.21 at 07:35:32 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_cutanje;
 
 import java.util.ArrayList;
@@ -16,11 +15,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -37,42 +38,40 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "razlog"
-})
+@XmlType(name = "", propOrder = { "razlog" })
 @XmlRootElement(name = "razlozi_zalbe")
 public class RazloziZalbe {
 
-    @XmlElement(required = true)
-    protected List<Razlog> razlog;
+	@XmlElement(required = true)
+	protected List<Razlog> razlog;
 
-    /**
-     * Gets the value of the razlog property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the razlog property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRazlog().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Razlog }
-     * 
-     * 
-     */
-    public List<Razlog> getRazlog() {
-        if (razlog == null) {
-            razlog = new ArrayList<Razlog>();
-        }
-        return this.razlog;
-    }
+	/**
+	 * Gets the value of the razlog property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot.
+	 * Therefore any modification you make to the returned list will be present
+	 * inside the JAXB object. This is why there is not a <CODE>set</CODE> method
+	 * for the razlog property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getRazlog().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Razlog }
+	 * 
+	 * 
+	 */
+	public List<Razlog> getRazlog() {
+		if (razlog == null) {
+			razlog = new ArrayList<Razlog>();
+		}
+		return this.razlog;
+	}
 
 }

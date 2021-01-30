@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:05:34 PM CET 
 //
 
-
 package com.ftn.xml.model.resenje;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -37,91 +38,75 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "tekstObrazlozenja",
-    "sud",
-    "taksa"
-})
+@XmlType(name = "", propOrder = { "tekstObrazlozenja", "sud", "taksa" })
 @XmlRootElement(name = "obrazlozenje")
 public class Obrazlozenje {
 
-    @XmlElement(name = "tekst_obrazlozenja", required = true)
-    protected String tekstObrazlozenja;
-    @XmlElement(required = true)
-    protected String sud;
-    @XmlElement(required = true)
-    protected Taksa taksa;
+	@XmlElement(name = "tekst_obrazlozenja", required = true)
+	protected String tekstObrazlozenja;
+	@XmlElement(required = true)
+	protected String sud;
+	@XmlElement(required = true)
+	protected Taksa taksa;
 
-    /**
-     * Gets the value of the tekstObrazlozenja property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTekstObrazlozenja() {
-        return tekstObrazlozenja;
-    }
+	/**
+	 * Gets the value of the tekstObrazlozenja property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getTekstObrazlozenja() {
+		return tekstObrazlozenja;
+	}
 
-    /**
-     * Sets the value of the tekstObrazlozenja property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTekstObrazlozenja(String value) {
-        this.tekstObrazlozenja = value;
-    }
+	/**
+	 * Sets the value of the tekstObrazlozenja property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setTekstObrazlozenja(String value) {
+		this.tekstObrazlozenja = value;
+	}
 
-    /**
-     * Gets the value of the sud property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSud() {
-        return sud;
-    }
+	/**
+	 * Gets the value of the sud property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSud() {
+		return sud;
+	}
 
-    /**
-     * Sets the value of the sud property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSud(String value) {
-        this.sud = value;
-    }
+	/**
+	 * Sets the value of the sud property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setSud(String value) {
+		this.sud = value;
+	}
 
-    /**
-     * Gets the value of the taksa property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Taksa }
-     *     
-     */
-    public Taksa getTaksa() {
-        return taksa;
-    }
+	/**
+	 * Gets the value of the taksa property.
+	 * 
+	 * @return possible object is {@link Taksa }
+	 * 
+	 */
+	public Taksa getTaksa() {
+		return taksa;
+	}
 
-    /**
-     * Sets the value of the taksa property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Taksa }
-     *     
-     */
-    public void setTaksa(Taksa value) {
-        this.taksa = value;
-    }
+	/**
+	 * Sets the value of the taksa property.
+	 * 
+	 * @param value allowed object is {@link Taksa }
+	 * 
+	 */
+	public void setTaksa(Taksa value) {
+		this.taksa = value;
+	}
 
 }

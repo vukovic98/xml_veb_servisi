@@ -28,6 +28,19 @@ public class ZahtevRepository {
 	@Autowired
 	private ExistManager existManager;
 
+	public ResourceSet pronadjiSveZahteve() {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public ResourceSet pronadjiZahteveZaKorisnika(String email) {
 		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama"
 				+ "[podnozje/informacije_o_traziocu/korisnik_email='" + email + "']";

@@ -7,7 +7,7 @@ public class KorisnikPrijavaDto {
 
 	private String email;
 	private String lozinka;
-	
+
 	public KorisnikPrijavaDto() {
 		super();
 	}
@@ -33,5 +33,5 @@ public class KorisnikPrijavaDto {
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
-	
+
 }

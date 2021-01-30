@@ -30,7 +30,8 @@ public class ZalbaCutanjeController {
 
 	@GetMapping(path = "/neresene")
 	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> dobaviSveNeresene() throws XMLDBException, JAXBException {
-		//String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+		// String email = (String)
+		// SecurityContextHolder.getContext().getAuthentication().getName();
 		ArrayList<ZalbaCutanjeDTO> zalbe = this.zalbaCutanjeService.dobaviSveNeresene();
 		if (zalbe.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,10 +40,11 @@ public class ZalbaCutanjeController {
 			return new ResponseEntity<>(zalbe, HttpStatus.OK);
 
 	}
-	
+
 	@GetMapping(consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> dobaviSve() throws XMLDBException, JAXBException {
-		//String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+		// String email = (String)
+		// SecurityContextHolder.getContext().getAuthentication().getName();
 		ArrayList<ZalbaCutanjeDTO> zalbe = this.zalbaCutanjeService.dobaviSve();
 		if (zalbe.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -51,7 +53,6 @@ public class ZalbaCutanjeController {
 			return new ResponseEntity<>(zalbe, HttpStatus.OK);
 
 	}
-
 
 	@GetMapping(path = "/korisnik")
 	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> dobaviSvePoEmailu() {
@@ -69,38 +70,38 @@ public class ZalbaCutanjeController {
 
 		}
 	}
-	
+
 	@GetMapping("/generisiPDF/{zalba_cutanje_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
 
 		String file_path = this.zalbaCutanjeService.generisiPDF(zalba_id);
-		
+
 		try {
 			File file = new File(file_path);
 			FileInputStream fileInputStream = new FileInputStream(file);
-            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-	
+
 	}
-	
+
 	@GetMapping("/generisiHTML/{zalba_cutanje_id}")
 	public ResponseEntity<byte[]> generisiHTML(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
 
 		String file_path = this.zalbaCutanjeService.generisiHTML(zalba_id);
-		
+
 		try {
 			File file = new File(file_path);
 			FileInputStream fileInputStream = new FileInputStream(file);
-            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-	
+
 	}
 }

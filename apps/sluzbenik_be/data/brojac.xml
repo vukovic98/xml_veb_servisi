@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<brojac xmlns="http://www.ftn.uns.ac.rs/brojac"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema#">
+    <brojac_zahtev>5</brojac_zahtev>
+</brojac>

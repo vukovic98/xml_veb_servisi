@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lista_obavestenja
-	xmlns="http://www.w3.org/ns/obavestenje" 
+    xmlns="http://ftn.uns.ac.rs/obavestenje" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje obavestenje.xsd"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema#"
@@ -10,14 +10,14 @@
     <obavestenje about="http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
         <osnovni_podaci>
             <podaci_o_organu>
-                <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
+                <naziv datatype="xs:string" property="pred:naziv_ustanove">Fakultet tehnickih nauka</naziv>
                 <sediste datatype="xs:string" property="pred:sediste_ustanove">Novi Sad</sediste>
                 <broj_predmeta datatype="xs:string" property="pred:br_predmeta">12345</broj_predmeta>
                 <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-24</datum_zahteva>
             </podaci_o_organu>
             <podaci_o_podnosiocu>
                 <ime_i_prezime datatype="xs:string" property="pred:ime_podnosioca">Vladimir Vukovic</ime_i_prezime>
-                <naziv datatype="xs:string" property="pred:naziv_podnosioca">Raska</naziv>
+                <naziv datatype="xs:string" property="pred:naziv_podnosioca">Novi Sad</naziv>
                 <adresa datatype="xs:string" property="pred:adresa_podnosioca">Tomice Aleksic 25</adresa>
             </podaci_o_podnosiocu>
         </osnovni_podaci>

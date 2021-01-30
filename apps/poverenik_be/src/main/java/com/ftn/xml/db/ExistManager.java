@@ -43,8 +43,8 @@ public class ExistManager {
 	}
 
 	public Collection getOrCreateCollection(String collectionUri, int pathOffset) throws XMLDBException {
-		Collection col = DatabaseManager.getCollection(this.authManager.getUri() + collectionUri, this.authManager.getUser(),
-				this.authManager.getPassword());
+		Collection col = DatabaseManager.getCollection(this.authManager.getUri() + collectionUri,
+				this.authManager.getUser(), this.authManager.getPassword());
 
 		if (col == null) {
 			if (collectionUri.startsWith("/")) {
@@ -190,7 +190,8 @@ public class ExistManager {
 		}
 	}
 
-	public void append(String collectionId, String documentId, String contextXPath, String patch, String APPEND) throws Exception {
+	public void append(String collectionId, String documentId, String contextXPath, String patch, String APPEND)
+			throws Exception {
 		createConnection();
 		Collection col = null;
 		String chosenTemplate = APPEND;

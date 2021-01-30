@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
         this.route.navigate(['/home']);
       }, error => {
         Swal.fire({
-          title: 'Greška!',
-          text: 'Email ili lozinka su pogrešni!',
+          title: 'Грешка!',
+          text: 'Мејл адреса или лозинка су погрешни!',
           icon: 'error',
           confirmButtonColor: '#DC143C',
-          confirmButtonText: 'U redu'
+          confirmButtonText: 'У реду'
         })
       })
   }

@@ -5,7 +5,6 @@
 // Generated on: 2021.01.17 at 07:12:56 PM CET 
 //
 
-
 package com.ftn.xml.model.zalba_na_odluku;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -36,64 +37,53 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "podaciOZaliocu",
-    "podaciOOrganu"
-})
+@XmlType(name = "", propOrder = { "podaciOZaliocu", "podaciOOrganu" })
 @XmlRootElement(name = "osnovni_podaci")
 public class OsnovniPodaci {
 
-    @XmlElement(name = "podaci_o_zaliocu", required = true)
-    protected PodaciOZaliocu podaciOZaliocu;
-    @XmlElement(name = "podaci_o_organu", required = true)
-    protected PodaciOOrganu podaciOOrganu;
+	@XmlElement(name = "podaci_o_zaliocu", required = true)
+	protected PodaciOZaliocu podaciOZaliocu;
+	@XmlElement(name = "podaci_o_organu", required = true)
+	protected PodaciOOrganu podaciOOrganu;
 
-    /**
-     * Gets the value of the podaciOZaliocu property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PodaciOZaliocu }
-     *     
-     */
-    public PodaciOZaliocu getPodaciOZaliocu() {
-        return podaciOZaliocu;
-    }
+	/**
+	 * Gets the value of the podaciOZaliocu property.
+	 * 
+	 * @return possible object is {@link PodaciOZaliocu }
+	 * 
+	 */
+	public PodaciOZaliocu getPodaciOZaliocu() {
+		return podaciOZaliocu;
+	}
 
-    /**
-     * Sets the value of the podaciOZaliocu property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PodaciOZaliocu }
-     *     
-     */
-    public void setPodaciOZaliocu(PodaciOZaliocu value) {
-        this.podaciOZaliocu = value;
-    }
+	/**
+	 * Sets the value of the podaciOZaliocu property.
+	 * 
+	 * @param value allowed object is {@link PodaciOZaliocu }
+	 * 
+	 */
+	public void setPodaciOZaliocu(PodaciOZaliocu value) {
+		this.podaciOZaliocu = value;
+	}
 
-    /**
-     * Gets the value of the podaciOOrganu property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PodaciOOrganu }
-     *     
-     */
-    public PodaciOOrganu getPodaciOOrganu() {
-        return podaciOOrganu;
-    }
+	/**
+	 * Gets the value of the podaciOOrganu property.
+	 * 
+	 * @return possible object is {@link PodaciOOrganu }
+	 * 
+	 */
+	public PodaciOOrganu getPodaciOOrganu() {
+		return podaciOOrganu;
+	}
 
-    /**
-     * Sets the value of the podaciOOrganu property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PodaciOOrganu }
-     *     
-     */
-    public void setPodaciOOrganu(PodaciOOrganu value) {
-        this.podaciOOrganu = value;
-    }
+	/**
+	 * Sets the value of the podaciOOrganu property.
+	 * 
+	 * @param value allowed object is {@link PodaciOOrganu }
+	 * 
+	 */
+	public void setPodaciOOrganu(PodaciOOrganu value) {
+		this.podaciOOrganu = value;
+	}
 
 }

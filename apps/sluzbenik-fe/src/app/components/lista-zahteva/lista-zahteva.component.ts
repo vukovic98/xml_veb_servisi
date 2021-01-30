@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ZahtevService} from '../../services/zahtev.service';
 import {ArrayList} from '../../model/shared-modules.model';
 import * as txml from 'txml';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-lista-zahteva',
@@ -15,7 +16,8 @@ export class ListaZahtevaComponent implements OnInit {
 
 
   constructor(
-    private zahtevService: ZahtevService
+    private zahtevService: ZahtevService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class ListaZahtevaComponent implements OnInit {
 
         this.zahtevi = obj[0].children;
       });
+  }
+
+  isUser(): boolean {
+    return this.authService.isUser();
   }
 
 }

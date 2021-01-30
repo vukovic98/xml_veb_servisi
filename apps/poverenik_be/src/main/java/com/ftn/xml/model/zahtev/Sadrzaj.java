@@ -5,7 +5,6 @@
 // Generated on: 2021.01.21 at 12:53:18 PM CET 
 //
 
-
 package com.ftn.xml.model.zahtev;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -36,64 +37,53 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "zahtevi",
-    "opisTrazeneInformacije"
-})
+@XmlType(name = "", propOrder = { "zahtevi", "opisTrazeneInformacije" })
 @XmlRootElement(name = "sadrzaj")
 public class Sadrzaj {
 
-    @XmlElement(required = true)
-    protected Zahtevi zahtevi;
-    @XmlElement(name = "opis_trazene_informacije", required = true)
-    protected OpisTrazeneInformacije opisTrazeneInformacije;
+	@XmlElement(required = true)
+	protected Zahtevi zahtevi;
+	@XmlElement(name = "opis_trazene_informacije", required = true)
+	protected OpisTrazeneInformacije opisTrazeneInformacije;
 
-    /**
-     * Gets the value of the zahtevi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Zahtevi }
-     *     
-     */
-    public Zahtevi getZahtevi() {
-        return zahtevi;
-    }
+	/**
+	 * Gets the value of the zahtevi property.
+	 * 
+	 * @return possible object is {@link Zahtevi }
+	 * 
+	 */
+	public Zahtevi getZahtevi() {
+		return zahtevi;
+	}
 
-    /**
-     * Sets the value of the zahtevi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Zahtevi }
-     *     
-     */
-    public void setZahtevi(Zahtevi value) {
-        this.zahtevi = value;
-    }
+	/**
+	 * Sets the value of the zahtevi property.
+	 * 
+	 * @param value allowed object is {@link Zahtevi }
+	 * 
+	 */
+	public void setZahtevi(Zahtevi value) {
+		this.zahtevi = value;
+	}
 
-    /**
-     * Gets the value of the opisTrazeneInformacije property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link OpisTrazeneInformacije }
-     *     
-     */
-    public OpisTrazeneInformacije getOpisTrazeneInformacije() {
-        return opisTrazeneInformacije;
-    }
+	/**
+	 * Gets the value of the opisTrazeneInformacije property.
+	 * 
+	 * @return possible object is {@link OpisTrazeneInformacije }
+	 * 
+	 */
+	public OpisTrazeneInformacije getOpisTrazeneInformacije() {
+		return opisTrazeneInformacije;
+	}
 
-    /**
-     * Sets the value of the opisTrazeneInformacije property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link OpisTrazeneInformacije }
-     *     
-     */
-    public void setOpisTrazeneInformacije(OpisTrazeneInformacije value) {
-        this.opisTrazeneInformacije = value;
-    }
+	/**
+	 * Sets the value of the opisTrazeneInformacije property.
+	 * 
+	 * @param value allowed object is {@link OpisTrazeneInformacije }
+	 * 
+	 */
+	public void setOpisTrazeneInformacije(OpisTrazeneInformacije value) {
+		this.opisTrazeneInformacije = value;
+	}
 
 }

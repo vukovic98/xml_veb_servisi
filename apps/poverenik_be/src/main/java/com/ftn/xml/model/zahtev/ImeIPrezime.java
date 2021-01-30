@@ -5,7 +5,6 @@
 // Generated on: 2021.01.21 at 12:53:18 PM CET 
 //
 
-
 package com.ftn.xml.model.zahtev;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,11 +17,13 @@ import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,93 +39,79 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "content"
-})
+@XmlType(name = "", propOrder = { "content" })
 @XmlRootElement(name = "ime_i_prezime")
 public class ImeIPrezime {
 
-    @XmlValue
-    protected String content;
-    @XmlAttribute(name = "datatype", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String datatype;
-    @XmlAttribute(name = "property", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
-    protected String property;
+	@XmlValue
+	protected String content;
+	@XmlAttribute(name = "datatype", required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NMTOKEN")
+	protected String datatype;
+	@XmlAttribute(name = "property", required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NMTOKEN")
+	protected String property;
 
-    /**
-     * Gets the value of the content property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getContent() {
-        return content;
-    }
+	/**
+	 * Gets the value of the content property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getContent() {
+		return content;
+	}
 
-    /**
-     * Sets the value of the content property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setContent(String value) {
-        this.content = value;
-    }
+	/**
+	 * Sets the value of the content property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setContent(String value) {
+		this.content = value;
+	}
 
-    /**
-     * Gets the value of the datatype property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDatatype() {
-        return datatype;
-    }
+	/**
+	 * Gets the value of the datatype property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getDatatype() {
+		return datatype;
+	}
 
-    /**
-     * Sets the value of the datatype property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDatatype(String value) {
-        this.datatype = value;
-    }
+	/**
+	 * Sets the value of the datatype property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setDatatype(String value) {
+		this.datatype = value;
+	}
 
-    /**
-     * Gets the value of the property property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getProperty() {
-        return property;
-    }
+	/**
+	 * Gets the value of the property property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getProperty() {
+		return property;
+	}
 
-    /**
-     * Sets the value of the property property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProperty(String value) {
-        this.property = value;
-    }
+	/**
+	 * Sets the value of the property property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 * 
+	 */
+	public void setProperty(String value) {
+		this.property = value;
+	}
 
 }

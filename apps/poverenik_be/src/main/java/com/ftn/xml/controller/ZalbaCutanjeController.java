@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
-import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
 @RestController

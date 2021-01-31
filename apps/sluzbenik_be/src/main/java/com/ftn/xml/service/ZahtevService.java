@@ -2,6 +2,9 @@ package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -143,7 +146,105 @@ public class ZahtevService {
 			return null;
 		}
 	}
+	
+	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) {
+		ResourceSet set = this.zahtevRepository.pronadjiOdbijeneZahteveZaKorisnika(email);
 
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getZahtevZaPristupInformacijama().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteveZaKorisnika(String email) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		ResourceSet set = this.zahtevRepository.pronadjiNeodgovoreneZahteveZaKorisnika(email);
+
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+					
+					// da li je proslo 5 min
+					
+					Date now = new Date();
+					Date d = formatter.parse(zahtev.getPodnozje().getMestoIDatum().getDatumZahteva().getValue());
+
+					long diffInMillies = Math.abs(now.getTime() - d.getTime());
+				    long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
+					
+				    if(diff > 5)
+				    	lista.getZahtevZaPristupInformacijama().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ZahtevZaPristupInformacijama pronadjiZahtevPoId(long id) {
 		ResourceSet set = this.zahtevRepository.pronadjiPoId(id);
 

@@ -54,7 +54,35 @@ public class ZahtevRepository {
 			return null;
 		}
 	}
+	
+	public ResourceSet pronadjiOdbijeneZahteveZaKorisnika(String email) {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama"
+				+ "[podnozje/informacije_o_traziocu/korisnik_email='" + email + "' and status=\"ODBIJEN\"]";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
+	public ResourceSet pronadjiNeodgovoreneZahteveZaKorisnika(String email) {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama"
+				+ "[podnozje/informacije_o_traziocu/korisnik_email='" + email + "' and status=\"CEKANJE\"]";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public ResourceSet pronadjiPoId(long id) {
 		String id_Str = ID_STRING + id;
 		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[@about='" + id_Str + "']";

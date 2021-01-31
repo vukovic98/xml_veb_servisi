@@ -238,6 +238,7 @@ public class DodajZahtevMaper {
 		
 		zahtev.setAbout(ABOUT + index);
 		zahtev.setVocab(VOCAB);
+		zahtev.setStatus("CEKANJE");
 		
 		
 		//----------------------------------

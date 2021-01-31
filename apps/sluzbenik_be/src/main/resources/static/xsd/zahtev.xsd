@@ -16,6 +16,7 @@
         <xs:element ref="zahtev:podaci_o_organu"/>
         <xs:element ref="zahtev:sadrzaj"/>
         <xs:element ref="zahtev:podnozje"/>
+        <xs:element ref="zahtev:status"></xs:element>
       </xs:sequence>
       <xs:attribute name="about" use="required" type="xs:anyURI"/>
       <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
@@ -183,4 +184,5 @@
       <xs:attribute name="property" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="status" type="xs:string"/>
 </xs:schema>

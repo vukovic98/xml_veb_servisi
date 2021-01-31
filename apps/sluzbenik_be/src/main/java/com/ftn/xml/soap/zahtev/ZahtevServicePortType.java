@@ -28,4 +28,11 @@ public interface ZahtevServicePortType {
         @WebParam(partName = "email", name = "email")
         java.lang.String email
     );
+    
+    @WebMethod(action = "http://www.ftn.uns.ac.rs/zahtev/ws/pronadjiNeodgovoreneZahteve")
+    @WebResult(name = "zahtevi", targetNamespace = "http://www.ftn.uns.ac.rs/zahtev", partName = "zahtevi")
+    public ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteve(
+        @WebParam(partName = "email", name = "email")
+        java.lang.String email
+    );
 }

@@ -47,7 +47,18 @@ public class ZahtevServiceSoapBindingImpl implements ZahtevServicePortType {
         LOG.info("Executing operation pronadjiOdbijeneZahteve");
         System.out.println(email);
         try {
-            return this.zahtevService.pronadjiSveZahteve();
+            return this.zahtevService.pronadjiOdbijeneZahteveZaKorisnika(email);
+        } catch (java.lang.Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    public com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteve(java.lang.String email) { 
+        LOG.info("Executing operation pronadjiNeodgovoreneZahteve");
+        System.out.println(email);
+        try {
+            return this.zahtevService.pronadjiNeodgovoreneZahteveZaKorisnika(email);
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);

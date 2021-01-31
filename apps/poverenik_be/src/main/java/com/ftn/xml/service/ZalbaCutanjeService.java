@@ -19,7 +19,6 @@ import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
-import com.ftn.xml.jaxb.util.XSLFOTransformerZahtev;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;

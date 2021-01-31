@@ -22,11 +22,11 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
+
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
 import com.ftn.xml.model.korisnik.Korisnik;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
-import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
-import com.ftn.xml.service.KorisnikService;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;import com.ftn.xml.service.KorisnikService;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
 @RestController

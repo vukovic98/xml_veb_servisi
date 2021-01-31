@@ -1,16 +1,19 @@
 <div class="row col-md-11 m-auto mb-5">
-  <mat-card-title class="mb-3">Vaši zahtevi</mat-card-title>
+  <mat-card-title class="mb-3">Ваши захтеви</mat-card-title>
   <mat-divider></mat-divider>
   <mat-grid-list cols="5" rowHeight="40" class="mt-3">
-    <mat-grid-tile>Broj zahteva</mat-grid-tile>
-    <mat-grid-tile>Organ</mat-grid-tile>
-    <mat-grid-tile>Datum zahteva</mat-grid-tile>
-    <mat-grid-tile>Odobren</mat-grid-tile>
-    <mat-grid-tile>Akcije</mat-grid-tile>
+    <mat-grid-tile>Редни број захтева</mat-grid-tile>
+    <mat-grid-tile>Орган</mat-grid-tile>
+    <mat-grid-tile>Датум предаје захтева</mat-grid-tile>
+    <mat-grid-tile>Одобрен</mat-grid-tile>
+    <mat-grid-tile>Акције</mat-grid-tile>
   </mat-grid-list>
   <mat-divider></mat-divider>
-  <app-zahtev
-    *ngFor="let z of zahtevi"
-    [zahtev]=z.children
-  ></app-zahtev>
+    <app-zahtev
+      *ngFor="let z of zahtevi"
+      [zahtev]=z.children
+    ></app-zahtev>
+    <div *ngIf="zahtevi?.length === 0">
+      <p class="text-center mt-3">Још увек нема захтева</p>
+    </div>
 </div>

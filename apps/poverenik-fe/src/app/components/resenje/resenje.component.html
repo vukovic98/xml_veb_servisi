@@ -1,0 +1,56 @@
+<div class="mt-2 pt-2">
+    <mat-grid-list *ngIf="odobreno==true" cols="9" rowHeight="40">
+      <mat-grid-tile>
+        {{resenje[0].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[1].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[2].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[3].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[4].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[5].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[6].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[7].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list *ngIf="odobreno==false" cols="9" rowHeight="40">
+      <mat-grid-tile>
+        {{resenje[1].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[2].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[3].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[4].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[5].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[6].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile>
+        {{resenje[7].children[0]}}
+      </mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+  </div>

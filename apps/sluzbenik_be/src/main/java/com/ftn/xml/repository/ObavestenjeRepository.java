@@ -9,11 +9,12 @@ import com.ftn.xml.db.ExistManager;
 
 @Repository
 public class ObavestenjeRepository {
-	
+
 	private String collectionId = "/db/sluzbenik";
 	private String documentId = "obavestenje.xml";
-	
+
 	private static final String TARGET_NAMESPACE = "http://ftn.uns.ac.rs/obavestenje";
+	private static final String ID_STRING = "http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/";
 
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:append select=\"%1$s\" child=\"last()\">%2$s</xu:append>"
@@ -22,22 +23,49 @@ public class ObavestenjeRepository {
 	public static final String UPDATE = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:update select=\"%1$s\">%2$s</xu:update>"
 			+ "</xu:modifications>";
-	
+
 	@Autowired
 	private ExistManager existManager;
-	
+
 	public boolean proveraPotvrdeZahteva(long zahtev_id) {
 		String xPath = "/lista_obavestenja/obavestenje[broj_zahteva=" + zahtev_id + "]";
-		
+
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
-			if(set.getSize() != 0) 
+			if (set.getSize() != 0)
 				return true;
 			else
 				return false;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public ResourceSet pronadjiSvaObavestenja() {
+		String xPath = "/lista_obavestenja/obavestenje";
+
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public ResourceSet pronadjiPoId(long id) {
+		String id_Str = ID_STRING + id;
+		String xPath = "/lista_obavestenja/obavestenje[@about='" + id_Str + "']";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

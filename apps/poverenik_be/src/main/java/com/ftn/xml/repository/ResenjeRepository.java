@@ -13,6 +13,8 @@ public class ResenjeRepository {
 	private String collectionId = "/db/poverenik";
 	private String documentId = "resenje.xml";
 	
+	private static final String ID_STRING = "http://www.ftn.uns.ac.rs/rdf/examples/resenje/";
+	
 	private static final String TARGET_NAMESPACE = "http://ftn.uns.ac.rs/resenje";
 
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
@@ -25,6 +27,27 @@ public class ResenjeRepository {
 	
 	@Autowired
 	private ExistManager existManager;
+	
+	public ResourceSet getAll() {
+		String xPath = "/lista_resenja/resenje";
+		try {
+			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public ResourceSet getAllForUser(String userMail) {
+		
+		//filtriraj za korisnike
+		
+		String xPath = "/lista_resenja/resenje[osnovni_podaci/korisnik_email = '"+userMail+"']";
+		try {
+			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 	public boolean proveriDaLiJeZalbaResena(long id) {
 		String xPath = "/lista_resenja/resenje/.[broj_zalbe=" + id + "]";
@@ -41,6 +64,20 @@ public class ResenjeRepository {
 		} catch (Exception e) {
 			return false;
 
+		}
+	}
+	
+	public ResourceSet findById(long id) {
+		String id_Str = ID_STRING + id;
+		String xPath = "/lista_resenja/resenje[@about='" + id_Str + "']";
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 

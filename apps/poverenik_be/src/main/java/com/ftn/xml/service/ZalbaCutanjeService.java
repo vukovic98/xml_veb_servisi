@@ -23,7 +23,6 @@ import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
 import com.ftn.xml.helper.DodajZalbuCutanjeMapper;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
-import com.ftn.xml.jaxb.util.XSLFOTransformerZahtev;
 import com.ftn.xml.model.korisnik.Korisnik;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;

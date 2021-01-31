@@ -42,18 +42,22 @@ export class LoginComponent implements OnInit {
         let xmlDoc = this.parser.parseFromString(response,"text/xml");
         let token = xmlDoc.getElementsByTagName("authenticationToken")[0].childNodes[0].nodeValue;
         let uloga = xmlDoc.getElementsByTagName("uloga")[0].childNodes[0].nodeValue;
+        let email = xmlDoc.getElementsByTagName("email")[0].childNodes[0].nodeValue;
+        localStorage.setItem('email',email);
+        let imeIprezime = xmlDoc.getElementsByTagName("imeIprezime")[0].childNodes[0].nodeValue;
         localStorage.setItem('accessToken', token);
         localStorage.setItem('uloga', uloga);
+        localStorage.setItem('imeIprezime', imeIprezime);
 
 
         this.route.navigate(['/home-page']);
       }, error => {
         Swal.fire({
-          title: 'Greška!',
-          text: 'Email ili lozinka su pogrešni!',
+          title: 'Грешка!',
+          text: 'Email или лозинка су погрешни!',
           icon: 'error',
           confirmButtonColor: '#DC143C',
-          confirmButtonText: 'U redu'
+          confirmButtonText: 'У реду'
         })
       })
 

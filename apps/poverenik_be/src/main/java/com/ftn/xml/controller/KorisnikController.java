@@ -95,7 +95,7 @@ public class KorisnikController {
 			int expiresIn = tokenUtils.getExpiredIn();
 
 			// Vrati token kao odgovor na uspesnu autentifikaciju
-			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn, email, user.getUloga()));
+			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn, email, user.getUloga(), user.getImeIPrezime()));
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

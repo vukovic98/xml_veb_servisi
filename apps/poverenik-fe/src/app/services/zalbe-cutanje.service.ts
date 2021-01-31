@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {LoginDto} from '../model/loginDto';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class ZalbeCutanjeService {
   private readonly zalbeKorisnikApi = "zalbaCutanje/korisnik";
   private readonly preuzmiPDFApi = "zalbaCutanje/generisiPDF/";
   private readonly preuzmiHTMLApi = "zalbaCutanje/generisiHTML/";
+  private readonly dodajZalbuApi = "zalbaCutanje";
 
 
   constructor(private http: HttpClient, private route: Router) { }
@@ -56,5 +57,14 @@ export class ZalbeCutanjeService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.get(environment.POVERENIK_APP + this.zalbeKorisnikApi, {headers: headers, responseType: 'text'});
+  }
+
+  dodajZalbuCutanje(entity: String) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.dodajZalbuApi, entity, {headers: headers, responseType: 'text'});
   }
 }

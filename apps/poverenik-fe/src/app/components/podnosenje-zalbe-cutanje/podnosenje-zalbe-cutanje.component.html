@@ -1,1 +1,40 @@
-<p>podnosenje-zalbe-cutanje works!</p>
+<div class="jumbotron col-md-10 m-auto bg-light shadow mt-5 mb-5 pb-3 pt-3">
+  <h1 class="d-flex justify-content-center">Поднеси жалбу на ћутање управе</h1>
+  <div class="d-flex justify-content-center">
+    <form class=" form-inline " ngForm="zalbaCutanjeForm" (ngSubmit)="sastaviZalbu()">
+        <label>Одаберите разлог жалбе:</label>
+        <select
+
+          [(ngModel)]="razlogZalbe"
+          name="razlozi"
+          id="razlozi"
+        >
+          <option id="r1">Није поступио</option>
+          <option id="r2">Није поступио у целости</option>
+          <option id="r3">Није поступио у законском року</option>
+        </select>
+        <label>Одаберите захтев:</label>
+        <select
+          [(ngModel)]="brojZahteva"
+          name="zahtevi"
+          id="zahtevi"
+        >
+          <option>1</option>
+          <option>5</option>
+          <option>8</option>
+        </select>
+        <button class="btn" >OK</button>
+    </form>
+
+
+  </div>
+
+
+  <div class="col-md-10 m-auto" id="zalbaCutanjeEditor">
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class="btn btnColor" (click)="posalji()">Пошаљи</button>
+  </div>
+
+
+</div>

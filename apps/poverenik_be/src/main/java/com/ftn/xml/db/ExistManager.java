@@ -128,6 +128,7 @@ public class ExistManager {
 		}
 	}
 
+
 	// load whole document
 	public XMLResource load(String collectionId, String documentId) throws Exception {
 		createConnection();

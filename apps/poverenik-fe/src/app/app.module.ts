@@ -26,6 +26,7 @@ import { ZalbeCutanjeComponent } from './components/zalbe-cutanje-lista/zalbe-cu
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,23 +40,24 @@ import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-c
     PodnosenjeZalbeCutanjeComponent
   ],
     imports: [
-      BrowserModule,
-      AppRoutingModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      BrowserAnimationsModule,
-      MatIconModule,
-      MatSelectModule,
-      MatGridListModule,
-      MatSlideToggleModule,
-      MatButtonModule,
-      MatDialogModule,
-      CommonModule,
-      MatMenuModule,
-      MatListModule,
-      MatExpansionModule,
-      MatCardModule
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatSelectModule,
+        MatGridListModule,
+        MatSlideToggleModule,
+        MatButtonModule,
+        MatDialogModule,
+        CommonModule,
+        MatMenuModule,
+        MatListModule,
+        MatExpansionModule,
+        MatCardModule,
+        NgSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]

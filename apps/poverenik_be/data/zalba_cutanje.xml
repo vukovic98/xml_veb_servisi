@@ -36,7 +36,6 @@
                 <ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">
                     Vladimir Vukovic
                 </ime_i_prezime>
-                <potpis/>
                 <adresa>
                     <ulica datatype="xs:string" property="pred:ulica_podnosioca">Булевар деспота Стефана</ulica>
                     <broj datatype="xs:integer" property="pred:broj_kuce_podnosioca">7</broj>
@@ -55,3 +54,6 @@
         <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">2</broj_zahteva>
     </zalba_cutanje>
 </lista_zalbi_cutanje>
+
+
+

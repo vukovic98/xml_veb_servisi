@@ -6,6 +6,7 @@ import {HomepageComponent} from './components/homepage/homepage.component';
 import {ZalbeCutanjeComponent} from './components/zalbe-cutanje-lista/zalbe-cutanje.component';
 import {ZalbeComponent} from './components/zalbe/zalbe.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
+import { ResenjaComponent } from './components/resenja/resenja.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path: 'home-page', component: HomepageComponent},
   {path: 'zalbe-cutanje-lista', component: ZalbeCutanjeComponent},
   {path: 'zalbe', component: ZalbeComponent},
-  {path: 'resenja', component: ResenjeComponent}
+  {path: 'resenja', component: ResenjaComponent}
   ];
 
 @NgModule({

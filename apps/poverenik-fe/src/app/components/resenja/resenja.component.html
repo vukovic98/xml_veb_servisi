@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+      <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="jumbotron col-md-10 m-auto bg-light shadow mt-5 pt-3">
+      <div class="row col-md-11 m-auto mb-5">
+        <mat-card-title class="mb-3">{{naslov}}</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-grid-list cols="9" rowHeight="40" class="mt-3">
+          <mat-grid-tile>Број решења</mat-grid-tile>    
+          <mat-grid-tile>Број жалбе</mat-grid-tile>  
+          <mat-grid-tile>Подносилац</mat-grid-tile>
+          <mat-grid-tile>Орган</mat-grid-tile>
+          <mat-grid-tile>Датум захтева</mat-grid-tile>
+          <mat-grid-tile>Датум решења</mat-grid-tile>
+          <mat-grid-tile>Одлука</mat-grid-tile>
+          <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+        </mat-grid-list>
+        <mat-divider></mat-divider>
+        <app-resenje
+          *ngFor="let r of resenja"
+          [resenje]=r.children
+          [odobreno]=false
+        ></app-resenje>
+      </div>
+  
+    </div>
+  </div>

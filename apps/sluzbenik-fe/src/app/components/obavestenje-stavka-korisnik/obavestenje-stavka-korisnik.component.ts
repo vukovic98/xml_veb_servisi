@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ObavestenjeService} from '../../services/obavestenje.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-obavestenje-stavka-korisnik',
@@ -10,7 +11,9 @@ export class ObavestenjeStavkaKorisnikComponent implements OnInit {
 
   @Input() obavestenje: any;
 
-  constructor(private service: ObavestenjeService) { }
+  constructor(
+    private service: ObavestenjeService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
   }

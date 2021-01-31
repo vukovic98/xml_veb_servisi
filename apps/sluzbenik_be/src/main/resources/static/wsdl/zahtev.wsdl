@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://www.ftn.uns.ac.rs/zahtev"
+                  xmlns:tns="http://www.ftn.uns.ac.rs/zahtev"
+                  name="ZahtevService">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.ftn.uns.ac.rs/zahtev" schemaLocation="../xsd/zahtev.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="pronadjiOdbijeneZahteveRequest">
+        <wsdl:part name="email" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="pronadjiOdbijeneZahteveResponse">
+        <wsdl:part name="zahtevi" element="tns:lista_zahteva_za_pristup_informacijama" />
+    </wsdl:message>
+
+    <wsdl:portType name="ZahtevServicePortType">
+        <wsdl:operation name="pronadjiOdbijeneZahteve">
+            <wsdl:input message="tns:pronadjiOdbijeneZahteveRequest" />
+            <wsdl:output message="tns:pronadjiOdbijeneZahteveResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ZahtevServiceSoapBinding" type="tns:ZahtevServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="pronadjiOdbijeneZahteve">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/zahtev/ws/pronadjiOdbijeneZahteve" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahtevService">
+        <wsdl:port name="ZahtevServiceSoapBinding" binding="tns:ZahtevServiceSoapBinding">
+            <soap:address location="http://localhost:8081/zahtevPort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

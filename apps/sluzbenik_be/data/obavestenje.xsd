@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-  targetNamespace="http://www.w3.org/ns/obavestenje" xmlns:o="http://www.w3.org/ns/obavestenje"
+  targetNamespace="http://ftn.uns.ac.rs/obavestenje" xmlns:o="http://ftn.uns.ac.rs/obavestenje"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xs:element name="lista_obavestenja">
     <xs:complexType>
@@ -58,7 +58,7 @@
   <xs:element name="datum_zahteva">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:date">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -112,10 +112,10 @@
       <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="datum_uvida" type="xs:date"/>
-  <xs:element name="cas_uvida" type="xs:time"/>
-  <xs:element name="sat_od" type="xs:time"/>
-  <xs:element name="sat_do" type="xs:time"/>
+  <xs:element name="datum_uvida" type="xs:string"/>
+  <xs:element name="cas_uvida" type="xs:string"/>
+  <xs:element name="sat_od" type="xs:string"/>
+  <xs:element name="sat_do" type="xs:string"/>
   <xs:element name="broj_kancelarije" type="xs:integer"/>
   <xs:element name="cena" type="xs:decimal"/>
   <xs:element name="ziro_racun">
@@ -148,13 +148,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="naziv">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="xs:NCName">
-          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
-          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
-        </xs:extension>
-      </xs:simpleContent>
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="adresa">

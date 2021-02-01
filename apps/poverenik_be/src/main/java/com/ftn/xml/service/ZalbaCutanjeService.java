@@ -1,11 +1,13 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.exist.xmldb.EXistResource;
@@ -18,8 +20,10 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
+import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
+import com.ftn.xml.helper.DodajZalbuCutanjeMapper;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
-import com.ftn.xml.jaxb.util.XSLFOTransformerZahtev;
+import com.ftn.xml.model.korisnik.Korisnik;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -36,6 +40,9 @@ public class ZalbaCutanjeService {
 
 	@Autowired
 	ResenjeRepository resenjeRepository;
+	
+	@Autowired
+	DodajZalbuCutanjeMapper mapper;
 
 	public ArrayList<ZalbaCutanjeDTO> dobaviSveNeresene() throws XMLDBException, JAXBException {
 		ResourceSet result = this.zalbaCutanjeRepository.dobaviSve();
@@ -63,10 +70,8 @@ public class ZalbaCutanjeService {
 					dto.setRazresena("ne");
 					dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
 
-					// datum zalbe
-					XMLGregorianCalendar xmlDate = z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue();
-					String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-					dto.setDatum_zalbe(date);
+				
+					dto.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
 
 					dto.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
 					dto.setNaziv_organa(z.getSadrzaj().getNazivOrgana().getValue());
@@ -116,9 +121,8 @@ public class ZalbaCutanjeService {
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
 
 				// datum zalbe
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-				dto.setDatum_zalbe(date);
+				
+				dto.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
 
 				dto.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
 				dto.setNaziv_organa(z.getSadrzaj().getNazivOrgana().getValue());
@@ -167,9 +171,8 @@ public class ZalbaCutanjeService {
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
 
 				// datum zalbe
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-				dto.setDatum_zalbe(date);
+	
+				dto.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
 
 				dto.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
 				dto.setNaziv_organa(z.getSadrzaj().getNazivOrgana().getValue());
@@ -285,6 +288,22 @@ public class ZalbaCutanjeService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean dodajZalbu(ZalbaCutanjeDodavanjeDTO zalbaDto, Korisnik korisnik) {
+		
+		ZalbaCutanje zalba = this.mapper.dtoUKlasu(zalbaDto, korisnik.getEmail(), korisnik.getImeIPrezime());
+		boolean ok = this.zalbaCutanjeRepository.dodajZalbu(zalba);
+		if (ok)
+			return true;
+		else
+			return false;
+		
+	}
+
+	public void dodajZalbuIzTeksta(String zalba) throws Exception {
+		// TODO Auto-generated method stub
+		this.zalbaCutanjeRepository.dodajZalbuIzTeksta(zalba);
 	}
 
 }

@@ -5,87 +5,87 @@
 
     <div class="row">
       <div class="form-group col">
-        <label for="naziv_organa">Naziv organa</label>
-        <input type="text" class="form-control" name="naziv_organa" formControlName="naziv_organa" id="naziv_organa" placeholder="Unesite naziv organa">
+        <label for="naziv_organa">Назив органа</label>
+        <input type="text" class="form-control" name="naziv_organa" formControlName="naziv_organa" id="naziv_organa" placeholder="Унесите назив органа">
         <div *ngIf="dodajZahtevForma.controls['naziv_organa'].invalid && dodajZahtevForma.controls['naziv_organa'].touched" class="ml-1 mt-0 mb-0">
-          <small *ngIf="dodajZahtevForma.controls['naziv_organa'].errors?.required" class="text-danger">Naziv organa je obavezan</small>
+          <small *ngIf="dodajZahtevForma.controls['naziv_organa'].errors?.required" class="text-danger">Ово поље је обавезно</small>
         </div>
       </div>
       <div class="form-group col">
-        <label for="mesto_organa">Sedište organa</label>
-        <input type="text" class="form-control" name="mesto_organa" formControlName="mesto_organa" id="mesto_organa" placeholder="Unesite sedište organa">
+        <label for="mesto_organa">Седиште органа</label>
+        <input type="text" class="form-control" name="mesto_organa" formControlName="mesto_organa" id="mesto_organa" placeholder="Унесите седиште органа">
         <div *ngIf="dodajZahtevForma.controls['mesto_organa'].invalid && dodajZahtevForma.controls['mesto_organa'].touched" class="ml-1 mt-0 mb-0">
-          <small *ngIf="dodajZahtevForma.controls['mesto_organa'].errors?.required" class="text-danger">Email je obavezan</small>
+          <small *ngIf="dodajZahtevForma.controls['mesto_organa'].errors?.required" class="text-danger">Ово поље је обавезно</small>
         </div>
       </div>
     </div>
     <div class="form-group mt-3">
-      <label for="opis_informacije">Opis informacije koju potražujete</label>
-      <textarea style="resize: none;" rows="5" class="form-control" formControlName="opis_informacije" id="opis_informacije" placeholder="Unesite opis informacije"></textarea>
+      <label for="opis_informacije">Опис информације коју потражујете</label>
+      <textarea style="resize: none;" rows="5" class="form-control" formControlName="opis_informacije" id="opis_informacije" placeholder="Унесите опис информације"></textarea>
       <div *ngIf="dodajZahtevForma.controls['opis_informacije'].invalid && dodajZahtevForma.controls['opis_informacije'].touched" class="ml-1 mt-0 mb-0">
-        <small *ngIf="dodajZahtevForma.controls['opis_informacije'].errors?.required" class="text-danger">Opis informacije je obavezan</small>
+        <small *ngIf="dodajZahtevForma.controls['opis_informacije'].errors?.required" class="text-danger">Ово поље је обавезно</small>
       </div>
     </div>
 
     <div class="row">
       <div class="form-group mt-3 col">
-        <label for="mesto_trazioca">Mesto stanovanja tražioca</label>
-        <input type="text" class="form-control" formControlName="mesto_trazioca" id="mesto_trazioca" placeholder="Unesite Vaše mesto stanovanja">
+        <label for="mesto_trazioca">Место становања тражиоца</label>
+        <input type="text" class="form-control" formControlName="mesto_trazioca" id="mesto_trazioca" placeholder="Унесите Ваше место становања">
         <div *ngIf="dodajZahtevForma.controls['mesto_trazioca'].invalid && dodajZahtevForma.controls['mesto_trazioca'].touched" class="ml-1 mt-0 mb-0">
-          <small *ngIf="dodajZahtevForma.controls['mesto_trazioca'].errors?.required" class="text-danger">Mesto stanovanja je obaveyno</small>
+          <small *ngIf="dodajZahtevForma.controls['mesto_trazioca'].errors?.required" class="text-danger">Ово поље је обавезно</small>
         </div>
       </div>
       <div class="form-group mt-3 col">
-        <label for="ulica_trazioca">Ulica stanovanja tražioca</label>
-        <input type="text" class="form-control" formControlName="ulica_trazioca" id="ulica_trazioca" placeholder="Unesite Vašu ulicu stanovanja">
+        <label for="ulica_trazioca">Улица становања тражиоца</label>
+        <input type="text" class="form-control" formControlName="ulica_trazioca" id="ulica_trazioca" placeholder="Унесите Вашу улицу становања">
         <div *ngIf="dodajZahtevForma.controls['ulica_trazioca'].invalid && dodajZahtevForma.controls['ulica_trazioca'].touched" class="ml-1 mt-0 mb-0">
-          <small *ngIf="dodajZahtevForma.controls['ulica_trazioca'].errors?.required" class="text-danger">Ulica stanovanja je obavezna</small>
+          <small *ngIf="dodajZahtevForma.controls['ulica_trazioca'].errors?.required" class="text-danger">Ово поље је обавезно</small>
         </div>
       </div>
       <div class="form-group mt-3 col">
-        <label for="broj_trazioca">Kućni broj tražioca</label>
-        <input type="number" class="form-control" formControlName="broj_trazioca" id="broj_trazioca" placeholder="Unesite Vaš broj kuće">
+        <label for="broj_trazioca">Кућни број тражиоца</label>
+        <input type="number" class="form-control" formControlName="broj_trazioca" id="broj_trazioca" placeholder="Унесите Ваш број куће">
         <div *ngIf="dodajZahtevForma.controls['broj_trazioca'].invalid && dodajZahtevForma.controls['broj_trazioca'].touched" class="ml-1 mt-0 mb-0">
-          <small *ngIf="dodajZahtevForma.controls['broj_trazioca'].errors?.required" class="text-danger">Broj kuće je obavezan</small>
+          <small *ngIf="dodajZahtevForma.controls['broj_trazioca'].errors?.required" class="text-danger">Ово поље је обавезно</small>
         </div>
       </div>
     </div>
     <div class="form-group mt-3">
-      <label for="kontakt">Kontakt telefon tražioca</label>
-      <input type="text" class="form-control" formControlName="kontakt" id="kontakt" placeholder="Unesite Vaš kontakt telefon">
+      <label for="kontakt">Контакт телефон тражиоца</label>
+      <input type="text" class="form-control" formControlName="kontakt" id="kontakt" placeholder="Унесите Ваш контакт телефон">
       <div *ngIf="dodajZahtevForma.controls['kontakt'].invalid && dodajZahtevForma.controls['kontakt'].touched" class="ml-1 mt-0 mb-0">
-        <small *ngIf="dodajZahtevForma.controls['kontakt'].errors?.required" class="text-danger">Kontakt telefon je obavezan</small>
+        <small *ngIf="dodajZahtevForma.controls['kontakt'].errors?.required" class="text-danger">Ово поље је обавезно</small>
       </div>
     </div>
     <div class="form-group mt-3">
-      <label for="opis_zahteva">Opis zahteva</label>
+      <label for="opis_zahteva">Опис захтева</label>
       <select class="form-control" id="opis_zahteva" formControlName="opis_zahteva">
-        <option value=zahtev_obavestenje>Zahtev za obaveštenjem da li organ poseduje traženu informaciju</option>
-        <option value="zahtev_uvid">Zahtev za uvid u dokument koji sadrži traženu informaciju</option>
-        <option value="zahtev_kopija">Zahtev za kopiju dokumenta koji sadrži traženu informaciju</option>
-        <option value="zahtev_dostava">Zahtev za dostavu kopije dokumenta koji sadrži traženu informaciju</option>
+        <option value=zahtev_obavestenje>Захтев за обавештењем да ли орган поседује тражену информацију</option>
+        <option value="zahtev_uvid">Захтев за увид у документ који садржи тражену информацију</option>
+        <option value="zahtev_kopija">Захтев за копију документа који садржи тражену информацију</option>
+        <option value="zahtev_dostava">Захтев за доставу копије документа који садржи тражену информацију</option>
       </select>
       <div *ngIf="dodajZahtevForma.controls['opis_zahteva'].invalid && dodajZahtevForma.controls['opis_zahteva'].touched" class="ml-1 mt-0 mb-0">
-        <small *ngIf="dodajZahtevForma.controls['opis_zahteva'].errors?.required" class="text-danger">Opis zahteva je obavezan</small>
+        <small *ngIf="dodajZahtevForma.controls['opis_zahteva'].errors?.required" class="text-danger">Ово поље је обавезно</small>
       </div>
     </div>
     <div class="row">
       <div class="form-group mt-3 col" *ngIf="dodajZahtevForma.controls['opis_zahteva'].value == 'zahtev_dostava'">
-        <label for="nacin_dostave">Način dostave dokumenta</label>
+        <label for="nacin_dostave">Начин доставе документа</label>
         <select class="form-control" id="nacin_dostave" formControlName="nacin_dostave">
-          <option value=posta>Dostava poštom</option>
-          <option value="faks">Dostava faksom</option>
-          <option value="e_posta">Dostava mejlom</option>
-          <option value="drugi">Drugi način dostave</option>
+          <option value=posta>Достава поштом</option>
+          <option value="faks">Достава факсом</option>
+          <option value="e_posta">Достава мејлом</option>
+          <option value="drugi">Други начин доставе</option>
         </select>
       </div>
       <div class="form-group mt-3 col" *ngIf="dodajZahtevForma.controls['opis_zahteva'].value == 'zahtev_dostava' && dodajZahtevForma.controls['nacin_dostave'].value == 'drugi'">
-        <label for="drugi_nacin">Drugi način dostave</label>
-        <input type="text" class="form-control" formControlName="drugi_nacin" id="drugi_nacin" placeholder="Navedite drugi način dostave">
+        <label for="drugi_nacin">Други начин доставе</label>
+        <input type="text" class="form-control" formControlName="drugi_nacin" id="drugi_nacin" placeholder="Наведите други начин доставе">
       </div>
     </div>
     <div class="pt-3 text-center">
-      <button id="predajZahtevBtn" class="btn btn-block mt-3 btn-danger" [disabled]="!dodajZahtevForma.valid">Predaj zahtev</button>
+      <button id="predajZahtevBtn" class="btn btn-block mt-3 btn-danger" [disabled]="!dodajZahtevForma.valid">Предај захтев</button>
     </div>
   </form>
 </div>

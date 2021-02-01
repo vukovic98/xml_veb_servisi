@@ -5,6 +5,9 @@ import {SignupComponent} from './components/signup/signup.component';
 import {HomepageComponent} from './components/homepage/homepage.component';
 import {ZalbeCutanjeComponent} from './components/zalbe-cutanje-lista/zalbe-cutanje.component';
 import {ZalbeComponent} from './components/zalbe/zalbe.component';
+import { ResenjeComponent } from './components/resenje/resenje.component';
+import { ResenjaComponent } from './components/resenja/resenja.component';
+import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 
 
 const routes: Routes = [
@@ -13,7 +16,8 @@ const routes: Routes = [
   {path: 'sign-up', component: SignupComponent},
   {path: 'home-page', component: HomepageComponent},
   {path: 'zalbe-cutanje-lista', component: ZalbeCutanjeComponent},
-  {path: 'zalbe', component: ZalbeComponent}
+  {path: 'zalbe', component: ZalbeComponent},
+  {path: 'resenja', component: ResenjaComponent}
   ];
 
 @NgModule({

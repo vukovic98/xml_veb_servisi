@@ -1,21 +1,30 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: crimson; color: white; text-decoration: none;">
     <div id="navbarDiv" class="container-fluid">
-      <a class="navbar-brand" href="#">Portal organa vlasti</a>
+      <a class="navbar-brand mat-display-1 mb-0" href="/home">еСлужбеник</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngIf="userRole">
-            <a class="nav-link active" id="zahteviLink" routerLink="/home">Zahtevi</a>
+          <li class="nav-item pt-1" *ngIf="userRole">
+            <a class="nav-link active mat-subheading-2 mb-0" id="zahteviLink" routerLink="/home">Моји захтеви</a>
           </li>
-          <li class="nav-item" *ngIf="userRole">
-            <a class="nav-link" id="podnesiZahteviLink" routerLink="/dodaj-zahtev">Podnesi zahtev</a>
+          <li class="nav-item pt-1" *ngIf="!userRole">
+            <a class="nav-link active mat-subheading-2 mb-0" id="sviZahteviLink" routerLink="/home">Захтеви</a>
+          </li>
+          <li class="nav-item pt-1" *ngIf="userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="obavestenjaLink" routerLink="/obavestenja-korisnik">Моја обавештења</a>
+          </li>
+          <li class="nav-item pt-1" *ngIf="!userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="svaObavestenjaLink" routerLink="/obavestenja-sluzbenik">Обавештења</a>
+          </li>
+          <li class="nav-item pt-1" *ngIf="userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="podnesiZahteviLink" routerLink="/dodaj-zahtev">Поднеси захтев</a>
           </li>
         </ul>
       </div>
       <span class="float-right w-25 text-end">
-        <a *ngIf="!isLoggedIn()" routerLink="/log-in"><button class="btn btn-light" id="loginBtn" style="margin-right: 20px;">Prijava</button></a>
-        <a *ngIf="!isLoggedIn()" routerLink="/sign-up"><button class="btn btn-light" id="signUpBtn">Registracija</button></a>
-        <a *ngIf="isLoggedIn()"><button class="btn btn-light" id="logoutBtn" (click)="logout()">Odjava</button></a>
+        <a *ngIf="!isLoggedIn()" routerLink="/log-in"><button class="btn btn-light" id="loginBtn" style="margin-right: 20px;">Пријава</button></a>
+        <a *ngIf="!isLoggedIn()" routerLink="/sign-up"><button class="btn btn-light" id="signUpBtn">Регистрација</button></a>
+        <a *ngIf="isLoggedIn()"><button class="btn btn-light" id="logoutBtn" (click)="logout()">Одјава</button></a>
       </span>
     </div>
   </nav>

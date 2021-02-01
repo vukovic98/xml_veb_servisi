@@ -76,7 +76,7 @@
       <xs:attribute name="razlog" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="datum_zahteva" type="xs:date"/>
+  <xs:element name="datum_zahteva" type="xs:string"/>
   <xs:element name="podaci_o_zahtevu_i_informacijama" type="xs:string"/>
   <xs:element name="podnozje">
     <xs:complexType>
@@ -91,11 +91,9 @@
       <xs:sequence>
         <xs:element ref="z:korisnik_email"/>
         <xs:element ref="z:ime_i_prezime"/>
-        <xs:choice maxOccurs="unbounded">
           <xs:element ref="z:adresa"/>
           <xs:element ref="z:drugi_podaci_za_kontakt"/>
           <xs:element ref="z:potpis"/>
-        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -126,7 +124,7 @@
   <xs:element name="datum_zalbe">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:date">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>

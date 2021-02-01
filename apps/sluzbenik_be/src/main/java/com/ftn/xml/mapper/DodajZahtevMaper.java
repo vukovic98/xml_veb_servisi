@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.NacinDostave;
 import com.ftn.xml.dto.OpisZahteva;
+import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.model.zahtev.Adresa;
 import com.ftn.xml.model.zahtev.Broj;
 import com.ftn.xml.model.zahtev.DatumZahteva;
@@ -36,7 +37,7 @@ public class DodajZahtevMaper {
 	private static final String PROPERTY = "pred:";
 	private static final String DATATYPE = "xs:";
 	
-	private static final String ABOUT = "http://www.ftn.uns.ac.rs/rdf/examples/zahtev/4";
+	private static final String ABOUT = "http://www.ftn.uns.ac.rs/rdf/examples/zahtev/";
 	private static final String VOCAB = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
 	
 	private static final String OPIS_OBAVESTENJE = "обавештење да ли поседује тражену информацију";
@@ -49,7 +50,7 @@ public class DodajZahtevMaper {
     private static final String OPIS_FAKS = "факсом";
     private static final String OPIS_DRUGI = "на други начин:";
 
-	public ZahtevZaPristupInformacijama dtoUKlasu(DodajZahtevDTO dto, String mail, String ime_i_prezime) {
+	public ZahtevZaPristupInformacijama dtoUKlasu(DodajZahtevDTO dto, String mail, String ime_i_prezime, int index) {
 		ZahtevZaPristupInformacijama zahtev = new ZahtevZaPristupInformacijama();
 		
 		//------------ORGAN----------------
@@ -109,29 +110,29 @@ public class DodajZahtevMaper {
 		Nacin n1 = new Nacin();
 		n1.setId(NacinDostave.posta.toString());
 		n1.setOpisNacina(OPIS_POSTA);
-		n1.setOtkaceno(dto.getNacin_dostave().toString().equalsIgnoreCase("posta"));
+		n1.setOtkaceno(dto.getNacin_dostave() != null ? dto.getNacin_dostave().toString().equalsIgnoreCase("posta") : false);
 		n1.setDrugiNacin(null);
 		ni.getNacin().add(n1);
 		
 		Nacin n2 = new Nacin();
 		n2.setId(NacinDostave.e_posta.toString());
 		n2.setOpisNacina(OPIS_E_POSTA);
-		n2.setOtkaceno(dto.getNacin_dostave().toString().equalsIgnoreCase("e_posta"));
+		n2.setOtkaceno(dto.getNacin_dostave() != null ? dto.getNacin_dostave().toString().equalsIgnoreCase("e_posta") : false);
 		n2.setDrugiNacin(null);
 		ni.getNacin().add(n2);
 		
 		Nacin n3 = new Nacin();
-		n1.setId(NacinDostave.faks.toString());
-		n1.setOpisNacina(OPIS_FAKS);
-		n1.setOtkaceno(dto.getNacin_dostave().toString().equalsIgnoreCase("faks"));
-		n1.setDrugiNacin(null);
+		n3.setId(NacinDostave.faks.toString());
+		n3.setOpisNacina(OPIS_FAKS);
+		n3.setOtkaceno(dto.getNacin_dostave() != null ? dto.getNacin_dostave().toString().equalsIgnoreCase("faks"): false);
+		n3.setDrugiNacin(null);
 		ni.getNacin().add(n3);
 		
 		Nacin n4 = new Nacin();
-		n1.setId(NacinDostave.drugi.toString());
-		n1.setOpisNacina(OPIS_DRUGI);
-		n1.setOtkaceno(dto.getNacin_dostave().toString().equalsIgnoreCase("drugi"));
-		n1.setDrugiNacin(dto.getDrugi_nacin());
+		n4.setId(NacinDostave.drugi.toString());
+		n4.setOpisNacina(OPIS_DRUGI);
+		n4.setOtkaceno(dto.getNacin_dostave() != null ? dto.getNacin_dostave().toString().equalsIgnoreCase("drugi"): false);
+		n4.setDrugiNacin(dto.getDrugi_nacin());
 		ni.getNacin().add(n4);
 		
 		z4.setNaciniDostave(ni);
@@ -236,8 +237,9 @@ public class DodajZahtevMaper {
 		
 		zahtev.setPodnozje(podnozje);
 		
-		zahtev.setAbout(ABOUT);
+		zahtev.setAbout(ABOUT + index);
 		zahtev.setVocab(VOCAB);
+		zahtev.setStatus("CEKANJE");
 		
 		
 		//----------------------------------
@@ -245,4 +247,21 @@ public class DodajZahtevMaper {
 		return zahtev;
 	}
 	
+	public ZahtevFusekiDTO klasaUFusekiDTO(ZahtevZaPristupInformacijama z) {
+		ZahtevFusekiDTO dto = new ZahtevFusekiDTO();
+		
+		dto.setBroj_kuce_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getBroj().getValue());
+		dto.setDatum_zahteva(z.getPodnozje().getMestoIDatum().getDatumZahteva().getValue());
+		dto.setIme_trazioca(z.getPodnozje().getInformacijeOTraziocu().getImeIPrezime().getContent());
+		dto.setKontakt_trazioca(z.getPodnozje().getInformacijeOTraziocu().getKontakt().getValue());
+		dto.setKorisnik(z.getPodnozje().getInformacijeOTraziocu().getKorisnikEmail().getContent());
+		dto.setMesto_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getMesto().getContent());
+		dto.setMesto_zahteva(z.getPodnozje().getMestoIDatum().getMesto().getContent());
+		dto.setNaziv_ustanove(z.getPodaciOOrganu().getNaziv().getContent());
+		dto.setOpis_informacije(z.getSadrzaj().getOpisTrazeneInformacije().getContent());
+		dto.setSediste_ustanove(z.getPodaciOOrganu().getSediste().getContent());
+		dto.setUlica_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getUlica().getContent());
+		
+		return dto;
+	}
 }

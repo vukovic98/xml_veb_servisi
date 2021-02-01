@@ -44,19 +44,19 @@ export class SignupComponent implements OnInit {
 
     this.service.registrujSe(data).subscribe(response => {
       Swal.fire({
-        title: 'Uspešna registracija!',
+        title: 'Успешна регистрација!',
         icon: 'success',
         confirmButtonColor: '#DC143C',
-        confirmButtonText: 'Prijavi se'
+        confirmButtonText: 'Пријави се'
       })
       this.route.navigate(['/log-in']);
     }, error => {
       Swal.fire({
-        title: 'Greška!',
-        text: 'Korisnik sa ovim email-om već postoji',
+        title: 'Грешка!',
+        text: 'Корисник са овим email-ом већ постоји.',
         icon: 'error',
         confirmButtonColor: '#DC143C',
-        confirmButtonText: 'U redu'
+        confirmButtonText: 'У реду'
       })
     })
   }

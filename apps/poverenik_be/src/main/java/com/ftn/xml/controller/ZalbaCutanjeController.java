@@ -14,12 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
-import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
+
+import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
+import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;import com.ftn.xml.service.KorisnikService;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
 @RestController
@@ -28,6 +34,9 @@ public class ZalbaCutanjeController {
 
 	@Autowired
 	private ZalbaCutanjeService zalbaCutanjeService;
+	
+	@Autowired
+	private KorisnikService korisnikService;
 
 	@GetMapping(path = "/neresene")
 	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> dobaviSveNeresene() throws XMLDBException, JAXBException {
@@ -103,6 +112,31 @@ public class ZalbaCutanjeController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+
+	}
+	
+
+	@PostMapping
+	public ResponseEntity<Boolean> kreirajZahtev(@RequestBody String zalba) {
+		
+		
+		//String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+		try {
+			this.zalbaCutanjeService.dodajZalbuIzTeksta(zalba);
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+			
+		}
+		
+		//Korisnik k = this.korisnikService.pronadjiPoEmailu(email);
+		//System.out.println(zalbaCutanjeDto.getRazlog_zalbe());
+		//boolean ok = this.zalbaCutanjeService.dodajZalbu(zalbaCutanjeDto, k);
+		
+
+			
 
 	}
 }

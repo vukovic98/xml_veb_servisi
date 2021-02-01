@@ -1,0 +1,21 @@
+<div class="pt-2">
+  <mat-grid-list cols="5" rowHeight="40" class="pt-2">
+    <mat-grid-tile>
+      {{obavestenje[2].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{obavestenje[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{obavestenje[3].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{obavestenje[8].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile >
+      <button mat-button (click)="preuzmiPDF()" >Преузми PDF</button>
+      <button mat-button (click)="preuzmiHTML()" >Преузми HTML</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+</div>

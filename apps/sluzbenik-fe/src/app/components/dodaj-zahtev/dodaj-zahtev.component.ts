@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {XonomyService} from '../../services/xonomy.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import * as JsonToXML from 'js2xmlparser';
+import {ZahtevService} from '../../services/zahtev.service';
+import Swal from "sweetalert2";
 
 declare const Xonomy: any;
 
@@ -25,7 +27,7 @@ export class DodajZahtevComponent implements OnInit {
     "drugi_nacin": new FormControl('', []),
   });
 
-  constructor() { }
+  constructor(private zahtevService: ZahtevService) { }
 
   ngOnInit(): void {
   }
@@ -52,6 +54,24 @@ export class DodajZahtevComponent implements OnInit {
 
     let data: any = JsonToXML.parse("dodajZahtevDTO", zahtevDto, options);
 
+    this.zahtevService.kreirajZahtev(data)
+      .subscribe((response) => {
+        Swal.fire({
+          title: 'Успех!',
+          text: 'Ваш захтев је успешно додат! Службеник ће Вам се јавити ускоро са одговором!',
+          icon: 'success',
+          confirmButtonText: 'У реду'
+        })
+      }, error => {
+        console.log(error);
+        Swal.fire({
+          title: 'Грешка!',
+          text: 'Дошло је до грешке, молимо покушајте поново!',
+          icon: 'error',
+          confirmButtonColor: '#DC143C',
+          confirmButtonText: 'У реду'
+        })
+      })
   }
 
 }

@@ -39,9 +39,9 @@ import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XUpdateQueryService;
 
-import com.ftn.xml.jaxb.util.AuthenticationUtilities;
-import com.ftn.xml.jaxb.util.AuthenticationUtilities.ConnectionProperties;
 import com.ftn.xml.model.resenje.ListaResenja;
+import com.ftn.xml.db.AuthenticationManagerFuseki;
+import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
 import com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist;
 import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.jaxb.util.SparqlUtil;
@@ -59,7 +59,7 @@ public class ResenjeController {
 	@PostMapping("/initializeRDF")
 	public ResponseEntity<HttpStatus> initializeRDFDatabase() throws IOException, SAXException, TransformerException {
 
-		ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		ConnectionProperties conn = AuthenticationManagerFuseki.loadProperties();
 
 		String xmlFilePath = "data/resenje.xml";
 
@@ -227,7 +227,7 @@ public class ResenjeController {
 
 		// ADD TO RDF DATABASE
 
-		ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		ConnectionProperties conn = AuthenticationManagerFuseki.loadProperties();
 
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);

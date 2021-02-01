@@ -27,6 +27,10 @@ import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-odluku.component';
+import { ResenjeComponent } from './components/resenje/resenje.component';
+import { ResenjaComponent } from './components/resenja/resenja.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,27 +42,31 @@ import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-od
     ZalbaCutanjeComponent,
     ZalbeComponent,
     PodnosenjeZalbeCutanjeComponent,
-    ZalbaNaOdlukuComponent
+    ZalbaNaOdlukuComponent,
+    ResenjeComponent,
+    ResenjaComponent,
+    PodnosenjeZalbeCutanjeComponent
+
   ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
-      BrowserAnimationsModule,
-      MatIconModule,
-      MatSelectModule,
-      MatGridListModule,
-      MatSlideToggleModule,
-      MatButtonModule,
-      MatDialogModule,
-      CommonModule,
-      MatMenuModule,
-      MatListModule,
-      MatExpansionModule,
-      MatCardModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatDialogModule,
+    CommonModule,
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCardModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

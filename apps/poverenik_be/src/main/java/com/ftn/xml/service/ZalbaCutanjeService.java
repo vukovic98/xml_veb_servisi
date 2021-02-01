@@ -312,7 +312,7 @@ public class ZalbaCutanjeService {
 		
 	}
 
-	public void dodajZalbuIzTeksta(String zalba) throws JAXBException {
+	public boolean dodajZalbuIzTeksta(String zalba) throws JAXBException {
      	//validacija  
 		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
 		Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -324,6 +324,7 @@ public class ZalbaCutanjeService {
 			unmarshaller.setSchema(schema);
 		} catch (SAXException e2) {
 			e2.printStackTrace();
+			return false;
 		}
 		// Podesavanje unmarshaller-a za XML schema validaciju
 		
@@ -331,16 +332,20 @@ public class ZalbaCutanjeService {
 			unmarshaller.setEventHandler(new MyValidationEventHandler());
 		} catch (JAXBException e1) {
 			e1.printStackTrace();
+			return false;
 		}
 		StringReader reader = new StringReader(zalba);
 		ZalbaCutanje z;
 		try {
 			z = (ZalbaCutanje) unmarshaller.unmarshal(reader);
 			this.zalbaCutanjeRepository.dodajZalbuIzTeksta(zalba, z);
+			return true;
 		} catch (JAXBException e) {
 			e.printStackTrace();
+			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 
 		

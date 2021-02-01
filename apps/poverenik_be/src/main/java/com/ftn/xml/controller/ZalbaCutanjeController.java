@@ -118,15 +118,17 @@ public class ZalbaCutanjeController {
 
 	@PostMapping
 	public ResponseEntity<Boolean> kreirajZahtev(@RequestBody String zalba) {
+		boolean ok = false;
 		try {
-			this.zalbaCutanjeService.dodajZalbuIzTeksta(zalba);
-			return new ResponseEntity<>(true, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			ok = this.zalbaCutanjeService.dodajZalbuIzTeksta(zalba);
+			
+		} catch (JAXBException e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);	
 		}
-		
 
+		if(ok)
+			return new ResponseEntity<>(ok, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);	
 	}
 }

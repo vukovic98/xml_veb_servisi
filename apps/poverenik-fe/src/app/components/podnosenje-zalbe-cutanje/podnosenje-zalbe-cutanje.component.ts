@@ -23,7 +23,6 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
   zahtev: any;
   btnPosalji = false;
   datumZahteva = '';
-  //public zahtevi: Array<any> = new Array<any>();
   public zahtevi: Array<any>;
   constructor
   (
@@ -41,9 +40,6 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
       res => {
         let data: any = txml.parse(res);
         this.zahtevi = data[0].children[0].children[0].children[0].children;
-        let id = this.zahtevi[0].attributes['about'].slice(-1);
-        console.log(this.zahtevi[0].children[0].children[0].children[0]); //naziv organa
-        console.log(this.zahtevi[0].children[2].children[0].children[1].children[0]); //datum zahteva
       }
     )
   }
@@ -85,11 +81,10 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
               this.router.navigate(['/zalbe']);
             }
           })
-          console.log(response);
         }, еrror => {
           Swal.fire({
             title: 'Грешка!',
-            text: 'Неуспешно подношење жалбе.',
+            text: 'Неуспешно подношење жалбе. Проверите да ли сте унели све податке исправно.',
             icon: 'error',
             confirmButtonColor: '#DC143C',
             confirmButtonText: 'У реду'

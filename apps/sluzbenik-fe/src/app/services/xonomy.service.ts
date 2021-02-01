@@ -9,81 +9,58 @@ export class XonomyService {
 
   constructor() { }
 
-  public zahtevSpecifikacija = {
+
+
+  public obavestenjeSpecifikacija = {
+    validate: function (jsElement) {
+      //Validate the element:
+      let elementSpec = this.elements[jsElement.name];
+      if (elementSpec.validate) elementSpec.validate(jsElement);
+      //Cycle through the element's attributes:
+      for (let i = 0; i < jsElement.attributes.length; i++) {
+        let jsAttribute = jsElement.attributes[i];
+        let attributeSpec = elementSpec.attributes[jsAttribute.name];
+        if (attributeSpec.validate) attributeSpec.validate(jsAttribute);
+      }
+      //Cycle through the element's children:
+      for (let i = 0; i < jsElement.children.length; i++) {
+        let jsChild = jsElement.children[i];
+        if (jsChild.type == "element") { //if element
+          this.validate(jsChild); //recursion
+        }
+      }
+    },
+    // <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
+//     <sediste datatype="xs:string" property="pred:sediste_ustanove">Novi Sad</sediste>
+// <broj_predmeta datatype="xs:string" property="pred:br_predmeta">12345</broj_predmeta>
+//     <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-24</datum_zahteva>
     elements: {
-      zahtev: {
-        menu: [{
-          caption: 'Dodaj naziv organa',
-          action: Xonomy.newElementChild,
-          actionParameter: '<naziv_organa></naziv_organa>',
-          hideIf: function(jsElement) {
-            return jsElement.hasChildElement("naziv_organa")
+      obavestenje: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
           }
         },
-        {
-          caption: 'Dodaj sedište organa',
-          action: Xonomy.newElementChild,
-          actionParameter: '<sediste_organa></sediste_organa>',
-          hideIf: function(jsElement) {
-            return jsElement.hasChildElement("sediste_organa")
+        menu: [],
+        attributes: {
+          "vocab": {
+            isInvisible: true,
+          },
+          "about": {
+            isInvisible: true,
           }
-        },
-        {
-          caption: 'Dodaj opis tražene informacije',
-          action: Xonomy.newElementChild,
-          actionParameter: '<opis_informacije></opis_informacije>',
-          hideIf: function(jsElement) {
-            return jsElement.hasChildElement("opis_informacije")
-          }
-        },
-          {
-            caption: 'Dodaj mesto tražioca',
-            action: Xonomy.newElementChild,
-            actionParameter: '<mesto_trazioca></mesto_trazioca>',
-            hideIf: function(jsElement) {
-              return jsElement.hasChildElement("mesto_trazioca")
-            }
-          },
-          {
-            caption: 'Dodaj ulicu tražioca',
-            action: Xonomy.newElementChild,
-            actionParameter: '<ulica_trazioca></ulica_trazioca>',
-            hideIf: function(jsElement) {
-              return jsElement.hasChildElement("ulica_trazioca")
-            }
-          },
-          {
-            caption: 'Dodaj broj kuće tražioca',
-            action: Xonomy.newElementChild,
-            actionParameter: '<broj_trazioca></broj_trazioca>',
-            hideIf: function(jsElement) {
-              return jsElement.hasChildElement("broj_trazioca")
-            }
-          },
-          {
-            caption: 'Dodaj kontakt telefon tražioca',
-            action: Xonomy.newElementChild,
-            actionParameter: '<kontakt></kontakt>',
-            hideIf: function(jsElement) {
-              return jsElement.hasChildElement("kontakt")
-            }
-          },
-          {
-            caption: 'Dodaj opis zahteva',
-            action: Xonomy.newElementChild,
-            actionParameter: '<opis_zahteva></opis_zahteva>',
-            hideIf: function(jsElement) {
-              return jsElement.hasChildElement("opis_zahteva")
-            }
-          }
-      ],
-        attributes: {}
+        }
       },
 
-      naziv_organa:{
+      naziv:{
         hasText: true,
         oneliner: true,
-        asker: Xonomy.askString
+        asker: Xonomy.askString,
+        isReadOnly: true
       },
       sediste_organa:{
         hasText: true,

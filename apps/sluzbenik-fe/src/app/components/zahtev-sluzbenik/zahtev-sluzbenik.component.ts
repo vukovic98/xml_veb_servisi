@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ZahtevService} from '../../services/zahtev.service';
 import {AuthService} from '../../services/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DodajObavestenjeComponent} from '../dodaj-obavestenje/dodaj-obavestenje.component';
 
 @Component({
   selector: 'app-zahtev-sluzbenik',
@@ -10,10 +12,12 @@ import {AuthService} from '../../services/auth.service';
 export class ZahtevSluzbenikComponent implements OnInit {
 
   @Input() zahtev: any;
+  private obavestenje: string;
 
   constructor(
     private service: ZahtevService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +45,19 @@ export class ZahtevSluzbenikComponent implements OnInit {
 
   isUser(): boolean {
     return this.authService.isUser();
+  }
+
+  dodajObavestenjeDijalog() {
+    const dialogRef = this.dialog.open(DodajObavestenjeComponent, {
+      width: '250px',
+      data: {obavestenje: this.obavestenje, idZahteva: this.zahtev[0].children[0]}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log("---------------");
+      console.log(this.obavestenje);
+    });
   }
 
   preuzmiPDF() {

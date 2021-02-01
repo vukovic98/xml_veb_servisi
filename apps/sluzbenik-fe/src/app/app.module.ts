@@ -31,6 +31,7 @@ import { ObavestenjaKorisnikComponent } from './components/obavestenja-korisnik/
 import { ObavestenjaSluzbenikComponent } from './components/obavestenja-sluzbenik/obavestenja-sluzbenik.component';
 import { ObavestenjeStavkaSluzbenikComponent } from './components/obavestenje-stavka-sluzbenik/obavestenje-stavka-sluzbenik.component';
 import { ObavestenjeStavkaKorisnikComponent } from './components/obavestenje-stavka-korisnik/obavestenje-stavka-korisnik.component';
+import { DodajObavestenjeComponent } from './components/dodaj-obavestenje/dodaj-obavestenje.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ObavestenjeStavkaKorisnikComponent } from './components/obavestenje-sta
     ObavestenjaSluzbenikComponent,
     ObavestenjeStavkaSluzbenikComponent,
     ObavestenjeStavkaKorisnikComponent,
+    DodajObavestenjeComponent,
 
   ],
   imports: [

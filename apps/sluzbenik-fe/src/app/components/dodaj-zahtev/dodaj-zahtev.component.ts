@@ -56,7 +56,12 @@ export class DodajZahtevComponent implements OnInit {
 
     this.zahtevService.kreirajZahtev(data)
       .subscribe((response) => {
-        console.log(response);
+        Swal.fire({
+          title: 'Успех!',
+          text: 'Ваш захтев је успешно додат! Службеник ће Вам се јавити ускоро са одговором!',
+          icon: 'success',
+          confirmButtonText: 'У реду'
+        })
       }, error => {
         console.log(error);
         Swal.fire({

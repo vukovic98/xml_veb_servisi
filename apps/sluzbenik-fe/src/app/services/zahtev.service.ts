@@ -51,7 +51,6 @@ export class ZahtevService {
   }
 
   kreirajZahtev(data: any): Observable<any> {
-    console.log(data);
     const headers = new HttpHeaders({
       'Content-Type': 'application/xml',
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken"),

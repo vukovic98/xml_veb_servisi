@@ -39,12 +39,12 @@ import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XUpdateQueryService;
 
-import com.ftn.xml.jaxb.util.AuthenticationUtilities;
+import com.ftn.xml.db.AuthenticationManagerFuseki;
+import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
 import com.ftn.xml.jaxb.util.AuthenticationUtilitiesExist;
 import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.jaxb.util.SparqlUtil;
 import com.ftn.xml.jaxb.util.XUpdateTemplateZalbaNaOdluku;
-import com.ftn.xml.jaxb.util.AuthenticationUtilities.ConnectionProperties;
 import com.ftn.xml.model.zalba_na_odluku.ListaZalbiNaOdluku;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 
@@ -61,7 +61,7 @@ public class ZalbaNaOdlukuController {
 	@PostMapping("/initializeRDF")
 	public ResponseEntity<HttpStatus> initializeRDFDatabase() throws IOException, SAXException,TransformerException {
 		
-		ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		ConnectionProperties conn = AuthenticationManagerFuseki.loadProperties();
 		
 		String xmlFilePath = "data/zalba_na_odluku.xml";
 		String rdfFilePath = "gen/zalba_na_odluku.rdf";
@@ -266,7 +266,7 @@ public class ZalbaNaOdlukuController {
 		}
 		//add to rdf database
 		
-		ConnectionProperties conn = AuthenticationUtilities.loadProperties();
+		ConnectionProperties conn = AuthenticationManagerFuseki.loadProperties();
 		
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);

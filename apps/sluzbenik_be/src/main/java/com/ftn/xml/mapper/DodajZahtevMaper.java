@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.NacinDostave;
 import com.ftn.xml.dto.OpisZahteva;
+import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.model.zahtev.Adresa;
 import com.ftn.xml.model.zahtev.Broj;
 import com.ftn.xml.model.zahtev.DatumZahteva;
@@ -246,4 +247,21 @@ public class DodajZahtevMaper {
 		return zahtev;
 	}
 	
+	public ZahtevFusekiDTO klasaUFusekiDTO(ZahtevZaPristupInformacijama z) {
+		ZahtevFusekiDTO dto = new ZahtevFusekiDTO();
+		
+		dto.setBroj_kuce_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getBroj().getValue());
+		dto.setDatum_zahteva(z.getPodnozje().getMestoIDatum().getDatumZahteva().getValue());
+		dto.setIme_trazioca(z.getPodnozje().getInformacijeOTraziocu().getImeIPrezime().getContent());
+		dto.setKontakt_trazioca(z.getPodnozje().getInformacijeOTraziocu().getKontakt().getValue());
+		dto.setKorisnik(z.getPodnozje().getInformacijeOTraziocu().getKorisnikEmail().getContent());
+		dto.setMesto_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getMesto().getContent());
+		dto.setMesto_zahteva(z.getPodnozje().getMestoIDatum().getMesto().getContent());
+		dto.setNaziv_ustanove(z.getPodaciOOrganu().getNaziv().getContent());
+		dto.setOpis_informacije(z.getSadrzaj().getOpisTrazeneInformacije().getContent());
+		dto.setSediste_ustanove(z.getPodaciOOrganu().getSediste().getContent());
+		dto.setUlica_trazioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getUlica().getContent());
+		
+		return dto;
+	}
 }

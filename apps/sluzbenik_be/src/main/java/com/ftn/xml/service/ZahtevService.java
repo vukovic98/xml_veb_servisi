@@ -19,7 +19,9 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.jaxb.util.XSLFOTransformerZahtev;
+import com.ftn.xml.mapper.DodajZahtevMaper;
 import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.repository.ZahtevRepository;
@@ -34,7 +36,7 @@ public class ZahtevService {
 	@Autowired
 	private ZahtevRepository zahtevRepository;
 
-	public boolean dodajZahtev(ZahtevZaPristupInformacijama z) {
+	public boolean dodajZahtev(ZahtevZaPristupInformacijama z, int index) {
 
 		try {
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
@@ -52,9 +54,11 @@ public class ZahtevService {
 			
 			String changedZahtev = this.removeNamespace(zahtev);
 			
-			System.out.println(changedZahtev);
+			DodajZahtevMaper mapper = new DodajZahtevMaper();
+			
+			ZahtevFusekiDTO dto = mapper.klasaUFusekiDTO(z);
 
-			return this.zahtevRepository.sacuvajZahtev(changedZahtev);
+			return this.zahtevRepository.sacuvajZahtev(changedZahtev, dto, index);
 			
 		} catch (Exception e) {
 			return false;

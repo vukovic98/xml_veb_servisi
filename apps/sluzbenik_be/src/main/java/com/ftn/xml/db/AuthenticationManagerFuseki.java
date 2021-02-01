@@ -1,10 +1,10 @@
-package com.ftn.xml.jaxb.util;
+package com.ftn.xml.db;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class AuthenticationUtilities {
+public class AuthenticationManagerFuseki {
 	/**
 	 * ExampleProperties represents the configuration for the examples.
 	 */
@@ -61,6 +61,6 @@ public class AuthenticationUtilities {
 	 * @throws IOException
 	 */
 	public static InputStream openStream(String fileName) throws IOException {
-		return AuthenticationUtilities.class.getClassLoader().getResourceAsStream(fileName);
+		return AuthenticationManagerFuseki.class.getClassLoader().getResourceAsStream(fileName);
 	}
 }

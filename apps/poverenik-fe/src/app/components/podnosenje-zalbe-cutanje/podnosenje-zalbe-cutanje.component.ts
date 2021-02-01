@@ -4,6 +4,8 @@ import {ZalbeCutanjeService} from '../../services/zalbe-cutanje.service';
 
 import Swal from 'sweetalert2';
 import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import * as txml from 'txml';
 declare const Xonomy: any;
 @Component({
   selector: 'app-podnosenje-zalbe-cutanje',
@@ -16,13 +18,18 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
   private email: string = '';
   private imeIprezime: string = '';
   razlogZalbe: string = '';
-  private brojZalbe: number = 0;
+  private brojZalbe: string = '-1';
   brojZahteva: number = 0;
-
+  zahtev: any;
+  btnPosalji = false;
+  datumZahteva = '';
+  //public zahtevi: Array<any> = new Array<any>();
+  public zahtevi: Array<any>;
   constructor
   (
     private xonomyService: XonomyService,
     private zalbaCutanjeService: ZalbeCutanjeService,
+    private router: Router
   ) {
   }
 
@@ -30,32 +37,33 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
     this.uloga = localStorage.getItem('uloga');
     this.imeIprezime = localStorage.getItem('imeIprezime');
     this.email = localStorage.getItem('email');
-    this.brojZalbe = 10; //dobavi broj
+    this.zalbaCutanjeService.dobaviNeodgovoreneZahteve(this.email).subscribe(
+      res => {
+        let data: any = txml.parse(res);
+        this.zahtevi = data[0].children[0].children[0].children[0].children;
+        let id = this.zahtevi[0].attributes['about'].slice(-1);
+        console.log(this.zahtevi[0].children[0].children[0].children[0]); //naziv organa
+        console.log(this.zahtevi[0].children[2].children[0].children[1].children[0]); //datum zahteva
+      }
+    )
   }
 
-  ovo() {
-    let element = document.getElementById("zalbaCutanjeEditor");
-    //let id_zalbe = 5; //dobavi
-    //let xmlString = '<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje'  + id_zalbe.toString() +
-    //'" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa_ulica_primaoca datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</adresa_ulica_primaoca><adresa_broj_primaoca datatype="xs:integer" property="pred:broj_kuce_poverenika">15</adresa_broj_primaoca><adresa_mesto_primaoca datatype="xs:string" property="pred:mesto_poverenika">Београд</adresa_mesto_primaoca><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlog_zalbe></razlog_zalbe><datum_zahteva></datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama><adresa_ulica_podnosilac datatype="xs:string" property="pred:ulica_podnosioca"></adresa_ulica_podnosilac><adresa_broj_podnosilac datatype="xs:integer" property="pred:broj_kuce_podnosioca"></adresa_broj_podnosilac><adresa_mesto_podnosilac datatype="xs:string" property="pred:mesto_podnosioca"></adresa_mesto_podnosilac><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><mesto_zalbe></mesto_zalbe><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">'
-    //+ new Date().toISOString().slice(0, 10)
-    //+"</datum_zalbe></zalba_cutanje>";
-    let xmlString = '';
-    //let xmlString_r1 = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="true" razlog="nije_postupio"/><razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva></datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
-    //u zavisnosti sta je korisnik odabrao salje se ili xmlString_r1 2 ili 3
+  prikaziXonomy() {
 
+    let element = document.getElementById("zalbaCutanjeEditor");
+    let xmlString = '';
     switch (this.razlogZalbe) {
       case "Није поступио": {
-        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="true" razlog="nije_postupio"/><razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva></datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
+        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="true" razlog="nije_postupio"/><razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva>${this.datumZahteva}</datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
         break;
       }
       case "Није поступио у целости": {
-        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="false" razlog="nije_postupio"/><razlog id="r_2" otkaceno="true" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva></datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
+        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="false" razlog="nije_postupio"/><razlog id="r_2" otkaceno="true" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva>${this.datumZahteva}</datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
         break;
       }
 
       case "Није поступио у законском року": {
-        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="false" razlog="nije_postupio"/><razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="true" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva></datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
+        xmlString = `<zalba_cutanje about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/${this.brojZalbe}" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"><zaglavlje><primalac_zalbe><naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca><adresa><ulica datatype="xs:string" property="pred:ulica_poverenika">Булевар краља Александрa</ulica><broj datatype="xs:integer" property="pred:broj_kuce_poverenika">15</broj><mesto datatype="xs:string" property="pred:mesto_poverenika">Београд</mesto></adresa></primalac_zalbe></zaglavlje><sadrzaj><naziv_organa datatype="xs:string" property="pred:naziv_organa"></naziv_organa><razlozi_zalbe><razlog id="r_1" otkaceno="false" razlog="nije_postupio"/><razlog id="r_2" otkaceno="false" razlog="nije_postupio_u_celosti"/><razlog id="r_3" otkaceno="true" razlog="nije_postupio_u_zakonskom_roku"/></razlozi_zalbe><datum_zahteva>${this.datumZahteva}</datum_zahteva><podaci_o_zahtevu_i_informacijama></podaci_o_zahtevu_i_informacijama></sadrzaj><podnozje><podnosilac_zalbe><korisnik_email datatype="xs:string" property="pred:korisnik">${this.email}</korisnik_email><ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca">${this.imeIprezime}</ime_i_prezime><adresa><ulica datatype="xs:string" property="pred:ulica_podnosioca"></ulica><broj datatype="xs:integer" property="pred:broj_kuce_podnosioca"></broj><mesto datatype="xs:string" property="pred:mesto_podnosioca"></mesto></adresa><drugi_podaci_za_kontakt></drugi_podaci_za_kontakt><potpis/></podnosilac_zalbe><mesto_i_datum><mesto></mesto><datum_zalbe datatype="xs:string" property="pred:datum_zalbe">${new Date().toISOString().slice(0, 10)}</datum_zalbe></mesto_i_datum></podnozje><broj_zahteva datatype="xs:string" property="pred:broj_zahteva">${this.brojZahteva}</broj_zahteva></zalba_cutanje>`;
         break;
       }
     }
@@ -72,6 +80,10 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
             icon: 'success',
             confirmButtonColor: '#6495ed',
             confirmButtonText: 'У реду'
+          }).then((result) => {
+            if(result.isConfirmed){
+              this.router.navigate(['/zalbe']);
+            }
           })
           console.log(response);
         }, еrror => {
@@ -87,8 +99,15 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
     }
 
   sastaviZalbu() {
-      console.log(this.brojZahteva,this.razlogZalbe)
-    this.ovo();
+    this.btnPosalji = true;
+    this.brojZahteva = this.zahtev.attributes['about'].slice(-1);
+    this.datumZahteva = this.zahtev.children[2].children[0].children[1].children[0];
+    this.zalbaCutanjeService.dobaviBrojac().subscribe(res => {
+      this.brojZalbe = res;
+      this.prikaziXonomy();
+    });
+
+
   }
 }
 

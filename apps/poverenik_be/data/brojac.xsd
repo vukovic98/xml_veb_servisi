@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.ftn.uns.ac.rs/brojac" xmlns:brojac="http://www.ftn.uns.ac.rs/brojac">
+  <xs:element name="brojac">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="brojac:brojac_zalba_cutanje"/>
+        <xs:element ref="brojac:brojac_zalba_odluka"/>
+        <xs:element ref="brojac:brojac_resenje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="brojac_zalba_cutanje" type="xs:integer"/>
+  <xs:element name="brojac_zalba_odluka" type="xs:integer"/>
+  <xs:element name="brojac_resenje" type="xs:integer"/>
+</xs:schema>

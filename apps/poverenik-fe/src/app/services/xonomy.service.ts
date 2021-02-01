@@ -121,17 +121,7 @@ export class XonomyService {
         isReadOnly: true
       },
       "datum_zahteva":{
-        validate: function (jsElement) {
-          if (jsElement.getText() == "") {
-            Xonomy.warnings.push({
-                htmlID: jsElement.htmlID,
-                text: "Овај елемент не сме бити празан."
-              }
-            );
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString
+        isReadOnly: true
       },
     "podaci_o_zahtevu_i_informacijama":{
       validate: function (jsElement) {

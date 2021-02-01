@@ -16,6 +16,8 @@ export class ZalbeCutanjeService {
   private readonly preuzmiPDFApi = "zalbaCutanje/generisiPDF/";
   private readonly preuzmiHTMLApi = "zalbaCutanje/generisiHTML/";
   private readonly dodajZalbuApi = "zalbaCutanje";
+  private readonly dobaviBrojacApi = "brojac/zalbaCutanje";
+  private readonly dobaviNeodgovoreneZahteveApi = "ws/zahtev";
 
 
   constructor(private http: HttpClient, private route: Router) { }
@@ -66,5 +68,25 @@ export class ZalbeCutanjeService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.post(environment.POVERENIK_APP + this.dodajZalbuApi, entity, {headers: headers, responseType: 'text'});
+  }
+
+  dobaviBrojac(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.dobaviBrojacApi, {headers: headers, responseType: 'text'});
+
+  }
+
+  dobaviNeodgovoreneZahteve(email: string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/plain',
+      'Accept': '*/*',
+    });
+    let zahtev: string = `<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body> <pronadjiNeodgovoreneZahteve xmlns="http://www.ftn.uns.ac.rs/zahtev"><email>${email}</email></pronadjiNeodgovoreneZahteve></soap:Body></soap:Envelope>`;
+    console.log(zahtev)
+    return this.http.post(environment.SLUZBENIK_APP + this.dobaviNeodgovoreneZahteveApi, zahtev, {headers: headers, responseType: 'text'});
   }
 }

@@ -118,25 +118,15 @@ public class ZalbaCutanjeController {
 
 	@PostMapping
 	public ResponseEntity<Boolean> kreirajZahtev(@RequestBody String zalba) {
-		
-		
-		//String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
 		try {
 			this.zalbaCutanjeService.dodajZalbuIzTeksta(zalba);
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
-			
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);	
 		}
 		
-		//Korisnik k = this.korisnikService.pronadjiPoEmailu(email);
-		//System.out.println(zalbaCutanjeDto.getRazlog_zalbe());
-		//boolean ok = this.zalbaCutanjeService.dodajZalbu(zalbaCutanjeDto, k);
-		
-
-			
 
 	}
 }

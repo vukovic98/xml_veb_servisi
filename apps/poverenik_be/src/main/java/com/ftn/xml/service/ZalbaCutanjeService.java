@@ -1,18 +1,25 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.StringReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
@@ -22,8 +29,11 @@ import org.xmldb.api.modules.XMLResource;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
 import com.ftn.xml.helper.DodajZalbuCutanjeMapper;
+import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
 import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
+import com.ftn.xml.model.zalba_cutanje.ListaZalbiCutanje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -31,6 +41,7 @@ import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
 import com.ximpleware.XMLModifier;
+
 
 @Service
 public class ZalbaCutanjeService {
@@ -301,9 +312,38 @@ public class ZalbaCutanjeService {
 		
 	}
 
-	public void dodajZalbuIzTeksta(String zalba) throws Exception {
-		// TODO Auto-generated method stub
-		this.zalbaCutanjeRepository.dodajZalbuIzTeksta(zalba);
+	public void dodajZalbuIzTeksta(String zalba) throws JAXBException {
+     	//validacija  
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		// XML schema validacija
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema;
+		try {
+			schema = schemaFactory.newSchema(new File("./data/zalba_cutanje.xsd"));
+			unmarshaller.setSchema(schema);
+		} catch (SAXException e2) {
+			e2.printStackTrace();
+		}
+		// Podesavanje unmarshaller-a za XML schema validaciju
+		
+        try {
+			unmarshaller.setEventHandler(new MyValidationEventHandler());
+		} catch (JAXBException e1) {
+			e1.printStackTrace();
+		}
+		StringReader reader = new StringReader(zalba);
+		ZalbaCutanje z;
+		try {
+			z = (ZalbaCutanje) unmarshaller.unmarshal(reader);
+			this.zalbaCutanjeRepository.dodajZalbuIzTeksta(zalba, z);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
 	}
 
 }

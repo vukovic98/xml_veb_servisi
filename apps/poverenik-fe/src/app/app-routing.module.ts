@@ -6,6 +6,7 @@ import {HomepageComponent} from './components/homepage/homepage.component';
 import {ZalbeCutanjeComponent} from './components/zalbe-cutanje-lista/zalbe-cutanje.component';
 import {ZalbeComponent} from './components/zalbe/zalbe.component';
 
+
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
   {path: 'log-in', component: LoginComponent},

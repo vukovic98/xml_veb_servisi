@@ -26,6 +26,7 @@ import { ZalbeCutanjeComponent } from './components/zalbe-cutanje-lista/zalbe-cu
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
+import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-odluku.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-c
     ZalbeCutanjeComponent,
     ZalbaCutanjeComponent,
     ZalbeComponent,
-    PodnosenjeZalbeCutanjeComponent
+    PodnosenjeZalbeCutanjeComponent,
+    ZalbaNaOdlukuComponent
   ],
     imports: [
       BrowserModule,

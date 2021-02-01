@@ -27,6 +27,7 @@ import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
+import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +41,27 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
     ZalbeComponent,
     ResenjeComponent,
     ResenjaComponent,
-   PodnosenjeZalbeCutanjeComponent
+    PodnosenjeZalbeCutanjeComponent
   ],
-    imports: [
-  
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatDialogModule,
+    CommonModule,
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCardModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

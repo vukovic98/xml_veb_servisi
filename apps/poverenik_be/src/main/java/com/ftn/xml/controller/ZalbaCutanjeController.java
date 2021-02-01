@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
-import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
 
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;

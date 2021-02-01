@@ -42,15 +42,21 @@ public class ResenjeController {
 	}
 	
 	@GetMapping(path = "/user",consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<ArrayList<ResenjeDTO>> getAllByUser() throws XMLDBException, JAXBException {
+	public ResponseEntity<ArrayList<ResenjeDTO>> getAllByUser(){
 		
 		String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
-		ArrayList<ResenjeDTO> resenja = this.resenjeService.getAllForUser(email);
-		if (resenja.isEmpty()) {
+	
+		try {
+			ArrayList<ResenjeDTO> resenja = this.resenjeService.getAllForUser(email);
+			return new ResponseEntity<ArrayList<ResenjeDTO>>(resenja,HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-		} else
-			return new ResponseEntity<>(resenja, HttpStatus.OK);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		
 	}
 	

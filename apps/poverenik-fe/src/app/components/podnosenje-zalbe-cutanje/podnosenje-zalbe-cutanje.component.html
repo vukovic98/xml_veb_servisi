@@ -1,29 +1,35 @@
 <div class="jumbotron col-md-10 m-auto bg-light shadow mt-5 mb-5 pb-3 pt-3">
   <h1 class="d-flex justify-content-center">Поднеси жалбу на ћутање управе</h1>
   <div class="d-flex justify-content-center">
-    <form class=" form-inline " ngForm="zalbaCutanjeForm" (ngSubmit)="sastaviZalbu()">
+    <form class="row col-md-12 form-inline" ngForm="zalbaCutanjeForm" (ngSubmit)="sastaviZalbu()">
+      <div class="form-group col-md-5">
         <label>Одаберите разлог жалбе:</label>
-        <select
-
+          <select
           [(ngModel)]="razlogZalbe"
           name="razlozi"
           id="razlozi"
-        >
+          >
           <option id="r1">Није поступио</option>
           <option id="r2">Није поступио у целости</option>
           <option id="r3">Није поступио у законском року</option>
-        </select>
+          </select>
+      </div>
+      <div class="form-group col-md-5">
         <label>Одаберите захтев:</label>
-        <select
-          [(ngModel)]="brojZahteva"
-          name="zahtevi"
-          id="zahtevi"
-        >
-          <option>1</option>
-          <option>5</option>
-          <option>8</option>
-        </select>
-        <button class="btn" >OK</button>
+
+          <select
+            [(ngModel)]="zahtev"
+            name="zahtevi"
+            id="zahtevi"
+          >
+            <option *ngFor='let z of zahtevi' [ngValue]="z">{{z.children[0].children[0].children[0]}}--{{z.children[2].children[0].children[1].children[0]}}</option>
+          </select>
+
+
+      </div>
+      <div class="form-group col-md-2">
+        <button class="btn" >Састави жалбу</button>
+      </div>
     </form>
 
 
@@ -33,7 +39,7 @@
   <div class="col-md-10 m-auto" id="zalbaCutanjeEditor">
   </div>
   <div class="d-flex justify-content-center">
-    <button class="btn btnColor" (click)="posalji()">Пошаљи</button>
+    <button *ngIf="btnPosalji" class="btn btnColor" (click)="posalji()">Пошаљи</button>
   </div>
 
 

@@ -7,6 +7,7 @@ import {ZalbeCutanjeComponent} from './components/zalbe-cutanje-lista/zalbe-cuta
 import {ZalbeComponent} from './components/zalbe/zalbe.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
+import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},

@@ -13,7 +13,7 @@ export class ResenjaComponent implements OnInit {
   constructor(private resenjeService: ResenjaService) { }
 
   ngOnInit(): void {
-    this.naslov = "Resenja";
+    this.naslov = "Решења";
     this.uloga = localStorage.getItem('uloga');
     if(this.uloga == 'K'){
       this.resenjeService.resenjaUser().subscribe( zalbe => {

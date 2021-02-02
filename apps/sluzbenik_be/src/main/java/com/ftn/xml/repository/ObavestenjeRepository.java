@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
+import com.ftn.xml.db.FusekiManager;
+import com.ftn.xml.dto.ObavestenjeFusekiDTO;
 
 @Repository
 public class ObavestenjeRepository {
@@ -26,6 +28,9 @@ public class ObavestenjeRepository {
 
 	@Autowired
 	private ExistManager existManager;
+	
+	@Autowired
+	private FusekiManager fusekiManager;
 
 	public boolean proveraPotvrdeZahteva(long zahtev_id) {
 		String xPath = "/lista_obavestenja/obavestenje[broj_zahteva=" + zahtev_id + "]";
@@ -37,6 +42,18 @@ public class ObavestenjeRepository {
 				return true;
 			else
 				return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public boolean dodajObavestenje(String xml, ObavestenjeFusekiDTO dto, String id) {
+		String xPath = "/lista_obavestenja";
+		
+		try {
+			this.existManager.append(collectionId, documentId, xPath, xml, APPEND);
+			this.fusekiManager.dodajObavestenje(id, dto);
+			return true;
 		} catch (Exception e) {
 			return false;
 		}

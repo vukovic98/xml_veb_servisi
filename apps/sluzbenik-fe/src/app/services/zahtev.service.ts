@@ -14,6 +14,7 @@ export class ZahtevService {
   private preuzmiPDFApi: string = "zahtev/generisiPDF/";
   private preuzmiHTMLApi: string = "zahtev/generisiHTML/";
   private kreirajZahtevApi: string = "zahtev/";
+  private mejlOdbijanjeZahtevaApi: string = "email/odbijen-zahtev"
 
 
   constructor(private http: HttpClient) { }
@@ -34,6 +35,15 @@ export class ZahtevService {
     });
 
     return this.http.get(environment.SLUZBENIK_APP + this.sviZahteviApi, {headers: headers, responseType: 'text'});
+  }
+
+  dobaviZahtevPoId(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+
+    return this.http.get(environment.SLUZBENIK_APP + this.sviZahteviApi + id, {headers: headers, responseType: 'text'});
   }
 
   preuzmiPDF(zahtev_id: number): any {
@@ -60,4 +70,24 @@ export class ZahtevService {
     return this.http.post(environment.SLUZBENIK_APP + this.kreirajZahtevApi, data, {headers: headers});
   }
 
+  odbijZahtev(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+
+    return this.http.delete(environment.SLUZBENIK_APP + this.sviZahteviApi + id, {headers: headers});
+  }
+
+
+  posaljiMejlZaOdbijanjeZahteva(data: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml;;charset=UTF-8',
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.MAIL_APP + this.mejlOdbijanjeZahtevaApi, data, {headers: headers});
+  }
 }
+
+
+

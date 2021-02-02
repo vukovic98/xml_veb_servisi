@@ -12,6 +12,12 @@ public class ZahtevSluzbenikaDTO {
 	public String kontakt;
 	public String korisnik;
 	public boolean odobren;
+	public String sediste_ustanove;
+	public String naziv_podnosioca;
+	public String grad_podnosioca;
+	public String ulica_podnosioca;
+	public String broj_ulice_podnosioca;
+	public String korisnik_email;
 
 	public ZahtevSluzbenikaDTO() {
 		super();
@@ -32,6 +38,54 @@ public class ZahtevSluzbenikaDTO {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getKorisnik_email() {
+		return korisnik_email;
+	}
+
+	public void setKorisnik_email(String korisnik_email) {
+		this.korisnik_email = korisnik_email;
+	}
+
+	public String getGrad_podnosioca() {
+		return grad_podnosioca;
+	}
+
+	public void setGrad_podnosioca(String grad_podnosioca) {
+		this.grad_podnosioca = grad_podnosioca;
+	}
+
+	public String getUlica_podnosioca() {
+		return ulica_podnosioca;
+	}
+
+	public void setUlica_podnosioca(String ulica_podnosioca) {
+		this.ulica_podnosioca = ulica_podnosioca;
+	}
+
+	public String getBroj_ulice_podnosioca() {
+		return broj_ulice_podnosioca;
+	}
+
+	public void setBroj_ulice_podnosioca(String broj_ulice_podnosioca) {
+		this.broj_ulice_podnosioca = broj_ulice_podnosioca;
+	}
+
+	public String getSediste_ustanove() {
+		return sediste_ustanove;
+	}
+
+	public void setSediste_ustanove(String sediste_ustanove) {
+		this.sediste_ustanove = sediste_ustanove;
+	}
+
+	public String getNaziv_podnosioca() {
+		return naziv_podnosioca;
+	}
+
+	public void setNaziv_podnosioca(String naziv_podnosioca) {
+		this.naziv_podnosioca = naziv_podnosioca;
 	}
 
 	public void setId(long id) {

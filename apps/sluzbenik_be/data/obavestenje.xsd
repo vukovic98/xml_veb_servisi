@@ -39,6 +39,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="naziv">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="sediste">
     <xs:complexType mixed="true">
       <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
@@ -58,7 +64,7 @@
   <xs:element name="datum_zahteva">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:string">
+        <xs:extension base="xs:date">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -69,12 +75,24 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="o:ime_i_prezime"/>
-        <xs:element ref="o:naziv"/>
-        <xs:element ref="o:adresa"/>
+        <xs:element ref="o:naziv_podnosioca"/>
+        <xs:element ref="o:adresa_podnosioca"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ime_i_prezime">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="naziv_podnosioca">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adresa_podnosioca">
     <xs:complexType mixed="true">
       <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
       <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
@@ -116,6 +134,18 @@
   <xs:element name="cas_uvida" type="xs:string"/>
   <xs:element name="sat_od" type="xs:string"/>
   <xs:element name="sat_do" type="xs:string"/>
+  <xs:element name="adresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="o:grad"/>
+        <xs:element ref="o:ulica"/>
+        <xs:element ref="o:broj"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="grad" type="xs:string"/>
+  <xs:element name="ulica" type="xs:string"/>
+  <xs:element name="broj" type="xs:integer"/>
   <xs:element name="broj_kancelarije" type="xs:integer"/>
   <xs:element name="cena" type="xs:decimal"/>
   <xs:element name="ziro_racun">
@@ -147,24 +177,4 @@
       </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="naziv">
-    <xs:complexType mixed="true">
-      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
-      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="adresa">
-    <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="o:broj"/>
-        <xs:element ref="o:grad"/>
-        <xs:element ref="o:ulica"/>
-      </xs:choice>
-      <xs:attribute name="datatype" type="xs:NMTOKEN"/>
-      <xs:attribute name="property" type="xs:NMTOKEN"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="broj" type="xs:integer"/>
-  <xs:element name="grad" type="xs:string"/>
-  <xs:element name="ulica" type="xs:string"/>
 </xs:schema>

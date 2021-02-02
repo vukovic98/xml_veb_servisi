@@ -50,12 +50,12 @@
 					<fo:block font-family="Times New Roman" text-align="left"
 						font-size="11pt" text-decoration="underline">
 						<xsl:value-of
-							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/naziv"></xsl:value-of>
+							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/naziv_podnosioca"></xsl:value-of>
 					</fo:block>
 					<fo:block font-family="Times New Roman" text-align="left"
 						font-size="11pt" text-decoration="underline">
 						<xsl:value-of
-							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/adresa"></xsl:value-of>
+							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/adresa_podnosioca"></xsl:value-of>
 					</fo:block>
 					<fo:block font-family="Times New Roman" text-align="left"
 						font-size="11pt">

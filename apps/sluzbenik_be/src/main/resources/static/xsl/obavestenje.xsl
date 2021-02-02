@@ -278,11 +278,11 @@
 					</p>
 					<p>
 					<u><xsl:value-of
-							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/naziv"></xsl:value-of></u>
+							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/naziv_podnosioca"></xsl:value-of></u>
 					</p>
 					<p>
 					<u><xsl:value-of
-							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/adresa"></xsl:value-of></u>
+							select="/obavestenje/osnovni_podaci/podaci_o_podnosiocu/adresa_podnosioca"></xsl:value-of></u>
 					</p>
 					<p style="font-family: 'Times New Roman';
 					margin-top: -10pt;">Име и презиме / назив / и адреса подносиоца захтева</p>

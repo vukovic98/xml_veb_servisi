@@ -5,7 +5,6 @@
 // Generated on: 2021.01.30 at 12:50:28 PM CET 
 //
 
-
 package com.ftn.xml.model.brojac;
 
 import java.math.BigInteger;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -36,37 +37,42 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "brojacZahtev"
-})
+@XmlType(name = "", propOrder = { "brojacZahtev", "brojacObavestenje" })
 @XmlRootElement(name = "brojac")
 public class Brojac {
 
-    @XmlElement(name = "brojac_zahtev", required = true)
-    protected int brojacZahtev;
+	@XmlElement(name = "brojac_zahtev", required = true)
+	protected int brojacZahtev;
 
-    /**
-     * Gets the value of the brojacZahtev property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public int getBrojacZahtev() {
-        return brojacZahtev;
-    }
+	@XmlElement(name = "brojac_obavestenje", required = true)
+	protected int brojacObavestenje;
 
-    /**
-     * Sets the value of the brojacZahtev property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setBrojacZahtev(int value) {
-        this.brojacZahtev = value;
-    }
+	/**
+	 * Gets the value of the brojacZahtev property.
+	 * 
+	 * @return possible object is {@link BigInteger }
+	 * 
+	 */
+	public int getBrojacZahtev() {
+		return brojacZahtev;
+	}
+
+	public int getBrojacObavestenje() {
+		return brojacObavestenje;
+	}
+
+	public void setBrojacObavestenje(int brojacObavestenje) {
+		this.brojacObavestenje = brojacObavestenje;
+	}
+
+	/**
+	 * Sets the value of the brojacZahtev property.
+	 * 
+	 * @param value allowed object is {@link BigInteger }
+	 * 
+	 */
+	public void setBrojacZahtev(int value) {
+		this.brojacZahtev = value;
+	}
 
 }

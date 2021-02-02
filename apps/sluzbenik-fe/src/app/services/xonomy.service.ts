@@ -30,12 +30,10 @@ export class XonomyService {
         }
       }
     },
-    // <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
-//     <sediste datatype="xs:string" property="pred:sediste_ustanove">Novi Sad</sediste>
-// <broj_predmeta datatype="xs:string" property="pred:br_predmeta">12345</broj_predmeta>
-//     <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-24</datum_zahteva>
+
     elements: {
       obavestenje: {
+        hasText: false,
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -56,79 +54,319 @@ export class XonomyService {
         }
       },
 
+      // OSNOVNI PODACI - PODACI O ORGANU
+
       naziv:{
         hasText: true,
         oneliner: true,
         asker: Xonomy.askString,
-        isReadOnly: true
-      },
-      sediste_organa:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      opis_informacije:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      mesto_trazioca:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      ulica_trazioca:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      broj_trazioca:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      kontakt:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true
-      },
-      opis_zahteva:{
-        hasText: true,
-        asker: Xonomy.askPicklist,
-        askerParameter: [
-          {value: "zahtev_obavestenje", caption: "Zahtev za obaveštenjem da li organ poseduje traženu informaciju"},
-          {value: "zahtev_kopija", caption: "Zahtev za uvid u dokument koji sadrži traženu informaciju"},
-          {value: "zahtev_uvid", caption: "Zahtev za kopiju dokumenta koji sadrži traženu informaciju"},
-          {value: "zahtev_dostava", caption: "Zahtev za dostavu kopije dokumenta koji sadrži traženu informaciju"}
-        ],
-        menu: [
-          {
-            caption: 'Dodaj način dostavljanja zahteva',
-            action: Xonomy.newElementChild,
-            actionParameter: '<nacin_dostave></nacin_dostave>',
-            hideIf: function(jsElement) {
-              return (jsElement.hasChildElement("nacin_dostave"))
-            }
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
           }
-        ]
+        }
       },
-      nacin_dostave: {
+      sediste:{
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      broj_predmeta:{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      datum_zahteva:{
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+
+      // OSNOVNI PODACI - PODACI O PODNOSIOCU
+      ime_i_prezime:{
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      naziv_podnosioca:{
+        hasText: true,
+        oneliner: true,
+        asker: Xonomy.askString,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      adresa_podnosioca:{
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+
+      // SADRZAJ
+      godina_zahteva:{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      opis_trazene_informacije: {
         hasText: true,
         oneliner: false,
-        asker: Xonomy.askPicklist,
-        askerParameter: [
-          {value: "posta", caption: "Dostava poštom"},
-          {value: "faks", caption: "Dostava faksom"},
-          {value: "e_posta", caption: "Dostava mejlom"},
-          {value: "drugi", caption: "Drugi način dostave"}
-        ],
-      menu: [
-        {
-          caption: "Ukloni način dostave",
-          action: Xonomy.deleteElement
+        asker: Xonomy.askString,
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
         }
-      ]
-    }
+      },
+      datum_uvida: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      cas_uvida: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      sat_od: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString
+      },
+      sat_do: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      grad: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      ulica: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      broj: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      broj_kancelarije: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      cena: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+      },
+      ziro_racun: {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        oneliner: false,
+        asker: Xonomy.askString,
+        attributes: {
+          "poziv_na_broj": {
+            isInvisible: true,
+          }
+        }
+      },
+
+      // PODNOZJE
+      podnozje: {
+        isInvisible: true
+      },
+      potpis_ovlascenog_lica: {
+        isInvisible: true
+      },
+
+      broj_zahteva: {
+        isInvisible: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      }
     }
   }
 }

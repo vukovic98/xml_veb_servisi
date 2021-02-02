@@ -2,9 +2,14 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
 import org.apache.commons.io.IOUtils;
+import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,8 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ObavestenjeDTO;
 import com.ftn.xml.model.obavestenje.ListaObavestenja;
@@ -34,7 +43,7 @@ public class ObavestenjeController {
 
 		for (Obavestenje o : lista.getObavestenje()) {
 			ObavestenjeDTO od = new ObavestenjeDTO();
-			
+
 			String[] about = o.getAbout().split("/");
 			String id = about[about.length - 1];
 
@@ -70,7 +79,7 @@ public class ObavestenjeController {
 
 			for (Obavestenje o : lista.getObavestenje()) {
 				ObavestenjeDTO od = new ObavestenjeDTO();
-				
+
 				String[] about = o.getAbout().split("/");
 				String id = about[about.length - 1];
 
@@ -99,33 +108,57 @@ public class ObavestenjeController {
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("obavestenje_id") long obavestenje_id) {
 
 		String file_path = this.obavestenjeService.generisiPDF(obavestenje_id);
-		
+
 		try {
 			File file = new File(file_path);
 			FileInputStream fileInputStream = new FileInputStream(file);
-            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-	
+
 	}
-	
+
 	@GetMapping("/generisiHTML/{obavestenje_id}")
 	public ResponseEntity<byte[]> generisiHTML(@PathVariable("obavestenje_id") long obavestenje_id) {
 
 		String file_path = this.obavestenjeService.generisiHTML(obavestenje_id);
-		
+
 		try {
 			File file = new File(file_path);
 			FileInputStream fileInputStream = new FileInputStream(file);
-            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-	
+
+	}
+
+	@GetMapping(path = "/getAll")
+	public ResponseEntity<ListaObavestenja> nadjisva() {
+		return new ResponseEntity<>(this.obavestenjeService.pronadjiSvaObavestenja(), HttpStatus.OK);
+	}
+
+	@PostMapping
+	public ResponseEntity<HttpStatus> kreirajObavestenje(@RequestBody String xml) {
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.obavestenje");
+			Unmarshaller unmarshaller = context.createUnmarshaller();
+
+			StringReader res = new StringReader(xml);
+			Obavestenje o = (Obavestenje) unmarshaller.unmarshal(res);
+			
+			this.obavestenjeService.dodajObavestenje(xml, o);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }

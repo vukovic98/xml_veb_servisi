@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lista_obavestenja
+	xmlns="http://www.w3.org/ns/obavestenje" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ftn.uns.ac.rs/obavestenje obavestenje.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+    xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    >
+    <obavestenje about="http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <osnovni_podaci>
+            <podaci_o_organu>
+                <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
+                <sediste datatype="xs:string" property="pred:sediste_ustanove">Novi Sad</sediste>
+                <broj_predmeta datatype="xs:string" property="pred:br_predmeta">12345</broj_predmeta>
+                <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-24</datum_zahteva>
+            </podaci_o_organu>
+            <podaci_o_podnosiocu>
+                <ime_i_prezime datatype="xs:string" property="pred:ime_podnosioca">Vladimir Vukovic</ime_i_prezime>
+                <naziv datatype="xs:string" property="pred:naziv_podnosioca">Raska</naziv>
+                <adresa datatype="xs:string" property="pred:adresa_podnosioca">Tomice Aleksic 25</adresa>
+            </podaci_o_podnosiocu>
+        </osnovni_podaci>
+        <sadrzaj>
+            <godina_zahteva datatype="xs:integer" property="pred:godina_zahteva">2020</godina_zahteva>
+            <opis_trazene_informacije datatype="xs:string" property="pred:opis">Uvid u spisak polozenih ispita</opis_trazene_informacije>
+            <datum_uvida>2020-12-04</datum_uvida>
+            <cas_uvida>15:30:00</cas_uvida>
+            <sat_od>14:26:30</sat_od>
+            <sat_do>20:26:00</sat_do>
+            <adresa>
+                <grad>Novi Sad</grad>
+                <ulica>Adresa fakulteta</ulica>
+                <broj>23</broj>
+            </adresa>
+            <broj_kancelarije>12</broj_kancelarije>
+            <cena>176.00</cena>
+            <ziro_racun poziv_na_broj="97">840-74232884311-30</ziro_racun>
+        </sadrzaj>
+        <podnozje>
+            <potpis_ovlascenog_lica/>
+        </podnozje>
+        <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">1</broj_zahteva>
+    </obavestenje>
+    
+    <obavestenje about="http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/2" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <osnovni_podaci>
+            <podaci_o_organu>
+                <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
+                <sediste datatype="xs:string" property="pred:sediste_ustanove">Novi Sad</sediste>
+                <broj_predmeta datatype="xs:string" property="pred:br_predmeta">1234567</broj_predmeta>
+                <datum_zahteva datatype="xs:string" property="pred:datum_zahteva">2020-12-24</datum_zahteva>
+            </podaci_o_organu>
+            <podaci_o_podnosiocu>
+                <ime_i_prezime datatype="xs:string" property="pred:ime_podnosioca">Vladimir Vukovic</ime_i_prezime>
+                <naziv datatype="xs:string" property="pred:naziv_podnosioca">Raska</naziv>
+                <adresa datatype="xs:string" property="pred:adresa_podnosioca">Tomice Aleksic 25</adresa>
+            </podaci_o_podnosiocu>
+        </osnovni_podaci>
+        <sadrzaj>
+            <godina_zahteva datatype="xs:integer" property="pred:godina_zahteva">2020</godina_zahteva>
+            <opis_trazene_informacije datatype="xs:string" property="pred:opis">Uvid u spisak polozenih ispita</opis_trazene_informacije>
+            <datum_uvida>2020-12-04</datum_uvida>
+            <cas_uvida>15:30:00</cas_uvida>
+            <sat_od>14:26:30</sat_od>
+            <sat_do>20:26:00</sat_do>
+            <adresa>
+                <grad>Novi Sad</grad>
+                <ulica>Adresa fakulteta</ulica>
+                <broj>23</broj>
+            </adresa>
+            <broj_kancelarije>12</broj_kancelarije>
+            <cena>176.00</cena>
+            <ziro_racun poziv_na_broj="97">840-74232884311-30</ziro_racun>
+        </sadrzaj>
+        <podnozje>
+            <potpis_ovlascenog_lica/>
+        </podnozje>
+        <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">2</broj_zahteva>
+    </obavestenje>
+
+</lista_obavestenja>

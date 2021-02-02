@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="http://ftn.uns.ac.rs/zalba_cutanje"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://ftn.uns.ac.rs/zalba_cutanje">
+  <xs:element name="lista_zalbi_cutanje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:zalba_cutanje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="zalba_cutanje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:zaglavlje"/>
+        <xs:element ref="z:sadrzaj"/>
+        <xs:element ref="z:podnozje"/>
+        <xs:element ref="z:broj_zahteva"/>
+      </xs:sequence>
+      <xs:attribute name="about" use="required" type="xs:anyURI"/>
+      <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="zaglavlje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:primalac_zalbe"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="primalac_zalbe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:naziv_primaoca"/>
+        <xs:element ref="z:adresa"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="naziv_primaoca">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sadrzaj">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:naziv_organa"/>
+        <xs:element ref="z:razlozi_zalbe"/>
+        <xs:element ref="z:datum_zahteva"/>
+        <xs:element ref="z:podaci_o_zahtevu_i_informacijama"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="naziv_organa">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="razlozi_zalbe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="z:razlog"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="razlog">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="otkaceno" use="required" type="xs:boolean"/>
+      <xs:attribute name="razlog" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum_zahteva" type="xs:date"/>
+  <xs:element name="podaci_o_zahtevu_i_informacijama" type="xs:string"/>
+  <xs:element name="podnozje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:podnosilac_zalbe"/>
+        <xs:element ref="z:mesto_i_datum"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="podnosilac_zalbe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:korisnik_email"/>
+        <xs:element ref="z:ime_i_prezime"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="z:adresa"/>
+          <xs:element ref="z:drugi_podaci_za_kontakt"/>
+          <xs:element ref="z:potpis"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="korisnik_email">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ime_i_prezime">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="drugi_podaci_za_kontakt" type="xs:string"/>
+  <xs:element name="potpis">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="mesto_i_datum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:mesto"/>
+        <xs:element ref="z:datum_zalbe"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datum_zalbe">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj_zahteva">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="z:ulica"/>
+        <xs:element ref="z:broj"/>
+        <xs:element ref="z:mesto"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ulica">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
+          <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mesto">
+    <xs:complexType mixed="true">
+      <xs:attribute name="datatype" type="xs:NMTOKEN"/>
+      <xs:attribute name="property" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

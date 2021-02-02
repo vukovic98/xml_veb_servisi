@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
+import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 
 @Repository
@@ -28,6 +29,9 @@ public class ZalbaCutanjeRepository {
 
 	@Autowired
 	private ExistManager existManager;
+	
+	@Autowired
+	private FusekiManager fusekiManager;
 
 	public ResourceSet dobaviSve() {
 		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
@@ -67,9 +71,10 @@ public class ZalbaCutanjeRepository {
 		return false;
 	}
 
-	public void dodajZalbuIzTeksta(String zalba) throws Exception {
+	public void dodajZalbuIzTeksta(String zalba, ZalbaCutanje z) throws Exception {
 		String contextXPath = "/lista_zalbi_cutanje";
 		this.existManager.append(collectionId, documentId, contextXPath, zalba, APPEND);
+		this.fusekiManager.dodajZalbuCutanje(z);
 		
 	}
 }

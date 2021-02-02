@@ -9,6 +9,7 @@ import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 
+
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
   {path: 'log-in', component: LoginComponent},

@@ -195,7 +195,7 @@ public class ZahtevService {
 	}
 
 	public ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteveZaKorisnika(String email) {
-		
+		//да не може више пута да се жали на исти захтев ДОДАТИ
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		ResourceSet set = this.zahtevRepository.pronadjiNeodgovoreneZahteveZaKorisnika(email);

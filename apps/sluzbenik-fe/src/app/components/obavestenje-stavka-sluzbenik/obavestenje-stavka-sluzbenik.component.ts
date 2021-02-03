@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ObavestenjeService} from '../../services/obavestenje.service';
 import {AuthService} from '../../services/auth.service';
+import {ObavestenjeMail} from '../../model/shared-modules.model';
+import * as JsonToXML from 'js2xmlparser';
 
 @Component({
   selector: 'app-obavestenje-stavka-sluzbenik',
@@ -51,8 +53,10 @@ export class ObavestenjeStavkaSluzbenikComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(fileURL);
       a.remove();
+
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
+
 
 }

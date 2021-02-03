@@ -8,9 +8,16 @@ import javax.xml.bind.Unmarshaller;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.dto.ObavestenjeFusekiDTO;
 import com.ftn.xml.jaxb.util.XSLFOTransformerObavestenje;
-import com.ftn.xml.jaxb.util.XSLFOTransformerZahtev;
+import com.ftn.xml.mapper.DodajObavestenjeMapper;
 import com.ftn.xml.model.obavestenje.ListaObavestenja;
 import com.ftn.xml.model.obavestenje.Obavestenje;
 import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
@@ -20,13 +27,6 @@ import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
 import com.ximpleware.XMLModifier;
-
-import org.springframework.stereotype.Service;
-import org.xmldb.api.base.Resource;
-import org.xmldb.api.base.ResourceIterator;
-import org.xmldb.api.base.ResourceSet;
-import org.xmldb.api.base.XMLDBException;
-import org.xmldb.api.modules.XMLResource;
 
 @Service
 public class ObavestenjeService {
@@ -39,6 +39,24 @@ public class ObavestenjeService {
 
 	public boolean proveraPotvrdeZahteva(long zahtev_id) {
 		return this.obavestenjeRepository.proveraPotvrdeZahteva(zahtev_id);
+	}
+	
+	public boolean dodajObavestenje(String xml, Obavestenje o) {
+		DodajObavestenjeMapper mapper = new DodajObavestenjeMapper();
+		
+		ObavestenjeFusekiDTO dto = mapper.objectToFusekiDTO(o);
+		
+		String[] about = o.getAbout().split("/");
+		
+		boolean ok = this.obavestenjeRepository.dodajObavestenje(xml, dto, about[about.length-1]);
+		
+		if(ok) {
+			this.zahtevService.odobriZahtev(o.getBrojZahteva().getValue()+"");
+			
+			return true;
+		}
+		else
+			return false;
 	}
 
 	public ListaObavestenja pronadjiSvaObavestenja() {

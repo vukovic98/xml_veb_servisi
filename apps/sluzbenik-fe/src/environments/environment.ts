@@ -4,5 +4,6 @@
 
 export const environment = {
   SLUZBENIK_APP: "http://localhost:8081/",
+  MAIL_APP: "http://localhost:8084/",
   production: false
 };

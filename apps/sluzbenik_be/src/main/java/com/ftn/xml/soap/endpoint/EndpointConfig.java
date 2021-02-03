@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.ftn.xml.soap.zahtev.ZahtevServiceSoapBindingImpl;
+import com.ftn.xml.soap.zahtev_za_izjasnjenje_cutnja.ZahtevZaIzjasnjenjeCutnjaServiceSoapBindingImpl;
+import com.ftn.xml.soap.zahtev_za_izjasnjenje_odluka.ZahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl;
 
 @Configuration
 public class EndpointConfig {
@@ -18,11 +20,31 @@ public class EndpointConfig {
 
     @Autowired
     ZahtevServiceSoapBindingImpl zahtevServiceSoapBindingImpl;
+    
+    @Autowired
+    ZahtevZaIzjasnjenjeCutnjaServiceSoapBindingImpl zahtevZaIzjasnjenjeCutnjaServiceSoapBindingImpl;
+    
+    @Autowired
+    ZahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl zahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl;
 
     @Bean(name="zahtevEndpointBean")
     public Endpoint zahtevEndpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, zahtevServiceSoapBindingImpl);
         endpoint.publish("/zahtev");
+        return endpoint;
+    }
+    
+    @Bean(name="zahtevZaIzjasnjenjeCutanjeEndpointBean")
+    public Endpoint zahtevZaIzjasnjenjeCutanjeEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, zahtevZaIzjasnjenjeCutnjaServiceSoapBindingImpl);
+        endpoint.publish("/zahtev_za_izjasnjenje_cutanje");
+        return endpoint;
+    }
+    
+    @Bean(name="zahtevZaIzjasnjenjeOdlukaEndpointBean")
+    public Endpoint zahtevZaIzjasnjenjeOdlukaEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, zahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl);
+        endpoint.publish("/zahtev_za_izjasnjenje_odluka");
         return endpoint;
     }
 }

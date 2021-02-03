@@ -15,6 +15,7 @@ import org.apache.jena.update.UpdateRequest;
 import org.springframework.stereotype.Service;
 
 import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
+import com.ftn.xml.dto.ObavestenjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.jaxb.util.SparqlUtil;
 
@@ -22,7 +23,7 @@ import com.ftn.xml.jaxb.util.SparqlUtil;
 public class FusekiManager {
 
 	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
-	
+
 	private ConnectionProperties conn;
 
 	public FusekiManager() {
@@ -33,8 +34,85 @@ public class FusekiManager {
 		}
 	}
 
+	public void dodajObavestenje(String id, ObavestenjeFusekiDTO dto) {
+
+		String SPARQL_NAMED_GRAPH_URI = "/obavestenja";
+
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		// Making the changes manually
+		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/" + id);
+
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "adresa_podnosioca");
+		Literal literal1 = model.createLiteral(dto.getAdresa_podnosioca());
+
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "br_predmeta");
+		Literal literal2 = model.createLiteral(dto.getBr_predmeta());
+
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "broj_zahteva");
+		Literal literal3 = model.createTypedLiteral(dto.getBroj_zahteva());
+
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
+		Literal literal4 = model.createLiteral(dto.getDatum_zahteva());
+
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "godina_zahteva");
+		Literal literal5 = model.createLiteral(dto.getGodina_zahteva());
+
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ime_podnosioca");
+		Literal literal6 = model.createLiteral(dto.getIme_podnosioca());
+
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "naziv_podnosioca");
+		Literal literal7 = model.createLiteral(dto.getNaziv_podnosioca());
+
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "naziv_ustanove");
+		Literal literal8 = model.createTypedLiteral(dto.getNaziv_ustanove());
+
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "opis");
+		Literal literal9 = model.createLiteral(dto.getOpis());
+
+		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "sediste_ustanove");
+		Literal literal10 = model.createLiteral(dto.getSediste_ustanove());
+
+		// Adding the statements to the model
+		Statement statement1 = model.createStatement(resource, property1, literal1);
+		Statement statement2 = model.createStatement(resource, property2, literal2);
+		Statement statement3 = model.createStatement(resource, property3, literal3);
+		Statement statement4 = model.createStatement(resource, property4, literal4);
+		Statement statement5 = model.createStatement(resource, property5, literal5);
+		Statement statement6 = model.createStatement(resource, property6, literal6);
+		Statement statement7 = model.createStatement(resource, property7, literal7);
+		Statement statement8 = model.createStatement(resource, property8, literal8);
+		Statement statement9 = model.createStatement(resource, property9, literal9);
+		Statement statement10 = model.createStatement(resource, property10, literal10);
+
+		model.add(statement1);
+		model.add(statement2);
+		model.add(statement3);
+		model.add(statement4);
+		model.add(statement5);
+		model.add(statement6);
+		model.add(statement7);
+		model.add(statement8);
+		model.add(statement9);
+		model.add(statement10);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+
+		String sparqlUpdate = SparqlUtil.insertData(conn.dataEndpoint + SPARQL_NAMED_GRAPH_URI,
+				new String(out.toByteArray()));
+
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+		UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
+	}
+
 	public void dodajZahtev(String id, ZahtevFusekiDTO dto) {
-		
+
 		String SPARQL_NAMED_GRAPH_URI = "/zahtevi";
 
 		Model model = ModelFactory.createDefaultModel();
@@ -43,9 +121,8 @@ public class FusekiManager {
 		// Making the changes manually
 		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/zahtev/" + id);
 
-
 		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "broj_kuce_trazioca");
-		Literal literal1 = model.createLiteral(dto.getBroj_kuce_trazioca()+"");
+		Literal literal1 = model.createLiteral(dto.getBroj_kuce_trazioca() + "");
 
 		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
 		Literal literal2 = model.createLiteral(dto.getDatum_zahteva());
@@ -73,7 +150,7 @@ public class FusekiManager {
 
 		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "sediste_ustanove");
 		Literal literal10 = model.createLiteral(dto.getSediste_ustanove());
-		
+
 		Property property11 = model.createProperty(PREDICATE_NAMESPACE, "ulica_trazioca");
 		Literal literal11 = model.createLiteral(dto.getUlica_trazioca());
 
@@ -89,7 +166,6 @@ public class FusekiManager {
 		Statement statement9 = model.createStatement(resource, property9, literal9);
 		Statement statement10 = model.createStatement(resource, property10, literal10);
 		Statement statement11 = model.createStatement(resource, property11, literal11);
-
 
 		model.add(statement1);
 		model.add(statement2);

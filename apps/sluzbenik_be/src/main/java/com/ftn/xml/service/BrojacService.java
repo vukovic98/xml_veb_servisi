@@ -25,10 +25,10 @@ public class BrojacService {
 
 	@Autowired
 	private BrojacRepository brojacRepository;
-
+	
 	public int dobaviIdZahteva() {
 		try {
-			Resource res = this.brojacRepository.dobaviIdZahteva();
+			Resource res = this.brojacRepository.dobaviBrojac();
 
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.brojac");
 
@@ -40,9 +40,33 @@ public class BrojacService {
 			int trenutni = b.getBrojacZahtev();
 			int sledeci = trenutni + 1;
 			
-			String brojacXml = "<brojac_zahtev>" + sledeci + "</brojac_zahtev>";
+			String brojacXml = "<brojac_obavestenje>" + b.getBrojacObavestenje() + "</brojac_obavestenje><brojac_zahtev>" + sledeci + "</brojac_zahtev>";
 			
-			this.brojacRepository.sacuvajIdZahteva(brojacXml);
+			this.brojacRepository.sacuvajBrojac(brojacXml);
+			
+			return trenutni;
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	
+	public int dobaviIdObavestenja() {
+		try {
+			Resource res = this.brojacRepository.dobaviBrojac();
+
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.brojac");
+
+			Unmarshaller unmarshaller = context.createUnmarshaller();
+
+			Brojac b = (Brojac) unmarshaller
+					.unmarshal(((XMLResource) res).getContentAsDOM());
+			
+			int trenutni = b.getBrojacObavestenje();
+			int sledeci = trenutni + 1;
+			
+			String brojacXml = "<brojac_zahtev>" + b.getBrojacZahtev() + "</brojac_zahtev><brojac_obavestenje>" + sledeci + "</brojac_obavestenje>";
+			
+			this.brojacRepository.sacuvajBrojac(brojacXml);
 			
 			return trenutni;
 		} catch (Exception e) {

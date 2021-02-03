@@ -27,7 +27,7 @@ public class BrojacRepository {
 	@Autowired
 	private ExistManager existManager;
 
-	public Resource dobaviIdZahteva() {
+	public Resource dobaviBrojac() {
 		String xPath = "/brojac";
 
 		ResourceSet set;
@@ -40,7 +40,7 @@ public class BrojacRepository {
 		}
 	}
 
-	public boolean sacuvajIdZahteva(String changedBrojac) {
+	public boolean sacuvajBrojac(String changedBrojac) {
 		String xPath = "/brojac";
 		try {
 			this.existManager.update(collectionId, documentId, xPath, changedBrojac, UPDATE);

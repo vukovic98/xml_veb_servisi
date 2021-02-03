@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zahtevi_za_izjasnjenje_odluka xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
+        <zalba_na_odluku about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+            <osnovni_podaci>
+                <podaci_o_zaliocu>
+                    <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
+                    <zalioc_ime datatype="xs:string" property="pred:ime_zalioca">Vladimir</zalioc_ime>
+                    <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Vukovic</zalioc_prezime>
+                    <zalioc_naziv_zalbe datatype="xs:string" property="pred:naziv_zalbe">Zalba1</zalioc_naziv_zalbe>
+                    <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
+                    <zalioc_sediste datatype="xs:string" property="pred:sediste_zalioca">Novi Sad</zalioc_sediste>
+                </podaci_o_zaliocu>
+                <podaci_o_organu>
+                    <naziv datatype="xs:string" property="pred:naziv_organa">FTN</naziv>
+                </podaci_o_organu>
+            </osnovni_podaci>
+            <sadrzaj>
+                <broj_zalbe datatype="xs:integer" property="pred:broj_zalbe">101</broj_zalbe>
+                <godina_zalbe datatype="xs:string" property="pred:godina_zalbe">2020</godina_zalbe>
+                <datum_odbijenog_zahteva datatype="xs:string" property="pred:datum_odbijenog_zahteva">2020-12-04</datum_odbijenog_zahteva>
+                <odluka_organa_vlasti datatype="xs:string" property="pred:odluka">Odluka organa vlasti</odluka_organa_vlasti>
+            </sadrzaj>
+            <podnozje>
+                <mesto_zakljucka_zalbe datatype="xs:string" property="pred:mesto_zakljucka_zalbe">Novi Sad</mesto_zakljucka_zalbe>
+                <datum_zakljucka_zalbe datatype="xs:string" property="pred:datum_zakljucka_zalbe">2021-01-12</datum_zakljucka_zalbe>
+                <podaci_o_zaliocu>
+                    <zalioc_ime datatype="xs:string" property="pred:ime_zalioca">Nikola</zalioc_ime>
+                    <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Petrovic</zalioc_prezime>
+                    <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
+                    <drugi_podaci_za_kontakt datatype="xs:string" property="pred:kontakt_zalioca">petrovicnik96@gmail.com</drugi_podaci_za_kontakt>
+                    <potpis_zalioca datatype="xs:string" property="pred:potpis_zalioca">NikolaPetrovic</potpis_zalioca>
+                </podaci_o_zaliocu>
+            </podnozje>
+            <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">3</broj_zahteva>
+        </zalba_na_odluku>
+        
+    
+        <zalba_na_odluku about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/2" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+            <osnovni_podaci>
+                <podaci_o_zaliocu>
+                    <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
+                    <zalioc_ime datatype="xs:string" property="pred:ime_zalioca">Vladimir</zalioc_ime>
+                    <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Vukovic</zalioc_prezime>
+                    <zalioc_naziv_zalbe datatype="xs:string" property="pred:naziv_zalbe">Zalba1</zalioc_naziv_zalbe>
+                    <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
+                    <zalioc_sediste datatype="xs:string" property="pred:sediste_zalioca">Novi Sad</zalioc_sediste>
+                </podaci_o_zaliocu>
+                <podaci_o_organu>
+                    <naziv datatype="xs:string" property="pred:naziv_organa">FTN</naziv>
+                </podaci_o_organu>
+            </osnovni_podaci>
+            <sadrzaj>
+                <broj_zalbe datatype="xs:integer" property="pred:broj_zalbe">101</broj_zalbe>
+                <godina_zalbe datatype="xs:string" property="pred:godina_zalbe">2020</godina_zalbe>
+                <datum_odbijenog_zahteva datatype="xs:string" property="pred:datum_odbijenog_zahteva">2020-12-04</datum_odbijenog_zahteva>
+                <odluka_organa_vlasti datatype="xs:string" property="pred:odluka">Odluka organa vlasti</odluka_organa_vlasti>
+            </sadrzaj>
+            <podnozje>
+                <mesto_zakljucka_zalbe datatype="xs:string" property="pred:mesto_zakljucka_zalbe">Novi Sad</mesto_zakljucka_zalbe>
+                <datum_zakljucka_zalbe datatype="xs:string" property="pred:datum_zakljucka_zalbe">2021-01-12</datum_zakljucka_zalbe>
+                <podaci_o_zaliocu>
+                    <zalioc_ime datatype="xs:string" property="pred:ime_zalioca">Nikola</zalioc_ime>
+                    <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Petrovic</zalioc_prezime>
+                    <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
+                    <drugi_podaci_za_kontakt datatype="xs:string" property="pred:kontakt_zalioca">petrovicnik96@gmail.com</drugi_podaci_za_kontakt>
+                    <potpis_zalioca datatype="xs:string" property="pred:potpis_zalioca">NikolaPetrovic</potpis_zalioca>
+                </podaci_o_zaliocu>
+            </podnozje>
+            <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">3</broj_zahteva>
+        </zalba_na_odluku>
+        
+    
+</zahtevi_za_izjasnjenje_odluka>

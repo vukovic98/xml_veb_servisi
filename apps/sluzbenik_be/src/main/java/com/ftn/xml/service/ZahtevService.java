@@ -35,6 +35,14 @@ public class ZahtevService {
 
 	@Autowired
 	private ZahtevRepository zahtevRepository;
+	
+	public boolean odobriZahtev(String id) {
+		return this.zahtevRepository.odobriZahtev(id);
+	}
+	
+	public boolean odbijZahtev(String id) {
+		return this.zahtevRepository.odbijZahtev(id);
+	}
 
 	public boolean dodajZahtev(ZahtevZaPristupInformacijama z, int index) {
 

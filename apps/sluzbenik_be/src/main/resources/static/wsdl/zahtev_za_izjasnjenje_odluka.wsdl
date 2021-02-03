@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://ftn.uns.ac.rs/zalba_na_odluku"
+                  xmlns:tns="http://ftn.uns.ac.rs/zalba_na_odluku"
+                  name="ZahtevZaIzjasnjenjeOdlukaService">
+    <wsdl:types>
+        
+        <xsd:schema>
+            <xsd:import namespace="http://ftn.uns.ac.rs/zalba_na_odluku" schemaLocation="../xsd/zalba_na_odluku.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="dodajZahtevZaIzjasnjenjeOdlukaRequest">
+        <wsdl:part name="zalba_na_odluku" element="tns:zalba_na_odluku" />
+    </wsdl:message>
+    <wsdl:message name="dodajZahtevZaIzjasnjenjeOdlukaResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+    
+    <wsdl:message name="izbrisiZahtevZaIzjasnjenjeOdlukaRequest">
+        <wsdl:part name="id_zalbe" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="izbrisiZahtevZaIzjasnjenjeOdlukaResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:portType name="ZahtevZaIzjasnjenjeOdlukaServicePortType">
+        <wsdl:operation name="dodajZahtevZaIzjasnjenjeOdluka">
+            <wsdl:input message="tns:dodajZahtevZaIzjasnjenjeOdlukaRequest" />
+            <wsdl:output message="tns:dodajZahtevZaIzjasnjenjeOdlukaResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="izbrisiZahtevZaIzjasnjenjeOdluka">
+            <wsdl:input message="tns:izbrisiZahtevZaIzjasnjenjeOdlukaRequest" />
+            <wsdl:output message="tns:izbrisiZahtevZaIzjasnjenjeOdlukaResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ZahtevZaIzjasnjenjeOdlukaServiceSoapBinding" type="tns:ZahtevZaIzjasnjenjeOdlukaServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="dodajZahtevZaIzjasnjenjeOdluka">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_odluka/ws/dodajZahtevZaIzjasnjenjeOdluka" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="izbrisiZahtevZaIzjasnjenjeOdluka">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_odluka/ws/izbrisiZahtevZaIzjasnjenjeOdluka" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahtevZaIzjasnjenjeOdlukaService">
+        <wsdl:port name="ZahtevZaIzjasnjenjeOdlukaServiceSoapBinding" binding="tns:ZahtevZaIzjasnjenjeOdlukaServiceSoapBinding">
+            <soap:address location="http://localhost:8081/zahtevZaIzjasnjenjeOdlukaPort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

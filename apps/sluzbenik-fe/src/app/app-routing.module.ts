@@ -6,6 +6,9 @@ import {HomeComponent} from './components/home/home.component';
 import {DodajZahtevComponent} from './components/dodaj-zahtev/dodaj-zahtev.component';
 import {ObavestenjaKorisnikComponent} from './components/obavestenja-korisnik/obavestenja-korisnik.component';
 import {ObavestenjaSluzbenikComponent} from './components/obavestenja-sluzbenik/obavestenja-sluzbenik.component';
+import {DodajObavestenjeComponent} from './components/dodaj-obavestenje/dodaj-obavestenje.component';
+import {ZahteviZaIzjasnjenjeComponent} from './components/zahtevi-za-izjasnjenje/zahtevi-za-izjasnjenje.component';
+import {SluzbenikPretragaComponent} from './components/sluzbenik-pretraga/sluzbenik-pretraga.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
@@ -14,7 +17,10 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'dodaj-zahtev', component: DodajZahtevComponent},
   {path: 'obavestenja-korisnik', component: ObavestenjaKorisnikComponent},
-  {path: 'obavestenja-sluzbenik', component: ObavestenjaSluzbenikComponent}
+  {path: 'obavestenja-sluzbenik', component: ObavestenjaSluzbenikComponent},
+  {path: 'dodaj-obavestenje', component: DodajObavestenjeComponent},
+  {path: 'zahtevi-izjasnjenje', component: ZahteviZaIzjasnjenjeComponent},
+  {path: 'sluzbenik-pretraga', component: SluzbenikPretragaComponent}
 ];
 
 @NgModule({

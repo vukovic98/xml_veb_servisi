@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-navigation-bar></app-navigation-bar>
+  </div>
+
+  <div class="jumbotron row col-md-10 m-auto bg-light shadow mb-5 mt-5 p-4">
+    <form [formGroup]="pretragaForma" (ngSubmit)="pretrazi()" class="m-3">
+
+      <div class="row">
+        <div class="col-md-5">
+            <label for="dokument">Документ</label>
+            <select class="form-select mt-1" name="dokument" formControlName="dokument" id="dokument">
+              <option selected disabled>Одаберите документ</option>
+              <option value="1">Сви документи</option>
+              <option value="2">Захтеви</option>
+              <option value="3">Жалбе</option>
+              <option value="4">Решења</option>
+              <option value="5">Обавештења</option>
+            </select>
+            <div *ngIf="pretragaForma.controls['dokument'].invalid && pretragaForma.controls['dokument'].touched" class="ml-1 mt-0 mb-0">
+              <small *ngIf="pretragaForma.controls['dokument'].errors?.required" class="text-danger">Ово поље је обавезно</small>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+              <label for="tekst">Текст претраге</label>
+              <input type="text" class="form-control mt-1" name="tekst" formControlName="tekst" id="tekst" placeholder="Унесите текст претраге">
+              <div *ngIf="pretragaForma.controls['tekst'].invalid && pretragaForma.controls['tekst'].touched" class="ml-1 mt-0 mb-0">
+                <small *ngIf="pretragaForma.controls['tekst'].errors?.required" class="text-danger">Ово поље је обавезно</small>
+              </div>
+              </div>
+        </div>
+        <div class="col-md-2">
+              <div class="text-center">
+                <button id="loginBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btn-danger" [disabled]="!pretragaForma.valid">Претражи</button>
+              </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -10,6 +10,7 @@ import {environment} from '../../environments/environment';
 export class ObavestenjeService {
 
   private obavestenjaApi: string = 'obavestenje/';
+  private brojacApi: string = 'brojac/obavestenje';
   private obavestenjaZaKorisnikaApi: string = 'obavestenje/ulogovanKorisnik';
   private preuzmiPDFApi: string = "obavestenje/generisiPDF/";
   private preuzmiHTMLApi: string = "obavestenje/generisiHTML/";
@@ -49,5 +50,33 @@ export class ObavestenjeService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.get(environment.SLUZBENIK_APP + this.preuzmiHTMLApi + obavestenje_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+
+  dodajObavestenje(data: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken"),
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.SLUZBENIK_APP + this.obavestenjaApi, data, {headers: headers});
+  }
+
+  posaljiMejlZaOdobravanje(data: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.MAIL_APP + "/email", data, {headers: headers});
+  }
+
+  dobaviBrojacZaObavestenje(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+
+    return this.http.get(environment.SLUZBENIK_APP + this.brojacApi, {headers: headers, responseType: 'text'});
   }
 }

@@ -3,6 +3,11 @@ import {ZahtevService} from '../../services/zahtev.service';
 import {AuthService} from '../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DodajObavestenjeComponent} from '../dodaj-obavestenje/dodaj-obavestenje.component';
+import {Router} from '@angular/router';
+import Swal from "sweetalert2";
+import {OdbijenZahtevMail} from '../../model/shared-modules.model';
+import {consoleTestResultHandler} from 'tslint/lib/test';
+import * as JsonToXML from 'js2xmlparser';
 
 @Component({
   selector: 'app-zahtev-sluzbenik',
@@ -17,10 +22,11 @@ export class ZahtevSluzbenikComponent implements OnInit {
   constructor(
     private service: ZahtevService,
     private authService: AuthService,
-    private dialog: MatDialog
+    private route: Router
   ) { }
 
   ngOnInit(): void {
+    console.log(this.zahtev);
   }
 
   isApproved(): boolean {
@@ -48,16 +54,50 @@ export class ZahtevSluzbenikComponent implements OnInit {
   }
 
   dodajObavestenjeDijalog() {
-    const dialogRef = this.dialog.open(DodajObavestenjeComponent, {
-      width: '250px',
-      data: {obavestenje: this.obavestenje, idZahteva: this.zahtev[0].children[0]}
-    });
+    this.route.navigate(['dodaj-obavestenje'], {  queryParams: {  zahtev_id: this.zahtev[0].children[0] } });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      console.log("---------------");
-      console.log(this.obavestenje);
-    });
+  odbijZahtev() {
+    this.service.odbijZahtev(this.zahtev[0].children[0])
+      .subscribe((response) => {
+        let sadrzaj: string = "Обавештавамо Вас да је захтев упућен " + this.zahtev[1].children[0] + ", за потражњу информације: \" " + this.zahtev[3].children[0] + " \" одбијен од стране органа власти.";
+
+        let data: OdbijenZahtevMail = {
+          to: this.zahtev[13].children[0],
+          naslov: "еСлужбеник - Обавештење о одбијању захтева",
+          sadrzaj: sadrzaj
+        };
+
+        const options = {
+          declaration: {
+            include: false
+          }
+        };
+
+        let mailData: any = JsonToXML.parse("odbijenZahtevDTO", data, options);
+
+        this.service.posaljiMejlZaOdbijanjeZahteva(mailData)
+          .subscribe((response) => {
+            Swal.fire({
+              title: 'Успех!',
+              text: 'Захтев је успешно одбијен!',
+              icon: 'success',
+              confirmButtonText: 'У реду'
+            }).then(() => {
+              location.reload();
+            })
+          }
+          , error => {
+          console.log(error);
+          Swal.fire({
+            title: 'Грешка!',
+            text: 'Дошло је до грешке, молимо покушајте поново!',
+            icon: 'error',
+            confirmButtonColor: '#DC143C',
+            confirmButtonText: 'У реду'
+          })
+        })
+      })
   }
 
   preuzmiPDF() {
@@ -72,6 +112,8 @@ export class ZahtevSluzbenikComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(fileURL);
       a.remove();
+
+
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,6 +80,13 @@ public class ZahtevController {
 				n.setNaziv_ustanove(z.getPodaciOOrganu().getNaziv().getContent());
 				n.setOpis_trazene_informacije(z.getSadrzaj().getOpisTrazeneInformacije().getContent());
 				n.setKorisnik(z.getPodnozje().getInformacijeOTraziocu().getImeIPrezime().getContent());
+				n.setSediste_ustanove(z.getPodaciOOrganu().getSediste().getContent());
+				n.setNaziv_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getImeIPrezime().getContent());
+				n.setGrad_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getMesto().getContent());
+				n.setUlica_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getUlica().getContent());
+				n.setBroj_ulice_podnosioca(
+						z.getPodnozje().getInformacijeOTraziocu().getAdresa().getBroj().getValue() + "");
+				n.setKorisnik_email(z.getPodnozje().getInformacijeOTraziocu().getKorisnikEmail().getContent());
 
 				for (Object o : z.getSadrzaj().getZahtevi().getContent()) {
 
@@ -93,6 +101,43 @@ public class ZahtevController {
 			}
 
 			return new ResponseEntity<>(zahteviDTO, HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<ZahtevSluzbenikaDTO> pronadjiZahtevPoId(@PathVariable("id") long id) {
+		ZahtevZaPristupInformacijama z = this.zahtevService.pronadjiZahtevPoId(id);
+
+		if (z != null) {
+			ZahtevSluzbenikaDTO n = new ZahtevSluzbenikaDTO();
+
+			String[] params = z.getAbout().split("/");
+
+			n.setId(id);
+			n.setOdobren(this.obavestenjeService.proveraPotvrdeZahteva(id));
+
+			String xmlDate = z.getPodnozje().getMestoIDatum().getDatumZahteva().getValue();
+			n.setDatum_zahteva(xmlDate);
+			n.setKontakt(z.getPodnozje().getInformacijeOTraziocu().getKontakt().getValue().toString());
+			n.setNaziv_ustanove(z.getPodaciOOrganu().getNaziv().getContent());
+			n.setOpis_trazene_informacije(z.getSadrzaj().getOpisTrazeneInformacije().getContent());
+			n.setKorisnik(z.getPodnozje().getInformacijeOTraziocu().getImeIPrezime().getContent());
+			n.setSediste_ustanove(z.getPodaciOOrganu().getSediste().getContent());
+			n.setGrad_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getMesto().getContent());
+			n.setUlica_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getUlica().getContent());
+			n.setBroj_ulice_podnosioca(z.getPodnozje().getInformacijeOTraziocu().getAdresa().getBroj().getValue() + "");
+			n.setKorisnik_email(z.getPodnozje().getInformacijeOTraziocu().getKorisnikEmail().getContent());
+
+			for (Object o : z.getSadrzaj().getZahtevi().getContent()) {
+
+				if (o instanceof Zahtev) {
+					Zahtev oZ = (Zahtev) o;
+
+					n.setOpis_zahteva(oZ.getOpisZahteva());
+				}
+			}
+			return new ResponseEntity<>(n, HttpStatus.OK);
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -196,4 +241,13 @@ public class ZahtevController {
 		}
 	}
 
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<HttpStatus> odbijZahtev(@PathVariable("id") String id) {
+		boolean ok = this.zahtevService.odbijZahtev(id);
+
+		if (ok)
+			return new ResponseEntity<>(HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }

@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.uns.ac.rs/izjasnjenje/odluka" xmlns:odluka="http://ftn.uns.ac.rs/izjasnjenje/odluka">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.uns.ac.rs/zalba_na_odluku" xmlns:z="http://ftn.uns.ac.rs/zalba_na_odluku">
   <xs:element name="zahtevi_za_izjasnjenje_odluka">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="odluka:zahtev_za_izjasnjenje_odluka"/>
+        <xs:element maxOccurs="unbounded" ref="z:zalba_na_odluku"/>
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="zahtev_za_izjasnjenje_odluka">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="odluka:zalba_na_odluku"/>
-        <xs:element ref="odluka:vreme"/>
-      </xs:sequence>
-      <xs:attribute name="about" use="required" type="xs:anyURI"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="zalba_na_odluku">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="odluka:osnovni_podaci"/>
-        <xs:element ref="odluka:sadrzaj"/>
-        <xs:element ref="odluka:podnozje"/>
-        <xs:element ref="odluka:broj_zahteva"/>
+        <xs:element ref="z:osnovni_podaci"/>
+        <xs:element ref="z:sadrzaj"/>
+        <xs:element ref="z:podnozje"/>
+        <xs:element ref="z:broj_zahteva"/>
       </xs:sequence>
       <xs:attribute name="about" use="required" type="xs:anyURI"/>
       <xs:attribute name="vocab" use="required" type="xs:anyURI"/>
@@ -31,15 +22,15 @@
   <xs:element name="osnovni_podaci">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="odluka:podaci_o_zaliocu"/>
-        <xs:element ref="odluka:podaci_o_organu"/>
+        <xs:element ref="z:podaci_o_zaliocu"/>
+        <xs:element ref="z:podaci_o_organu"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="podaci_o_organu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="odluka:naziv"/>
+        <xs:element ref="z:naziv"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -56,10 +47,10 @@
   <xs:element name="sadrzaj">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="odluka:broj_zalbe"/>
-        <xs:element ref="odluka:godina_zalbe"/>
-        <xs:element ref="odluka:datum_odbijenog_zahteva"/>
-        <xs:element ref="odluka:odluka_organa_vlasti"/>
+        <xs:element ref="z:broj_zalbe"/>
+        <xs:element ref="z:godina_zalbe"/>
+        <xs:element ref="z:datum_odbijenog_zahteva"/>
+        <xs:element ref="z:odluka_organa_vlasti"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -102,9 +93,9 @@
   <xs:element name="podnozje">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="odluka:mesto_zakljucka_zalbe"/>
-        <xs:element ref="odluka:datum_zakljucka_zalbe"/>
-        <xs:element ref="odluka:podaci_o_zaliocu"/>
+        <xs:element ref="z:mesto_zakljucka_zalbe"/>
+        <xs:element ref="z:datum_zakljucka_zalbe"/>
+        <xs:element ref="z:podaci_o_zaliocu"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -134,20 +125,19 @@
       </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="vreme" type="xs:string"/>
   <xs:element name="podaci_o_zaliocu">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="odluka:korisnik_email"/>
-        <xs:element ref="odluka:zalioc_ime"/>
-        <xs:element ref="odluka:zalioc_prezime"/>
-        <xs:element minOccurs="0" ref="odluka:zalioc_naziv_zalbe"/>
-        <xs:element ref="odluka:zalioc_adresa"/>
+        <xs:element minOccurs="0" ref="z:korisnik_email"/>
+        <xs:element ref="z:zalioc_ime"/>
+        <xs:element ref="z:zalioc_prezime"/>
+        <xs:element minOccurs="0" ref="z:zalioc_naziv_zalbe"/>
+        <xs:element ref="z:zalioc_adresa"/>
         <xs:choice>
-          <xs:element ref="odluka:zalioc_sediste"/>
+          <xs:element ref="z:zalioc_sediste"/>
           <xs:sequence>
-            <xs:element ref="odluka:drugi_podaci_za_kontakt"/>
-            <xs:element ref="odluka:potpis_zalioca"/>
+            <xs:element ref="z:drugi_podaci_za_kontakt"/>
+            <xs:element ref="z:potpis_zalioca"/>
           </xs:sequence>
         </xs:choice>
       </xs:sequence>

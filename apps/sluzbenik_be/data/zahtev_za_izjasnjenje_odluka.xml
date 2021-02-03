@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zahtevi_za_izjasnjenje_odluka xmlns="http://ftn.uns.ac.rs/izjasnjenje/odluka">
-    <zahtev_za_izjasnjenje_odluka about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/1">
+<zahtevi_za_izjasnjenje_odluka xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
         <zalba_na_odluku about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
             <osnovni_podaci>
                 <podaci_o_zaliocu>
@@ -34,9 +33,8 @@
             </podnozje>
             <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">3</broj_zahteva>
         </zalba_na_odluku>
-        <vreme>2021-02-02 15:58:00</vreme>
-    </zahtev_za_izjasnjenje_odluka>
-    <zahtev_za_izjasnjenje_odluka about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/2">
+        
+    
         <zalba_na_odluku about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/2" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
             <osnovni_podaci>
                 <podaci_o_zaliocu>
@@ -70,6 +68,6 @@
             </podnozje>
             <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">3</broj_zahteva>
         </zalba_na_odluku>
-        <vreme>2021-02-02 15:58:00</vreme>
-    </zahtev_za_izjasnjenje_odluka>
+        
+    
 </zahtevi_za_izjasnjenje_odluka>

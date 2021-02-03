@@ -1,0 +1,27 @@
+<div class="row col-md-11 m-auto mb-5">
+  <mat-card-subtitle class="mt-3">Захтеви за изјашњење у вези жалби на одлуку</mat-card-subtitle>
+  <mat-grid-list cols="8" rowHeight="40" class="mt-3 text-center">
+    <mat-grid-tile>Редни број жалбе</mat-grid-tile>
+    <mat-grid-tile>Орган</mat-grid-tile>
+    <mat-grid-tile>Датум предаје жалбе</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Корисник</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+    <mat-grid-tile>Одговор</mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+  <mat-grid-list cols="8" rowHeight="40" class="mt-3 text-center" *ngFor="let z of zahtevi">
+    <mat-grid-tile>{{z.children[4].children[0].split("/").pop()}}</mat-grid-tile>
+    <mat-grid-tile>{{z.children[0].children[1].children[0].children[0].children[0]}}</mat-grid-tile>
+    <mat-grid-tile>{{z.children[2].children[1].children[0].children[0].split("T")[0]}}</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">{{z.children[0].children[0].children[0].children[0].children[0]}}</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <button mat-button (click)="preuzmiPDF(z.children[4].children[0].split('/').pop())">Преузми PDF</button>
+      <button mat-button (click)="preuzmiHTML(z.children[4].children[0].split('/').pop())">Преузми HTML</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-button (click)="dodajOdgovor(z.children[4].children[0].split('/').pop())">Креирај одговор</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-divider></mat-divider>
+</div>

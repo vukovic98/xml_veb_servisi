@@ -32,6 +32,11 @@ import { ObavestenjaSluzbenikComponent } from './components/obavestenja-sluzbeni
 import { ObavestenjeStavkaSluzbenikComponent } from './components/obavestenje-stavka-sluzbenik/obavestenje-stavka-sluzbenik.component';
 import { ObavestenjeStavkaKorisnikComponent } from './components/obavestenje-stavka-korisnik/obavestenje-stavka-korisnik.component';
 import { DodajObavestenjeComponent } from './components/dodaj-obavestenje/dodaj-obavestenje.component';
+import { ZahteviZaIzjasnjenjeComponent } from './components/zahtevi-za-izjasnjenje/zahtevi-za-izjasnjenje.component';
+import { ZahteviZaIzjasnjenjeOdlukaComponent } from './components/zahtevi-za-izjasnjenje-odluka/zahtevi-za-izjasnjenje-odluka.component';
+import { ZahteviZaIzjasnjenjeCutanjeComponent } from './components/zahtevi-za-izjasnjenje-cutanje/zahtevi-za-izjasnjenje-cutanje.component';
+import { DodajIzjasnjenjeNaZalbuComponent } from './components/dodaj-izjasnjenje-na-zalbu/dodaj-izjasnjenje-na-zalbu.component';
+import { SluzbenikPretragaComponent } from './components/sluzbenik-pretraga/sluzbenik-pretraga.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,11 @@ import { DodajObavestenjeComponent } from './components/dodaj-obavestenje/dodaj-
     ObavestenjeStavkaSluzbenikComponent,
     ObavestenjeStavkaKorisnikComponent,
     DodajObavestenjeComponent,
+    ZahteviZaIzjasnjenjeComponent,
+    ZahteviZaIzjasnjenjeOdlukaComponent,
+    ZahteviZaIzjasnjenjeCutanjeComponent,
+    DodajIzjasnjenjeNaZalbuComponent,
+    SluzbenikPretragaComponent,
 
   ],
   imports: [

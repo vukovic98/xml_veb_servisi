@@ -19,6 +19,12 @@
           <li class="nav-item pt-1" *ngIf="userRole">
             <a class="nav-link mat-subheading-2 mb-0" id="podnesiZahteviLink" routerLink="/dodaj-zahtev">Поднеси захтев</a>
           </li>
+          <li class="nav-item pt-1" *ngIf="!userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="zahteviZaIzjasnjenjeLink" routerLink="/zahtevi-izjasnjenje">Захтеви за изјашњење</a>
+          </li>
+          <li class="nav-item pt-1" *ngIf="!userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="sluzbenikPretragaLink" routerLink="/sluzbenik-pretraga">Претрага докумената</a>
+          </li>
         </ul>
       </div>
       <span class="float-right w-25 text-end">

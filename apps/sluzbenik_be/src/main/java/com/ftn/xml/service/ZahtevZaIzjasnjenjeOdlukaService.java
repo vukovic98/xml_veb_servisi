@@ -5,11 +5,18 @@ import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
+import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
-import com.ftn.xml.model.zahtev_za_izjasnjenje_odluka.ZahtevZaIzjasnjenjeOdluka;
+import com.ftn.xml.model.zahtev_za_izjasnjenje_odluka.ZahteviZaIzjasnjenjeOdluka;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZahtevZaIzjasnjenjeOdlukaRepository;
 import com.ximpleware.AutoPilot;
@@ -22,6 +29,48 @@ public class ZahtevZaIzjasnjenjeOdlukaService {
 
 	@Autowired
 	private ZahtevZaIzjasnjenjeOdlukaRepository zahtevRepository;
+
+	public ZahteviZaIzjasnjenjeOdluka pronadjiSveZahteve() {
+		ResourceSet set = this.zahtevRepository.dobaviSve();
+
+		ZahteviZaIzjasnjenjeOdluka lista = new ZahteviZaIzjasnjenjeOdluka();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZalbaNaOdluku zahtev = (ZalbaNaOdluku) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getZalbaNaOdluku().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public boolean dodajZahtevZaIzjasnjenjeOdluka(ZalbaNaOdluku z) {
 

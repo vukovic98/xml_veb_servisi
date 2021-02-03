@@ -5,11 +5,18 @@ import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
+import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
-import com.ftn.xml.model.zahtev_za_izjasnjenje_cutanje.ZahtevZaIzjasnjenjeCutanje;
+import com.ftn.xml.model.zahtev_za_izjasnjenje_cutanje.ZahteviZaIzjasnjenjeCutanje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ZahtevZaIzjasnjenjeCutnjaRepository;
 import com.ximpleware.AutoPilot;
@@ -76,6 +83,49 @@ public class ZahtevZaIzjasnjenjeCutnjaService {
 
 		return this.zahtevRepository.izbrisiZahtevZaIzjasnjenjeCutanje(id);
 
+	}
+	
+	public ZahteviZaIzjasnjenjeCutanje pronadjiSveZahteve() {
+		ResourceSet set = this.zahtevRepository.dobaviSve();
+
+		ZahteviZaIzjasnjenjeCutanje lista = new ZahteviZaIzjasnjenjeCutanje();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZalbaCutanje zahtev = (ZalbaCutanje) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getZalbaCutanje().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

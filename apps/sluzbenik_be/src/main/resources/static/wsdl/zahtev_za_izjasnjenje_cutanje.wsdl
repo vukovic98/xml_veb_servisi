@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://ftn.uns.ac.rs/zalba_cutanje"
+                  xmlns:tns="http://ftn.uns.ac.rs/zalba_cutanje"
+                  name="ZahtevZaIzjasnjenjeCutnjaService">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://ftn.uns.ac.rs/zalba_cutanje" schemaLocation="../xsd/zalba_cutanje.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="dodajZahtevZaIzjasnjenjeCutnjeRequest">
+        <wsdl:part name="zalba_cutanje" element="tns:zalba_cutanje" />
+    </wsdl:message>
+    <wsdl:message name="dodajZahtevZaIzjasnjenjeCutnjeResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+    
+    <wsdl:message name="izbrisiZahtevZaIzjasnjenjeCutanjeRequest">
+        <wsdl:part name="id_zalbe" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="izbrisiZahtevZaIzjasnjenjeCutanjeResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:portType name="ZahtevZaIzjasnjenjeCutnjaServicePortType">
+        <wsdl:operation name="dodajZahtevZaIzjasnjenjeCutnje">
+            <wsdl:input message="tns:dodajZahtevZaIzjasnjenjeCutnjeRequest" />
+            <wsdl:output message="tns:dodajZahtevZaIzjasnjenjeCutnjeResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="izbrisiZahtevZaIzjasnjenjeCutanje">
+            <wsdl:input message="tns:izbrisiZahtevZaIzjasnjenjeCutanjeRequest" />
+            <wsdl:output message="tns:izbrisiZahtevZaIzjasnjenjeCutanjeResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ZahtevZaIzjasnjenjeCutnjaServiceSoapBinding" type="tns:ZahtevZaIzjasnjenjeCutnjaServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="dodajZahtevZaIzjasnjenjeCutnje">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_cutnja/ws/dodajZahtevZaIzjasnjenjeCutnje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="izbrisiZahtevZaIzjasnjenjeCutanje">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_cutnja/ws/izbrisiZahtevZaIzjasnjenjeCutanje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahtevZaIzjasnjenjeCutnjaService">
+        <wsdl:port name="ZahtevZaIzjasnjenjeCutnjaServiceSoapBinding" binding="tns:ZahtevZaIzjasnjenjeCutnjaServiceSoapBinding">
+            <soap:address location="http://localhost:8081/zahtevZaIzjasnjenjeCutnjaPort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

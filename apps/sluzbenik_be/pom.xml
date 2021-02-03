@@ -122,12 +122,12 @@
 							<wsdlOptions>
 
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/static/wsdl/zahtev.wsdl</wsdl>
+									<wsdl>${basedir}/src/main/resources/static/wsdl/zahtev_za_izjasnjenje_odluka.wsdl</wsdl>
 									<extraargs>
 										<extraarg>-impl</extraarg> <!-- Ima i drugih dodatniha<extraarg>-client</extraarg> -->
 										<extraarg>-verbose</extraarg>
 									</extraargs>
-									<wsdlLocation>classpath:wsdl/zahtev.wsdl</wsdlLocation>
+									<wsdlLocation>classpath:wsdl/zahtev_za_izjasnjenje_odluka.wsdl</wsdlLocation>
 								</wsdlOption>
 
 							</wsdlOptions>

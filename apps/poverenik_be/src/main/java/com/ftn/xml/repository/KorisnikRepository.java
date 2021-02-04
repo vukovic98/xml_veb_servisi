@@ -8,7 +8,6 @@ import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.*;
 import com.ftn.xml.dto.KorisnikPrijavaDto;
-import com.ftn.xml.model.korisnik.Korisnik;
 
 
 

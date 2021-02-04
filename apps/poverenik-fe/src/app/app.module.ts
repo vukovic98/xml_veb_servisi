@@ -29,7 +29,7 @@ import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-c
 import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-odluku.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
-
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
     MatExpansionModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

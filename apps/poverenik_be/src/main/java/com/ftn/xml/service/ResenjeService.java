@@ -1,10 +1,13 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
+import java.time.Instant;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -18,8 +21,9 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ResenjeDTO;
+import com.ftn.xml.dto.ResenjeFusekiDTO;
+import com.ftn.xml.helper.DodajResenjeMapper;
 import com.ftn.xml.jaxb.util.XSLFORTransformerResenje;
-import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
 import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ximpleware.AutoPilot;
@@ -236,6 +240,37 @@ public class ResenjeService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean dodajResenje(Resenje r, int index) {
+		
+		
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.resenje");
+
+			Marshaller marshaller = context.createMarshaller();
+
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.setProperty("com.sun.xml.bind.xmlDeclaration", false);
+
+			StringWriter resenjeSW = new StringWriter();
+			
+			marshaller.marshal(r, resenjeSW);
+			
+			String resenje = resenjeSW.toString();
+			
+			String changedResenje = this.removeNamespace(resenje);
+			
+			DodajResenjeMapper mapper = new DodajResenjeMapper();
+			
+			ResenjeFusekiDTO dto = mapper.klasaUFusekiDTO(r);
+
+			return this.resenjeRepository.sacuvajResenje(changedResenje, dto, index);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 	
 }

@@ -48,4 +48,15 @@ export class ResenjaService {
     return this.http.get(environment.POVERENIK_APP + this.resenjaKorisnikApi, {headers: headers, responseType: 'text'});
   }
 
+  kreirajResenje(data: any): Observable<any>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.resenjaApi, data, {headers: headers});
+
+  }
+
 }

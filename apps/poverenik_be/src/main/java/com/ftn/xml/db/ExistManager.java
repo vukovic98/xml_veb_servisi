@@ -202,8 +202,26 @@ public class ExistManager {
 					this.authManager.getPassword());
 			XUpdateQueryService service = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
 			service.setProperty("indent", "yes");
-
+			
 			service.updateResource(documentId, String.format(chosenTemplate, contextXPath, patch));
+		} finally {
+			if (col != null)
+				col.close();
+		}
+	}
+	
+	public void remove(String collectionId, String documentId, String contextXPath, String REMOVE) throws Exception {
+		createConnection();
+		Collection col = null;
+		String chosenTemplate = REMOVE;
+
+		try {
+			col = DatabaseManager.getCollection(this.authManager.getUri() + collectionId, this.authManager.getUser(),
+					this.authManager.getPassword());
+			XUpdateQueryService service = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
+			service.setProperty("indent", "yes");
+
+			service.updateResource(documentId, String.format(chosenTemplate, contextXPath));
 		} finally {
 			if (col != null)
 				col.close();

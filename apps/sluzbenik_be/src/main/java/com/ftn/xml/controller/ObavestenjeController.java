@@ -25,8 +25,12 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ObavestenjeDTO;
+import com.ftn.xml.dto.ObavestenjeNaprednaDTO;
+import com.ftn.xml.dto.ZahtevNaprednaDTO;
 import com.ftn.xml.model.obavestenje.ListaObavestenja;
 import com.ftn.xml.model.obavestenje.Obavestenje;
+import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.service.ObavestenjeService;
 
 @RestController
@@ -44,6 +48,21 @@ public class ObavestenjeController {
 			return new ResponseEntity<>((ArrayList<Obavestenje>)lista.getObavestenje(), HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/napredna-pretraga")
+	public ResponseEntity<ArrayList<Obavestenje>> naprednaPretraga(
+			@RequestBody ObavestenjeNaprednaDTO dto) {
+		String predmet = !dto.getPredmet().equalsIgnoreCase("null") ? "\"" + dto.getPredmet() + "\"" : null;
+		String zahtev = !dto.getZahtev().equalsIgnoreCase("null") ? "\"" + dto.getZahtev() + "\"" : null;
+		String ime = !dto.getIme().equalsIgnoreCase("null") ? "\"" + dto.getIme() + "\"" : null;
+
+		ListaObavestenja lista = this.obavestenjeService.naprednaPretraga(predmet, zahtev, ime, dto.isAnd());
+
+		if (!lista.getObavestenje().isEmpty())
+			return new ResponseEntity<>((ArrayList<Obavestenje>)lista.getObavestenje(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@GetMapping

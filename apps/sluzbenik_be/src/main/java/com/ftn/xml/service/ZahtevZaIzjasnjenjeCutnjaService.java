@@ -19,6 +19,7 @@ import org.xmldb.api.modules.XMLResource;
 import com.ftn.xml.model.zahtev_za_izjasnjenje_cutanje.ZahteviZaIzjasnjenjeCutanje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ZahtevZaIzjasnjenjeCutnjaRepository;
+import com.ftn.xml.repository.ZalbaCutanjeRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
@@ -29,6 +30,9 @@ public class ZahtevZaIzjasnjenjeCutnjaService {
 
 	@Autowired
 	private ZahtevZaIzjasnjenjeCutnjaRepository zahtevRepository;
+	
+	@Autowired
+	private ZalbaCutanjeRepository zalbaRepository;
 
 	public boolean dodajZahtevZaIzjasnjenjeCutnje(ZalbaCutanje z) {
 
@@ -47,6 +51,8 @@ public class ZahtevZaIzjasnjenjeCutnjaService {
 			String zahtev = zahtevSW.toString();
 
 			String changedZahtev = this.removeNamespace(zahtev);
+			
+			this.zalbaRepository.dodajZalbuIzTeksta(changedZahtev, z);
 
 			return this.zahtevRepository.dodajZahtevZaIzjasnjenjeCutnje(changedZahtev);
 		} catch (Exception e) {

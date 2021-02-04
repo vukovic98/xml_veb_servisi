@@ -10,11 +10,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ResenjeDTO;
+import com.ftn.xml.dto.ResenjeNaprednaDTO;
+import com.ftn.xml.dto.ZahtevNaprednaDTO;
+import com.ftn.xml.model.resenje.ListaResenja;
+import com.ftn.xml.model.resenje.Resenje;
+import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.service.ResenjeService;
 
 @RestController
@@ -23,6 +30,21 @@ public class ResenjeController {
 
 	@Autowired
 	private ResenjeService resenjeService;
+	
+	@GetMapping("/napredna-pretraga")
+	public ResponseEntity<ArrayList<Resenje>> naprednaPretraga(
+			@RequestBody ResenjeNaprednaDTO dto) {
+		String zalba = !dto.getZalba().equalsIgnoreCase("null") ? "\"" + dto.getZalba() + "\"" : null;
+		String ishod = !dto.getIshod().equalsIgnoreCase("null") ? "\"" + dto.getIshod() + "\"" : null;
+		String korisnik = !dto.getKorisnik().equalsIgnoreCase("null") ? "\"" + dto.getKorisnik() + "\"" : null;
+
+		ListaResenja lista = this.resenjeService.naprednaPretraga(zalba, ishod, korisnik, dto.isAnd());
+
+		if (!lista.getResenje().isEmpty())
+			return new ResponseEntity<>((ArrayList<Resenje>)lista.getResenje(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 
 	@GetMapping(path = "/pretraga/{text}")
 	public ResponseEntity<ArrayList<ResenjeDTO>> pretraga(@PathVariable("text") String text) {

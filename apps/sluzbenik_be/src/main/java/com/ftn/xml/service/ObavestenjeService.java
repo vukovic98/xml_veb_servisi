@@ -2,6 +2,7 @@ package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -39,6 +40,52 @@ public class ObavestenjeService {
 
 	public boolean proveraPotvrdeZahteva(long zahtev_id) {
 		return this.obavestenjeRepository.proveraPotvrdeZahteva(zahtev_id);
+	}
+	
+	public ListaObavestenja naprednaPretraga(String predmet, String zahtev, String ime, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.obavestenjeRepository.naprednaPretraga(predmet, zahtev, ime, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ListaObavestenja lista = new ListaObavestenja();
+		
+		for(String i : ids) {
+			Obavestenje z = this.pronadjiObavestenjePoId(Long.parseLong(i));
+			
+			lista.getObavestenje().add(z);
+		}
+		
+		return lista;
+		
+	}
+	
+	public Obavestenje pronadjiObavestenjePoId(long id) {
+		ResourceSet set = this.obavestenjeRepository.pronadjiPoId(id);
+
+		try {
+			if (set.getSize() == 1) {
+
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.obavestenje");
+
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				Resource res = set.getResource(0);
+
+				Obavestenje obavestenje = (Obavestenje) unmarshaller
+						.unmarshal(((XMLResource) res).getContentAsDOM());
+
+				return obavestenje;
+			} else
+				return null;
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 	
 	public ListaObavestenja pretraga(String text) {

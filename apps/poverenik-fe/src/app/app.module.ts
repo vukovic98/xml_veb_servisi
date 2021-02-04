@@ -29,7 +29,12 @@ import { PodnosenjeZalbeCutanjeComponent } from './components/podnosenje-zalbe-c
 import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-odluku.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
+<<<<<<< HEAD
+import { DatePipe } from '@angular/common'
+=======
+import { PretragaComponent } from './components/pretraga/pretraga.component';
 
+>>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
 
 @NgModule({
   declarations: [
@@ -45,7 +50,8 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
     ZalbaNaOdlukuComponent,
     ResenjeComponent,
     ResenjaComponent,
-    PodnosenjeZalbeCutanjeComponent
+    PodnosenjeZalbeCutanjeComponent,
+    PretragaComponent
 
   ],
   imports: [
@@ -67,7 +73,7 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
     MatExpansionModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

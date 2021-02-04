@@ -39,8 +39,7 @@ public class ZalbaCutanjeController {
 	@Autowired
 	private ZalbaCutanjeService zalbaCutanjeService;
 	
-	@Autowired
-	private KorisnikService korisnikService;
+
 
 	@GetMapping(path = "/neresene")
 	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> dobaviSveNeresene() throws XMLDBException, JAXBException {
@@ -186,6 +185,23 @@ public class ZalbaCutanjeController {
 			return new ResponseEntity<>(ok, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);	
+	}
+	
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ZalbaCutanjeDTO> lista = new ArrayList<>();
+		
+		try {
+			lista = this.zalbaCutanjeService.pretraga(text);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 }

@@ -2,6 +2,10 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
@@ -14,10 +18,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
+import com.ftn.xml.dto.DodajResenjeDTO;
 import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.service.ResenjeService;
 
@@ -94,4 +101,39 @@ public class ResenjeController {
 
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<HttpStatus> kreirajResenje(@RequestBody DodajResenjeDTO resenjeDTO) {
+		
+		
+		Instant currTime = Instant.now().plus(1, ChronoUnit.HOURS);
+		
+		System.out.println(currTime.toString());
+		
+		Instant zahtevIzjasnjenjeTime = Instant.parse(resenjeDTO.getVreme());
+		
+		System.out.println(zahtevIzjasnjenjeTime.toString());
+		if(zahtevIzjasnjenjeTime.plus(1,ChronoUnit.MINUTES).isAfter(currTime)) {
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+	
+	}
+
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ResenjeDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ResenjeDTO> lista = new ArrayList<>();
+		try {
+			lista = this.resenjeService.pretraga(text);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }

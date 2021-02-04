@@ -18,7 +18,7 @@ import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.service.ResenjeService;
 
 @RestController
-@RequestMapping("/resenje")
+@RequestMapping("/resenja")
 public class ResenjeController {
 
 	@Autowired
@@ -73,5 +73,7 @@ public class ResenjeController {
 		}
 
 	}
+	
+
 
 }

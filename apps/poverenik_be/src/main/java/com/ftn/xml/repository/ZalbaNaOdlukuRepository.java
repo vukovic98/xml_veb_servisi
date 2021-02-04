@@ -61,4 +61,20 @@ public class ZalbaNaOdlukuRepository {
 			return null;
 		}
 	}
+	
+	public ResourceSet pretraga(String text) {
+		String xPath = "/lista_zalbi_na_odluku/zalba_na_odluku[osnovni_podaci/podaci_o_zaliocu/zalioc_ime[contains(., '"
+				+ text + "')]" + " or osnovni_podaci/podaci_o_zaliocu/zalioc_prezime[contains(., '" + text + "')] or "
+				+ "osnovni_podaci/podaci_o_organu/naziv[contains(., '" + text
+				+ "')] or sadrzaj/broj_zalbe[contains(., '" + text + "')]]";
+
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

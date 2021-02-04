@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://ftn.uns.ac.rs/izjasnjenje/odgovor"
+                  xmlns:tns="http://ftn.uns.ac.rs/izjasnjenje/odgovor"
+                  name="OdgovorZahtevZaIzjasnjenjeService">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://ftn.uns.ac.rs/izjasnjenje/odgovor" schemaLocation="../xsd/odgovor_zahtev_za_izjasnjenje.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="dodajOdgovorZahtevZaIzjasnjenjeRequest">
+        <wsdl:part name="odgovor_zahtev_za_izjasnjenje" element="tns:odgovor_zahtev_za_izjasnjenje" />
+    </wsdl:message>
+    <wsdl:message name="dodajOdgovorZahtevZaIzjasnjenjeResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+    
+    <wsdl:message name="izbrisiOdgovorZahtevZaIzjasnjenjeRequest">
+        <wsdl:part name="id_zalbe" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="izbrisiOdgovorZahtevZaIzjasnjenjeResponse">
+        <wsdl:part name="ok" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:portType name="OdgovorZahtevZaIzjasnjenjeServicePortType">
+        <wsdl:operation name="dodajOdgovorZahtevZaIzjasnjenje">
+            <wsdl:input message="tns:dodajOdgovorZahtevZaIzjasnjenjeRequest" />
+            <wsdl:output message="tns:dodajOdgovorZahtevZaIzjasnjenjeResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="izbrisiOdgovorZahtevZaIzjasnjenje">
+            <wsdl:input message="tns:izbrisiOdgovorZahtevZaIzjasnjenjeRequest" />
+            <wsdl:output message="tns:izbrisiOdgovorZahtevZaIzjasnjenjeResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="OdgovorZahtevZaIzjasnjenjeServiceSoapBinding" type="tns:OdgovorZahtevZaIzjasnjenjeServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="dodajOdgovorZahtevZaIzjasnjenje">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/odgovor_zahtev_za_izjasnjenje/ws/dodajOdgovorZahtevZaIzjasnjenje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+        <wsdl:operation name="izbrisiOdgovorZahtevZaIzjasnjenje">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/odgovor_zahtev_za_izjasnjenje/ws/izbrisiOdgovorZahtevZaIzjasnjenje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OdgovorZahtevZaIzjasnjenjeService">
+        <wsdl:port name="OdgovorZahtevZaIzjasnjenjeServiceSoapBinding" binding="tns:OdgovorZahtevZaIzjasnjenjeServiceSoapBinding">
+            <soap:address location="http://localhost:8082/OdgovorZahtevZaIzjasnjenjeServicePort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -93,4 +93,16 @@ public class ZalbaCutanjeRepository {
 		}
 	
 	}
+	
+	public ResourceSet pretraga(String text) {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[zaglavlje/primalac_zalbe/naziv_primaoca[contains(., '"+text+"')]" + 
+				" or sadrzaj/naziv_organa[contains(.,'"+text+"')] or sadrzaj/podaci_o_zahtevu_i_informacijama[contains(.,'"+text+"')]" + 
+				" or podnozje/podnosilac_zalbe/ime_i_prezime[contains(., '"+text+"')]]";
+		
+		try {
+			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

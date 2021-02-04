@@ -4,6 +4,7 @@ import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.db.ExistManager;
 
@@ -80,6 +81,21 @@ public class ZalbaCutanjeRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public boolean postojiZalbaNaZahtev(long id) throws XMLDBException {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/broj_zahteva=" + id;
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			if (set.getSize()!=0)
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

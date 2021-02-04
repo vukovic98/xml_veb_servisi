@@ -1,6 +1,5 @@
 package com.ftn.xml.service;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,26 +7,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.StringReader;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.transform.TransformerException;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFormatter;
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,18 +28,15 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
-import com.ftn.xml.db.ExistManager;
+
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.db.MetadataExtractor;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
 import com.ftn.xml.helper.DodajZalbuCutanjeMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
-import com.ftn.xml.jaxb.util.SparqlUtil;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
 import com.ftn.xml.model.korisnik.Korisnik;
-import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
-import com.ftn.xml.model.zalba_cutanje.ListaZalbiCutanje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -410,4 +397,55 @@ public class ZalbaCutanjeService {
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<ZalbaCutanjeDTO> pretraga(String text) throws Exception{
+		ResourceSet result = this.zalbaCutanjeRepository.pretraga(text);
+
+		ResourceIterator i = result.getIterator();
+		Resource res = null;
+		ArrayList<ZalbaCutanjeDTO> zalbe = new ArrayList<>();
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+
+		while (i.hasMoreResources()) {
+
+			try {
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				res = i.nextResource();
+				ZalbaCutanje z = (ZalbaCutanje) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
+				ZalbaCutanjeDTO dto = new ZalbaCutanjeDTO();
+
+				// id
+				String[] params = z.getAbout().split("/");
+				long id = Long.parseLong(params[params.length - 1]);
+				dto.setId(id);
+
+				boolean resena = this.resenjeRepository.proveriDaLiJeZalbaResena(id);
+				if (resena)
+					dto.setRazresena("da");
+				else
+					dto.setRazresena("ne");
+				dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
+
+				// datum zalbe
+
+				dto.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
+
+				dto.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
+				dto.setNaziv_organa(z.getSadrzaj().getNazivOrgana().getValue());
+
+				zalbe.add(dto);
+
+			} finally {
+
+				// don't forget to cleanup resources
+				try {
+					((EXistResource) res).freeResources();
+				} catch (XMLDBException xe) {
+					xe.printStackTrace();
+				}
+			}
+		}
+		return zalbe;
+	}
+
 }

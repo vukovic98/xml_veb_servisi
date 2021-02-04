@@ -25,6 +25,7 @@ import com.ftn.xml.mapper.DodajZahtevMaper;
 import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.repository.ZahtevRepository;
+import com.ftn.xml.repository.ZalbaCutanjeRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
@@ -35,6 +36,9 @@ public class ZahtevService {
 
 	@Autowired
 	private ZahtevRepository zahtevRepository;
+	
+	@Autowired
+	private ZalbaCutanjeRepository zalbaCutanjeRepository;
 
 	public boolean odobriZahtev(String id) {
 		return this.zahtevRepository.odobriZahtev(id);
@@ -281,6 +285,8 @@ public class ZahtevService {
 					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
 							.unmarshal(((XMLResource) res).getContentAsDOM());
 
+					String[] about = zahtev.getAbout().split("/");
+					long id = Long.parseLong(about[about.length-1]);
 					// da li je proslo 5 min
 
 					Date now = new Date();
@@ -288,8 +294,10 @@ public class ZahtevService {
 
 					long diffInMillies = Math.abs(now.getTime() - d.getTime());
 					long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
-
-					if (diff > 5)
+					
+					boolean postojiZalba = this.zalbaCutanjeRepository.postojiZalbaNaZahtev(id);
+					
+					if (diff > 5 && !postojiZalba)
 						lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {

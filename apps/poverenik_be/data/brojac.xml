@@ -2,7 +2,6 @@
 <brojac xmlns="http://www.ftn.uns.ac.rs/brojac"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xs="http://www.w3.org/2001/XMLSchema#">
-    <brojac_zalba_cutanje>3</brojac_zalba_cutanje>
-    <brojac_zalba_odluka>2</brojac_zalba_odluka>
+    <brojac_zalbi>3</brojac_zalbi>
     <brojac_resenje>3</brojac_resenje>
 </brojac>

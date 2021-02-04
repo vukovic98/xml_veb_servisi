@@ -34,8 +34,7 @@ public class BrojacService {
 
 			Brojac b = (Brojac) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
 			
-			BigInteger trenutni = b.getBrojacZalbaCutanje();
-			System.out.println("brojac:"+trenutni.intValue());
+			BigInteger trenutni = b.getBrojacZalbi();
 			int sledeci = trenutni.intValue() + 1;
 			
 			String brojacXml = String.valueOf(sledeci);
@@ -60,7 +59,7 @@ public class BrojacService {
 			Brojac b = (Brojac) unmarshaller
 					.unmarshal(((XMLResource) res).getContentAsDOM());
 			
-			BigInteger trenutni = b.getBrojacZalbaOdluka();
+			BigInteger trenutni = b.getBrojacZalbi();
 			int sledeci = trenutni.intValue() + 1;
 			
 			String brojacXml = String.valueOf(sledeci);
@@ -84,7 +83,7 @@ public class BrojacService {
 			Brojac b = (Brojac) unmarshaller
 					.unmarshal(((XMLResource) res).getContentAsDOM());
 			
-			BigInteger trenutni = b.getBrojacZalbaOdluka();
+			BigInteger trenutni = b.getBrojacResenje();
 			int sledeci = trenutni.intValue() + 1;
 			
 			String brojacXml = String.valueOf(sledeci);

@@ -2,8 +2,8 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://ftn.uns.ac.rs/izjasnjenje/odgovor"
-                  xmlns:tns="http://ftn.uns.ac.rs/izjasnjenje/odgovor"
+                  targetNamespace="http://ftn.uns.ac.rs/zalba_na_odluku"
+                  xmlns:tns="http://ftn.uns.ac.rs/zalba_na_odluku"
                   name="ZahtevZaIzjasnjenjeOdlukaService">
     <wsdl:types>
         

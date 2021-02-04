@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
@@ -12,14 +13,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
 
 import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
@@ -82,7 +86,7 @@ public class ZalbaCutanjeController {
 	}
 
 	@GetMapping("/generisiPDF/{zalba_cutanje_id}")
-	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
+	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException, SAXException, IOException {
 
 		String file_path = this.zalbaCutanjeService.generisiPDF(zalba_id);
 
@@ -115,7 +119,50 @@ public class ZalbaCutanjeController {
 
 	}
 	
+	@GetMapping("/generisiJSON/{zalba_cutanje_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
 
+		String filePath = "src/main/resources/static/json/zalba_cutanje_" + zalba_id + ".json";
+
+		try {
+			this.zalbaCutanjeService.generisiJSON(zalba_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{zalba_cutanje_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/zalba_cutanje_" + zalba_id + ".rdf";
+		try {
+			this.zalbaCutanjeService.generisiRDF(zalba_id);
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
 	@PostMapping
 	public ResponseEntity<Boolean> kreirajZahtev(@RequestBody String zalba) {
 		boolean ok = false;
@@ -131,4 +178,14 @@ public class ZalbaCutanjeController {
 		else
 			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);	
 	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Boolean> odustaniOdZalbe(@PathVariable("id") long id) {
+		boolean ok = this.zalbaCutanjeService.odustaniOdZalbe(id);
+		if(ok)
+			return new ResponseEntity<>(ok, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);	
+	}
+	
 }

@@ -1,0 +1,40 @@
+<zalba_cutanje xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"  xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/11" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <zaglavlje>
+            <primalac_zalbe>
+                <naziv_primaoca datatype="xs:string" property="pred:naziv_primaoca" xml:space="preserve">Повереникy за информације од јавног значаја и заштиту података о личности</naziv_primaoca>
+                <adresa>
+                    <ulica datatype="xs:string" property="pred:ulica_poverenika" xml:space="preserve">Булевар краља Александрa</ulica>
+                    <broj datatype="xs:integer" property="pred:broj_kuce_poverenika" xml:space="preserve">15</broj>
+                    <mesto datatype="xs:string" property="pred:mesto_poverenika" xml:space="preserve">Београд</mesto>
+                </adresa>
+            </primalac_zalbe>
+        </zaglavlje>
+        <sadrzaj>
+            <naziv_organa datatype="xs:string" property="pred:naziv_organa" xml:space="preserve">Cdd</naziv_organa>
+            <razlozi_zalbe>
+                <razlog id="r_1" otkaceno="false" razlog="nije_postupio"/>
+                <razlog id="r_2" otkaceno="true" razlog="nije_postupio_u_celosti"/>
+                <razlog id="r_3" otkaceno="false" razlog="nije_postupio_u_zakonskom_roku"/>
+            </razlozi_zalbe>
+            <datum_zahteva xml:space="preserve">dddd</datum_zahteva>
+            <podaci_o_zahtevu_i_informacijama xml:space="preserve">ddd</podaci_o_zahtevu_i_informacijama>
+        </sadrzaj>
+        <podnozje>
+            <podnosilac_zalbe>
+                <korisnik_email datatype="xs:string" property="pred:korisnik" xml:space="preserve">nikola@maildrop.cc</korisnik_email>
+                <ime_i_prezime datatype="xs:string" property="pred:ime_prezime_podnosioca" xml:space="preserve">Nikola Andric</ime_i_prezime>
+                <adresa>
+                    <ulica datatype="xs:string" property="pred:ulica_podnosioca" xml:space="preserve">ddd</ulica>
+                    <broj datatype="xs:integer" property="pred:broj_kuce_podnosioca" xml:space="preserve">ddd</broj>
+                    <mesto datatype="xs:string" property="pred:mesto_podnosioca" xml:space="preserve">ddd</mesto>
+                </adresa>
+                <drugi_podaci_za_kontakt xml:space="preserve">ddddddd</drugi_podaci_za_kontakt>
+                <potpis/>
+            </podnosilac_zalbe>
+            <mesto_i_datum>
+                <mesto xml:space="preserve">dddd</mesto>
+                <datum_zalbe datatype="xs:string" property="pred:datum_zalbe" xml:space="preserve">2021-01-31</datum_zalbe>
+            </mesto_i_datum>
+        </podnozje>
+        <broj_zahteva datatype="xs:string" property="pred:broj_zahteva" xml:space="preserve">5</broj_zahteva>
+    </zalba_cutanje>

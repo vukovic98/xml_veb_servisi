@@ -56,7 +56,6 @@ public class ZahtevServiceSoapBindingImpl implements ZahtevServicePortType {
     
     public com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteve(java.lang.String email) { 
         LOG.info("Executing operation pronadjiNeodgovoreneZahteve");
-        System.out.println(email);
         try {
             return this.zahtevService.pronadjiNeodgovoreneZahteveZaKorisnika(email);
         } catch (java.lang.Exception ex) {

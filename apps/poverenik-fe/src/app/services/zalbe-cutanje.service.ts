@@ -14,7 +14,10 @@ export class ZalbeCutanjeService {
   private readonly zalbeApi = "zalbaCutanje";
   private readonly zalbeKorisnikApi = "zalbaCutanje/korisnik";
   private readonly preuzmiPDFApi = "zalbaCutanje/generisiPDF/";
+  private readonly preuzmiJSONApi = "zalbaCutanje/generisiJSON/";
+  private readonly preuzmiRDFApi = "zalbaCutanje/generisiRDF/";
   private readonly preuzmiHTMLApi = "zalbaCutanje/generisiHTML/";
+  private readonly obrisiZalbuApi = "zalbaCutanje/";
   private readonly dodajZalbuApi = "zalbaCutanje";
   private readonly dobaviBrojacApi = "brojac/zalbaCutanje";
   private readonly dobaviNeodgovoreneZahteveApi = "ws/zahtev";
@@ -42,6 +45,19 @@ export class ZalbeCutanjeService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.get(environment.POVERENIK_APP + this.preuzmiHTMLApi + zalba_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+
+  preuzmiJSON(zalba_id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.preuzmiJSONApi + zalba_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+  preuzmiRDF(zalba_id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.preuzmiRDFApi + zalba_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
   }
   dobaviZalbe():Observable<any> {
     const headers = new HttpHeaders({
@@ -87,5 +103,15 @@ export class ZalbeCutanjeService {
     });
     let zahtev: string = `<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body> <pronadjiNeodgovoreneZahteve xmlns="http://www.ftn.uns.ac.rs/zahtev"><email>${email}</email></pronadjiNeodgovoreneZahteve></soap:Body></soap:Envelope>`;
     return this.http.post(environment.SLUZBENIK_APP + this.dobaviNeodgovoreneZahteveApi, zahtev, {headers: headers, responseType: 'text'});
+  }
+
+  odustani(id: number):Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.delete(environment.POVERENIK_APP + this.obrisiZalbuApi + id,{headers: headers, responseType: 'text'});
+
   }
 }

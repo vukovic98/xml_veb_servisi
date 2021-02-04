@@ -1,0 +1,38 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:naziv_primaoca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Повереникy за информације од јавног значаја и заштиту података о личности</pred:naziv_primaoca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:ulica_poverenika xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Булевар краља Александрa</pred:ulica_poverenika>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:broj_kuce_poverenika xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="integer">15</pred:broj_kuce_poverenika>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:mesto_poverenika xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Београд</pred:mesto_poverenika>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:naziv_organa xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Cdd</pred:naziv_organa>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:korisnik xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">nikola@maildrop.cc</pred:korisnik>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:ime_prezime_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Nikola Andric</pred:ime_prezime_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:ulica_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">ddd</pred:ulica_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:broj_kuce_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="integer">ddd</pred:broj_kuce_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:mesto_podnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">ddd</pred:mesto_podnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:datum_zalbe xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">2021-01-31</pred:datum_zalbe>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/2">
+    <pred:broj_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">5</pred:broj_zahteva>
+  </rdf:Description>
+</rdf:RDF>

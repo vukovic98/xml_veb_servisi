@@ -14,7 +14,7 @@ export class ZalbeComponent implements OnInit {
 
   public zalbeNaOdluku: Array<any>;
   public naslov: string;
-  private uloga: string;
+  public uloga: string;
 
   public naslov2: string;
   constructor(private cutanjeService: ZalbeCutanjeService, private odlukaService: ZalbaNaOdlukuService) { }

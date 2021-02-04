@@ -19,7 +19,7 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
   private imeIprezime: string = '';
   razlogZalbe: string = '';
   private brojZalbe: string = '-1';
-  brojZahteva: number = 0;
+  brojZahteva: string = '0';
   zahtev: any;
   btnPosalji = false;
   datumZahteva = '';
@@ -95,7 +95,8 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
 
   sastaviZalbu() {
     this.btnPosalji = true;
-    this.brojZahteva = this.zahtev.attributes['about'].slice(-1);
+    let lista: string[] = this.zahtev.attributes['about'].split('/');
+    this.brojZahteva = lista[lista.length-1];
     this.datumZahteva = this.zahtev.children[2].children[0].children[1].children[0];
     this.zalbaCutanjeService.dobaviBrojac().subscribe(res => {
       this.brojZalbe = res;

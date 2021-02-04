@@ -1,4 +1,6 @@
-package com.ftn.xml.jaxb.util;
+package com.ftn.xml.db;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 public class SparqlUtil {
 
@@ -6,7 +8,13 @@ public class SparqlUtil {
 	private static final String DROP_ALL = "DROP ALL";
 	
 	/* Removes all of the triples from a named graphed */
-	private static final String DROP_GRAPH_TEMPLATE = "DELETE DATA FROM <http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/10>";
+	private static final String DROP_GRAPH_TEMPLATE = "DROP GRAPH <%s>";
+//	DELETE WHERE {
+//		  GRAPH <http://localhost:8083/fuseki/PoverenikDataset/data/zalba_cutanje> {
+//		    <http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/11> ?p ?o 
+//		  }
+//		 }
+	private static final String DELETE_NODE_TEMPLATE = "DELETE WHERE { GRAPH <%1$s> { <%2$s> ?p ?o } }";
 
 	/**
 	 * A template for creating SPARUL (SPARQL Update) query can be found here:
@@ -50,4 +58,7 @@ public class SparqlUtil {
 		return String.format(SELECT_NAMED_GRAPH_TEMPLATE, graphURI, sparqlCondition);
 	}
 	
+	public static String deleteNode(String graphURI, String sparqlCondition) {
+		return String.format(DELETE_NODE_TEMPLATE, graphURI, sparqlCondition);
+	}
 }

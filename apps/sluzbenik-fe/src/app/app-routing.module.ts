@@ -9,6 +9,7 @@ import {ObavestenjaSluzbenikComponent} from './components/obavestenja-sluzbenik/
 import {DodajObavestenjeComponent} from './components/dodaj-obavestenje/dodaj-obavestenje.component';
 import {ZahteviZaIzjasnjenjeComponent} from './components/zahtevi-za-izjasnjenje/zahtevi-za-izjasnjenje.component';
 import {SluzbenikPretragaComponent} from './components/sluzbenik-pretraga/sluzbenik-pretraga.component';
+import {IzvestajiComponent} from './components/izvestaji/izvestaji.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'obavestenja-sluzbenik', component: ObavestenjaSluzbenikComponent},
   {path: 'dodaj-obavestenje', component: DodajObavestenjeComponent},
   {path: 'zahtevi-izjasnjenje', component: ZahteviZaIzjasnjenjeComponent},
-  {path: 'sluzbenik-pretraga', component: SluzbenikPretragaComponent}
+  {path: 'sluzbenik-pretraga', component: SluzbenikPretragaComponent},
+  {path: 'sluzbenik-izvestaj', component: IzvestajiComponent}
 ];
 
 @NgModule({

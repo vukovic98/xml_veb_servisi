@@ -308,6 +308,7 @@ public class ZalbaNaOdlukuService {
 			return null;
 		}
 	}
+
 	public boolean dodajZalbu(ZalbaNaOdlukuDodavanjeDTO zalbaDto, Korisnik korisnik) {
 		
 		String[] podaci = korisnik.getImeIPrezime().split(" ");
@@ -402,5 +403,58 @@ public class ZalbaNaOdlukuService {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<ZalbaNaOdlukuDTO> pretraga(String text) throws Exception {
+		ResourceSet resource = this.zalbaRepo.pretraga(text);
+		ResourceIterator i = resource.getIterator();
+		Resource res = null;
+		
+		ArrayList<ZalbaNaOdlukuDTO> zalbeDTO = new ArrayList<>();
+		
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
+		
+		while(i.hasMoreResources()) {
+			
+			try {
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				res = i.nextResource();
+				ZalbaNaOdluku z = (ZalbaNaOdluku) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
+				ZalbaNaOdlukuDTO dto = new ZalbaNaOdlukuDTO();
+				
+				String[] params = z.getAbout().split("/");
+				long id = Long.parseLong(params[params.length - 1]);
+				dto.setId(id);
+				
+				boolean resena = this.resenjeRepo.proveriDaLiJeZalbaResena(id);
+				if(!resena) {
+					dto.setRazresena("ne");
+				} else
+					dto.setRazresena("da");
+				
+				dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
+
+				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
+				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+				dto.setDatum(date);
+
+				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
+				dto.setPrezime(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());
+				dto.setNaziv_organa(z.getOsnovniPodaci().getPodaciOOrganu().getNaziv().getValue());
+
+				zalbeDTO.add(dto);
+				
+			}finally {
+				
+				try {
+					((EXistResource) res).freeResources();	
+				}catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return zalbeDTO;
+
 	}
 }

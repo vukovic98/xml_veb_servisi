@@ -1,0 +1,27 @@
+<div>
+  <mat-card-title class="mb-3">Пронађени документи</mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-grid-list cols="4" rowHeight="40" class="mt-3">
+    <mat-grid-tile>Редни број документа</mat-grid-tile>
+    <mat-grid-tile>Тип документа</mat-grid-tile>
+    <mat-grid-tile>Датум предаје захтева</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+
+  <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let z of zahtevi">
+    <mat-grid-tile>
+      {{z[0].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      ЗАХТЕВ
+    </mat-grid-tile>
+    <mat-grid-tile >
+<!--      <button mat-button (click)="preuzmiPDF()" style="padding-left: 10px!important;">Преузми PDF</button>-->
+<!--      <button mat-button (click)="preuzmiHTML()" style="padding-left: 10px!important;">Преузми HTML</button>-->
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+
+
+</div>

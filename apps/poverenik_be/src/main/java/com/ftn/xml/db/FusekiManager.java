@@ -3,13 +3,9 @@ package com.ftn.xml.db;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
 
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -27,11 +23,8 @@ import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
-import org.xmldb.api.base.ResourceSet;
-import org.xmldb.api.base.XMLDBException;
 
-import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
+import com.ftn.xml.db.AuthenticationManagerFuseki.*;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -177,7 +170,8 @@ public class FusekiManager {
 	}
 	
 	public void generisiJSON(long id) throws FileNotFoundException {
-		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id + "> ?p ?o");
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id + "> ?p ?o");
 		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
 		ResultSet results = query.execSelect();
 		String filePath = "src/main/resources/static/json/zalba_cutanje_" + id + ".json";

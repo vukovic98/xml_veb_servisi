@@ -3,6 +3,7 @@ package com.ftn.xml.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -57,6 +58,17 @@ public class ZahtevController {
 	@Autowired
 	private DodajZahtevMaper mapper;
 
+	
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> pretraga(@PathVariable("text") String text) {
+		ListaZahtevaZaPristupInformacijama lista = this.zahtevService.pretraga(text);
+		
+		if(!lista.getZahtevZaPristupInformacijama().isEmpty())
+			return new ResponseEntity<>((ArrayList<ZahtevZaPristupInformacijama>)lista.getZahtevZaPristupInformacijama(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	@GetMapping
 	public ResponseEntity<ArrayList<ZahtevSluzbenikaDTO>> pronadjiSveZahteve() {
 		ArrayList<ZahtevSluzbenikaDTO> zahteviDTO = new ArrayList<>();

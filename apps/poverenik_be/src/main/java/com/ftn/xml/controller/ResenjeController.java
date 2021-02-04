@@ -94,4 +94,19 @@ public class ResenjeController {
 
 	}
 	
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ResenjeDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ResenjeDTO> lista = new ArrayList<>();
+		try {
+			lista = this.resenjeService.pretraga(text);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }

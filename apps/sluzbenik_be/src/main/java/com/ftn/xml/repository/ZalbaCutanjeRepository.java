@@ -4,6 +4,7 @@ import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.db.ExistManager;
 
@@ -27,6 +28,18 @@ public class ZalbaCutanjeRepository {
 	@Autowired
 	private ExistManager existManager;
 	
+	public long ukupanBrojZalbiNaCutanje() {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set.getSize();
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
 	public ResourceSet getAll() {
 		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
 		try {
@@ -37,9 +50,9 @@ public class ZalbaCutanjeRepository {
 	}
 	
 	public ResourceSet pretraga(String text) {
-		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[zaglavlje/primalac_zalbe/naziv_primaoca[text()[contains(., '"+text+"')]]" + 
-				" or sadrzaj/naziv_organa[text()[contains(.,'"+text+"')]] or sadrzaj/podaci_o_zahtevu_i_informacijama[text()[contains(.,'"+text+"')]]" + 
-				" or podnozje/podnosilac_zalbe/ime_i_prezime[text()[contains(., '"+text+"')]]]";
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[zaglavlje/primalac_zalbe/naziv_primaoca[contains(., '"+text+"')]" + 
+				" or sadrzaj/naziv_organa[contains(.,'"+text+"')] or sadrzaj/podaci_o_zahtevu_i_informacijama[contains(.,'"+text+"')]" + 
+				" or podnozje/podnosilac_zalbe/ime_i_prezime[contains(., '"+text+"')]]";
 		
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
@@ -68,6 +81,21 @@ public class ZalbaCutanjeRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public boolean postojiZalbaNaZahtev(long id) throws XMLDBException {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/broj_zahteva=" + id;
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			if (set.getSize()!=0)
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

@@ -28,6 +28,23 @@ public class ResenjeRepository {
 	@Autowired
 	private ExistManager existManager;
 
+	public ResourceSet pretraga(String text) {
+		String xPath = "/lista_resenja/resenje[sadrzaj/uvod/organ[contains(., '"+text+"')]"
+				+ " or sadrzaj/uvod/podnosilac[contains(., '"+text+"')]"
+				+ " or sadrzaj/uvod/ustanova/naziv[contains(., '"+text+"')]"
+				+ " or sadrzaj/doneto_resenje/trazeni_dokument[contains(., '"+text+"')]"
+				+ " or poverenik[contains(., '"+text+"')] or ishod[contains(., '"+text+"')]]";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public boolean proveriDaLiJeZalbaResena(long id) {
 		String xPath = "/lista_resenja/resenje/.[broj_zalbe=" + id + "]";

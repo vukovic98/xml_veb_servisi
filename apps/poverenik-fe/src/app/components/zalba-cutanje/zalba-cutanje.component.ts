@@ -2,17 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ZahtevIzjasnjenjeCutanjeDTO } from 'src/app/model/zahtevIzjasnjenjeCutanjeDto';
 import { ZahtevIzjasnjenjeCutanjeService } from 'src/app/services/zahtev-izjasnjenje-cutanje.service';
 import {ZalbeCutanjeService} from '../../services/zalbe-cutanje.service';
-<<<<<<< HEAD
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
 import {DatePipe} from '@angular/common'
 import { ResenjaService } from 'src/app/services/resenja.service';
 import Swal from 'sweetalert2';
-=======
-import Swal from 'sweetalert2';
-import {Router} from '@angular/router';
-
->>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-zalba-cutanje',
   templateUrl: './zalba-cutanje.component.html',
@@ -22,7 +17,7 @@ export class ZalbaCutanjeComponent implements OnInit {
 
   @Input() zalba: any;
   @Input() resi: boolean;
-<<<<<<< HEAD
+  @Input() poverenikPregled: boolean;
 
   zahtev_izjasnjenje: ZahtevIzjasnjenjeCutanjeDTO;
   poslatZahtev : boolean;
@@ -30,7 +25,8 @@ export class ZalbaCutanjeComponent implements OnInit {
   constructor(private service: ZalbeCutanjeService,
     private zahtevService: ZahtevIzjasnjenjeCutanjeService,
     private resenjeService: ResenjaService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -50,13 +46,6 @@ export class ZalbaCutanjeComponent implements OnInit {
 
     });
 
-=======
-  @Input() poverenikPregled: boolean;
-  constructor(private service: ZalbeCutanjeService, private router: Router) { }
-
-  ngOnInit(): void {
-    console.log(this.resi);
->>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
   }
   preuzmiPDF() {
     this.service.preuzmiPDF(this.zalba[0].children[0]).subscribe(response => {
@@ -120,7 +109,6 @@ export class ZalbaCutanjeComponent implements OnInit {
       () => console.info('File downloaded successfully');
   }
 
-<<<<<<< HEAD
   resiZalbu(){
 
     if(this.poslatZahtev){
@@ -189,26 +177,27 @@ export class ZalbaCutanjeComponent implements OnInit {
     }
 
 
-=======
-  odustani(id: number) {
-    this.service.odustani(id).subscribe(
-      res => {
-        console.log(res,"aa");
+
+}
+
+odustani(id: number) {
+  this.service.odustani(id).subscribe(
+    res => {
+      console.log(res,"aa");
+      Swal.fire({
+        title: 'Успешно сте одустали од жалбе!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1200
+      }).then(() => window.location.reload())
+    } ,
+      error => {
         Swal.fire({
-          title: 'Успешно сте одустали од жалбе!',
-          icon: 'success',
-          showConfirmButton: false,
+          title: 'Неуспешно одустајање од жалбе.',
+          icon: 'error',
           timer: 1200
-        }).then(() => window.location.reload())
-      } ,
-        error => {
-          Swal.fire({
-            title: 'Неуспешно одустајање од жалбе.',
-            icon: 'error',
-            timer: 1200
-          })
-        }
-    );
->>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
-  }
+        })
+      }
+  );
+}
 }

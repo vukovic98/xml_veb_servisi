@@ -16,13 +16,6 @@
         <mat-grid-tile [colspan]="4">Преузми</mat-grid-tile>
       </mat-grid-list>
       <mat-divider></mat-divider>
-<<<<<<< HEAD
-      <app-zalba-cutanje
-        *ngFor="let z of zalbeCutanje"
-        [zalba]=z.children
-        [resi]=true
-      ></app-zalba-cutanje>
-=======
       <div *ngIf="uloga=='P'">
         <app-zalba-cutanje
           *ngFor="let z of zalbeCutanje"
@@ -40,7 +33,6 @@
         ></app-zalba-cutanje>
       </div>
 
->>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
     </div>
 
   </div>

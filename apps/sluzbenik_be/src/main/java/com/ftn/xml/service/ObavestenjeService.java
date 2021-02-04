@@ -41,6 +41,48 @@ public class ObavestenjeService {
 		return this.obavestenjeRepository.proveraPotvrdeZahteva(zahtev_id);
 	}
 	
+	public ListaObavestenja pretraga(String text) {
+		ResourceSet set = this.obavestenjeRepository.pretraga(text);
+		
+		ListaObavestenja lista = new ListaObavestenja();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.obavestenje");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					Obavestenje o = (Obavestenje) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getObavestenje().add(o);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public boolean dodajObavestenje(String xml, Obavestenje o) {
 		DodajObavestenjeMapper mapper = new DodajObavestenjeMapper();
 		

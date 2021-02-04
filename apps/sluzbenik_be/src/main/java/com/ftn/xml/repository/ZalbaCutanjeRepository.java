@@ -27,6 +27,18 @@ public class ZalbaCutanjeRepository {
 	@Autowired
 	private ExistManager existManager;
 	
+	public long ukupanBrojZalbiNaCutanje() {
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set.getSize();
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
 	public ResourceSet getAll() {
 		String xPath = "/lista_zalbi_cutanje/zalba_cutanje";
 		try {
@@ -37,9 +49,9 @@ public class ZalbaCutanjeRepository {
 	}
 	
 	public ResourceSet pretraga(String text) {
-		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[zaglavlje/primalac_zalbe/naziv_primaoca[text()[contains(., '"+text+"')]]" + 
-				" or sadrzaj/naziv_organa[text()[contains(.,'"+text+"')]] or sadrzaj/podaci_o_zahtevu_i_informacijama[text()[contains(.,'"+text+"')]]" + 
-				" or podnozje/podnosilac_zalbe/ime_i_prezime[text()[contains(., '"+text+"')]]]";
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[zaglavlje/primalac_zalbe/naziv_primaoca[contains(., '"+text+"')]" + 
+				" or sadrzaj/naziv_organa[contains(.,'"+text+"')] or sadrzaj/podaci_o_zahtevu_i_informacijama[contains(.,'"+text+"')]" + 
+				" or podnozje/podnosilac_zalbe/ime_i_prezime[contains(., '"+text+"')]]";
 		
 		try {
 			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);

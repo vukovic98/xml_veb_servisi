@@ -19,3 +19,8 @@ export interface OdbijenZahtevMail{
   naslov: string,
   sadrzaj: string
 }
+
+export interface PretragaModel {
+  dokument: number,
+  tekst: string
+}

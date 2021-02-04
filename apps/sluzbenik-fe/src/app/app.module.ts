@@ -37,6 +37,7 @@ import { ZahteviZaIzjasnjenjeOdlukaComponent } from './components/zahtevi-za-izj
 import { ZahteviZaIzjasnjenjeCutanjeComponent } from './components/zahtevi-za-izjasnjenje-cutanje/zahtevi-za-izjasnjenje-cutanje.component';
 import { DodajIzjasnjenjeNaZalbuComponent } from './components/dodaj-izjasnjenje-na-zalbu/dodaj-izjasnjenje-na-zalbu.component';
 import { SluzbenikPretragaComponent } from './components/sluzbenik-pretraga/sluzbenik-pretraga.component';
+import { SviDokumentiPretrageComponent } from './components/svi-dokumenti-pretrage/svi-dokumenti-pretrage.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SluzbenikPretragaComponent } from './components/sluzbenik-pretraga/sluz
     ZahteviZaIzjasnjenjeCutanjeComponent,
     DodajIzjasnjenjeNaZalbuComponent,
     SluzbenikPretragaComponent,
+    SviDokumentiPretrageComponent,
 
   ],
   imports: [

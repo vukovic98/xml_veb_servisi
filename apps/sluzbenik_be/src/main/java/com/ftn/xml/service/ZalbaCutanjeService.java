@@ -35,6 +35,10 @@ public class ZalbaCutanjeService {
 	@Autowired
 	private ResenjeRepository resenjeRepository;
 
+	public long ukupanBrojZalbiNaCutanje() {
+		return this.zalbaCutanjeRepository.ukupanBrojZalbiNaCutanje();
+	}
+	
 	public ListaZalbiCutanje getAll() {
 		ResourceSet set = this.zalbaCutanjeRepository.getAll();
 		ListaZalbiCutanje zalbe = new ListaZalbiCutanje();

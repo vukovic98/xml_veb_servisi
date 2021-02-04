@@ -36,6 +36,16 @@ public class ObavestenjeController {
 	@Autowired
 	private ObavestenjeService obavestenjeService;
 
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<Obavestenje>> pretraga(@PathVariable("text") String text) {
+		ListaObavestenja lista = this.obavestenjeService.pretraga(text);
+		
+		if(!lista.getObavestenje().isEmpty())
+			return new ResponseEntity<>((ArrayList<Obavestenje>)lista.getObavestenje(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	@GetMapping
 	public ResponseEntity<ArrayList<ObavestenjeDTO>> pronadjiSvaObavestenja() {
 		ListaObavestenja lista = this.obavestenjeService.pronadjiSvaObavestenja();

@@ -35,13 +35,64 @@ public class ZahtevService {
 
 	@Autowired
 	private ZahtevRepository zahtevRepository;
-	
+
 	public boolean odobriZahtev(String id) {
 		return this.zahtevRepository.odobriZahtev(id);
 	}
-	
+
 	public boolean odbijZahtev(String id) {
 		return this.zahtevRepository.odbijZahtev(id);
+	}
+
+	public long ukupanBrojZahteva() {
+		return this.zahtevRepository.ukupanBrojZahteva();
+	}
+
+	public long ukupanBrojOdnijenihZahteva() {
+		return this.zahtevRepository.ukupanBrojOdbijenihZahteva();
+	}
+
+	public ListaZahtevaZaPristupInformacijama pretraga(String text) {
+		ResourceSet set = this.zahtevRepository.pretraga(text);
+
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+
+		ResourceIterator i;
+		try {
+			i = set.getIterator();
+		} catch (XMLDBException e) {
+			return null;
+		}
+		Resource res = null;
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zahtev");
+
+			while (i.hasMoreResources()) {
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					res = i.nextResource();
+
+					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					lista.getZahtevZaPristupInformacijama().add(zahtev);
+
+				} finally {
+					try {
+						((EXistResource) res).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+			}
+
+			return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public boolean dodajZahtev(ZahtevZaPristupInformacijama z, int index) {
@@ -55,19 +106,19 @@ public class ZahtevService {
 			marshaller.setProperty("com.sun.xml.bind.xmlDeclaration", false);
 
 			StringWriter zahtevSW = new StringWriter();
-			
+
 			marshaller.marshal(z, zahtevSW);
-			
+
 			String zahtev = zahtevSW.toString();
-			
+
 			String changedZahtev = this.removeNamespace(zahtev);
-			
+
 			DodajZahtevMaper mapper = new DodajZahtevMaper();
-			
+
 			ZahtevFusekiDTO dto = mapper.klasaUFusekiDTO(z);
 
 			return this.zahtevRepository.sacuvajZahtev(changedZahtev, dto, index);
-			
+
 		} catch (Exception e) {
 			return false;
 		}
@@ -115,7 +166,7 @@ public class ZahtevService {
 			return null;
 		}
 	}
-	
+
 	public ListaZahtevaZaPristupInformacijama pronadjiZahteveZaKorisnika(String email) {
 		ResourceSet set = this.zahtevRepository.pronadjiZahteveZaKorisnika(email);
 
@@ -158,7 +209,7 @@ public class ZahtevService {
 			return null;
 		}
 	}
-	
+
 	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) {
 		ResourceSet set = this.zahtevRepository.pronadjiOdbijeneZahteveZaKorisnika(email);
 
@@ -203,9 +254,9 @@ public class ZahtevService {
 	}
 
 	public ListaZahtevaZaPristupInformacijama pronadjiNeodgovoreneZahteveZaKorisnika(String email) {
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		ResourceSet set = this.zahtevRepository.pronadjiNeodgovoreneZahteveZaKorisnika(email);
 
 		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
@@ -229,17 +280,17 @@ public class ZahtevService {
 
 					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
 							.unmarshal(((XMLResource) res).getContentAsDOM());
-					
+
 					// da li je proslo 5 min
-					
+
 					Date now = new Date();
 					Date d = formatter.parse(zahtev.getPodnozje().getMestoIDatum().getDatumZahteva().getValue());
 
 					long diffInMillies = Math.abs(now.getTime() - d.getTime());
-				    long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
-					
-				    if(diff > 5)
-				    	lista.getZahtevZaPristupInformacijama().add(zahtev);
+					long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+					if (diff > 5)
+						lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {
 					try {
@@ -256,7 +307,7 @@ public class ZahtevService {
 			return null;
 		}
 	}
-	
+
 	public ZahtevZaPristupInformacijama pronadjiZahtevPoId(long id) {
 		ResourceSet set = this.zahtevRepository.pronadjiPoId(id);
 

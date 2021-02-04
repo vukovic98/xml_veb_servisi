@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
+import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.service.ResenjeService;
 
 @RestController
@@ -22,6 +24,22 @@ public class ResenjeController {
 	@Autowired
 	private ResenjeService resenjeService;
 
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ResenjeDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ResenjeDTO> lista = new ArrayList<>();
+		try {
+			lista = this.resenjeService.pretraga(text);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	@GetMapping("/generatePDF/{resenje_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
 

@@ -8,7 +8,6 @@ import org.xmldb.api.base.ResourceSet;
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ZahtevFusekiDTO;
-import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 
 @Repository
 public class ZahtevRepository {
@@ -32,7 +31,46 @@ public class ZahtevRepository {
 
 	@Autowired
 	private FusekiManager fusekiManager;
+	
+	public long ukupanBrojZahteva() {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama";
 
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set.getSize();
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
+	public long ukupanBrojOdbijenihZahteva() {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[status=\"ODBIJEN\"]";
+
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+
+			return set.getSize();
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	public ResourceSet pretraga(String text) {
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[podaci_o_organu/naziv[contains(., '"+text+"')]"
+				+ " or podaci_o_organu/sediste[contains(., '"+text+"')]"
+						+ " or sadrzaj/opis_trazene_informacije[contains(., '"+text+"')]"
+				+ " or podnozje/informacije_o_traziocu/ime_i_prezime[contains(., '"+text+"')]]";
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public boolean odobriZahtev(String id) {
 		String id_Str = ID_STRING + id;
 		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[@about='" + id_Str

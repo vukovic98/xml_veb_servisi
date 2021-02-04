@@ -15,7 +15,19 @@ export class ZahteviZaIzjasnjenjeService {
   private preuzmiHTMLCutanjeApi: string = "zalba_cutanje/generisiHTML/";
   private preuzmiHTMLOdlukaApi: string = "zalba_na_odluku/generisiHTML/";
 
+  private posaljiOdgovorCutanjeApi: string = "ws/odgovorZahtevZaIzjasnjenje";
+
   constructor(private http: HttpClient) { }
+
+  posaljiOdgovorNaCutanje(data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken"),
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.POVERENIK_APP + this.posaljiOdgovorCutanjeApi, data, {headers: headers});
+  }
 
   pronadjiSveZahteveZaIzjasnjenjeNaOdluku(): Observable<any> {
     const headers = new HttpHeaders({

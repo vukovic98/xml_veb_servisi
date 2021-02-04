@@ -16,7 +16,8 @@ export class ZahteviZaIzjasnjenjeCutanjeComponent implements OnInit {
 
   constructor(
     private service: ZahteviZaIzjasnjenjeService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private izjasnjenjeService: ZahteviZaIzjasnjenjeService
     ) { }
 
   ngOnInit(): void {
@@ -71,7 +72,18 @@ export class ZahteviZaIzjasnjenjeCutanjeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined) {
         let post = result.data;
-        console.log(post);
+        let idZalbe: string = "<id_zalbe>" + post.id_zalbe + "</id_zalbe>";
+        let sadrzaj: string = "<sadrzaj>" + post.sadrzaj + "</sadrzaj>";
+        let tip: string = "<tip>C</tip>";
+
+        let req: string = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><dodajOdgovorZahtevZaIzjasnjenje xmlns=\"http://ftn.uns.ac.rs/izjasnjenje/odgovor\"><odgovor_zahtev_za_izjasnjenje>";
+        req = req + idZalbe + sadrzaj + tip;
+        req = req + "</odgovor_zahtev_za_izjasnjenje></dodajOdgovorZahtevZaIzjasnjenje></soap:Body></soap:Envelope>";
+
+        this.izjasnjenjeService.posaljiOdgovorNaCutanje(req)
+          .subscribe((response) => {
+            console.log(response);
+          })
       }
     });
   }

@@ -1,14 +1,24 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.jaxb.util.XSLFORTransformerResenje;
+import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
@@ -42,6 +52,55 @@ public class ResenjeService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public ArrayList<ResenjeDTO> pretraga(String text) throws Exception {
+		ResourceSet result = this.resenjeRepository.pretraga(text);
+		ResourceIterator i = result.getIterator();
+        Resource res = null;
+        ArrayList<ResenjeDTO> resenja = new ArrayList<>();
+        JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.resenje");
+        
+        while(i.hasMoreResources()) {
+            
+        	try {
+        		Unmarshaller unmarshaller = context.createUnmarshaller();
+                res = i.nextResource();
+                Resenje r = (Resenje) unmarshaller.unmarshal(((XMLResource)res).getContentAsDOM());
+                ResenjeDTO dto = new ResenjeDTO();
+                
+				String[] params = r.getAbout().split("/");
+				long id = Long.parseLong(params[params.length - 1]);
+				dto.setId(id);
+
+				dto.setIme_i_prezime(r.getSadrzaj().getUvod().getPodnosilac().getContent());
+				dto.setIshod(r.getIshod().getValue());
+                
+				XMLGregorianCalendar xmlDateZahtev = r.getSadrzaj().getUvod().getDatumZahteva().getValue();
+				String dateZahtev = xmlDateZahtev.getYear() +"-"+ xmlDateZahtev.getMonth() +"-"+ xmlDateZahtev.getDay();
+				dto.setDatum_zahteva(dateZahtev);
+
+				XMLGregorianCalendar xmlDateResenje = r.getOsnovniPodaci().getDatum().getValue();
+				String dateResenje = xmlDateResenje.getYear() +"-"+ xmlDateResenje.getMonth() +"-"+ xmlDateResenje.getDay();
+				dto.setDatum_resenja(dateResenje);
+				
+				dto.setUstanova(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
+				dto.setBroj_resenja(r.getBroj());
+				dto.setBroj_zalbe(r.getBrojZalbe().getValue().toString());
+				
+				
+                resenja.add(dto);
+            } finally {
+                
+            	// don't forget to cleanup resources
+                try { 
+                	((EXistResource)res).freeResources(); 
+                } catch (XMLDBException xe) {
+                	xe.printStackTrace();
+                }
+            }
+        }
+		return resenja;
 	}
 
 	public String findById_RAW(long id) throws XMLDBException {
@@ -107,7 +166,7 @@ public class ResenjeService {
 
 		boolean ok = false;
 		String html_path = "src/main/resources/static/html/resenje_" + resenje_id + ".html";
-
+ 
 		try {
 			ok = transformer.generateHTML(resenje, html_path);
 			if (ok)

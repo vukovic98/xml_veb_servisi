@@ -1,5 +1,8 @@
 package com.ftn.xml.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +29,15 @@ import com.ftn.xml.dto.KorisnikLoginDTO;
 import com.ftn.xml.dto.KorisnikSignUpDTO;
 import com.ftn.xml.dto.TrenutnoUlogovanKorisnikDTO;
 import com.ftn.xml.dto.UserTokenStateDTO;
+import com.ftn.xml.model.izvestaj.Izvestaj;
+import com.ftn.xml.model.izvestaj.ListaIzvestaja;
 import com.ftn.xml.model.korisnik.Korisnik;
 import com.ftn.xml.security.TokenUtils;
 import com.ftn.xml.service.CustomUserDetailsService;
 import com.ftn.xml.service.KorisnikService;
+import com.ftn.xml.service.ZahtevService;
+import com.ftn.xml.service.ZalbaCutanjeService;
+import com.ftn.xml.service.ZalbaNaOdlukuService;
 
 @RestController
 @RequestMapping(value = "/korisnik", produces = MediaType.APPLICATION_XML_VALUE)
@@ -46,6 +54,15 @@ public class KorisnikController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private ZahtevService zahtevService;
+	
+	@Autowired
+	private ZalbaNaOdlukuService zalbaNaOdlukuService;
+	
+	@Autowired
+	private ZalbaCutanjeService zalbaCutanjeService;
 
 	@RequestMapping(path = "/prijava", method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<UserTokenStateDTO> prijava(@RequestBody KorisnikLoginDTO authenticationRequest)
@@ -93,6 +110,28 @@ public class KorisnikController {
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+	}
+	
+	@GetMapping(path = "/izvestaj")
+	public ResponseEntity<Izvestaj> generisiIzvestaje() {
+		long br_zahteva = this.zahtevService.ukupanBrojZahteva();
+		long odbijeni_zahtevi = this.zahtevService.ukupanBrojOdnijenihZahteva();
+		long br_zalbi_odluka = this.zalbaNaOdlukuService.ukupanBrojZalbiNaOdluku();
+		long br_zalbi_zutanje = this.zalbaCutanjeService.ukupanBrojZalbiNaCutanje();
+		
+		Izvestaj i = new Izvestaj();
+		i.setBrojOdbijenihZahteva(odbijeni_zahtevi);
+		i.setBrojZahteva(br_zahteva);
+		i.setBrojZalbiNaCutanje(br_zalbi_zutanje);
+		i.setBrojZalbiNaOdluku(br_zalbi_odluka);
+		
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(d);
+		
+		i.setDatum(date);
+		
+		return new ResponseEntity<>(i, HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/registracija")

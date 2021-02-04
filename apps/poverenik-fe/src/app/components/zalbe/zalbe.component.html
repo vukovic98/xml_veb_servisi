@@ -6,21 +6,41 @@
     <div class="row col-md-11 m-auto mb-5">
       <mat-card-title class="mb-3">{{naslov}}</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-grid-list cols="8" rowHeight="40" class="mt-3">
+      <mat-grid-list cols="10" rowHeight="40" class="mt-3">
         <mat-grid-tile>Број жалбе</mat-grid-tile>
         <mat-grid-tile>Број захтева</mat-grid-tile>
         <mat-grid-tile>Орган</mat-grid-tile>
         <mat-grid-tile>Подносилац</mat-grid-tile>
         <mat-grid-tile>Датум жалбе</mat-grid-tile>
         <mat-grid-tile>Разрешена</mat-grid-tile>
-        <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+        <mat-grid-tile [colspan]="4">Преузми</mat-grid-tile>
       </mat-grid-list>
       <mat-divider></mat-divider>
+<<<<<<< HEAD
       <app-zalba-cutanje
         *ngFor="let z of zalbeCutanje"
         [zalba]=z.children
         [resi]=true
       ></app-zalba-cutanje>
+=======
+      <div *ngIf="uloga=='P'">
+        <app-zalba-cutanje
+          *ngFor="let z of zalbeCutanje"
+          [zalba]=z.children
+          [resi]=false
+          [poverenikPregled]=true
+        ></app-zalba-cutanje>
+      </div>
+      <div *ngIf="uloga=='K'">
+        <app-zalba-cutanje
+          *ngFor="let z of zalbeCutanje"
+          [zalba]=z.children
+          [resi]=false
+          [poverenikPregled]=false
+        ></app-zalba-cutanje>
+      </div>
+
+>>>>>>> 85634e91422bbc26586d065dfddc18d8c9247bf9
     </div>
 
   </div>
@@ -31,14 +51,14 @@
     <div class="row col-md-11 m-auto mb-5">
       <mat-card-title class="mb-3">{{naslov2}}</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-grid-list cols="8" rowHeight="40" class="mt-3">
+      <mat-grid-list cols="10" rowHeight="40" class="mt-3">
         <mat-grid-tile>Број жалбе</mat-grid-tile>
         <mat-grid-tile>Број захтева</mat-grid-tile>
         <mat-grid-tile>Орган</mat-grid-tile>
         <mat-grid-tile>Подносилац</mat-grid-tile>
         <mat-grid-tile>Датум жалбе</mat-grid-tile>
         <mat-grid-tile>Разрешена</mat-grid-tile>
-        <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+        <mat-grid-tile [colspan]="4">Преузми</mat-grid-tile>
       </mat-grid-list>
       <mat-divider></mat-divider>
       <app-zalba-na-odluku

@@ -3,13 +3,11 @@
   <xs:element name="brojac">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="brojac:brojac_zalba_cutanje"/>
-        <xs:element ref="brojac:brojac_zalba_odluka"/>
+        <xs:element ref="brojac:brojac_zalbi"/>
         <xs:element ref="brojac:brojac_resenje"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="brojac_zalba_cutanje" type="xs:integer"/>
-  <xs:element name="brojac_zalba_odluka" type="xs:integer"/>
+  <xs:element name="brojac_zalbi" type="xs:integer"/>
   <xs:element name="brojac_resenje" type="xs:integer"/>
 </xs:schema>

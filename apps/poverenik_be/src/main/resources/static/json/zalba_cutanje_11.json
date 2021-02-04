@@ -1,0 +1,57 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_poverenika" } ,
+        "o": { "type": "literal" , "value": "Булевар краља Александрa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_prezime_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Nikola Andric" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva" } ,
+        "o": { "type": "literal" , "value": "8" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_poverenika" } ,
+        "o": { "type": "literal" , "value": "Београд" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_primaoca" } ,
+        "o": { "type": "literal" , "value": "Повереникy за информације од јавног значаја и заштиту података о личности" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_organa" } ,
+        "o": { "type": "literal" , "value": "FTN" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_poverenika" } ,
+        "o": { "type": "literal" , "value": "15" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_podnosioca" } ,
+        "o": { "type": "literal" , "value": "3" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zalbe" } ,
+        "o": { "type": "literal" , "value": "2021-02-01" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Kumanovska" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Backa Palanka" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik" } ,
+        "o": { "type": "literal" , "value": "nikola@maildrop.cc" }
+      }
+    ]
+  }
+}

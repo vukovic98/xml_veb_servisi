@@ -100,5 +100,22 @@ public class ZalbaNaOdlukuController {
 		}
 
 	}
+	
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ZalbaNaOdlukuDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ZalbaNaOdlukuDTO> lista = new ArrayList<>();
+		
+		try {
+			lista = this.zalbaService.pretraga(text);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
 }

@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
+import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
 @RestController
@@ -21,6 +23,23 @@ public class ZalbaCutanjeController {
 
 	@Autowired
 	private ZalbaCutanjeService zalbaCutanjeService;
+	
+	@GetMapping(path = "/pretraga/{text}")
+	public ResponseEntity<ArrayList<ZalbaCutanjeDTO>> pretraga(@PathVariable("text") String text) {
+		ArrayList<ZalbaCutanjeDTO> lista = new ArrayList<>();
+		
+		try {
+			lista = this.zalbaCutanjeService.pretraga(text);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		if(!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	
 	@GetMapping("/generisiPDF/{zalba_cutanje_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {

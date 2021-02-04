@@ -31,6 +31,22 @@ public class ObavestenjeRepository {
 	
 	@Autowired
 	private FusekiManager fusekiManager;
+	
+	public ResourceSet pretraga(String text) {
+		String xPath = "/lista_obavestenja/obavestenje[osnovni_podaci/podaci_o_organu/naziv[contains(., '"+text+"')]" + 
+				"or osnovni_podaci/podaci_o_organu/sediste[contains(., '"+text+"')]"
+				+ " or osnovni_podaci/podaci_o_organu/broj_predmeta[contains(., '"+text+"')]"
+				+ " or osnovni_podaci/podaci_o_podnosiocu/ime_i_prezime[contains(., '"+text+"')]"
+				+ " or sadrzaj/opis_trazene_informacije[contains(., '"+text+"')] or broj_zahteva[contains(., '"+text+"')]]";
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public boolean proveraPotvrdeZahteva(long zahtev_id) {
 		String xPath = "/lista_obavestenja/obavestenje[broj_zahteva=" + zahtev_id + "]";

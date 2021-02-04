@@ -1,7 +1,16 @@
 package com.ftn.xml.db;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -12,6 +21,7 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
@@ -20,6 +30,8 @@ import com.ftn.xml.dto.ZahtevIzjasnjenjeCutanjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevZaIzjasnjenjeOdlukaFusekiDTO;
 import com.ftn.xml.jaxb.util.SparqlUtil;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
+import com.ftn.xml.repository.ZalbaCutanjeRepository;
+import com.ftn.xml.service.ZalbaCutanjeService;
 
 @Service
 public class FusekiManager {
@@ -28,6 +40,16 @@ public class FusekiManager {
 	
 	private ConnectionProperties conn;
 
+	@Autowired
+	ZalbaCutanjeRepository zalbaCutanjeRepository;
+	
+	
+	private ZalbaCutanjeService zalbaCutanjeService;
+	
+	//private MetadataExtractor metadataExtractor;
+	
+	private static final String ZALBA_CUTANJE_NAMED_GRAPH_URI = "/zalba_cutanje";
+	
 	public FusekiManager() {
 		try {
 			this.conn = AuthenticationManagerFuseki.loadProperties();
@@ -239,4 +261,44 @@ public class FusekiManager {
 		
 	}
 
+	public void obrisiZalbuCutanje(long id) {
+//		DELETE WHERE {
+//			  GRAPH <http://localhost:8083/fuseki/PoverenikDataset/data/zalba_cutanje> {
+//			    <http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/11> ?p ?o 
+//			  }
+//			 }
+		String ZALBA_CUTANJE_NAMED_GRAPH_URI = "/zalba_cutanje";
+		String sparqlCondition = "http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id;
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		
+
+		//String sparqlUpdate = SparqlUtil.dropGraph(conn.dataEndpoint + ZALBA_CUTANJE_NAMED_GRAPH_URI);
+		String sparqlUpdate = com.ftn.xml.db.SparqlUtil.deleteNode(conn.dataEndpoint + ZALBA_CUTANJE_NAMED_GRAPH_URI, sparqlCondition);
+
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+		UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
+	}
+	
+	public void generisiJSON(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/zalba_cutanje_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+
+	
+	
 }

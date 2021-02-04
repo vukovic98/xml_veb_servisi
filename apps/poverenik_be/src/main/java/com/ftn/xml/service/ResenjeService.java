@@ -270,7 +270,54 @@ public class ResenjeService {
 		} catch (Exception e) {
 			return false;
 		}
-		
+	}
+	public ArrayList<ResenjeDTO> pretraga(String text) throws Exception {
+		ResourceSet result = this.resenjeRepository.pretraga(text);
+		ResourceIterator i = result.getIterator();
+        Resource res = null;
+        ArrayList<ResenjeDTO> resenja = new ArrayList<>();
+        JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.resenje");
+        
+        while(i.hasMoreResources()) {
+            
+        	try {
+        		Unmarshaller unmarshaller = context.createUnmarshaller();
+                res = i.nextResource();
+                Resenje r = (Resenje) unmarshaller.unmarshal(((XMLResource)res).getContentAsDOM());
+                ResenjeDTO dto = new ResenjeDTO();
+                
+				String[] params = r.getAbout().split("/");
+				long id = Long.parseLong(params[params.length - 1]);
+				dto.setId(id);
+
+				dto.setIme_i_prezime(r.getSadrzaj().getUvod().getPodnosilac().getContent());
+				dto.setIshod(r.getIshod().getValue());
+                
+				XMLGregorianCalendar xmlDateZahtev = r.getSadrzaj().getUvod().getDatumZahteva().getValue();
+				String dateZahtev = xmlDateZahtev.getYear() +"-"+ xmlDateZahtev.getMonth() +"-"+ xmlDateZahtev.getDay();
+				dto.setDatum_zahteva(dateZahtev);
+
+				XMLGregorianCalendar xmlDateResenje = r.getOsnovniPodaci().getDatum().getValue();
+				String dateResenje = xmlDateResenje.getYear() +"-"+ xmlDateResenje.getMonth() +"-"+ xmlDateResenje.getDay();
+				dto.setDatum_resenja(dateResenje);
+				
+				dto.setUstanova(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
+				dto.setBroj_resenja(r.getBroj());
+				dto.setBroj_zalbe(r.getBrojZalbe().getValue().toString());
+				
+				
+                resenja.add(dto);
+            } finally {
+                
+            	// don't forget to cleanup resources
+                try { 
+                	((EXistResource)res).freeResources(); 
+                } catch (XMLDBException xe) {
+                	xe.printStackTrace();
+                }
+            }
+        }
+		return resenja;
 	}
 	
 }

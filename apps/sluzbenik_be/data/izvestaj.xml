@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lista_izvestaja xmlns="http://www.ftn.uns.ac.rs/izvestaj">
+    <izvestaj datum="2020-01-01">
+        <broj_zahteva>5</broj_zahteva>
+        <broj_odbijenih_zahteva>2</broj_odbijenih_zahteva>
+        <broj_zalbi_na_cutanje>3</broj_zalbi_na_cutanje>
+        <broj_zalbi_na_odluku>2</broj_zalbi_na_odluku>
+    </izvestaj>
+    
+    <izvestaj datum="2020-01-01">
+        <broj_zahteva>5</broj_zahteva>
+        <broj_odbijenih_zahteva>2</broj_odbijenih_zahteva>
+        <broj_zalbi_na_cutanje>3</broj_zalbi_na_cutanje>
+        <broj_zalbi_na_odluku>2</broj_zalbi_na_odluku>
+    </izvestaj>
+</lista_izvestaja>

@@ -3,7 +3,9 @@ package com.ftn.xml.service;
 import java.io.ByteArrayOutputStream;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.bind.JAXBContext;
@@ -26,6 +28,7 @@ import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.repository.ZahtevRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
+import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
@@ -39,6 +42,9 @@ public class ZahtevService {
 	
 	@Autowired
 	private ZalbaCutanjeRepository zalbaCutanjeRepository;
+	
+	@Autowired
+	private ZalbaNaOdlukuRepository zalbaNaOdlukuRepo;
 
 	public boolean odobriZahtev(String id) {
 		return this.zahtevRepository.odobriZahtev(id);
@@ -54,6 +60,29 @@ public class ZahtevService {
 
 	public long ukupanBrojOdnijenihZahteva() {
 		return this.zahtevRepository.ukupanBrojOdbijenihZahteva();
+	}
+	
+	public ListaZahtevaZaPristupInformacijama naprednaPretraga(String ime, String mail, String organ, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.zahtevRepository.naprednaPretraga(ime, mail, organ, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+		
+		for(String i : ids) {
+			ZahtevZaPristupInformacijama z = this.pronadjiZahtevPoId(Long.parseLong(i));
+			
+			lista.getZahtevZaPristupInformacijama().add(z);
+		}
+		
+		return lista;
+		
 	}
 
 	public ListaZahtevaZaPristupInformacijama pretraga(String text) {
@@ -214,14 +243,14 @@ public class ZahtevService {
 		}
 	}
 
-	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) {
+	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) throws XMLDBException {
 		ResourceSet set = this.zahtevRepository.pronadjiOdbijeneZahteveZaKorisnika(email);
-
+		System.out.println("IZ metode" + set.getSize());
 		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
 
 		ResourceIterator i;
 		try {
-			i = set.getIterator();
+			i = set.getIterator(); //null ?
 		} catch (XMLDBException e) {
 			return null;
 		}
@@ -238,7 +267,15 @@ public class ZahtevService {
 
 					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
 							.unmarshal(((XMLResource) res).getContentAsDOM());
-
+					
+					String[] about = zahtev.getAbout().split("/");
+					long id = Long.parseLong(about[about.length-1]);
+					
+					boolean postoji = this.zalbaNaOdlukuRepo.postojiZalbaNaZahtev(id);
+					
+//					if (!postoji)
+//						lista.getZahtevZaPristupInformacijama().add(zahtev);
+					
 					lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {

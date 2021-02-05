@@ -1,5 +1,8 @@
 package com.ftn.xml.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,12 +28,158 @@ public class ObavestenjeRepository {
 	public static final String UPDATE = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:update select=\"%1$s\">%2$s</xu:update>"
 			+ "</xu:modifications>";
+	
+	public static final String SPARQL_FILE = "src/main/resources/static/sparql/obavestenje/";
 
 	@Autowired
 	private ExistManager existManager;
 	
 	@Autowired
 	private FusekiManager fusekiManager;
+	
+	public List<String> naprednaPretraga(String predmet, String zahtev, String ime, boolean and) throws Exception {
+		List<String> ids = new ArrayList<>();
+
+		if (and) {
+			// predmet + zahtev + ime
+
+			if (predmet != null && zahtev != null && ime != null) {
+				ArrayList<String> params = new ArrayList<>();
+				params.add(predmet);
+				params.add(zahtev);
+				params.add(ime);
+
+				ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_sve_and.rq", params);
+				return ids;
+			} else {
+				if (predmet != null) {
+					if (zahtev != null) {
+						// predmet + zahtev
+						ArrayList<String> params = new ArrayList<>();
+						params.add(predmet);
+						params.add(zahtev);
+
+						ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet_zahtev_and.rq", params);
+						return ids;
+					} else {
+						if (ime != null) {
+							// predmet + ime
+							ArrayList<String> params = new ArrayList<>();
+							params.add(predmet);
+							params.add(ime);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet_ime_and.rq", params);
+							return ids;
+						} else {
+							// predmet
+							ArrayList<String> params = new ArrayList<>();
+							params.add(predmet);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet.rq", params);
+							return ids;
+						}
+					}
+				} else {
+					// IME = NULL
+					if (zahtev != null) {
+						if (ime != null) {
+							// zahtev + ime
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zahtev);
+							params.add(ime);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_zahtev_ime_and.rq",
+									params);
+							return ids;
+						} else {
+							// zahtev
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zahtev);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_zahtev.rq", params);
+							return ids;
+						}
+					} else {
+						// ime
+						ArrayList<String> params = new ArrayList<>();
+						params.add(ime);
+
+						ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_ime.rq", params);
+						return ids;
+					}
+				}
+			}
+		} else {
+			// predmet + zahtev + ime
+
+			if (predmet != null && zahtev != null && ime != null) {
+				ArrayList<String> params = new ArrayList<>();
+				params.add(predmet);
+				params.add(zahtev);
+				params.add(ime);
+
+				ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_sve_or.rq", params);
+				return ids;
+			} else {
+				if (predmet != null) {
+					if (zahtev != null) {
+						// predmet + zahtev
+						ArrayList<String> params = new ArrayList<>();
+						params.add(predmet);
+						params.add(zahtev);
+
+						ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet_zahtev_or.rq", params);
+						return ids;
+					} else {
+						if (ime != null) {
+							// predmet + ime
+							ArrayList<String> params = new ArrayList<>();
+							params.add(predmet);
+							params.add(ime);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet_ime_or.rq", params);
+							return ids;
+						} else {
+							// predmet
+							ArrayList<String> params = new ArrayList<>();
+							params.add(predmet);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_predmet.rq", params);
+							return ids;
+						}
+					}
+				} else {
+					// IME = NULL
+					if (zahtev != null) {
+						if (ime != null) {
+							// zahtev + ime
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zahtev);
+							params.add(ime);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_zahtev_ime_or.rq",
+									params);
+							return ids;
+						} else {
+							// zahtev
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zahtev);
+
+							ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_zahtev.rq", params);
+							return ids;
+						}
+					} else {
+						// ime
+						ArrayList<String> params = new ArrayList<>();
+						params.add(ime);
+
+						ids = this.fusekiManager.query("/obavestenja", SPARQL_FILE + "obavestenje_ime.rq", params);
+						return ids;
+					}
+				}
+			}
+		}
+	}
 	
 	public ResourceSet pretraga(String text) {
 		String xPath = "/lista_obavestenja/obavestenje[osnovni_podaci/podaci_o_organu/naziv[contains(., '"+text+"')]" + 

@@ -1,0 +1,10 @@
+SELECT DISTINCT ?zahtev FROM <%s>
+WHERE {
+  {
+  ?zahtev <http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik> %s .
+  }
+  UNION
+  {
+  ?zahtev <http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_ustanove> %s .
+  }
+}

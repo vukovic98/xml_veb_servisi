@@ -1,0 +1,10 @@
+SELECT DISTINCT ?zalba_cutanje FROM <%s>
+WHERE {
+  {
+  ?zalba_cutanje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik> %s .
+  }
+  UNION
+  {
+  ?zalba_cutanje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_organa> %s .
+  }
+}

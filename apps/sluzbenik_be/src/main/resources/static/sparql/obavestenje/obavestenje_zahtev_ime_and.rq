@@ -1,0 +1,5 @@
+SELECT ?obavestenje FROM <%s>
+WHERE {
+  ?obavestenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva> %s .
+  ?obavestenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_podnosioca> %s .
+}

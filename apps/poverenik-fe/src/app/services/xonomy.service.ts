@@ -179,7 +179,157 @@ export class XonomyService {
 
   };
 
-  //public zalbaOdlukaSpecification = {};
+  public zalbaOdlukaSpecification = {
+    validate: function (jsElement) {
+      //Validate the element:
+      let elementSpec = this.elements[jsElement.name];
+      if (elementSpec.validate) elementSpec.validate(jsElement);
+      //Cycle through the element's attributes:
+      for (let i = 0; i < jsElement.attributes.length; i++) {
+        let jsAttribute = jsElement.attributes[i];
+        let attributeSpec = elementSpec.attributes[jsAttribute.name];
+        if (attributeSpec.validate) attributeSpec.validate(jsAttribute);
+      };
+      //Cycle through the element's children:
+      for (let i = 0; i < jsElement.children.length; i++) {
+        let jsChild = jsElement.children[i];
+        if (jsChild.type == "element") { //if element
+          this.validate(jsChild); //recursion
+        }
+      }
+    },
+    elements: {
+      "zalba_na_odluku": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        menu: [],
+        attributes: {
+          "vocab": {
+            isInvisible: true,
+          },
+          "about": {
+            isInvisible: true,
+          }
+        }
+      }
+      ,
+      "korisnik_email":{
+        isReadOnly:true
+      },
+      "ime_zalioca":{
+        isReadOnly:true
+      },
+      "prezime_zalioca":{
+        isReadOnly:true
+      },
+      "naziv_zalbe":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      "adresa":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      }
+    ,
+    "sediste":{
+      validate: function (jsElement) {
+        if (jsElement.getText() == "") {
+          Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Овај елемент не сме бити празан."
+            }
+          );
+        }
+      },
+      hasText: true,
+      asker: Xonomy.askString
+    },
+      "naziv_organa":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      "broj_zalbe":{
+        isReadOnly: true
+      },
+      "godina_zalbe":{
+        isReadOnly: true
+      },
+      "datum_zahteva":{
+        isReadOnly: true
+      },
+      "odluka":{
+        isReadOnly: true
+      },
+      "datum_zalbe":{
+        isReadOnly: true
+      },
+      "mesto_zalbe":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      
+      "drugi_podaci_za_kontakt":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      
+      "broj_zahteva":{
+        isReadOnly: true
+      }
+    },
+  };
   //public resenjeSpecification = {};
 }
 

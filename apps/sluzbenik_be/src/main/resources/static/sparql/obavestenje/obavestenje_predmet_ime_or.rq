@@ -1,0 +1,10 @@
+SELECT DISTINCT ?obavestenje FROM <%s>
+WHERE {
+  {
+  ?obavestenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/br_predmeta> %s .
+  }
+  UNION
+  {
+  ?obavestenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_podnosioca> %s .
+  }
+}

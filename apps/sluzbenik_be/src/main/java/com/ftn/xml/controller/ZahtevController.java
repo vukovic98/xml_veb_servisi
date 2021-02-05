@@ -27,6 +27,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.ZahtevKorisnikaDTO;
+import com.ftn.xml.dto.ZahtevNaprednaDTO;
 import com.ftn.xml.dto.ZahtevSluzbenikaDTO;
 import com.ftn.xml.mapper.DodajZahtevMaper;
 import com.ftn.xml.model.korisnik.Korisnik;
@@ -58,17 +59,32 @@ public class ZahtevController {
 	@Autowired
 	private DodajZahtevMaper mapper;
 
-	
+	@GetMapping("/napredna-pretraga")
+	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> naprednaPretraga(
+			@RequestBody ZahtevNaprednaDTO dto) {
+		String ime = !dto.getIme().equalsIgnoreCase("null") ? "\"" + dto.getIme() + "\"" : null;
+		String mail = !dto.getMail().equalsIgnoreCase("null") ? "\"" + dto.getMail() + "\"" : null;
+		String organ = !dto.getOrgan().equalsIgnoreCase("null") ? "\"" + dto.getOrgan() + "\"" : null;
+
+		ListaZahtevaZaPristupInformacijama lista = this.zahtevService.naprednaPretraga(ime, mail, organ, dto.isAnd());
+
+		if (!lista.getZahtevZaPristupInformacijama().isEmpty())
+			return new ResponseEntity<>((ArrayList<ZahtevZaPristupInformacijama>)lista.getZahtevZaPristupInformacijama(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
 	@GetMapping(path = "/pretraga/{text}")
 	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> pretraga(@PathVariable("text") String text) {
 		ListaZahtevaZaPristupInformacijama lista = this.zahtevService.pretraga(text);
-		
-		if(!lista.getZahtevZaPristupInformacijama().isEmpty())
-			return new ResponseEntity<>((ArrayList<ZahtevZaPristupInformacijama>)lista.getZahtevZaPristupInformacijama(), HttpStatus.OK);
+
+		if (!lista.getZahtevZaPristupInformacijama().isEmpty())
+			return new ResponseEntity<>(
+					(ArrayList<ZahtevZaPristupInformacijama>) lista.getZahtevZaPristupInformacijama(), HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<ArrayList<ZahtevSluzbenikaDTO>> pronadjiSveZahteve() {
 		ArrayList<ZahtevSluzbenikaDTO> zahteviDTO = new ArrayList<>();

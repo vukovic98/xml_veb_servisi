@@ -2,6 +2,7 @@ package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -18,6 +19,8 @@ import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ZalbaNaOdlukuDTO;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaNaOdluku;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
+import com.ftn.xml.model.zalba_na_odluku.ListaZalbiNaOdluku;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
@@ -37,6 +40,52 @@ public class ZalbaNaOdlukuService {
 
 	public long ukupanBrojZalbiNaOdluku() {
 		return this.zalbaRepo.ukupanBrojZalbiNaOdluku();
+	}
+	
+	public ArrayList<ZalbaNaOdluku> naprednaPretraga(String zahtev, String mail, String organ, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.zalbaRepo.naprednaPretraga(zahtev, mail, organ, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ArrayList<ZalbaNaOdluku> lista = new ArrayList<>();
+		
+		for(String i : ids) {
+			ZalbaNaOdluku z = this.pronadjiZalbuPoId(Long.parseLong(i));
+			
+			lista.add(z);
+		}
+		
+		return lista;
+		
+	}
+	
+	public ZalbaNaOdluku pronadjiZalbuPoId(long id) {
+		ResourceSet set = this.zalbaRepo.dobaviPoId(id);
+		try {
+			if (set.getSize() == 1) {
+
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
+
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				Resource res = set.getResource(0);
+
+				ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller
+						.unmarshal(((XMLResource) res).getContentAsDOM());
+
+				return zalba;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 	
 	public String removeNamespace(String xml) {

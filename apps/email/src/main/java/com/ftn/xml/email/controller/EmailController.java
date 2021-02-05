@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.xml.email.dto.ObavestenjeDTO;
 import com.ftn.xml.email.dto.OdbijenZahtevDTO;
+import com.ftn.xml.email.dto.ResenjeDTO;
 import com.ftn.xml.email.service.EmailService;
 
 @RestController
@@ -27,6 +28,18 @@ public class EmailController {
 		
 		try {
 			this.emailService.sendMail(dto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PostMapping("/resenje")
+	public ResponseEntity<HttpStatus> resenje(@RequestBody ResenjeDTO dto) {
+		try {
+			this.emailService.posaljiResenje(dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

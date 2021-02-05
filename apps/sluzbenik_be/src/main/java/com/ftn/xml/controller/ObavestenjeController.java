@@ -50,7 +50,7 @@ public class ObavestenjeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/napredna-pretraga")
+	@PostMapping("/napredna-pretraga")
 	public ResponseEntity<ArrayList<Obavestenje>> naprednaPretraga(
 			@RequestBody ObavestenjeNaprednaDTO dto) {
 		String predmet = !dto.getPredmet().equalsIgnoreCase("null") ? "\"" + dto.getPredmet() + "\"" : null;

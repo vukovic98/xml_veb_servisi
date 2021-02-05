@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,9 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.DodajResenjeDTO;
 import com.ftn.xml.dto.ResenjeDTO;
+import com.ftn.xml.dto.ResenjeNaprednaDTO;
+import com.ftn.xml.model.resenje.ListaResenja;
+import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.service.ResenjeService;
 
 @RestController
@@ -138,7 +142,21 @@ public class ResenjeController {
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
+	@PostMapping("/napredna-pretraga")
+	public ResponseEntity<ArrayList<Resenje>> naprednaPretraga(
+			@RequestBody ResenjeNaprednaDTO dto) {
+		String zalba = !dto.getZalba().equalsIgnoreCase("null") ? "\"" + dto.getZalba() + "\"" : null;
+		String ishod = !dto.getIshod().equalsIgnoreCase("null") ? "\"" + dto.getIshod() + "\"" : null;
+		String korisnik = !dto.getKorisnik().equalsIgnoreCase("null") ? "\"" + dto.getKorisnik() + "\"" : null;
+
+		ListaResenja lista = this.resenjeService.naprednaPretraga(zalba, ishod, korisnik, dto.isAnd());
+
+		if (!lista.getResenje().isEmpty())
+			return new ResponseEntity<>((ArrayList<Resenje>)lista.getResenje(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}}
+
 	@GetMapping("/generisiJSON/{resenje_id}")
 	public ResponseEntity<byte[]> generisiJSON(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
 
@@ -180,4 +198,3 @@ public class ResenjeController {
 		}
 
 	}
-}

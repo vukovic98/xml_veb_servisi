@@ -59,7 +59,7 @@ public class ZahtevController {
 	@Autowired
 	private DodajZahtevMaper mapper;
 
-	@GetMapping("/napredna-pretraga")
+	@PostMapping("/napredna-pretraga")
 	public ResponseEntity<ArrayList<ZahtevZaPristupInformacijama>> naprednaPretraga(
 			@RequestBody ZahtevNaprednaDTO dto) {
 		String ime = !dto.getIme().equalsIgnoreCase("null") ? "\"" + dto.getIme() + "\"" : null;

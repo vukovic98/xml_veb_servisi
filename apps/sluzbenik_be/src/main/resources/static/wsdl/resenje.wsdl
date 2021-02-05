@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://ftn.uns.ac.rs/resenje"
+	xmlns:tns="http://ftn.uns.ac.rs/resenje" name="ResenjeService">
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://ftn.uns.ac.rs/resenje"
+				schemaLocation="../xsd/resenje.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="dodajResenjeRequest">
+		<wsdl:part name="resenje" element="tns:resenje" />
+	</wsdl:message>
+	<wsdl:message name="dodajResenjeResponse">
+		<wsdl:part name="res" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:portType name="ResenjeServicePortType">
+		<wsdl:operation name="dodajResenje">
+			<wsdl:input message="tns:dodajResenjeRequest" />
+			<wsdl:output message="tns:dodajResenjeResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="ResenjeServiceSoapBinding"
+		type="tns:ResenjeServicePortType">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="dodajResenje">
+			<soap:operation
+				soapAction="http://ftn.uns.ac.rs/resenje/ws/dodajResenje" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ResenjeService">
+		<wsdl:port name="ResenjeServiceSoapBinding"
+			binding="tns:ResenjeServiceSoapBinding">
+			<soap:address
+				location="http://localhost:8081/resenjePort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

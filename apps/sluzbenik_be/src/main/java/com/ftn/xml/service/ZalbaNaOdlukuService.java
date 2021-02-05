@@ -1,16 +1,23 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
@@ -18,6 +25,7 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ZalbaNaOdlukuDTO;
+import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaNaOdluku;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ListaZalbiNaOdluku;
@@ -40,6 +48,44 @@ public class ZalbaNaOdlukuService {
 
 	public long ukupanBrojZalbiNaOdluku() {
 		return this.zalbaRepo.ukupanBrojZalbiNaOdluku();
+	}
+	
+	public boolean dodajZalbuIzTeksta(String zalba) throws JAXBException {
+		// validacija
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		// XML schema validacija
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema;
+		try {
+			schema = schemaFactory.newSchema(new File("./data/zalba_na_odluku.xsd"));
+			unmarshaller.setSchema(schema);
+		} catch (SAXException e2) {
+			e2.printStackTrace();
+			return false;
+		}
+		// Podesavanje unmarshaller-a za XML schema validaciju
+
+		try {
+			unmarshaller.setEventHandler(new MyValidationEventHandler());
+		} catch (JAXBException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		StringReader reader = new StringReader(zalba);
+		ZalbaNaOdluku z;
+		try {
+			//System.out.println(zalba);
+			z = (ZalbaNaOdluku) unmarshaller.unmarshal(reader);
+			this.zalbaRepo.dodajZalbuIzTeksta(zalba, z);
+			return true;
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public ArrayList<ZalbaNaOdluku> naprednaPretraga(String zahtev, String mail, String organ, boolean and) {

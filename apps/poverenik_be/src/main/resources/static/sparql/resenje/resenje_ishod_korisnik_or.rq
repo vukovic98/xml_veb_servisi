@@ -1,0 +1,10 @@
+SELECT DISTINCT ?resenje FROM <%s>
+WHERE {
+  {
+  ?resenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/ishod> %s .
+  }
+  UNION
+  {
+  ?resenje <http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik> %s .
+  }
+}

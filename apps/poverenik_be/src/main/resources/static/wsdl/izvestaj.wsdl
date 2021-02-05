@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ftn.uns.ac.rs/izvestaj"
+	xmlns:tns="http://www.ftn.uns.ac.rs/izvestaj" name="IzvestajService">
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.ftn.uns.ac.rs/izvestaj"
+				schemaLocation="../xsd/izvestaj.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="dodajIzvestajRequest">
+		<wsdl:part name="izvestaj" element="tns:izvestaj" />
+	</wsdl:message>
+	<wsdl:message name="dodajIzvestajResponse">
+		<wsdl:part name="res" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:portType name="IzvestajServicePortType">
+		<wsdl:operation name="dodajIzvestaj">
+			<wsdl:input message="tns:dodajIzvestajRequest" />
+			<wsdl:output message="tns:dodajIzvestajResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="IzvestajServiceSoapBinding"
+		type="tns:IzvestajServicePortType">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="dodajIzvestaj">
+			<soap:operation
+				soapAction="http://www.ftn.uns.ac.rs/izvestaj/ws/dodajIzvestaj" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="IzvestajService">
+		<wsdl:port name="IzvestajServiceSoapBinding"
+			binding="tns:IzvestajServiceSoapBinding">
+			<soap:address
+				location="http://localhost:8081/izvestajPort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

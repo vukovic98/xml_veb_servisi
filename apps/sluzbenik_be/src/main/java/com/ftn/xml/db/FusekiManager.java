@@ -26,11 +26,12 @@ import org.springframework.stereotype.Service;
 
 import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
 import com.ftn.xml.dto.ObavestenjeFusekiDTO;
+import com.ftn.xml.dto.ResenjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.jaxb.util.FileUtil;
 import com.ftn.xml.jaxb.util.SparqlUtil;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
-
+import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 
 @Service
 public class FusekiManager {
@@ -47,9 +48,241 @@ public class FusekiManager {
 		}
 	}
 
+	public void dodajResenje(String id, ResenjeFusekiDTO dto) {
+
+		String SPARQL_NAMED_GRAPH_URI = "/resenja";
+
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		// Making the changes manually
+		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id);
+
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naslov");
+		Literal literal1 = model.createLiteral(dto.getNaslov() + "");
+
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "datum");
+		Literal literal2 = model.createLiteral(dto.getDatum());
+
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "korisnik_email");
+		Literal literal3 = model.createTypedLiteral(dto.getKorisnik_email());
+
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "organ");
+		Literal literal4 = model.createLiteral(dto.getOrgan());
+
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "podnosilac");
+		Literal literal5 = model.createLiteral(dto.getPodnosilac());
+
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ustanova");
+		Literal literal6 = model.createLiteral(dto.getUstanova());
+
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
+		Literal literal7 = model.createLiteral(dto.getDatum_zahteva());
+
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "trazeni_dokument");
+		Literal literal8 = model.createTypedLiteral(dto.getTrazeni_dokument());
+
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "tekst_resenja");
+		Literal literal9 = model.createLiteral(dto.getTekst_resenja());
+
+		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "tekst_obrazlozenja");
+		Literal literal10 = model.createLiteral(dto.getTekst_obrazlozenja());
+
+		Property property11 = model.createProperty(PREDICATE_NAMESPACE, "sud");
+		Literal literal11 = model.createLiteral(dto.getSud());
+
+		Property property12 = model.createProperty(PREDICATE_NAMESPACE, "taksa");
+		Literal literal12 = model.createTypedLiteral(dto.getTaksa());
+
+		Property property13 = model.createProperty(PREDICATE_NAMESPACE, "poverenik");
+		Literal literal13 = model.createLiteral(dto.getPoverenik());
+
+		Property property14 = model.createProperty(PREDICATE_NAMESPACE, "ishod");
+		Literal literal14 = model.createLiteral(dto.getIshod());
+
+		Property property15 = model.createProperty(PREDICATE_NAMESPACE, "broj");
+		Literal literal15 = model.createLiteral(dto.getBroj());
+
+		// Adding the statements to the model
+		Statement statement1 = model.createStatement(resource, property1, literal1);
+		Statement statement2 = model.createStatement(resource, property2, literal2);
+		Statement statement3 = model.createStatement(resource, property3, literal3);
+		Statement statement4 = model.createStatement(resource, property4, literal4);
+		Statement statement5 = model.createStatement(resource, property5, literal5);
+		Statement statement6 = model.createStatement(resource, property6, literal6);
+		Statement statement7 = model.createStatement(resource, property7, literal7);
+		Statement statement8 = model.createStatement(resource, property8, literal8);
+		Statement statement9 = model.createStatement(resource, property9, literal9);
+		Statement statement10 = model.createStatement(resource, property10, literal10);
+		Statement statement11 = model.createStatement(resource, property11, literal11);
+		Statement statement12 = model.createStatement(resource, property12, literal12);
+		Statement statement13 = model.createStatement(resource, property13, literal13);
+		Statement statement14 = model.createStatement(resource, property14, literal14);
+		Statement statement15 = model.createStatement(resource, property15, literal15);
+
+		model.add(statement1);
+		model.add(statement2);
+		model.add(statement3);
+		model.add(statement4);
+		model.add(statement5);
+		model.add(statement6);
+		model.add(statement7);
+		model.add(statement8);
+		model.add(statement9);
+		model.add(statement10);
+		model.add(statement11);
+		model.add(statement12);
+		model.add(statement13);
+		model.add(statement14);
+		model.add(statement15);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+
+		String sparqlUpdate = SparqlUtil.insertData(conn.dataEndpoint + SPARQL_NAMED_GRAPH_URI,
+				new String(out.toByteArray()));
+
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+		UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
+
+	}
+
+	public void dodajZalbuNaOdluku(ZalbaNaOdluku zalba) {
+
+		String SPARQL_NAMED_GRAPH_URI = "/zalbe_na_odluku";
+
+		Model model = ModelFactory.createDefaultModel();
+		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
+
+		// Making the changes manually
+		Resource resource = model.createResource(zalba.getAbout());
+
+		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "korisnik");
+		Literal literal1 = model
+				.createLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getKorisnikEmail().getContent());
+
+		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "ime_zalioca");
+		Literal literal2 = model.createLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
+
+		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "prezime_zalioca");
+		Literal literal3 = model
+				.createTypedLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());
+
+		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "naziv_zalbe");
+		Literal literal5 = model
+				.createLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getZaliocNazivZalbe().getValue());
+
+		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "adresa_zalioca");
+		Literal literal4 = model
+				.createLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getZaliocAdresa().getContent());
+
+		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "sediste_zalioca");
+		Literal literal6 = model
+				.createLiteral(zalba.getOsnovniPodaci().getPodaciOZaliocu().getZaliocSediste().getContent());
+
+		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "naziv_organa");
+		Literal literal7 = model.createLiteral(zalba.getOsnovniPodaci().getPodaciOOrganu().getNaziv().getValue());
+
+		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "broj_zalbe");
+		Literal literal8 = model.createTypedLiteral(zalba.getSadrzaj().getBrojZalbe().getValue());
+
+		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "godina_zalbe");
+		Literal literal9 = model.createLiteral(zalba.getSadrzaj().getGodinaZalbe().getValue().toString());
+
+		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "datum_odbijenog_zahteva");
+		Literal literal10 = model.createLiteral(zalba.getSadrzaj().getDatumOdbijenogZahteva().getValue().toString());
+
+		Property property11 = model.createProperty(PREDICATE_NAMESPACE, "odluka");
+		Literal literal11 = model.createLiteral(zalba.getSadrzaj().getOdlukaOrganaVlasti().getContent());
+
+		Property property12 = model.createProperty(PREDICATE_NAMESPACE, "mesto_zakljucka_zalbe");
+		Literal literal12 = model.createLiteral(zalba.getPodnozje().getMestoZakljuckaZalbe().getContent());
+
+		Property property13 = model.createProperty(PREDICATE_NAMESPACE, "datum_zakljucka_zalbe");
+		Literal literal13 = model.createLiteral(zalba.getPodnozje().getDatumZakljuckaZalbe().getValue().toString());
+
+		Property property14 = model.createProperty(PREDICATE_NAMESPACE, "ime_zalioca");
+		Literal literal14 = model.createLiteral(zalba.getPodnozje().getPodaciOZaliocu().getZaliocIme().getValue());
+
+		Property property15 = model.createProperty(PREDICATE_NAMESPACE, "prezime_zalioca");
+		Literal literal15 = model.createLiteral(zalba.getPodnozje().getPodaciOZaliocu().getZaliocPrezime().getValue());
+
+		Property property16 = model.createProperty(PREDICATE_NAMESPACE, "adresa_zalioca");
+		Literal literal16 = model.createLiteral(zalba.getPodnozje().getPodaciOZaliocu().getZaliocAdresa().getContent());
+
+		Property property17 = model.createProperty(PREDICATE_NAMESPACE, "kontakt_zalioca");
+		Literal literal17 = model
+				.createLiteral(zalba.getPodnozje().getPodaciOZaliocu().getDrugiPodaciZaKontakt().getContent());
+
+		Property property18 = model.createProperty(PREDICATE_NAMESPACE, "ime_zalioca");
+		Literal literal18 = model.createLiteral(zalba.getPodnozje().getPodaciOZaliocu().getZaliocIme().getValue());
+
+		Property property19 = model.createProperty(PREDICATE_NAMESPACE, "broj_zahteva");
+		Literal literal19 = model.createLiteral(zalba.getBrojZahteva().getValue().toString());
+
+		// Adding the statements to the model
+		Statement statement1 = model.createStatement(resource, property1, literal1);
+		Statement statement2 = model.createStatement(resource, property2, literal2);
+		Statement statement3 = model.createStatement(resource, property3, literal3);
+		Statement statement4 = model.createStatement(resource, property4, literal4);
+		Statement statement5 = model.createStatement(resource, property5, literal5);
+		Statement statement6 = model.createStatement(resource, property6, literal6);
+		Statement statement7 = model.createStatement(resource, property7, literal7);
+		Statement statement8 = model.createStatement(resource, property8, literal8);
+		Statement statement9 = model.createStatement(resource, property9, literal9);
+		Statement statement10 = model.createStatement(resource, property10, literal10);
+		Statement statement11 = model.createStatement(resource, property11, literal11);
+		Statement statement12 = model.createStatement(resource, property12, literal12);
+		Statement statement13 = model.createStatement(resource, property13, literal13);
+		Statement statement14 = model.createStatement(resource, property14, literal14);
+		Statement statement15 = model.createStatement(resource, property15, literal15);
+		Statement statement16 = model.createStatement(resource, property16, literal16);
+		Statement statement17 = model.createStatement(resource, property17, literal17);
+		Statement statement18 = model.createStatement(resource, property18, literal18);
+		Statement statement19 = model.createStatement(resource, property19, literal19);
+
+		model.add(statement1);
+		model.add(statement2);
+		model.add(statement3);
+		model.add(statement4);
+		model.add(statement5);
+		model.add(statement6);
+		model.add(statement7);
+		model.add(statement8);
+		model.add(statement9);
+		model.add(statement10);
+		model.add(statement11);
+		model.add(statement12);
+		model.add(statement13);
+		model.add(statement14);
+		model.add(statement15);
+		model.add(statement16);
+		model.add(statement17);
+		model.add(statement18);
+		model.add(statement19);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+
+		String sparqlUpdate = SparqlUtil.insertData(conn.dataEndpoint + SPARQL_NAMED_GRAPH_URI,
+				new String(out.toByteArray()));
+
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+
+		UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, conn.updateEndpoint);
+		processor.execute();
+
+		model.close();
+
+	}
+
 	public void dodajZalbuCutanje(ZalbaCutanje zalba) {
 
-		String SPARQL_NAMED_GRAPH_URI = "/zalba_cutanje";
+		String SPARQL_NAMED_GRAPH_URI = "/zalbe_cutanje";
 
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);

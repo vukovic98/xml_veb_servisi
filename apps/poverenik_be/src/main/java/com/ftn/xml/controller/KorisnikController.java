@@ -97,6 +97,7 @@ public class KorisnikController {
 			// Vrati token kao odgovor na uspesnu autentifikaciju
 			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn, email, user.getUloga(), user.getImeIPrezime()));
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

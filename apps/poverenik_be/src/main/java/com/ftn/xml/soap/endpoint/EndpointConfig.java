@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ftn.xml.soap.izvestaj.IzvestajServiceSoapBindingImpl;
 import com.ftn.xml.soap.odgovor.OdgovorZahtevZaIzjasnjenjeServiceSoapBindingImpl;
 
 
@@ -18,7 +19,17 @@ public class EndpointConfig {
     private Bus bus;
 
     @Autowired
-    OdgovorZahtevZaIzjasnjenjeServiceSoapBindingImpl odgovorZahtevSoapBindingImpl;
+    private OdgovorZahtevZaIzjasnjenjeServiceSoapBindingImpl odgovorZahtevSoapBindingImpl;
+    
+    @Autowired
+    private IzvestajServiceSoapBindingImpl izvestajServiceSoapBindingImpl;
+    
+    @Bean(name="izvestajEndpointBean")
+    public Endpoint izvestajEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, izvestajServiceSoapBindingImpl);
+        endpoint.publish("/izvestaj");
+        return endpoint;
+    }
     
     @Bean(name="odgovorZahtevEndpointBean")
     public Endpoint odgovorEndpoint() {

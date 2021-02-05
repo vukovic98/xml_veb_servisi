@@ -10,6 +10,7 @@ import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
+import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 
 @Repository
 public class ZalbaNaOdlukuRepository {
@@ -224,6 +225,14 @@ public class ZalbaNaOdlukuRepository {
 			return null;
 		}
 	}
+	
+	public void dodajZalbuIzTeksta(String zalba, ZalbaNaOdluku z) throws Exception {
+		String contextXPath = "/lista_zalbi_na_odluku";
+		this.existManager.append(collectionId, documentId, contextXPath, zalba, APPEND);
+		this.fusekiManager.dodajZalbuNaOdluku(z);
+		
+	}
+	
 	public boolean postojiZalbaNaZahtev(long id) {
 		String xPath = "/lista_zalbi_na_odluku/zalba_na_odluku/broj_zahteva=" +id;
 		ResourceSet set;

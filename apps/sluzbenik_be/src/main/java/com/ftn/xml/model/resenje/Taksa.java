@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Taksa {
 
     @XmlValue
-    protected BigDecimal value;
+    protected double value;
     @XmlAttribute(name = "datatype", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlSchemaType(name = "NMTOKEN")
@@ -64,7 +64,7 @@ public class Taksa {
      *     {@link BigDecimal }
      *     
      */
-    public BigDecimal getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -76,7 +76,7 @@ public class Taksa {
      *     {@link BigDecimal }
      *     
      */
-    public void setValue(BigDecimal value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

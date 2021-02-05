@@ -6,15 +6,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.update.UpdateExecutionFactory;
@@ -28,7 +34,7 @@ import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
 import com.ftn.xml.dto.ResenjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevIzjasnjenjeCutanjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevZaIzjasnjenjeOdlukaFusekiDTO;
-import com.ftn.xml.jaxb.util.SparqlUtil;
+import com.ftn.xml.jaxb.util.FileUtil;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -58,6 +64,62 @@ public class FusekiManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<String> query(String graphUri, String sparqlFilePath, List<String> queryParams) throws Exception {
+		queryParams.add(0, conn.dataEndpoint + graphUri);
+
+		// Querying the named graph with a referenced SPARQL query
+		System.out.println("[INFO] Loading SPARQL query from file \"" + sparqlFilePath + "\"");
+		String sparqlQuery = String.format(FileUtil.readFile(sparqlFilePath, StandardCharsets.UTF_8),
+				queryParams.toArray());
+		System.out.println(queryParams.toArray());
+
+		System.out.println(sparqlQuery);
+
+		// Create a QueryExecution that will access a SPARQL service over HTTP
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+
+		// Query the SPARQL endpoint, iterate over the result set...
+		System.out.println("[INFO] Showing the results for SPARQL query using the result handler.\n");
+		ResultSet results = query.execSelect();
+
+		String varName;
+		RDFNode varValue;
+
+		List<String> result = new ArrayList<String>();
+		while (results.hasNext()) {
+
+			// A single answer from a SELECT query
+			QuerySolution querySolution = results.next();
+			Iterator<String> variableBindings = querySolution.varNames();
+
+			// Retrieve variable bindings
+			while (variableBindings.hasNext()) {
+
+				varName = variableBindings.next();
+				varValue = querySolution.get(varName);
+
+				result.add(varValue.toString().substring(varValue.toString().lastIndexOf("/") + 1));
+			}
+		}
+
+		// Issuing the same query once again...
+
+		// Create a QueryExecution that will access a SPARQL service over HTTP
+		query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+
+		// Query the collection, dump output response as XML
+		System.out.println("[INFO] Showing the results for SPARQL query in native SPARQL XML format.\n");
+		results = query.execSelect();
+
+		// ResultSetFormatter.outputAsXML(System.out, results);
+		ResultSetFormatter.out(System.out, results);
+
+		query.close();
+
+		System.out.println("[INFO] End.");
+		return result;
 	}
 
 	public void dodajZalbuCutanje(ZalbaCutanje zalba) {
@@ -161,7 +223,7 @@ public class FusekiManager {
 	
 	public void dodajResenje(String id, ResenjeFusekiDTO dto) {
 		
-		String SPARQL_NAMED_GRAPH_URI = "/zahtevi";
+		String SPARQL_NAMED_GRAPH_URI = "/resenja";
 
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);

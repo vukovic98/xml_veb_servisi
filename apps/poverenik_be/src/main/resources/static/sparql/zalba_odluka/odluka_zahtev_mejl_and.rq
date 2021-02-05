@@ -1,0 +1,5 @@
+SELECT ?zalba_na_odluku FROM <%s>
+WHERE {
+  ?zalba_na_odluku <http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva> %s .
+  ?zalba_na_odluku <http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik> %s .
+}

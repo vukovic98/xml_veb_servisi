@@ -1,5 +1,8 @@
 package com.ftn.xml.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +29,8 @@ public class ResenjeRepository {
 	public static final String UPDATE = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
 			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:update select=\"%1$s\">%2$s</xu:update>"
 			+ "</xu:modifications>";
+	
+	public static final String SPARQL_FILE = "src/main/resources/static/sparql/resenje/";
 
 	@Autowired
 	private ExistManager existManager;
@@ -112,6 +117,150 @@ public class ResenjeRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public List<String> naprednaPretraga(String zalba, String ishod, String korisnik, boolean and) throws Exception {
+		List<String> ids = new ArrayList<>();
+
+		if (and) {
+			// IME + MAIL + ORGAN
+
+			if (zalba != null && ishod != null && korisnik != null) {
+				ArrayList<String> params = new ArrayList<>();
+				params.add(zalba);
+				params.add(ishod);
+				params.add(korisnik);
+
+				ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_sve_and.rq", params);
+				return ids;
+			} else {
+				if (zalba != null) {
+					if (ishod != null) {
+						// IME + MAIL
+						ArrayList<String> params = new ArrayList<>();
+						params.add(zalba);
+						params.add(ishod);
+
+						ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba_ishod_and.rq", params);
+						return ids;
+					} else {
+						if (korisnik != null) {
+							// IME + ORGAN
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zalba);
+							params.add(korisnik);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba_korisnik_and.rq", params);
+							return ids;
+						} else {
+							// IME
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zalba);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba.rq", params);
+							return ids;
+						}
+					}
+				} else {
+					// IME = NULL
+					if (ishod != null) {
+						if (korisnik != null) {
+							// MAIL + ORGAN
+							ArrayList<String> params = new ArrayList<>();
+							params.add(ishod);
+							params.add(korisnik);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_ishod_korisnik_and.rq",
+									params);
+							return ids;
+						} else {
+							// MAIL
+							ArrayList<String> params = new ArrayList<>();
+							params.add(ishod);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_ishod.rq", params);
+							return ids;
+						}
+					} else {
+						// ORGAN
+						ArrayList<String> params = new ArrayList<>();
+						params.add(korisnik);
+
+						ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_korisnik.rq", params);
+						return ids;
+					}
+				}
+			}
+		} else {
+			// IME + MAIL + ORGAN
+
+			if (zalba != null && ishod != null && korisnik != null) {
+				ArrayList<String> params = new ArrayList<>();
+				params.add(zalba);
+				params.add(ishod);
+				params.add(korisnik);
+
+				ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_sve_or.rq", params);
+				return ids;
+			} else {
+				if (zalba != null) {
+					if (ishod != null) {
+						// IME + MAIL
+						ArrayList<String> params = new ArrayList<>();
+						params.add(zalba);
+						params.add(ishod);
+
+						ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba_ishod_or.rq", params);
+						return ids;
+					} else {
+						if (korisnik != null) {
+							// IME + ORGAN
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zalba);
+							params.add(korisnik);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba_korisnik_or.rq", params);
+							return ids;
+						} else {
+							// IME
+							ArrayList<String> params = new ArrayList<>();
+							params.add(zalba);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_zalba.rq", params);
+							return ids;
+						}
+					}
+				} else {
+					// IME = NULL
+					if (ishod != null) {
+						if (korisnik != null) {
+							// MAIL + ORGAN
+							ArrayList<String> params = new ArrayList<>();
+							params.add(ishod);
+							params.add(korisnik);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_ishod_korisnik_or.rq",
+									params);
+							return ids;
+						} else {
+							// MAIL
+							ArrayList<String> params = new ArrayList<>();
+							params.add(ishod);
+
+							ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_ishod.rq", params);
+							return ids;
+						}
+					} else {
+						// ORGAN
+						ArrayList<String> params = new ArrayList<>();
+						params.add(korisnik);
+
+						ids = this.fusekiManager.query("/resenja", SPARQL_FILE + "resenje_korisnik.rq", params);
+						return ids;
+					}
+				}
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -446,6 +447,52 @@ public class ZalbaCutanjeService {
 			}
 		}
 		return zalbe;
+	}
+	
+	public ArrayList<ZalbaCutanje> naprednaPretraga(String zahtev, String mail, String organ, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.zalbaCutanjeRepository.naprednaPretraga(zahtev, mail, organ, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ArrayList<ZalbaCutanje> lista = new ArrayList<>();
+		
+		for(String i : ids) {
+			ZalbaCutanje z = this.pronadjiZalbuPoId(Long.parseLong(i));
+			
+			lista.add(z);
+		}
+		
+		return lista;
+		
+	}
+	
+	public ZalbaCutanje pronadjiZalbuPoId(long id) {
+		ResourceSet set = this.zalbaCutanjeRepository.pronadjiPoId(id);
+		try {
+			if (set.getSize() == 1) {
+
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				Resource res = set.getResource(0);
+
+				ZalbaCutanje zalba = (ZalbaCutanje) unmarshaller
+						.unmarshal(((XMLResource) res).getContentAsDOM());
+
+				return zalba;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 
 }

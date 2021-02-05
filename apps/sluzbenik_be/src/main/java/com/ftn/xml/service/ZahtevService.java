@@ -28,6 +28,7 @@ import com.ftn.xml.model.zahtev.ListaZahtevaZaPristupInformacijama;
 import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.repository.ZahtevRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
+import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
@@ -41,6 +42,9 @@ public class ZahtevService {
 	
 	@Autowired
 	private ZalbaCutanjeRepository zalbaCutanjeRepository;
+	
+	@Autowired
+	private ZalbaNaOdlukuRepository zalbaNaOdlukuRepo;
 
 	public boolean odobriZahtev(String id) {
 		return this.zahtevRepository.odobriZahtev(id);
@@ -239,14 +243,14 @@ public class ZahtevService {
 		}
 	}
 
-	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) {
+	public ListaZahtevaZaPristupInformacijama pronadjiOdbijeneZahteveZaKorisnika(String email) throws XMLDBException {
 		ResourceSet set = this.zahtevRepository.pronadjiOdbijeneZahteveZaKorisnika(email);
-
+		System.out.println("IZ metode" + set.getSize());
 		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
 
 		ResourceIterator i;
 		try {
-			i = set.getIterator();
+			i = set.getIterator(); //null ?
 		} catch (XMLDBException e) {
 			return null;
 		}
@@ -263,7 +267,15 @@ public class ZahtevService {
 
 					ZahtevZaPristupInformacijama zahtev = (ZahtevZaPristupInformacijama) unmarshaller
 							.unmarshal(((XMLResource) res).getContentAsDOM());
-
+					
+					String[] about = zahtev.getAbout().split("/");
+					long id = Long.parseLong(about[about.length-1]);
+					
+					boolean postoji = this.zalbaNaOdlukuRepo.postojiZalbaNaZahtev(id);
+					
+//					if (!postoji)
+//						lista.getZahtevZaPristupInformacijama().add(zahtev);
+					
 					lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {

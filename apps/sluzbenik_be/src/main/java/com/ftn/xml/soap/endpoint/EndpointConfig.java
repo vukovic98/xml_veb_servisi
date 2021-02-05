@@ -1,6 +1,7 @@
 package com.ftn.xml.soap.endpoint;
 
 import javax.xml.ws.Endpoint;
+import javax.xml.*;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;

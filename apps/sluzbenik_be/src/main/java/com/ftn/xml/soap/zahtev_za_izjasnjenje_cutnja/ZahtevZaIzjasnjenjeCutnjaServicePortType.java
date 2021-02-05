@@ -21,7 +21,7 @@ import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface ZahtevZaIzjasnjenjeCutnjaServicePortType {
 
-    @WebMethod(action = "http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_cutnja/ws/dodajZahtevZaIzjasnjenjeCutnje")
+    @WebMethod(operationName = "dodajZahtevZaIzjasnjenjeCutnje", action = "http://www.ftn.uns.ac.rs/zahtev_za_izjasnjenje_cutnja/ws/dodajZahtevZaIzjasnjenjeCutnje")
     @WebResult(name = "ok", targetNamespace = "http://ftn.uns.ac.rs/zalba_cutanje", partName = "ok")
     public java.lang.String dodajZahtevZaIzjasnjenjeCutnje(
         @WebParam(partName = "zalba_cutanje", name = "zalba_cutanje")

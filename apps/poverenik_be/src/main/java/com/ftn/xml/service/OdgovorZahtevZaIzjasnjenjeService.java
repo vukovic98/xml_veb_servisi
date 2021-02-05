@@ -29,7 +29,7 @@ public class OdgovorZahtevZaIzjasnjenjeService {
 
 	@Autowired
 	OdgovorZahtevZaIzjasnjenjeRepository odgovorRepository;
-	
+
 	public boolean dodajOdgovorZahtevZaIzjasnjenje(OdgovorZahtevZaIzjasnjenje o) {
 
 		try {
@@ -49,7 +49,7 @@ public class OdgovorZahtevZaIzjasnjenjeService {
 			String changedOdgovor = this.removeNamespace(odgovor);
 
 			System.out.println(changedOdgovor);
-			
+
 			return this.odgovorRepository.dodajOdgovorZahtevZaIzjasnjenje(changedOdgovor);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class OdgovorZahtevZaIzjasnjenjeService {
 		return this.odgovorRepository.izbrisiOdgovorZahtevZaIzjasnjenje(id);
 
 	}
-	
+
 	public OdgovoriZahtevZaIzjasnjenje pronadjiSveOdgovore() {
 		ResourceSet set = this.odgovorRepository.dobaviSve();
 
@@ -129,5 +129,44 @@ public class OdgovorZahtevZaIzjasnjenjeService {
 			return null;
 		}
 	}
-	
+
+	public OdgovorZahtevZaIzjasnjenje dobaviPoZalbi(String id_zalbe, String tip) {
+
+		ResourceSet set = this.odgovorRepository.dobaviPoZalbi(id_zalbe, tip);
+
+		OdgovorZahtevZaIzjasnjenje odgovor = new OdgovorZahtevZaIzjasnjenje();
+
+		if (set != null) {
+			try {
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.odgovor_zahtev_za_izjasnjenje");
+				Resource r = set.getResource(0);
+
+				try {
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+
+					odgovor = (OdgovorZahtevZaIzjasnjenje) unmarshaller.unmarshal(((XMLResource) r).getContentAsDOM());
+						
+					System.out.println(odgovor.getSadrzaj());
+					
+				} finally {
+					try {
+						((EXistResource) r).freeResources();
+					} catch (XMLDBException xe) {
+						xe.printStackTrace();
+					}
+				}
+
+				return odgovor;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+
+		}else {
+			return null;
+		}
+
+	}
+
 }

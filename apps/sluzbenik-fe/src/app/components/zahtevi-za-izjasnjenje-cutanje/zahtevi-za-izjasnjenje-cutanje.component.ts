@@ -76,14 +76,48 @@ export class ZahteviZaIzjasnjenjeCutanjeComponent implements OnInit {
         let sadrzaj: string = "<sadrzaj>" + post.sadrzaj + "</sadrzaj>";
         let tip: string = "<tip>C</tip>";
 
-        let req: string = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><dodajOdgovorZahtevZaIzjasnjenje xmlns=\"http://ftn.uns.ac.rs/izjasnjenje/odgovor\"><odgovor_zahtev_za_izjasnjenje>";
+        let req: string = "<odgovor_zahtev_za_izjasnjenje>";
         req = req + idZalbe + sadrzaj + tip;
-        req = req + "</odgovor_zahtev_za_izjasnjenje></dodajOdgovorZahtevZaIzjasnjenje></soap:Body></soap:Envelope>";
+        req = req + "</odgovor_zahtev_za_izjasnjenje>";
 
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST', 'http://localhost:8082/ws/odgovorZahtevZaIzjasnjenje', true);
+    
+        // The following variable contains the xml SOAP request.
+        const sr =
+            `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+              <soap:Body>
+                  <dodajOdgovorZahtevZaIzjasnjenje xmlns="http://ftn.uns.ac.rs/izjasnjenje/odgovor">
+                     `+ req +`
+                   </dodajOdgovorZahtevZaIzjasnjenje>
+                 </soap:Body>
+               </soap:Envelope>`;
+    
+        console.log("SOAP: "+sr);
+
+        xmlhttp.onreadystatechange =  () => {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    const xml = xmlhttp.responseXML;
+                    // Here I'm getting the value contained by the <return> node.
+                    const response_number = parseInt(xml.getElementsByTagName('return')[0].childNodes[0].nodeValue);
+                    // Print result square number.
+                    console.log(response_number);
+                }
+            }
+        }
+        // Send the POST request.
+        xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp.responseType = 'document';
+        xmlhttp.send(sr);
+
+/*
         this.izjasnjenjeService.posaljiOdgovorNaCutanje(req)
           .subscribe((response) => {
             console.log(response);
           })
+
+          */
       }
     });
   }

@@ -83,6 +83,15 @@ public class ZalbaCutanjeController {
 
 		}
 	}
+	
+	@GetMapping(path = "/dobaviRaw/{id}")
+	public ResponseEntity<String> dobaviRaw(@PathVariable("id") long id) throws XMLDBException{
+		
+		String zalbaRaw = this.zalbaCutanjeService.pronadjiZalbuPoId_Raw(id);
+		
+		return ResponseEntity.ok().body(zalbaRaw);
+		
+	}
 
 	@GetMapping("/generisiPDF/{zalba_cutanje_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException, SAXException, IOException {

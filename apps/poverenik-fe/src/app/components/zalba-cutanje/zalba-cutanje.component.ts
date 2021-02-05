@@ -8,6 +8,7 @@ import {DatePipe} from '@angular/common'
 import { ResenjaService } from 'src/app/services/resenja.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { isUndefined } from 'util';
 @Component({
   selector: 'app-zalba-cutanje',
   templateUrl: './zalba-cutanje.component.html',
@@ -114,8 +115,9 @@ export class ZalbaCutanjeComponent implements OnInit {
     if(this.poslatZahtev){
 
         let dodajResenjeDto = {
-          "vreme": this.zahtev_izjasnjenje.vreme
-
+          "vreme": this.zahtev_izjasnjenje.vreme,
+          "id_zalbe": this.zalba[0].children[0],
+          "tip" : "C"
         }
 
 
@@ -127,15 +129,24 @@ export class ZalbaCutanjeComponent implements OnInit {
 
         let data: any = JsonToXML.parse("resenjeDTO", dodajResenjeDto, options);
 
-        this.resenjeService.kreirajResenje(data).subscribe(response =>{
+        console.log("ZALBA: " + this.zalba);
+
+        this.resenjeService.proveriIzjasnjenje(data).subscribe(response =>{
+
+          console.log(response);
+
+          let jsonResponse: any = txml.parse(response);
+
+          console.log(jsonResponse[0].children[0]);
 
           Swal.fire({
-            title: 'Прошло је време изјашњења!',
+            title: (jsonResponse[0].children[0].children[0] == undefined ? 'Прошло је време изјашњења!':'Службеник се изјаснио!'),
+            html: '<textarea class="form-control"  readonly>'+(jsonResponse[0].children[0].children[0]  == undefined? "Службеник се није изјаснио по питању ове жалбе у року.":jsonResponse[0].children[0].children[0])+'</textarea>'
           });
 
         },
         error =>{
-
+          console.log(error);
           Swal.fire({
             title: 'Службеник се још увек није изјаснио по питању ове жалбе.',
             allowOutsideClick: false,
@@ -166,13 +177,53 @@ export class ZalbaCutanjeComponent implements OnInit {
         }
       };
 
+      console.log("ZALBA: " + this.zalba);
+
       let data: any = JsonToXML.parse("dodajZahtevDTO", zahtevDto, options);
 
       this.zahtevService.kreirajZahtev(data).subscribe(response =>{
 
           window.location.reload();
 
-      })
+      });
+
+      this.service.dobaviRaw(this.zalba[0].children[0]).subscribe(response =>{
+
+        console.log(response);
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST', 'http://localhost:8081/ws/zahtev_za_izjasnjenje_cutanje', true);
+    
+        // The following variable contains the xml SOAP request.
+        const sr =
+            `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+              <soap:Body>
+                   <dodajZahtevZaIzjasnjenjeCutnje xmlns="http://ftn.uns.ac.rs/zalba_cutanje">
+                     `+ response +`
+                   </dodajZahtevZaIzjasnjenjeCutnje>
+                 </soap:Body>
+               </soap:Envelope>`;
+    
+        console.log("SOAP: "+sr);
+
+        xmlhttp.onreadystatechange =  () => {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    const xml = xmlhttp.responseXML;
+                    // Here I'm getting the value contained by the <return> node.
+                    const response_number = parseInt(xml.getElementsByTagName('return')[0].childNodes[0].nodeValue);
+                    // Print result square number.
+                    console.log(response_number);
+                }
+            }
+        }
+        // Send the POST request.
+        xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp.responseType = 'document';
+        xmlhttp.send(sr);
+
+      });
+
 
     }
 

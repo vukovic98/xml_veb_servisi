@@ -25,7 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.DodajResenjeDTO;
+import com.ftn.xml.dto.IspitajObrazlozenjeDTO;
+import com.ftn.xml.dto.ObrazlozenjeResponse;
 import com.ftn.xml.dto.ResenjeDTO;
+import com.ftn.xml.model.odgovor_zahtev_za_izjasnjenje.OdgovorZahtevZaIzjasnjenje;
+import com.ftn.xml.service.OdgovorZahtevZaIzjasnjenjeService;
 import com.ftn.xml.service.ResenjeService;
 
 @RestController
@@ -34,28 +38,30 @@ public class ResenjeController {
 
 	@Autowired
 	ResenjeService resenjeService;
-	
-	
+
+	@Autowired
+	private OdgovorZahtevZaIzjasnjenjeService odgovorService;
+
 	@GetMapping(consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<ArrayList<ResenjeDTO>> getAll() throws XMLDBException, JAXBException {
-		
+
 		ArrayList<ResenjeDTO> resenja = this.resenjeService.getAll();
 		if (resenja.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		} else
 			return new ResponseEntity<>(resenja, HttpStatus.OK);
-		
+
 	}
-	
-	@GetMapping(path = "/user",consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<ArrayList<ResenjeDTO>> getAllByUser(){
-		
+
+	@GetMapping(path = "/user", consumes = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<ArrayList<ResenjeDTO>> getAllByUser() {
+
 		String email = (String) SecurityContextHolder.getContext().getAuthentication().getName();
-	
+
 		try {
 			ArrayList<ResenjeDTO> resenja = this.resenjeService.getAllForUser(email);
-			return new ResponseEntity<ArrayList<ResenjeDTO>>(resenja,HttpStatus.OK);
+			return new ResponseEntity<ArrayList<ResenjeDTO>>(resenja, HttpStatus.OK);
 		} catch (XMLDBException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,10 +69,9 @@ public class ResenjeController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
-		
+
 	}
-	
+
 	@GetMapping("/generatePDF/{resenje_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
 
@@ -83,7 +88,7 @@ public class ResenjeController {
 		}
 
 	}
-	
+
 	@GetMapping("/generateHTML/{resenje_id}")
 	public ResponseEntity<byte[]> generisiHTML(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
 
@@ -100,23 +105,59 @@ public class ResenjeController {
 		}
 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<HttpStatus> kreirajResenje(@RequestBody DodajResenjeDTO resenjeDTO) {
+
+		Instant currTime = Instant.now().plus(1, ChronoUnit.HOURS);
+
+		System.out.println(currTime.toString());
+
+		Instant zahtevIzjasnjenjeTime = Instant.parse(resenjeDTO.getVreme());
+
+		System.out.println(zahtevIzjasnjenjeTime.toString());
+		if (zahtevIzjasnjenjeTime.plus(1, ChronoUnit.MINUTES).isAfter(currTime)) {
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+		} else {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+
+	}
+
+	@RequestMapping(path = "/ispitajObrazlozenje",method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<ObrazlozenjeResponse> ispitajObrazlozenje(@RequestBody IspitajObrazlozenjeDTO obrazlozenjeDTO) {
 		
 		
 		Instant currTime = Instant.now().plus(1, ChronoUnit.HOURS);
 		
 		System.out.println(currTime.toString());
 		
-		Instant zahtevIzjasnjenjeTime = Instant.parse(resenjeDTO.getVreme());
+		Instant zahtevIzjasnjenjeTime = Instant.parse(obrazlozenjeDTO.getVreme());
 		
 		System.out.println(zahtevIzjasnjenjeTime.toString());
+		
+		OdgovorZahtevZaIzjasnjenje odgovor = this.odgovorService.dobaviPoZalbi(obrazlozenjeDTO.getId_zalbe(), obrazlozenjeDTO.getTip());
+		
+		System.out.println(obrazlozenjeDTO.getId_zalbe());
+		System.out.println(obrazlozenjeDTO.getTip());
+		
+		ObrazlozenjeResponse response = new ObrazlozenjeResponse();
+				
+		if(odgovor != null) {
+			
+			response.setSadrzaj(odgovor.getSadrzaj());
+			System.out.println(response.getSadrzaj());
+			System.out.println("ovaj ovde if");
+			return new ResponseEntity<ObrazlozenjeResponse>(response, HttpStatus.OK);
+			
+		}
+		
 		if(zahtevIzjasnjenjeTime.plus(1,ChronoUnit.MINUTES).isAfter(currTime)) {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		}
 		else {
-			return new ResponseEntity<>(HttpStatus.OK);
+			response.setSadrzaj("");
+			return new ResponseEntity<ObrazlozenjeResponse>(response, HttpStatus.OK);
 		}
 	
 	}
@@ -130,8 +171,8 @@ public class ResenjeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(!lista.isEmpty())
+
+		if (!lista.isEmpty())
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -13,6 +13,7 @@ export class ResenjaService {
   private readonly resenjaKorisnikApi = "resenja/user";
   private readonly preuzmiPDFApi = "resenja/generatePDF/";
   private readonly preuzmiHTMLApi = "resenja/generateHTML/";
+  private readonly proveriIzjasnjenjeApi = "resenja/ispitajObrazlozenje";
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -56,6 +57,17 @@ export class ResenjaService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.post(environment.POVERENIK_APP + this.resenjaApi, data, {headers: headers});
+
+  }
+
+  proveriIzjasnjenje(data: any): Observable<any>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.proveriIzjasnjenjeApi, data, {headers: headers, responseType: 'text'});
 
   }
 

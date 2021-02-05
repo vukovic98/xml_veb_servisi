@@ -17,7 +17,7 @@
         {{zalba[5].children[0]}}
       </mat-grid-tile>
       <mat-grid-tile>
-        <a routerLink="/home">Састави решење</a>
+        <button id="resenjeButton" (click)="resiZalbu()" mat-button>{{poslatZahtev ? 'Састави решење' : 'Обавести службеника'}}</button>
       </mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Извези у PDF</button></mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Извези у XHTML</button></mat-grid-tile>

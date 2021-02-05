@@ -7,13 +7,12 @@ public class ObavestenjeNaprednaDTO {
 
 	private String predmet;
 	private String zahtev;
+	private String ime;
+	private boolean and;
 
 	public ObavestenjeNaprednaDTO() {
 		super();
 	}
-
-	private String ime;
-	private boolean and;
 
 	public ObavestenjeNaprednaDTO(String predmet, String zahtev, String ime, boolean and) {
 		super();

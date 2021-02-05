@@ -1,0 +1,267 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-navigation-bar></app-navigation-bar>
+  </div>
+
+  <div class="jumbotron row col-md-10 m-auto bg-light shadow mb-5 mt-5 p-3">
+
+      <div class="row">
+        <div class="mb-4 p-2">
+          <label for="dokument">Документ</label>
+          <select class="form-select mt-1" name="dokument" [(ngModel)]="dokument" id="dokument">
+            <option selected disabled>Одаберите документ</option>
+            <option value="2">Захтеви</option>
+            <option value="3">Жалбе</option>
+            <option value="4">Решења</option>
+            <option value="5">Обавештења</option>
+          </select>
+        </div>
+        <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+          <form [formGroup]="pretragaZahtevForma" (ngSubmit)="pretraziZahteve()" *ngIf="dokument == 2" class="m-3">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="ime">Име грађанина</label>
+                  <input type="text" class="form-control mt-1" name="ime" formControlName="ime" id="ime" placeholder="Унесите име грађанина">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="mail">Мејл грађанина</label>
+                  <input type="text" class="form-control mt-1" name="mail" formControlName="mail" id="mail" placeholder="Унесите мејл грађанина">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="organ">Орган</label>
+                  <input type="text" class="form-control mt-1" name="organ" formControlName="organ" id="organ" placeholder="Унесите име органа">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="and">Логички оператор</label>
+                  <select class="form-select mt-1" name="and" formControlName="and" id="and">
+                    <option selected disabled>Одаберите оператор</option>
+                    <option value="true">AND (Логичко 'И')</option>
+                    <option value="false">OR (Логичко 'ИЛИ')</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="text-center">
+                <button id="loginBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btn-danger">Претражи</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+          <form [formGroup]="pretragaObavestenjeForma" (ngSubmit)="pretraziObavestenja()" *ngIf="dokument == 5" class="m-3">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="ime">Број предмета</label>
+                  <input type="text" class="form-control mt-1" name="predmet" formControlName="predmet" id="predmet" placeholder="Унесите број предмета">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="mail">Број захтева</label>
+                  <input type="text" class="form-control mt-1" name="zahtev" formControlName="zahtev" id="zahtev" placeholder="Унесите број захтева">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="ime2">Име грађанина</label>
+                  <input type="text" class="form-control mt-1" name="ime2" formControlName="ime2" id="ime2" placeholder="Унесите име грађанина">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="and2">Логички оператор</label>
+                  <select class="form-select mt-1" name="and" formControlName="and2" id="and2">
+                    <option selected disabled>Одаберите оператор</option>
+                    <option value="true">AND (Логичко 'И')</option>
+                    <option value="false">OR (Логичко 'ИЛИ')</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="text-center">
+                <button id="obavestenjeBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btn-danger">Претражи</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+          <form [formGroup]="pretragaZalbaForma" (ngSubmit)="pretraziZalbe()" *ngIf="dokument == 3" class="m-3">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="zahtev2">Број захтева</label>
+                  <input type="text" class="form-control mt-1" name="ime" formControlName="zahtev2" id="zahtev2" placeholder="Унесите број захтева">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="mejl">Мејл грађанина</label>
+                  <input type="text" class="form-control mt-1" name="mejl" formControlName="mejl" id="mejl" placeholder="Унесите мејл грађанина">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="organ2">Орган</label>
+                  <input type="text" class="form-control mt-1" name="organ2" formControlName="organ2" id="organ2" placeholder="Унесите име органа">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="and4">Логички оператор</label>
+                  <select class="form-select mt-1" name="and4" formControlName="and4" id="and4">
+                    <option selected disabled>Одаберите оператор</option>
+                    <option value="true">AND (Логичко 'И')</option>
+                    <option value="false">OR (Логичко 'ИЛИ')</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="text-center">
+                <button id="zalbeBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btn-danger">Претражи</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+          <form [formGroup]="pretragaResenjeForma" (ngSubmit)="pretraziResenja()" *ngIf="dokument == 4" class="m-3">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="zalba">Број жалбе</label>
+                  <input type="text" class="form-control mt-1" name="zalba" formControlName="zalba" id="zalba" placeholder="Унесите број жалбе">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="ishod">Исход</label>
+                  <input type="text" class="form-control mt-1" name="ishod" formControlName="ishod" id="ishod" placeholder="Унесите исход (ODOBREN/ODBIJEN)">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="korisnik">Мејл корисника</label>
+                  <input type="text" class="form-control mt-1" name="korisnik" formControlName="korisnik" id="korisnik" placeholder="Унесите мејл корисника">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="and3">Логички оператор</label>
+                  <select class="form-select mt-1" name="and3" formControlName="and3" id="and3">
+                    <option selected disabled>Одаберите оператор</option>
+                    <option value="true">AND (Логичко 'И')</option>
+                    <option value="false">OR (Логичко 'ИЛИ')</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="text-center">
+                <button id="resenjeBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btn-danger">Претражи</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    <div class="row col-md-12 mt-3">
+      <mat-divider></mat-divider>
+      <mat-card-title class="mb-3 mt-5">Пронађени документи</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="4" rowHeight="40" class="mt-3">
+        <mat-grid-tile>Редни број документа</mat-grid-tile>
+        <mat-grid-tile>Тип документа</mat-grid-tile>
+        <mat-grid-tile [colspan]="2">Акције</mat-grid-tile>
+      </mat-grid-list>
+      <mat-divider></mat-divider>
+
+      <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let z of zahtevi">
+        <mat-grid-tile>
+          {{z.children[4].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ЗАХТЕВ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <button mat-button (click)="preuzmiPDFZahtev(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми PDF</button>
+          <button mat-button (click)="preuzmiHTMLZahtev(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми HTML</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let o of obavestenja">
+        <mat-grid-tile>
+          {{o.children[4].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ОБАВЕШТЕЊЕ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <button mat-button (click)="preuzmiPDFObavestenje(o.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми PDF</button>
+          <button mat-button (click)="preuzmiHTMLObavestenje(o.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми HTML</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let r of resenja">
+        <mat-grid-tile>
+          {{r.children[5].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          РЕШЕЊЕ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <button mat-button (click)="preuzmiPDFResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми PDF</button>
+          <button mat-button (click)="preuzmiHTMLResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми HTML</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let z of zalbeNaOdluku">
+        <mat-grid-tile>
+          {{z.children[4].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ЖАЛБА НА ОДЛУКУ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <button mat-button (click)="preuzmiPDFZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми PDF</button>
+          <button mat-button (click)="preuzmiHTMLZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">Преузми HTML</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="4" rowHeight="40" class="pt-2" *ngFor="let z of zalbeNaCutanje">
+        <mat-grid-tile>
+          {{z.children[0].children[4].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ЖАЛБА НА ЋУТАЊЕ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <button mat-button (click)="preuzmiPDFZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">Преузми PDF</button>
+          <button mat-button (click)="preuzmiHTMLZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">Преузми HTML</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+    </div>
+
+  </div>
+</div>

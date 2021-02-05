@@ -1,6 +1,11 @@
 package com.ftn.xml.db;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,7 +42,10 @@ import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 public class FusekiManager {
 
 	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
+	private static final String ZAHTEV_NAMED_GRAPH_URI = "/zahtevi";
+	private static final String OBAVESTENJE_NAMED_GRAPH_URI = "/obavestenja";
 
+	
 	private ConnectionProperties conn;
 
 	public FusekiManager() {
@@ -590,4 +598,32 @@ public class FusekiManager {
 		model.close();
 	}
 
+	public void generisiJSONZahtev(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				ZAHTEV_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zahtev/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/zahtev_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+
+	public void generisiJSONObavestenje(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				OBAVESTENJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/obavestenje/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/obavestenje_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+	
 }

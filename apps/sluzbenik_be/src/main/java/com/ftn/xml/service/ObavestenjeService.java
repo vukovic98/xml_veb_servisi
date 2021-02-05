@@ -1,22 +1,32 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.TransformerException;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ObavestenjeFusekiDTO;
+import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.jaxb.util.XSLFOTransformerObavestenje;
 import com.ftn.xml.mapper.DodajObavestenjeMapper;
 import com.ftn.xml.model.obavestenje.ListaObavestenja;
@@ -310,6 +320,46 @@ public class ObavestenjeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public void generisiJSON(long id) {
+		FusekiManager fm = new FusekiManager();
+		try {
+			fm.generisiJSONObavestenje(id);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void generisiRDF(long id) throws SAXException, IOException, XMLDBException {
+		String rdfFilePath = "src/main/resources/static/rdf/obavestenje_" + id + ".rdf";
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+	
+		
+		String rs;
+		FileWriter fw;
+		rs = this.pronadjiObavestenjePoId_Raw(id);
+		//<obavestenje
+		String pocetak = rs.substring(0, 12);
+		String ubaci = " xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
+		String kraj = rs.substring(12);
+		String novi = pocetak + ubaci + kraj;
+		fw = new FileWriter("src/main/resources/static/xml/obavestenje_"+id+".xml");
+		fw.write(novi);
+		fw.close();
+
+		try {
+			metadataExtractor.extractMetadata(
+					new FileInputStream(new File("src/main/resources/static/xml/obavestenje_"+id+".xml")),
+					new FileOutputStream(new File(rdfFilePath)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

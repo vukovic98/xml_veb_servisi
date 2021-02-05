@@ -142,6 +142,7 @@ public class ResenjeController {
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
 	@PostMapping("/napredna-pretraga")
 	public ResponseEntity<ArrayList<Resenje>> naprednaPretraga(
 			@RequestBody ResenjeNaprednaDTO dto) {
@@ -155,7 +156,7 @@ public class ResenjeController {
 			return new ResponseEntity<>((ArrayList<Resenje>)lista.getResenje(), HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}}
+	}
 
 	@GetMapping("/generisiJSON/{resenje_id}")
 	public ResponseEntity<byte[]> generisiJSON(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
@@ -198,3 +199,4 @@ public class ResenjeController {
 		}
 
 	}
+}

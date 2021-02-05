@@ -32,7 +32,7 @@ export class XonomyService {
     },
 
     elements: {
-      obavestenje: {
+      "obavestenje": {
         hasText: false,
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
@@ -56,35 +56,13 @@ export class XonomyService {
 
       // OSNOVNI PODACI - PODACI O ORGANU
 
-      naziv:{
-        hasText: true,
-        oneliner: true,
-        asker: Xonomy.askString,
-        isReadOnly: true,
-        attributes: {
-          "datatype": {
-            isInvisible: true,
-          },
-          "property": {
-            isInvisible: true,
-          }
-        }
+      "naziv":{
+        isReadOnly:true
       },
-      sediste:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true,
+      "sediste":{
         isReadOnly: true,
-        attributes: {
-          "datatype": {
-            isInvisible: true,
-          },
-          "property": {
-            isInvisible: true,
-          }
-        }
       },
-      broj_predmeta:{
+      "broj_predmeta":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -106,10 +84,7 @@ export class XonomyService {
           }
         }
       },
-      datum_zahteva:{
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true,
+      "datum_zahteva":{
         isReadOnly: true,
         attributes: {
           "datatype": {
@@ -122,9 +97,8 @@ export class XonomyService {
       },
 
       // OSNOVNI PODACI - PODACI O PODNOSIOCU
-      ime_i_prezime:{
+      "ime_i_prezime":{
         hasText: true,
-        asker: Xonomy.askString,
         oneliner: true,
         isReadOnly: true,
         attributes: {
@@ -136,10 +110,9 @@ export class XonomyService {
           }
         }
       },
-      naziv_podnosioca:{
+      "naziv_podnosioca":{
         hasText: true,
         oneliner: true,
-        asker: Xonomy.askString,
         isReadOnly: true,
         attributes: {
           "datatype": {
@@ -150,9 +123,8 @@ export class XonomyService {
           }
         }
       },
-      adresa_podnosioca:{
+      "adresa_podnosioca":{
         hasText: true,
-        asker: Xonomy.askString,
         oneliner: true,
         isReadOnly: true,
         attributes: {
@@ -166,7 +138,7 @@ export class XonomyService {
       },
 
       // SADRZAJ
-      godina_zahteva:{
+      "godina_zahteva":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -188,10 +160,9 @@ export class XonomyService {
           }
         }
       },
-      opis_trazene_informacije: {
+      "opis_trazene_informacije": {
         hasText: true,
         oneliner: false,
-        asker: Xonomy.askString,
         isReadOnly: true,
         attributes: {
           "datatype": {
@@ -202,7 +173,7 @@ export class XonomyService {
           }
         }
       },
-      datum_uvida: {
+      "datum_uvida": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -216,7 +187,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      cas_uvida: {
+      "cas_uvida": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -230,7 +201,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      sat_od: {
+      "sat_od": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -244,7 +215,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString
       },
-      sat_do: {
+      "sat_do": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -258,7 +229,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      grad: {
+      "grad": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -272,7 +243,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      ulica: {
+      "ulica": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -286,7 +257,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      broj: {
+      "broj": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -300,7 +271,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      broj_kancelarije: {
+      "broj_kancelarije": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -314,7 +285,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      cena: {
+      "cena": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -328,7 +299,7 @@ export class XonomyService {
         oneliner: false,
         asker: Xonomy.askString,
       },
-      ziro_racun: {
+      "ziro_racun": {
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -349,14 +320,14 @@ export class XonomyService {
       },
 
       // PODNOZJE
-      podnozje: {
+      "podnozje": {
         isInvisible: true
       },
-      potpis_ovlascenog_lica: {
+      "potpis_ovlascenog_lica": {
         isInvisible: true
       },
 
-      broj_zahteva: {
+      "broj_zahteva": {
         isInvisible: true,
         attributes: {
           "datatype": {

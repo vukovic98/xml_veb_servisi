@@ -15,7 +15,8 @@ export class ZahtevService {
   private preuzmiHTMLApi: string = "zahtev/generisiHTML/";
   private kreirajZahtevApi: string = "zahtev/";
   private mejlOdbijanjeZahtevaApi: string = "email/odbijen-zahtev"
-
+  private readonly preuzmiJSONApi = "zahtev/generisiJSON/";
+  private readonly preuzmiRDFApi = "zahtev/generisiRDF/";
 
   constructor(private http: HttpClient) { }
 
@@ -86,6 +87,20 @@ export class ZahtevService {
     });
 
     return this.http.post(environment.MAIL_APP + this.mejlOdbijanjeZahtevaApi, data, {headers: headers});
+  }
+
+  preuzmiJSON(zahtev_id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiJSONApi + zahtev_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+
+  preuzmiRDF(zahtev_id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiRDFApi + zahtev_id, { headers: headers, responseType: 'arraybuffer' as 'text' });
   }
 }
 

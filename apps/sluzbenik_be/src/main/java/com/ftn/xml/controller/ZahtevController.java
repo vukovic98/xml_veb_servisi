@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.DodajZahtevDTO;
 import com.ftn.xml.dto.ZahtevKorisnikaDTO;
@@ -277,5 +280,49 @@ public class ZahtevController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/generisiJSON/{zahtev_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("zahtev_id") long zahtev_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/json/zahtev_" + zahtev_id + ".json";
+
+		try {
+			this.zahtevService.generisiJSON(zahtev_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{zahtev_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("zahtev_id") long zahtev_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/zahtev_" + zahtev_id + ".rdf";
+		try {
+			this.zahtevService.generisiRDF(zahtev_id);
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
 	}
 }

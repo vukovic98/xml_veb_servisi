@@ -1,5 +1,5 @@
 <div class="pt-2">
-  <mat-grid-list cols="9" rowHeight="40" class="pt-2">
+  <mat-grid-list cols="11" rowHeight="40" class="pt-2">
     <mat-grid-tile>
       {{zahtev[0].children[0]}}
     </mat-grid-tile>
@@ -12,9 +12,11 @@
     <mat-grid-tile>
       {{zahtev[6].children[0]}}
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2">
-      <button mat-button (click)="preuzmiPDF()" style="padding-left: 5px!important;">Преузми PDF</button>
-      <button mat-button (click)="preuzmiHTML()" style="padding-left: 5px!important;">Преузми HTML</button>
+    <mat-grid-tile [colspan]="4">
+      <button mat-button (click)="preuzmiPDF()" data-toggle="tooltip" title="Преузми захтев у PDF формату" style="padding-left: 5px!important;">PDF</button>
+      <button mat-button (click)="preuzmiHTML()" data-toggle="tooltip" title="Преузми захтев у HTML формату" style="padding-left: 5px!important;">HTML</button>
+      <button mat-button (click)="preuzmiJSON()" data-toggle="tooltip" title="Преузми метаподатке захтева у JSON формату" style="padding-left: 5px!important;">JSON</button>
+      <button mat-button (click)="preuzmiRDF()" data-toggle="tooltip" title="Преузми метаподатке захтева у RDF формату"style="padding-left: 5px!important;">RDF</button>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2">
       <button mat-button [disabled]="isApproved()" (click)="dodajObavestenjeDijalog()" style="padding-left: 10px!important;">Креирај обавештење</button>

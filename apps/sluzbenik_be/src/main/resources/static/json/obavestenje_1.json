@@ -1,0 +1,49 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zahteva" } ,
+        "o": { "type": "literal" , "value": "2021-02-05" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sediste_ustanove" } ,
+        "o": { "type": "literal" , "value": "Novi Sad" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_ustanove" } ,
+        "o": { "type": "literal" , "value": "FTN" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Raska" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/br_predmeta" } ,
+        "o": { "type": "literal" , "value": "1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/adresa_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Masarikova" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/opis" } ,
+        "o": { "type": "literal" , "value": "Informacija o ispitima" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Vladimir Vukovic" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/godina_zahteva" } ,
+        "o": { "type": "literal" , "value": "2020" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva" } ,
+        "o": { "type": "literal" , "value": "1" }
+      }
+    ]
+  }
+}

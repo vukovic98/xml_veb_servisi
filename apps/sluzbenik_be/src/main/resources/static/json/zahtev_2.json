@@ -1,0 +1,53 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_zahteva" } ,
+        "o": { "type": "literal" , "value": "Mojkovac" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_trazioca" } ,
+        "o": { "type": "literal" , "value": "11" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_trazioca" } ,
+        "o": { "type": "literal" , "value": "Vladimir Vukovic" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik" } ,
+        "o": { "type": "literal" , "value": "vladimirvukovic98@hotmail.rs" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zahteva" } ,
+        "o": { "type": "literal" , "value": "2021-02-05" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sediste_ustanove" } ,
+        "o": { "type": "literal" , "value": "Novi Sad" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/opis_informacije" } ,
+        "o": { "type": "literal" , "value": "Nesto" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_ustanove" } ,
+        "o": { "type": "literal" , "value": "Promenada" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_trazioca" } ,
+        "o": { "type": "literal" , "value": "Kumanovska" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_trazioca" } ,
+        "o": { "type": "literal" , "value": "Mojkovac" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/kontakt_trazioca" } ,
+        "o": { "type": "literal" , "value": "0655613333" }
+      }
+    ]
+  }
+}

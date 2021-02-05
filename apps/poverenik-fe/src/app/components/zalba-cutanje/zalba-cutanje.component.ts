@@ -63,7 +63,6 @@ export class ZalbaCutanjeComponent implements OnInit {
       () => console.info('File downloaded successfully');
   }
   preuzmiJSON() {
-    console.log(this.zalba[0].children[0])
     this.service.preuzmiJSON(this.zalba[0].children[0]).subscribe(response => {
       let file = new Blob([response], { type: 'application/json' });
       var fileURL = URL.createObjectURL(file);
@@ -149,7 +148,7 @@ export class ZalbaCutanjeComponent implements OnInit {
         });
 
     }else{
-      
+
       let currentTime = Date.now();
 
       let currentTimeString = this.datePipe.transform(currentTime, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");

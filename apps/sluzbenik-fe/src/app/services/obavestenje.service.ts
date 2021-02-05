@@ -14,6 +14,8 @@ export class ObavestenjeService {
   private obavestenjaZaKorisnikaApi: string = 'obavestenje/ulogovanKorisnik';
   private preuzmiPDFApi: string = "obavestenje/generisiPDF/";
   private preuzmiHTMLApi: string = "obavestenje/generisiHTML/";
+  private readonly preuzmiJSONApi = "obavestenje/generisiJSON/";
+  private readonly preuzmiRDFApi = "obavestenje/generisiRDF/";
 
   constructor(
     private http: HttpClient,
@@ -78,5 +80,19 @@ export class ObavestenjeService {
     });
 
     return this.http.get(environment.SLUZBENIK_APP + this.brojacApi, {headers: headers, responseType: 'text'});
+  }
+
+  preuzmiJSON(id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiJSONApi + id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+
+  preuzmiRDF(id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.SLUZBENIK_APP + this.preuzmiRDFApi + id, { headers: headers, responseType: 'arraybuffer' as 'text' });
   }
 }

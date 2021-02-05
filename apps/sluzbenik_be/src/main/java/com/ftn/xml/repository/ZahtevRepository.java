@@ -13,6 +13,7 @@ import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ZahtevFusekiDTO;
 import com.ftn.xml.model.zahtev.Zahtev;
+import com.itextpdf.text.log.SysoCounter;
 
 @Repository
 public class ZahtevRepository {
@@ -134,13 +135,12 @@ public class ZahtevRepository {
 	public ResourceSet pronadjiOdbijeneZahteveZaKorisnika(String email) {
 		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama"
 				+ "[podnozje/informacije_o_traziocu/korisnik_email='" + email + "' and status=\"ODBIJEN\"]";
-
+		
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
-
 			return set;
-		} catch (Exception e) {
+		} catch (Exception e) {		
 			return null;
 		}
 	}
@@ -152,6 +152,7 @@ public class ZahtevRepository {
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);	
+			
 			return set;
 		} catch (Exception e) {
 			return null;

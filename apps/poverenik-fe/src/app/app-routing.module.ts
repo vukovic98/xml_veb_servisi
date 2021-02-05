@@ -9,7 +9,7 @@ import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 import {PretragaComponent} from './components/pretraga/pretraga.component';
-
+import {PodnosenjeZalbeNaOdlukuComponent} from './components/podnosenje-zalbe-na-odluku/podnosenje-zalbe-na-odluku.component'
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},

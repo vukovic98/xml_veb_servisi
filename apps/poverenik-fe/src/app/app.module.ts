@@ -30,6 +30,7 @@ import { ZalbaNaOdlukuComponent } from './components/zalba-na-odluku/zalba-na-od
 import { ResenjeComponent } from './components/resenje/resenje.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { PretragaComponent } from './components/pretraga/pretraga.component';
+import { PodnosenjeZalbeNaOdlukuComponent } from './components/podnosenje-zalbe-na-odluku/podnosenje-zalbe-na-odluku.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { PretragaComponent } from './components/pretraga/pretraga.component';
     ResenjeComponent,
     ResenjaComponent,
     PodnosenjeZalbeCutanjeComponent,
-    PretragaComponent
+    PretragaComponent,
+    PodnosenjeZalbeNaOdlukuComponent
 
   ],
   imports: [

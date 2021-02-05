@@ -19,8 +19,11 @@
       <mat-grid-tile>
         <a routerLink="/home">Састави решење</a>
       </mat-grid-tile>
-      <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Извези у PDF</button></mat-grid-tile>
-      <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Извези у XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiJSON()">JSON</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiRDF()">RDF</button></mat-grid-tile>
+
     </mat-grid-list>
     <mat-grid-list *ngIf="resi==false" cols="8" rowHeight="40">
       <mat-grid-tile>
@@ -43,10 +46,13 @@
         Да
       </mat-grid-tile>
       <mat-grid-tile *ngIf="zalba[6].children[0]=='ne'">
-        Не
+        <button *ngIf="poverenikPregled==false" mat-button (click)="odustani(zalba[0].children[0])">Не, одустани</button>
+        <p *ngIf="poverenikPregled==true" >Не</p>
       </mat-grid-tile>
-      <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Извези у PDF</button></mat-grid-tile>
-      <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Извези у XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiJSON()">JSON</button></mat-grid-tile>
+      <mat-grid-tile><button data-toggle="tooltip" mat-button (click)="preuzmiRDF()">RDF</button></mat-grid-tile>
     </mat-grid-list>
     <mat-divider></mat-divider>
   </div>

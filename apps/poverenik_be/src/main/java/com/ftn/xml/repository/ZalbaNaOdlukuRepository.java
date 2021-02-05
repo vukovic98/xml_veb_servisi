@@ -112,4 +112,19 @@ public class ZalbaNaOdlukuRepository {
 		}
 
 	}
+	
+	public boolean postojiZalbaNaZahtev(long id) {
+		String xPath = "/lista_zalbi_na_odluku/zalba_na_odluku/broj_zahteva=" +id;
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			if(set.getSize()!= 0) 
+				return true;
+			else 
+				return false;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

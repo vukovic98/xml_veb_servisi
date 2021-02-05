@@ -163,6 +163,7 @@ public class ZalbaNaOdlukuController {
 		if(ok)
 			return new ResponseEntity<>(ok, HttpStatus.OK);
 		else
+			System.out.println("OVDE JE GRESKA");
 			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);	
 	}
 	

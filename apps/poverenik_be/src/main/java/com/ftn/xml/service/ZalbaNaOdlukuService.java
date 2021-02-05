@@ -28,19 +28,14 @@ import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
-
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.db.MetadataExtractor;
-import com.ftn.xml.dto.ZalbaCutanjeDTO;
-import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
 import com.ftn.xml.dto.ZalbaNaOdlukuDTO;
 import com.ftn.xml.dto.ZalbaNaOdlukuDodavanjeDTO;
 import com.ftn.xml.helper.DodajZalbuNaOdlukuMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
-import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaNaOdluku;
 import com.ftn.xml.model.korisnik.Korisnik;
-import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
@@ -324,13 +319,13 @@ public class ZalbaNaOdlukuService {
 	
 	public boolean dodajZalbuIzTeksta(String zalba) throws JAXBException {
 		// validacija
-		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		// XML schema validacija
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		Schema schema;
 		try {
-			schema = schemaFactory.newSchema(new File("./data/zalba_cutanje.xsd"));
+			schema = schemaFactory.newSchema(new File("./data/zalba_na_odluku.xsd"));
 			unmarshaller.setSchema(schema);
 		} catch (SAXException e2) {
 			e2.printStackTrace();
@@ -347,6 +342,7 @@ public class ZalbaNaOdlukuService {
 		StringReader reader = new StringReader(zalba);
 		ZalbaNaOdluku z;
 		try {
+			//System.out.println(zalba);
 			z = (ZalbaNaOdluku) unmarshaller.unmarshal(reader);
 			this.zalbaRepo.dodajZalbuIzTeksta(zalba, z);
 			return true;

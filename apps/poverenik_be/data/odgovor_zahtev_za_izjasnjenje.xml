@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odgovori_zahtev_za_izjasnjenje xmlns="http://ftn.uns.ac.rs/izjasnjenje/odgovor">
+<odgovor_zahtev_za_izjasnjenje>
+    
+    <id_zalbe>1</id_zalbe>
+    <sadrzaj>Konstatujem da je ova zalba baš loša</sadrzaj>
+    <tip>C</tip>
+</odgovor_zahtev_za_izjasnjenje>
+<odgovor_zahtev_za_izjasnjenje>
+        
+        <id_zalbe>1</id_zalbe>
+        <sadrzaj>Konstatujem da je ova zalba baš loša</sadrzaj>
+        <tip>C</tip>
+</odgovor_zahtev_za_izjasnjenje>
+    
+</odgovori_zahtev_za_izjasnjenje>

@@ -24,6 +24,7 @@ export class ZahteviZaIzjasnjenjeOdlukaComponent implements OnInit {
       .subscribe((response) => {
         let obj: any = txml.parse(response);
         this.zahtevi = obj[0].children[0].children;
+      }, error => {
       })
   }
 

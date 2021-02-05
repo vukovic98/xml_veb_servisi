@@ -2,6 +2,7 @@ package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -18,6 +19,7 @@ import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.jaxb.util.XSLFORTransformerResenje;
+import com.ftn.xml.model.resenje.ListaResenja;
 import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ximpleware.AutoPilot;
@@ -30,6 +32,29 @@ public class ResenjeService {
 
 	@Autowired
 	private ResenjeRepository resenjeRepository;
+	
+	public ListaResenja naprednaPretraga(String zalba, String ishod, String korisnik, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.resenjeRepository.naprednaPretraga(zalba, ishod, korisnik, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ListaResenja lista = new ListaResenja();
+		
+		for(String i : ids) {
+			Resenje z = this.pronadjiPoId(Long.parseLong(i));
+			
+			lista.getResenje().add(z);
+		}
+		
+		return lista;
+		
+	}
 
 	public String removeNamespace(String xml) {
 		try {
@@ -52,6 +77,29 @@ public class ResenjeService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Resenje pronadjiPoId(long id) {
+		ResourceSet set = this.resenjeRepository.findById(id);
+		try {
+			if (set.getSize() == 1) {
+
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.resenje");
+
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				Resource res = set.getResource(0);
+
+				Resenje resenje = (Resenje) unmarshaller
+						.unmarshal(((XMLResource) res).getContentAsDOM());
+
+				return resenje;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	public ArrayList<ResenjeDTO> pretraga(String text) throws Exception {

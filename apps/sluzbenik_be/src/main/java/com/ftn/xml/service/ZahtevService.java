@@ -3,7 +3,9 @@ package com.ftn.xml.service;
 import java.io.ByteArrayOutputStream;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.bind.JAXBContext;
@@ -58,6 +60,29 @@ public class ZahtevService {
 
 	public long ukupanBrojOdnijenihZahteva() {
 		return this.zahtevRepository.ukupanBrojOdbijenihZahteva();
+	}
+	
+	public ListaZahtevaZaPristupInformacijama naprednaPretraga(String ime, String mail, String organ, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.zahtevRepository.naprednaPretraga(ime, mail, organ, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ListaZahtevaZaPristupInformacijama lista = new ListaZahtevaZaPristupInformacijama();
+		
+		for(String i : ids) {
+			ZahtevZaPristupInformacijama z = this.pronadjiZahtevPoId(Long.parseLong(i));
+			
+			lista.getZahtevZaPristupInformacijama().add(z);
+		}
+		
+		return lista;
+		
 	}
 
 	public ListaZahtevaZaPristupInformacijama pretraga(String text) {

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
+import com.ftn.xml.db.FusekiManager;
+import com.ftn.xml.dto.ResenjeFusekiDTO;
 
 @Repository
 public class ResenjeRepository {
@@ -27,6 +29,10 @@ public class ResenjeRepository {
 
 	@Autowired
 	private ExistManager existManager;
+
+	@Autowired
+	private FusekiManager fusekiManager;
+	
 
 	public ResourceSet getAll() {
 		String xPath = "/lista_resenja/resenje";
@@ -80,6 +86,17 @@ public class ResenjeRepository {
 		}
 	}
 
+	public boolean sacuvajResenje(String z, ResenjeFusekiDTO dto, int index) {
+		try {
+			this.existManager.append(collectionId, documentId, "/lista_resenja", z, APPEND);
+			this.fusekiManager.dodajResenje(index + "", dto);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public ResourceSet pretraga(String text) {
 		String xPath = "/lista_resenja/resenje[sadrzaj/uvod/organ[contains(., '" + text + "')]"
 				+ " or sadrzaj/uvod/podnosilac[contains(., '" + text + "')]"
@@ -97,4 +114,5 @@ public class ResenjeRepository {
 			return null;
 		}
 	}
+
 }

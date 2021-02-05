@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ftn.uns.ac.rs/izjasnjenje/odgovor" xmlns:odgovor="http://ftn.uns.ac.rs/izjasnjenje/odgovor">
+  <xs:element name="odgovori_zahtev_za_izjasnjenje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="odgovor:odgovor_zahtev_za_izjasnjenje"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="odgovor_zahtev_za_izjasnjenje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="odgovor:id_zalbe"/>
+        <xs:element ref="odgovor:sadrzaj"/>
+        <xs:element ref="odgovor:tip"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="id_zalbe" type="xs:integer"/>
+  <xs:element name="sadrzaj" type="xs:string"/>
+  <xs:element name="tip" type="xs:NCName"/>
+</xs:schema>

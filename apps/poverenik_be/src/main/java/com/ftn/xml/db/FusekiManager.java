@@ -51,6 +51,7 @@ public class FusekiManager {
 	
 	private static final String ZALBA_CUTANJE_NAMED_GRAPH_URI = "/zalba_cutanje";
 	private static final String ZALBA_NA_ODLUKU_NAMED_GRAPH_URI = "/zalba_na_odluku";
+	private static final String RESENJE_NAMED_GRAPH_URI = "/resenje";
 	
 	public FusekiManager() {
 		try {
@@ -287,6 +288,7 @@ public class FusekiManager {
 		model.close();
 	}
 	
+	//za zalbu cutanje
 	public void generisiJSON(long id) throws FileNotFoundException {
 		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
 				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id + "> ?p ?o");
@@ -448,7 +450,7 @@ public class FusekiManager {
 		Model model = ModelFactory.createDefaultModel();
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
 
-		String sparqlUpdate = SparqlUtil.deleteNode(conn.dataEndpoint + ZALBA_NA_ODLUKU_NAMED_GRAPH_URI, sparqlCondition);
+		String sparqlUpdate = com.ftn.xml.db.SparqlUtil.deleteNode(conn.dataEndpoint + ZALBA_NA_ODLUKU_NAMED_GRAPH_URI, sparqlCondition);
 
 		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
 
@@ -458,7 +460,19 @@ public class FusekiManager {
 		model.close();
 	}
 	
-
+	
+	public void generisiJSONResenje(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/resenje_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
 	
 	
 }

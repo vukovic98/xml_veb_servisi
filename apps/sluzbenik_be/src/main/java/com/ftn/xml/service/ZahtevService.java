@@ -272,11 +272,14 @@ public class ZahtevService {
 					long id = Long.parseLong(about[about.length-1]);
 					
 					boolean postoji = this.zalbaNaOdlukuRepo.postojiZalbaNaZahtev(id);
+		
+					if (!postoji) {
+						lista.getZahtevZaPristupInformacijama().add(zahtev);
+					}
+						
 					
-//					if (!postoji)
-//						lista.getZahtevZaPristupInformacijama().add(zahtev);
 					
-					lista.getZahtevZaPristupInformacijama().add(zahtev);
+					//lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {
 					try {
@@ -325,7 +328,7 @@ public class ZahtevService {
 					String[] about = zahtev.getAbout().split("/");
 					long id = Long.parseLong(about[about.length-1]);
 					// da li je proslo 5 min
-
+					System.out.println(id + " ID");
 					Date now = new Date();
 					Date d = formatter.parse(zahtev.getPodnozje().getMestoIDatum().getDatumZahteva().getValue());
 
@@ -333,8 +336,9 @@ public class ZahtevService {
 					long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
 					
 					boolean postojiZalba = this.zalbaCutanjeRepository.postojiZalbaNaZahtev(id);
-					
-					if (diff > 5 && !postojiZalba)
+//					if (diff > 1 )
+//						lista.getZahtevZaPristupInformacijama().add(zahtev);
+					if (diff > 1 && !postojiZalba)
 						lista.getZahtevZaPristupInformacijama().add(zahtev);
 
 				} finally {

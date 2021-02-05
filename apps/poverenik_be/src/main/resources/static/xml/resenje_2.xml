@@ -1,0 +1,30 @@
+<resenje xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"  xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"  about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2" broj="071-01-1114/2020-03" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        <osnovni_podaci>
+            <naslov datatype="xs:string" property="pred:naslov">Решење када је жалба основана</naslov>
+            <datum datatype="xs:date" property="pred:datum_resenja">2020-06-09</datum>
+            <korisnik_email datatype="xs:string" property="pred:korisnik">nikola@maildrop.cc</korisnik_email>
+        </osnovni_podaci>
+        <sadrzaj>
+            <uvod>
+                <organ datatype="xs:string" property="pred:organ">Повереник за информације од јавног значаја и заштиту података о личности</organ>
+                <podnosilac datatype="xs:string" property="pred:podnosilac">Vladimir Vukovic</podnosilac>
+                <ustanova>
+                    <naziv datatype="xs:string" property="pred:naziv_ustanove">FTN</naziv>
+                    <ulica>Немањина бб</ulica>
+                </ustanova>
+                <datum_zahteva datatype="xs:date" property="pred:datum_zahteva">2020-04-16</datum_zahteva>
+            </uvod>
+            <doneto_resenje>
+                <trazeni_dokument datatype="xs:string" property="pred:trazeni_dokument">Уговор о раду који је као последњи потписан између тог Факултета и ББ</trazeni_dokument>
+                <tekst_resenja>Tekst resenja</tekst_resenja>
+            </doneto_resenje>
+            <obrazlozenje>
+                <tekst_obrazlozenja>Ovo je obrazlozenje</tekst_obrazlozenja>
+                <sud>Управном суду у Београду</sud>
+                <taksa datatype="xs:double" property="pred:taksa">390.00</taksa>
+            </obrazlozenje>
+        </sadrzaj>
+        <poverenik datatype="xs:string" property="pred:poverenik">Милан Мариновић</poverenik>
+        <broj_zalbe datatype="xs:string" property="pred:broj_zalbe">2</broj_zalbe>
+        <ishod datatype="xs:string" property="pred:ishod">ODBIJEN</ishod>
+    </resenje>

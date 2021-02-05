@@ -225,7 +225,7 @@ public class ZalbaNaOdlukuRepository {
 		}
 	}
 	public boolean postojiZalbaNaZahtev(long id) {
-		String xPath = "/lista_zalbi_na_odluku/zalba_na_odluku/broj_zahteva=" +id;
+		String xPath = "/lista_zalbi_na_odluku/zalba_na_odluku[broj_zahteva=" + id + "]";
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);

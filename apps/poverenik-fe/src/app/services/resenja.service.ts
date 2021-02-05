@@ -13,6 +13,8 @@ export class ResenjaService {
   private readonly resenjaKorisnikApi = "resenja/user";
   private readonly preuzmiPDFApi = "resenja/generatePDF/";
   private readonly preuzmiHTMLApi = "resenja/generateHTML/";
+  private readonly preuzmiJSONApi = "resenja/generisiJSON/";
+  private readonly preuzmiRDFApi = "resenja/generisiRDF/";
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -59,4 +61,16 @@ export class ResenjaService {
 
   }
 
+  preuzmiJSON(id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.preuzmiJSONApi + id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
+  preuzmiRDF(id: number): any {
+    const headers = new HttpHeaders({
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.preuzmiRDFApi + id, { headers: headers, responseType: 'arraybuffer' as 'text' });
+  }
 }

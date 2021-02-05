@@ -1,5 +1,5 @@
 <div class="mt-2 pt-2">
-    <mat-grid-list *ngIf="odobreno==true" cols="9" rowHeight="40">
+    <mat-grid-list *ngIf="odobreno==true" cols="12" rowHeight="40">
       <mat-grid-tile>
         {{resenje[0].children[0]}}
       </mat-grid-tile>
@@ -26,8 +26,10 @@
       </mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiJSON()">Izvezi u JSON</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiRDF()">Izvezi u RDF</button></mat-grid-tile>
     </mat-grid-list>
-    <mat-grid-list *ngIf="odobreno==false" cols="9" rowHeight="40">
+    <mat-grid-list *ngIf="odobreno==false" cols="12" rowHeight="40">
       <mat-grid-tile>
         {{resenje[1].children[0]}}
       </mat-grid-tile>
@@ -51,6 +53,8 @@
       </mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiPDF()">Izvezi u PDF</button></mat-grid-tile>
       <mat-grid-tile><button mat-button (click)="preuzmiHTML()">Izvezi u XHTML</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiJSON()">Izvezi u JSON</button></mat-grid-tile>
+      <mat-grid-tile><button mat-button (click)="preuzmiRDF()">Izvezi u RDF</button></mat-grid-tile>
     </mat-grid-list>
     <mat-divider></mat-divider>
   </div>

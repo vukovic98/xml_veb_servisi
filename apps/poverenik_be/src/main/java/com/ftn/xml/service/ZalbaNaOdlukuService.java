@@ -82,8 +82,8 @@ public class ZalbaNaOdlukuService {
 					dto.setRazresena("ne");
 					dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 					
-					XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-					String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+					
+					String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 					dto.setDatum(date);
 
 					dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -133,8 +133,8 @@ public class ZalbaNaOdlukuService {
 				
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 				
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+				
+				String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 				dto.setDatum(date);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -182,8 +182,7 @@ public class ZalbaNaOdlukuService {
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
 
 				// datum zalbe
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+				String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 				dto.setDatum(date);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -368,8 +367,8 @@ public class ZalbaNaOdlukuService {
 		FileWriter fw;
 		try {
 			rs = this.pronadjiZalbuPoId_Raw(id);
-			String pocetak = rs.substring(0, 15);
-			String ubaci = "xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
+			String pocetak = rs.substring(0, 16);
+			String ubaci = " xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
 			String kraj = rs.substring(16);
 			String novi = pocetak + ubaci + kraj;
 			fw = new FileWriter("src/main/resources/static/xml/zalba_na_odluku_"+id+".xml");
@@ -430,9 +429,8 @@ public class ZalbaNaOdlukuService {
 				
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-				dto.setDatum(date);
+				String xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
+				dto.setDatum(xmlDate);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
 				dto.setPrezime(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());

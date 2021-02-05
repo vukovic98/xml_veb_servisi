@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.DodajResenjeDTO;
@@ -135,5 +137,47 @@ public class ResenjeController {
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/generisiJSON/{resenje_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/json/resenje_" + resenje_id + ".json";
+
+		try {
+			this.resenjeService.generisiJSON(resenje_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{resenje_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("resenje_id") long resenje_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/resenje_" + resenje_id + ".rdf";
+		try {
+			this.resenjeService.generisiRDF(resenje_id);
+		} catch (SAXException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
 	}
 }

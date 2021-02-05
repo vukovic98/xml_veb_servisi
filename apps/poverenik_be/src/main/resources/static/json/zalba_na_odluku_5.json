@@ -1,0 +1,69 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zalbe" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/2001/XMLSchema#integer" , "value": "5" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_organa" } ,
+        "o": { "type": "literal" , "value": "aaaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_zalioca" } ,
+        "o": { "type": "literal" , "value": "Nikola" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/adresa_zalioca" } ,
+        "o": { "type": "literal" , "value": "aaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_odbijenog_zahteva" } ,
+        "o": { "type": "literal" , "value": "2021-02-04" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_zakljucka_zalbe" } ,
+        "o": { "type": "literal" , "value": "aaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik" } ,
+        "o": { "type": "literal" , "value": "nikola@maildrop.cc" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva" } ,
+        "o": { "type": "literal" , "value": "4" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/odluka" } ,
+        "o": { "type": "literal" , "value": "aaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zakljucka_zalbe" } ,
+        "o": { "type": "literal" , "value": "2021-02-05" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/prezime_zalioca" } ,
+        "o": { "type": "literal" , "value": "Andric" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sediste_zalioca" } ,
+        "o": { "type": "literal" , "value": "aaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/kontakt_zalioca" } ,
+        "o": { "type": "literal" , "value": "aaa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_zalbe" } ,
+        "o": { "type": "literal" , "value": "Lala" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/godina_zalbe" } ,
+        "o": { "type": "literal" , "value": "2021" }
+      }
+    ]
+  }
+}

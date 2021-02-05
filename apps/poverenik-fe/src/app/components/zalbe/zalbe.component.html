@@ -53,11 +53,23 @@
         <mat-grid-tile [colspan]="4">Преузми</mat-grid-tile>
       </mat-grid-list>
       <mat-divider></mat-divider>
-      <app-zalba-na-odluku
-        *ngFor="let z of zalbeNaOdluku"
-        [zalba]=z.children
-        [resi]=false
-      ></app-zalba-na-odluku>
+
+      <div *ngIf="uloga=='P'">
+        <app-zalba-na-odluku
+          *ngFor="let z of zalbeNaOdluku"
+          [zalba]=z.children
+          [resi]=false
+          [poverenikPregled]=true
+        ></app-zalba-na-odluku>
+      </div>
+      <div *ngIf="uloga=='K'">
+        <app-zalba-na-odluku
+          *ngFor="let z of zalbeNaOdluku"
+          [zalba]=z.children
+          [resi]=false
+          [poverenikPregled]=false
+        ></app-zalba-na-odluku>
+      </div>
     </div>
 
   </div>

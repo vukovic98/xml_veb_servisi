@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import * as txml from 'txml';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 declare const Xonomy: any;
 @Component({
   selector: 'app-podnosenje-zalbe-cutanje',
@@ -24,6 +25,7 @@ export class PodnosenjeZalbeCutanjeComponent implements OnInit {
   btnPosalji = false;
   datumZahteva = '';
   public zahtevi: Array<any>;
+
   constructor
   (
     private xonomyService: XonomyService,

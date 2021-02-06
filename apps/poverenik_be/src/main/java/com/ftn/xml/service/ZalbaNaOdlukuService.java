@@ -22,7 +22,11 @@ import javax.xml.validation.SchemaFactory;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
@@ -31,12 +35,14 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.db.MetadataExtractor;
+import com.ftn.xml.dto.ZalbaCutanjeDTO;
 import com.ftn.xml.dto.ZalbaNaOdlukuDTO;
 import com.ftn.xml.dto.ZalbaNaOdlukuDodavanjeDTO;
 import com.ftn.xml.helper.DodajZalbuNaOdlukuMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaNaOdluku;
 import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
@@ -141,7 +147,8 @@ public class ZalbaNaOdlukuService {
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
 				dto.setPrezime(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());
 				dto.setNaziv_organa(z.getOsnovniPodaci().getPodaciOOrganu().getNaziv().getValue());
-
+				dto.setEmail(z.getOsnovniPodaci().getPodaciOZaliocu().getKorisnikEmail().getContent());
+				dto.setDatum_zahteva(z.getSadrzaj().getDatumOdbijenogZahteva().getValue());
 				zalbeDTO.add(dto);
 			
 			}finally {

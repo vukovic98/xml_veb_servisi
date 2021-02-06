@@ -19,6 +19,7 @@ import org.xmldb.api.modules.XMLResource;
 import com.ftn.xml.model.zahtev_za_izjasnjenje_odluka.ZahteviZaIzjasnjenjeOdluka;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZahtevZaIzjasnjenjeOdlukaRepository;
+import com.ftn.xml.repository.ZalbaNaOdlukuRepository;
 import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
@@ -33,6 +34,9 @@ public class ZahtevZaIzjasnjenjeOdlukaService {
 	@Autowired
 	private ZalbaNaOdlukuService zalbaService;
 
+	@Autowired
+	private ZalbaNaOdlukuRepository zalbaRepo;
+	
 	public ZahteviZaIzjasnjenjeOdluka pronadjiSveZahteve() {
 		ResourceSet set = this.zahtevRepository.dobaviSve();
 
@@ -93,7 +97,7 @@ public class ZahtevZaIzjasnjenjeOdlukaService {
 
 			String changedZahtev = this.removeNamespace(zahtev);
 			
-			this.zalbaService.dodajZalbuIzTeksta(changedZahtev);
+			this.zalbaRepo.dodajZalbuIzTeksta(changedZahtev, z);
 
 			return this.zahtevRepository.dodajZahtevZaIzjasnjenjeOdluka(changedZahtev);
 

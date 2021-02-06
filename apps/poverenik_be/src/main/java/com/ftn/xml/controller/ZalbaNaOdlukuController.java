@@ -83,6 +83,34 @@ public class ZalbaNaOdlukuController {
 		
 	}
 	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<ZalbaNaOdlukuDTO> pronadjiZalbuPoId(@PathVariable("id") long id) {
+		ZalbaNaOdluku z = this.zalbaService.pronadjiZalbuPoId(id);
+
+		if (z != null) {
+			ZalbaNaOdlukuDTO n = new ZalbaNaOdlukuDTO();
+
+			String[] params = z.getAbout().split("/");
+
+			n.setId(id);
+			
+			n.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
+			
+			
+			String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
+			n.setDatum(date);
+
+			n.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
+			n.setPrezime(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());
+			n.setNaziv_organa(z.getOsnovniPodaci().getPodaciOOrganu().getNaziv().getValue());
+			n.setEmail(z.getOsnovniPodaci().getPodaciOZaliocu().getKorisnikEmail().getContent());
+			n.setDatum_zahteva(z.getSadrzaj().getDatumOdbijenogZahteva().getValue());
+			
+			return new ResponseEntity<>(n, HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	@GetMapping("/generisiPDF/{zalba_na_odluku_id}")
 	public ResponseEntity<byte[]> generisiPDF(@PathVariable("zalba_na_odluku_id") long zalba_id) throws XMLDBException {
 

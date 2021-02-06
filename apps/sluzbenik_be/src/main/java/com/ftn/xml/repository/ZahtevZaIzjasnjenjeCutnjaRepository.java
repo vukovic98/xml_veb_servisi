@@ -32,7 +32,7 @@ public class ZahtevZaIzjasnjenjeCutnjaRepository {
 
 	public boolean dodajZahtevZaIzjasnjenjeCutnje(String zahtev) {
 		String xPath = "/zahtevi_za_izjasnjenje_cutanje";
-
+		System.out.println("ZAHTEV:" + zahtev);
 		try {
 			this.existManager.append(collectionId, documentId, xPath, zahtev, APPEND);
 			return true;

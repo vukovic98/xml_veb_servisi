@@ -12,6 +12,7 @@ public class ZalbaCutanjeDTO {
 	public String razresena;
 	public String email;
 	public String datum_zahteva;
+	public String tip_zalbe = "cutanje";
 	
 	public ZalbaCutanjeDTO() {
 		super();

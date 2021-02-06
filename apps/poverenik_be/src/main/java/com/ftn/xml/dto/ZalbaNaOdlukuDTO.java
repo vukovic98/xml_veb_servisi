@@ -12,6 +12,9 @@ public class ZalbaNaOdlukuDTO {
 	public String prezime;
 	public String datum;
 	public String razresena;
+	public String email;
+	public String datum_zahteva;
+	public String tip_zalbe = "odluka";
 	
 	public ZalbaNaOdlukuDTO() {
 		super();
@@ -83,6 +86,22 @@ public class ZalbaNaOdlukuDTO {
 
 	public void setRazresena(String razresena) {
 		this.razresena = razresena;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDatum_zahteva() {
+		return datum_zahteva;
+	}
+
+	public void setDatum_zahteva(String datum_zahteva) {
+		this.datum_zahteva = datum_zahteva;
 	}
 	
 	

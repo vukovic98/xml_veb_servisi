@@ -229,7 +229,7 @@ public class ZalbaNaOdlukuRepository {
 	public void dodajZalbuIzTeksta(String zalba, ZalbaNaOdluku z) throws Exception {
 		String contextXPath = "/lista_zalbi_na_odluku";
 		this.existManager.append(collectionId, documentId, contextXPath, zalba, APPEND);
-		this.fusekiManager.dodajZalbuNaOdluku(z);
+		//this.fusekiManager.dodajZalbuNaOdluku(z);
 		
 	}
 	

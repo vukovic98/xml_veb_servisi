@@ -248,7 +248,7 @@ public class ResenjeRepository {
 	public boolean sacuvajResenje(String z, ResenjeFusekiDTO dto, int index) {
 		try {
 			this.existManager.append(collectionId, documentId, "/lista_resenja", z, APPEND);
-			this.fusekiManager.dodajResenje(index + "", dto);
+			//this.fusekiManager.dodajResenje(index + "", dto);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

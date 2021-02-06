@@ -4,10 +4,15 @@ package com.ftn.xml.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.modules.XMLResource;
 
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
@@ -86,6 +91,20 @@ public class ZalbaNaOdlukuRepository {
 		this.existManager.append(collectionId, documentId, contextXPath, zalba, APPEND);
 		this.fusekiManager.dodajZalbuNaOdluku(z);
 		
+	}
+	
+	public ResourceSet pronadjiPoId(long id) {
+		String id_Str = ID_STRING + id;
+		String xPath = "/lista_zalbi_odluka/zalba_odluka[@about='" + id_Str + "']";
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+
+			return set;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public boolean odustaniOdZalbe(long id) {

@@ -97,6 +97,15 @@ export class ZalbaNaOdlukuService {
   
     }
   
+    dobaviZalbuPoId(id_zalbe: number): Observable<any> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/xml',
+        'Accept': 'application/xml',
+        'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+      });
+      return this.http.get(environment.POVERENIK_APP + this.zalbeApi+"/"+id_zalbe, {headers: headers, responseType: 'text'});
+    }
+
     dobaviNeodgovoreneZahteve(email: string){
       const headers = new HttpHeaders({
         'Content-Type': 'text/plain',

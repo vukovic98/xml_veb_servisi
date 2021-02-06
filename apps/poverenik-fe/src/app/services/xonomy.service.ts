@@ -384,6 +384,10 @@ export class XonomyService {
           "about": {
             isInvisible: true,
           },
+          "broj": {
+            hasText: true,
+            asker: Xonomy.askString,
+          }
           
         }
       },
@@ -518,18 +522,7 @@ export class XonomyService {
         }
       },
       "datum_zahteva": {
-        validate: function (jsElement) {
-          if (jsElement.getText() == "") {
-            Xonomy.warnings.push({
-                htmlID: jsElement.htmlID,
-                text: "Овај елемент не сме бити празан."
-              }
-            );
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString,
-        oneliner: true,
+        isReadOnly: true,
         attributes: {
           "datatype": {
             isInvisible: true,

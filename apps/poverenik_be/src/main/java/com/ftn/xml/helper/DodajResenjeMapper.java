@@ -60,7 +60,13 @@ public class DodajResenjeMapper {
 		dto.setUstanova(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
 		dto.setDatum_zahteva(r.getSadrzaj().getUvod().getDatumZahteva().toString());
 		dto.setTrazeni_dokument(r.getSadrzaj().getDonetoResenje().getTrazeniDokument().getContent());
-		//TODO
+		dto.setTekst_resenja(r.getSadrzaj().getDonetoResenje().getTekstResenja());
+		dto.setTekst_obrazlozenja(r.getSadrzaj().getObrazlozenje().getTekstObrazlozenja());
+		dto.setSud(r.getSadrzaj().getObrazlozenje().getSud());
+		dto.setTaksa(r.getSadrzaj().getObrazlozenje().getTaksa().getValue().doubleValue());
+		dto.setIshod(r.getIshod().getValue());
+		dto.setPoverenik(r.getPoverenik().getContent());
+		dto.setBroj(r.getBroj());
 		
 		return dto;
 		

@@ -20,6 +20,7 @@ declare const Xonomy: any;
 export class DodajResenjeComponent implements OnInit {
 
   private zalba_id: string;
+  private zalba_tip: string;
   private resenje_id: string;
   private email: string;
   private brojResenja: string = '-1';
@@ -27,14 +28,6 @@ export class DodajResenjeComponent implements OnInit {
   private naziv_ustanove: string = '';
   private ulica: string = '';
   private datum_zahteva: string = '';
-  private trazeni_dokument: string = '';
-  private tekst_obrazlozenja: string = '';
-  private tekst_resenja: string = '';
-  private poverenik: string = '';
-  private broj_zalbe: string = '';
-  private sud: string = '';
-  private taksa: string = '';
-  private ishod: string = '';
 
   private zalba: any;
 
@@ -53,7 +46,11 @@ export class DodajResenjeComponent implements OnInit {
     
       this.zalba_id = params['zalba_id'] || '';
 
+      this.zalba_tip = params['zalba_tip'] || '';
 
+      console.log(this.zalba_tip);
+
+      if(this.zalba_tip == "cutanje"){
 
       this.zalbaCutanjeService.dobaviZalbuPoId(Number(this.zalba_id)).subscribe((response) =>{
         let obj: any = txml.parse(response);
@@ -85,7 +82,41 @@ export class DodajResenjeComponent implements OnInit {
       });
       
 
+    }else{
+
+      
+      this.zalbaOdlukaService.dobaviZalbuPoId(Number(this.zalba_id)).subscribe((response) =>{
+        let obj: any = txml.parse(response);
+
+        this.zalba = obj[0].children;
+        this.email = this.zalba[7].children[0];
+        this.podnosilac = this.zalba[3].children[0] + " "+this.zalba[4].children[0];
+        this.datum_zahteva = this.zalba[8].children[0];
+        console.log(this.email);
+
+        console.log(this.datum_zahteva);
+        console.log(this.zalba);
+
+        this.resenjeService.dobaviBrojacResenja()
+        .subscribe((response) =>{
+
+          let obj2: any = txml.parse(response);
+
+          console.log(obj2);
+
+          this.resenje_id = obj2[0];
+
+          console.log(this.resenje_id);
+
+          this.prikaziXonomy();
+
+        });
+
+      });
+    }
     });
+
+    
    
   }
 
@@ -146,9 +177,42 @@ export class DodajResenjeComponent implements OnInit {
     }
   }
 
-  posaljiResenje(){
+  ispitajOdustajanje(){
+
+    console.log(this.zalba_tip);
+    if(this.zalba_tip == "cutanje"){
+      console.log("USAO U IF");
+
+      this.zalbaCutanjeService.dobaviZalbuPoId(Number(this.zalba_id)).subscribe((response) =>{
+
+        this.posaljiResenje(false);
+
+      },(error) =>{
+
+
+        this.posaljiResenje(true);
+
+      });
+    }else{
+      console.log("USAO U ELSE");
+      this.zalbaOdlukaService.dobaviZalbuPoId(Number(this.zalba_id)).subscribe((response) =>{
+
+        this.posaljiResenje(false);
+
+      },error =>{
+        this.posaljiResenje(true);
+
+      });
+
+
+    }
+
+  }
+
+  posaljiResenje(odustao: boolean){
     let text = Xonomy.harvest();
     console.log(text);
+    if(odustao == false){
     this.resenjeService.kreirajResenjeTekst(text).subscribe(
       response => {
         Swal.fire({
@@ -205,6 +269,77 @@ export class DodajResenjeComponent implements OnInit {
         }), error => console.log('Error downloading the file'),
           () => console.info('File downloaded successfully');
 
+
+          if(this.zalba_tip == 'cutanje'){
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST', 'http://localhost:8081/ws/zahtev_za_izjasnjenje_cutanje', true);
+    
+        // The following variable contains the xml SOAP request.
+        const sr =
+            `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+              <soap:Body>
+                   <izbrisiZahtevZaIzjasnjenjeCutanje xmlns="http://ftn.uns.ac.rs/zalba_cutanje">
+                     <id_zalbe>`+ this.zalba_id +`</id_zalbe>
+                   </izbrisiZahtevZaIzjasnjenjeCutanje>
+                 </soap:Body>
+               </soap:Envelope>`;
+    
+        console.log("SOAP: "+sr);
+
+        xmlhttp.onreadystatechange =  () => {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    const xml = xmlhttp.responseXML;
+                    // Here I'm getting the value contained by the <return> node.
+                    const response_number = parseInt(xml.getElementsByTagName('return')[0].childNodes[0].nodeValue);
+                    // Print result square number.
+                    console.log(response_number);
+                }
+            }
+        }
+        // Send the POST request.
+        xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp.responseType = 'document';
+        xmlhttp.send(sr);
+
+          }else{
+
+
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.open('POST', 'http://localhost:8081/ws/zahtev_za_izjasnjenje_odluka', true);
+        
+            // The following variable contains the xml SOAP request.
+            const sr =
+                `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                  <soap:Body>
+                       <izbrisiZahtevZaIzjasnjenjeOdluka xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
+                         <id_zalbe>`+ this.zalba_id +`</id_zalbe>
+                       </izbrisiZahtevZaIzjasnjenjeOdluka>
+                     </soap:Body>
+                   </soap:Envelope>`;
+        
+            console.log("SOAP: "+sr);
+    
+            xmlhttp.onreadystatechange =  () => {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        const xml = xmlhttp.responseXML;
+                        // Here I'm getting the value contained by the <return> node.
+                        const response_number = parseInt(xml.getElementsByTagName('return')[0].childNodes[0].nodeValue);
+                        // Print result square number.
+                        console.log(response_number);
+                    }
+                }
+            }
+            // Send the POST request.
+            xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+            xmlhttp.responseType = 'document';
+            xmlhttp.send(sr);
+            
+          }
+
+          
         this.router.navigate(['/resenja']);
           }
         })
@@ -219,8 +354,20 @@ export class DodajResenjeComponent implements OnInit {
           confirmButtonText: 'У реду'
         })
       }
+
+      
     )
-    
+    }else{
+
+      Swal.fire({
+        title: 'Обавештење',
+        text: 'Корисник је одустао од жалбе у току састављања решења.',
+        icon: 'info',
+        confirmButtonColor: '#6495ed',
+        confirmButtonText: 'У реду'
+      })
+
+    }
   }
 
 }

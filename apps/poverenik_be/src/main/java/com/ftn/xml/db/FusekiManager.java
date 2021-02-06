@@ -36,7 +36,7 @@ import com.ftn.xml.dto.ZahtevIzjasnjenjeCutanjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevZaIzjasnjenjeOdlukaFusekiDTO;
 
 import com.ftn.xml.jaxb.util.FileUtil;
-
+import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -224,7 +224,7 @@ public class FusekiManager {
 		
 	}
 	
-	public void dodajResenje(String id, ResenjeFusekiDTO dto) {
+	public void dodajResenje(Resenje r) {
 		
 		String SPARQL_NAMED_GRAPH_URI = "/resenja";
 
@@ -232,52 +232,52 @@ public class FusekiManager {
 		model.setNsPrefix("pred", PREDICATE_NAMESPACE);
 
 		// Making the changes manually
-		Resource resource = model.createResource("http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id);
+		Resource resource = model.createResource(r.getAbout());
 
 		Property property1 = model.createProperty(PREDICATE_NAMESPACE, "naslov");
-		Literal literal1 = model.createLiteral(dto.getNaslov() + "");
+		Literal literal1 = model.createLiteral(r.getOsnovniPodaci().getNaslov().getContent() + "");
 
 		Property property2 = model.createProperty(PREDICATE_NAMESPACE, "datum");
-		Literal literal2 = model.createLiteral(dto.getDatum());
+		Literal literal2 = model.createLiteral(r.getOsnovniPodaci().getDatum().getValue().toString());
 
 		Property property3 = model.createProperty(PREDICATE_NAMESPACE, "korisnik_email");
-		Literal literal3 = model.createTypedLiteral(dto.getKorisnik_email());
+		Literal literal3 = model.createTypedLiteral(r.getOsnovniPodaci().getKorisnikEmail().getContent());
 
 		Property property4 = model.createProperty(PREDICATE_NAMESPACE, "organ");
-		Literal literal4 = model.createLiteral(dto.getOrgan());
+		Literal literal4 = model.createLiteral(r.getSadrzaj().getUvod().getOrgan().getContent());
 
 		Property property5 = model.createProperty(PREDICATE_NAMESPACE, "podnosilac");
-		Literal literal5 = model.createLiteral(dto.getPodnosilac());
+		Literal literal5 = model.createLiteral(r.getSadrzaj().getUvod().getPodnosilac().getContent());
 
 		Property property6 = model.createProperty(PREDICATE_NAMESPACE, "ustanova");
-		Literal literal6 = model.createLiteral(dto.getUstanova());
+		Literal literal6 = model.createLiteral(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
 
 		Property property7 = model.createProperty(PREDICATE_NAMESPACE, "datum_zahteva");
-		Literal literal7 = model.createLiteral(dto.getDatum_zahteva());
+		Literal literal7 = model.createLiteral(r.getSadrzaj().getUvod().getDatumZahteva().getValue().toString());
 
 		Property property8 = model.createProperty(PREDICATE_NAMESPACE, "trazeni_dokument");
-		Literal literal8 = model.createTypedLiteral(dto.getTrazeni_dokument());
+		Literal literal8 = model.createTypedLiteral(r.getSadrzaj().getDonetoResenje().getTrazeniDokument().getContent());
 
 		Property property9 = model.createProperty(PREDICATE_NAMESPACE, "tekst_resenja");
-		Literal literal9 = model.createLiteral(dto.getTekst_resenja());
+		Literal literal9 = model.createLiteral(r.getSadrzaj().getDonetoResenje().getTekstResenja());
 
 		Property property10 = model.createProperty(PREDICATE_NAMESPACE, "tekst_obrazlozenja");
-		Literal literal10 = model.createLiteral(dto.getTekst_obrazlozenja());
+		Literal literal10 = model.createLiteral(r.getSadrzaj().getObrazlozenje().getTekstObrazlozenja());
 
 		Property property11 = model.createProperty(PREDICATE_NAMESPACE, "sud");
-		Literal literal11 = model.createLiteral(dto.getSud());
+		Literal literal11 = model.createLiteral(r.getSadrzaj().getObrazlozenje().getSud());
 		
 		Property property12 = model.createProperty(PREDICATE_NAMESPACE, "taksa");
-		Literal literal12 = model.createTypedLiteral(dto.getTaksa());
+		Literal literal12 = model.createTypedLiteral(r.getSadrzaj().getObrazlozenje().getTaksa().getValue());
 		
 		Property property13 = model.createProperty(PREDICATE_NAMESPACE, "poverenik");
-		Literal literal13 = model.createLiteral(dto.getPoverenik());
+		Literal literal13 = model.createLiteral(r.getPoverenik().getContent());
 
 		Property property14 = model.createProperty(PREDICATE_NAMESPACE, "ishod");
-		Literal literal14 = model.createLiteral(dto.getIshod());
+		Literal literal14 = model.createLiteral(r.getIshod().getValue());
 		
 		Property property15 = model.createProperty(PREDICATE_NAMESPACE, "broj");
-		Literal literal15 = model.createLiteral(dto.getBroj());
+		Literal literal15 = model.createLiteral(r.getBroj());
 
 		// Adding the statements to the model
 		Statement statement1 = model.createStatement(resource, property1, literal1);

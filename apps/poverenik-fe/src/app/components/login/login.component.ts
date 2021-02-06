@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('imeIprezime', imeIprezime);
 
 
-        this.route.navigate(['/home-page']);
+        this.route.navigate(['/zalbe']);
       }, error => {
         Swal.fire({
           title: 'Грешка!',

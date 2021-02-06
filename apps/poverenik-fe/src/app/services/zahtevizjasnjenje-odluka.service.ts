@@ -7,10 +7,10 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ZahtevIzjasnjenjeCutanjeService {
+export class ZahtevizjasnjenjeOdlukaService {
 
-  private readonly zahteviIzjasnjenjeCutanjeApi = "zahtev_za_izjasnjenje_cutanje";
-  private readonly soapKreirajZahtevIzjasnjenjeCutanjeApi = "/ws/zahtev_za_izjasnjenje_cutanje";
+  private readonly zahteviIzjasnjenjeCutanjeApi = "zahtev_za_izjasnjenje_odluka";
+  private readonly soapKreirajZahtevIzjasnjenjeCutanjeApi = "/ws/zahtev_za_izjasnjenje_odluka";
 
   constructor(private http: HttpClient,private route: Router) { }
 
@@ -46,6 +46,4 @@ export class ZahtevIzjasnjenjeCutanjeService {
     });
     return this.http.post(environment.SLUZBENIK_APP + this.soapKreirajZahtevIzjasnjenjeCutanjeApi, data, {headers: headers});
   }
-
-
 }

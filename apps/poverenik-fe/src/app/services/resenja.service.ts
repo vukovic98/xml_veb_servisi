@@ -13,6 +13,9 @@ export class ResenjaService {
   private readonly resenjaKorisnikApi = "resenja/user";
   private readonly preuzmiPDFApi = "resenja/generatePDF/";
   private readonly preuzmiHTMLApi = "resenja/generateHTML/";
+  private readonly proveriIzjasnjenjeApi = "resenja/ispitajObrazlozenje";
+  private readonly brojacResenjeApi = "brojac/resenje"
+  private readonly kreirajResenjeTekstApi = "resenja/tekst"
   private readonly preuzmiJSONApi = "resenja/generisiJSON/";
   private readonly preuzmiRDFApi = "resenja/generisiRDF/";
 
@@ -50,6 +53,15 @@ export class ResenjaService {
     return this.http.get(environment.POVERENIK_APP + this.resenjaKorisnikApi, {headers: headers, responseType: 'text'});
   }
 
+  resenje(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.brojacResenjeApi, {headers: headers, responseType: 'text'});
+  }
+
   kreirajResenje(data: any): Observable<any>{
 
     const headers = new HttpHeaders({
@@ -59,6 +71,48 @@ export class ResenjaService {
     });
     return this.http.post(environment.POVERENIK_APP + this.resenjaApi, data, {headers: headers});
 
+  }
+
+  kreirajResenjeTekst(data: any): Observable<any>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.kreirajResenjeTekstApi, data, {headers: headers, responseType: 'text'});
+
+  }
+
+  proveriIzjasnjenje(data: any): Observable<any>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.proveriIzjasnjenjeApi, data, {headers: headers, responseType: 'text'});
+
+  }
+
+  dobaviBrojacResenja(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.brojacResenjeApi, {headers: headers, responseType: 'text'});
+
+
+  }
+
+  posaljiMejlResenje(data: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.MAIL_APP + "email/resenje", data, {headers: headers});
   }
 
   preuzmiJSON(id: number): any {

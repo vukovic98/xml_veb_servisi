@@ -11,6 +11,7 @@ export class ZalbaNaOdlukuService {
 
   private readonly zalbeApi = "zalbaNaOdluku";
   private readonly nereseneZalbeApi = "zalbaNaOdluku/neresene";
+  private readonly dobaviRawApi = "zalbaNaOdluku/dobaviRaw/"
   private readonly zalbeKorisnikApi = "zalbaNaOdluku/korisnik";
   private readonly preuzmiPDFApi = "zalbaNaOdluku/generisiPDF/";
   private readonly preuzmiHTMLApi = "zalbaNaOdluku/generisiHTML/";
@@ -59,6 +60,16 @@ export class ZalbaNaOdlukuService {
         'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
       });
       return this.http.get(environment.POVERENIK_APP + this.zalbeKorisnikApi, {headers: headers, responseType: 'text'});
+    }
+
+    dobaviRaw(id_zalbe: number): Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/xml',
+        'Accept': 'application/xml',
+        'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+      });
+      return this.http.get(environment.POVERENIK_APP + this.dobaviRawApi+id_zalbe, {headers: headers, responseType: 'text'});
+  
     }
 
     preuzmiJSON(zalba_id: number): any {

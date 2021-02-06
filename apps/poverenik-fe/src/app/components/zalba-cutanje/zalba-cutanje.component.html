@@ -44,7 +44,7 @@
     </mat-grid-tile>
     <mat-grid-tile *ngIf="zalba[5].children[0]=='ne'">
       <button *ngIf="poverenikPregled==false" mat-button (click)="odustani(zalba[0].children[0])">Не, одустани</button>
-      <p *ngIf="poverenikPregled==true" >Не</p>
+      <button *ngIf="poverenikPregled==true" id="resenjeButton" (click)="resiZalbu()" mat-button>{{poslatZahtev ? 'Састави решење' : 'Обавести службеника'}}</button>
     </mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми жалбу у PDF формату" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми жалбу у XHTML формату" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>

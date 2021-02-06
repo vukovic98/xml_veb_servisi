@@ -7,7 +7,6 @@ import org.xmldb.api.base.ResourceSet;
 
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
-import com.ftn.xml.dto.ZahtevIzjasnjenjeCutanjeFusekiDTO;
 
 @Repository
 public class ZahtevZaIzjasnjenjeCutanjeRepository {

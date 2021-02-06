@@ -10,9 +10,11 @@ import {environment} from '../../environments/environment';
 })
 export class ZalbeCutanjeService {
 
+
   private readonly nereseneZalbeApi = "zalbaCutanje/neresene";
   private readonly zalbeApi = "zalbaCutanje";
   private readonly zalbeKorisnikApi = "zalbaCutanje/korisnik";
+  private readonly dobaviRawApi = "zalbaCutanje/dobaviRaw/"
   private readonly preuzmiPDFApi = "zalbaCutanje/generisiPDF/";
   private readonly preuzmiJSONApi = "zalbaCutanje/generisiJSON/";
   private readonly preuzmiRDFApi = "zalbaCutanje/generisiRDF/";
@@ -32,6 +34,25 @@ export class ZalbeCutanjeService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.get(environment.POVERENIK_APP + this.nereseneZalbeApi, {headers: headers, responseType: 'text'});
+  }
+
+  dobaviRaw(id_zalbe: number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.dobaviRawApi+id_zalbe, {headers: headers, responseType: 'text'});
+
+  }
+
+  dobaviZalbuPoId(id_zalbe: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.zalbeApi+"/"+id_zalbe, {headers: headers, responseType: 'text'});
   }
 
   preuzmiPDF(zalba_id: number): any {

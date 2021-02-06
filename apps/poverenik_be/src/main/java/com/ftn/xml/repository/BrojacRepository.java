@@ -67,7 +67,7 @@ public class BrojacRepository {
 	}
 
 	public boolean sacuvajIdResenja(String promenjenBrojac) {
-		String xPath = "/brojac";
+		String xPath = "/brojac/brojac_resenje";
 		try {
 			this.existManager.update(collectionId, documentId, xPath, promenjenBrojac, UPDATE);
 

@@ -70,6 +70,28 @@ public class BrojacService {
 			
 			return trenutni.intValue();
 		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public int dobaviIdResenjaNoIncrement() {
+		
+		try {
+			Resource res = this.brojacRepository.dobaviIdResenja();
+
+			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.brojac");
+
+			Unmarshaller unmarshaller = context.createUnmarshaller();
+
+			Brojac b = (Brojac) unmarshaller
+					.unmarshal(((XMLResource) res).getContentAsDOM());
+			
+			BigInteger trenutni = b.getBrojacResenje();
+			
+			return trenutni.intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
 			return -1;
 		}
 	}

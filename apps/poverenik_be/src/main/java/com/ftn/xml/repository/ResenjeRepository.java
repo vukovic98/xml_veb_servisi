@@ -11,6 +11,8 @@ import org.xmldb.api.base.ResourceSet;
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ResenjeFusekiDTO;
+import com.ftn.xml.model.resenje.Resenje;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 
 @Repository
 public class ResenjeRepository {
@@ -102,6 +104,12 @@ public class ResenjeRepository {
 		}
 	}
 
+	public void dodajResenjeIzTeksta(String resenje, Resenje r) throws Exception {
+		String contextXPath = "/lista_resenja";
+		this.existManager.append(collectionId, documentId, contextXPath, resenje, APPEND);
+		//TODO this.fusekiManager.dodajResenje(id, dto);
+	}
+	
 	public ResourceSet pretraga(String text) {
 		String xPath = "/lista_resenja/resenje[sadrzaj/uvod/organ[contains(., '" + text + "')]"
 				+ " or sadrzaj/uvod/podnosilac[contains(., '" + text + "')]"

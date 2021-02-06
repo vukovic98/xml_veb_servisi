@@ -10,6 +10,7 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
 import {PodnosenjeZalbeCutanjeComponent} from './components/podnosenje-zalbe-cutanje/podnosenje-zalbe-cutanje.component';
 import {PretragaComponent} from './components/pretraga/pretraga.component';
 import {PodnosenjeZalbeNaOdlukuComponent} from './components/podnosenje-zalbe-na-odluku/podnosenje-zalbe-na-odluku.component'
+import { DodajResenjeComponent } from './components/dodaj-resenje/dodaj-resenje.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'zalbe', component: ZalbeComponent},
   {path: 'resenja', component: ResenjaComponent},
   {path: 'pretraga', component: PretragaComponent},
+  {path: 'dodaj-resenje', component: DodajResenjeComponent}
   ];
 
 @NgModule({

@@ -72,4 +72,19 @@ public class OdgovorZahtevZaIzjasnjenjeRepository {
 		}
 	}
 	
+	public ResourceSet dobaviPoZalbi(String id_zalbe, String tip) {
+		String xPath = "/odgovori_zahtev_za_izjasnjenje/odgovor_zahtev_za_izjasnjenje[id_zalbe = '"+id_zalbe+"' and tip = '"+tip+"']";
+		
+		System.out.println(xPath);
+		
+		ResourceSet set;
+		try {
+			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			System.out.println("Nasao!");
+			return set;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

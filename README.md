@@ -34,13 +34,13 @@ UPUTSTVA ZA POKRETANJE:
     
     
 - Baze:
-    1. Preuzeti Apache TomEE plus aplikativni server: http://tomee.apache.org/download-ng.html
+    - Preuzeti Apache TomEE plus aplikativni server: http://tomee.apache.org/download-ng.html
     
   - XML baze
-      2. Preuzeti distribuciju eXist XML baze podataka: https://bintray.com/existdb/releases/exist/4.6.1/view
-      3. Preimenovati exist-x.x.x.war fajl u exist.war
-      4. Deployovati tj. kopirati exist.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom existS.war, a drugi put sa nazivom existP.war
-      5. Pokrenuti aplikativni server i pristupiti dashboardu exist-a: http://localhost:8080/existS za bazu službenika, a http://localhost:8080/existP za bazu poverenika
+    -  Preuzeti distribuciju eXist XML baze podataka: https://bintray.com/existdb/releases/exist/4.6.1/view
+    -  Preimenovati exist-x.x.x.war fajl u exist.war
+    -  Deployovati tj. kopirati exist.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom existS.war, a drugi put sa nazivom existP.war
+    -  Pokrenuti aplikativni server i pristupiti dashboardu exist-a: http://localhost:8080/existS za bazu službenika, a http://localhost:8080/existP za bazu poverenika
     
   - RDF baze
     -  Preuzeti distribuciju Apache Jena Fuseki SPARQL servera: https://jena.apache.org/download/index.cgi#apache-jena-fuseki

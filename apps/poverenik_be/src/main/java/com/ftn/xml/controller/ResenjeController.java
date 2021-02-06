@@ -2,13 +2,14 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.time.Clock;
+import java.io.StringReader;
 import java.time.Instant;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,14 @@ import com.ftn.xml.dto.DodajResenjeDTO;
 import com.ftn.xml.dto.IspitajObrazlozenjeDTO;
 import com.ftn.xml.dto.ObrazlozenjeResponse;
 import com.ftn.xml.dto.ResenjeDTO;
+import com.ftn.xml.helper.DodajResenjeMapper;
+import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.model.obavestenje.Obavestenje;
 import com.ftn.xml.model.odgovor_zahtev_za_izjasnjenje.OdgovorZahtevZaIzjasnjenje;
+import com.ftn.xml.model.resenje.Resenje;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
+import com.ftn.xml.repository.BrojacRepository;
+import com.ftn.xml.service.BrojacService;
 import com.ftn.xml.service.OdgovorZahtevZaIzjasnjenjeService;
 import com.ftn.xml.service.ResenjeService;
 
@@ -41,6 +49,12 @@ public class ResenjeController {
 
 	@Autowired
 	private OdgovorZahtevZaIzjasnjenjeService odgovorService;
+	
+	@Autowired
+	private BrojacService brojacService;
+	
+	@Autowired
+	private DodajResenjeMapper mapper;
 
 	@GetMapping(consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<ArrayList<ResenjeDTO>> getAll() throws XMLDBException, JAXBException {
@@ -70,6 +84,32 @@ public class ResenjeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
+	}
+	
+	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<ResenjeDTO> pronadjiResenjePoId(@PathVariable("id") long id) {
+		Resenje r = this.resenjeService.pronadjiResenjePoId(id);
+
+		if (r != null) {
+			ResenjeDTO n = new ResenjeDTO();
+
+			String[] params = r.getAbout().split("/");
+
+			n.setId(id);
+			n.setBroj_resenja(r.getBroj());
+			n.setBroj_zalbe(r.getBrojZalbe().getValue().toString());
+			n.setIme_i_prezime(r.getSadrzaj().getUvod().getPodnosilac().getContent());
+			n.setUstanova(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
+			n.setDatum_zahteva(r.getSadrzaj().getUvod().getDatumZahteva().getValue().toString());
+			n.setDatum_resenja(r.getOsnovniPodaci().getDatum().getValue().toString());
+			n.setIshod(r.getIshod().getValue());
+			n.setEmail(r.getOsnovniPodaci().getKorisnikEmail().getContent());
+			
+			
+			return new ResponseEntity<>(n, HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/generatePDF/{resenje_id}")
@@ -109,18 +149,36 @@ public class ResenjeController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<HttpStatus> kreirajResenje(@RequestBody DodajResenjeDTO resenjeDTO) {
 
-		Instant currTime = Instant.now().plus(1, ChronoUnit.HOURS);
+		try {
 
-		System.out.println(currTime.toString());
+			int index = this.brojacService.dobaviIdResenjaNoIncrement();
 
-		Instant zahtevIzjasnjenjeTime = Instant.parse(resenjeDTO.getVreme());
+			Resenje r = mapper.dtoUKlasu(resenjeDTO, index);
 
-		System.out.println(zahtevIzjasnjenjeTime.toString());
-		if (zahtevIzjasnjenjeTime.plus(1, ChronoUnit.MINUTES).isAfter(currTime)) {
-			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-		} else {
+			this.resenjeService.dodajResenje(r);
+
 			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+
+	}
+	
+	@RequestMapping(path = "/tekst",method = RequestMethod.POST)
+	public ResponseEntity<Boolean> kreirajResenjeIzTeksta(@RequestBody String resenje) {
+
+		boolean ok = false;
+		try {
+			ok = this.resenjeService.dodajResenjeIzTeksta(resenje);
+			
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+
+		if(ok)
+			return new ResponseEntity<>(ok, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(ok, HttpStatus.BAD_REQUEST);
 
 	}
 

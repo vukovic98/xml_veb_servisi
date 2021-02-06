@@ -28,7 +28,6 @@ import com.ftn.xml.db.AuthenticationManagerFuseki.ConnectionProperties;
 import com.ftn.xml.dto.ResenjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevIzjasnjenjeCutanjeFusekiDTO;
 import com.ftn.xml.dto.ZahtevZaIzjasnjenjeOdlukaFusekiDTO;
-import com.ftn.xml.jaxb.util.SparqlUtil;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.model.zalba_na_odluku.ZalbaNaOdluku;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;

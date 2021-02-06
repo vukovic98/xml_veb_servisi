@@ -330,6 +330,357 @@ export class XonomyService {
       }
     },
   };
-  //public resenjeSpecification = {};
+
+
+  public resenjeSpecification = {
+    validate: function (jsElement) {
+      //Validate the element:
+      let elementSpec = this.elements[jsElement.name];
+      if (elementSpec.validate) elementSpec.validate(jsElement);
+      //Cycle through the element's attributes:
+      for (let i = 0; i < jsElement.attributes.length; i++) {
+        let jsAttribute = jsElement.attributes[i];
+        let attributeSpec = elementSpec.attributes[jsAttribute.name];
+        if (attributeSpec.validate) attributeSpec.validate(jsAttribute);
+      };
+      //Cycle through the element's children:
+      for (let i = 0; i < jsElement.children.length; i++) {
+        let jsChild = jsElement.children[i];
+        if (jsChild.type == "element") { //if element
+          this.validate(jsChild); //recursion
+        }
+      }
+    },
+    elements: {
+      "resenje": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        menu: [],
+        attributes: {
+          "vocab": {
+            isInvisible: true,
+          },
+          "about": {
+            isInvisible: true,
+          },
+          
+        }
+      },
+      "naslov": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "datum": {
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "korisnik_email": {
+        isReadOnly:true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "organ": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        menu: [],
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "podnosilac": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        menu: [],
+        isReadOnly: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "naziv": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "ulica": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "datum_zahteva": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "trazeni_dokument": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "tekst_resenja": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "tekst_obrazlozenja": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "sud": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "taksa": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "poverenik": {
+        isReadOnly:true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "broj_zalbe": {
+        isReadOnly:true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      },
+      "ishod": {
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        oneliner: true,
+        attributes: {
+          "datatype": {
+            isInvisible: true,
+          },
+          "property": {
+            isInvisible: true,
+          }
+        }
+      }
+
+    }
+
+
+  };
 }
 

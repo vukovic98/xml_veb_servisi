@@ -23,13 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
-import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
-
-import com.ftn.xml.dto.ZalbaCutanjeDodavanjeDTO;
-import com.ftn.xml.model.korisnik.Korisnik;
-import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
-import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;import com.ftn.xml.service.KorisnikService;
+import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
 @RestController
@@ -91,6 +86,28 @@ public class ZalbaCutanjeController {
 		
 		return ResponseEntity.ok().body(zalbaRaw);
 		
+	}
+	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<ZalbaCutanjeDTO> pronadjiZalbuPoId(@PathVariable("id") long id) {
+		ZalbaCutanje z = this.zalbaCutanjeService.dobaviZalbuPoId(id);
+
+		if (z != null) {
+			ZalbaCutanjeDTO n = new ZalbaCutanjeDTO();
+
+			String[] params = z.getAbout().split("/");
+
+			n.setId(id);
+			n.setBroj_zahteva(z.getBrojZahteva().getValue().longValue());
+			n.setNaziv_organa(z.getSadrzaj().getNazivOrgana().getValue());
+			n.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
+			n.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
+			n.setEmail(z.getPodnozje().getPodnosilacZalbe().getKorisnikEmail().getContent());
+			
+			
+			return new ResponseEntity<>(n, HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/generisiPDF/{zalba_cutanje_id}")

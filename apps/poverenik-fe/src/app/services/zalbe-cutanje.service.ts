@@ -10,6 +10,7 @@ import {environment} from '../../environments/environment';
 })
 export class ZalbeCutanjeService {
 
+
   private readonly nereseneZalbeApi = "zalbaCutanje/neresene";
   private readonly zalbeApi = "zalbaCutanje";
   private readonly zalbeKorisnikApi = "zalbaCutanje/korisnik";
@@ -43,6 +44,15 @@ export class ZalbeCutanjeService {
     });
     return this.http.get(environment.POVERENIK_APP + this.dobaviRawApi+id_zalbe, {headers: headers, responseType: 'text'});
 
+  }
+
+  dobaviZalbuPoId(id_zalbe: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.zalbeApi+"/"+id_zalbe, {headers: headers, responseType: 'text'});
   }
 
   preuzmiPDF(zalba_id: number): any {

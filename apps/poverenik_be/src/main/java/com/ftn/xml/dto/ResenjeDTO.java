@@ -13,6 +13,8 @@ public class ResenjeDTO {
 	private String datum_zahteva;
 	private String datum_resenja;
 	private String ishod;
+	
+	private String email;
 
 	public ResenjeDTO() {
 		super();
@@ -93,6 +95,14 @@ public class ResenjeDTO {
 
 	public void setBroj_zalbe(String broj_zalbe) {
 		this.broj_zalbe = broj_zalbe;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResenjaService } from 'src/app/services/resenja.service';
 
 @Component({
@@ -10,11 +11,14 @@ export class ResenjeComponent implements OnInit {
 
   @Input() resenje: any;
   @Input() odobreno: boolean;
-  constructor(private service: ResenjaService) { }
+  @Input() zalba_id: string;
+  constructor(private service: ResenjaService,
+    private route: Router) { }
 
   ngOnInit(): void {
 
   }
+
   preuzmiPDF() {
     this.service.generatePDF(this.resenje[0].children[0]).subscribe(response => {
       let file = new Blob([response], { type: 'application/pdf' });

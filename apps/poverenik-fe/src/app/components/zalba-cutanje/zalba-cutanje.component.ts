@@ -141,7 +141,11 @@ export class ZalbaCutanjeComponent implements OnInit {
 
           Swal.fire({
             title: (jsonResponse[0].children[0].children[0] == undefined ? 'Прошло је време изјашњења!':'Службеник се изјаснио!'),
-            html: '<textarea class="form-control"  readonly>'+(jsonResponse[0].children[0].children[0]  == undefined? "Службеник се није изјаснио по питању ове жалбе у року.":jsonResponse[0].children[0].children[0])+'</textarea>'
+            html: '<textarea class="form-control"  readonly>'+(jsonResponse[0].children[0].children[0]  == undefined? "Службеник се није изјаснио по питању ове жалбе у року.":jsonResponse[0].children[0].children[0])+'</textarea>',
+            onClose: () => {
+              this.router.navigate(['dodaj-resenje'], {  queryParams: {  zalba_id: this.zalba[0].children[0] } });
+
+            }
           });
 
         },

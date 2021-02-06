@@ -14,6 +14,8 @@ export class ResenjaService {
   private readonly preuzmiPDFApi = "resenja/generatePDF/";
   private readonly preuzmiHTMLApi = "resenja/generateHTML/";
   private readonly proveriIzjasnjenjeApi = "resenja/ispitajObrazlozenje";
+  private readonly brojacResenjeApi = "brojac/resenje"
+  private readonly kreirajResenjeTekstApi = "resenja/tekst"
 
   constructor(private http: HttpClient, private route: Router) { }
 
@@ -49,6 +51,15 @@ export class ResenjaService {
     return this.http.get(environment.POVERENIK_APP + this.resenjaKorisnikApi, {headers: headers, responseType: 'text'});
   }
 
+  resenje(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.brojacResenjeApi, {headers: headers, responseType: 'text'});
+  }
+
   kreirajResenje(data: any): Observable<any>{
 
     const headers = new HttpHeaders({
@@ -60,6 +71,17 @@ export class ResenjaService {
 
   }
 
+  kreirajResenjeTekst(data: any): Observable<any>{
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.post(environment.POVERENIK_APP + this.kreirajResenjeTekstApi, data, {headers: headers});
+
+  }
+
   proveriIzjasnjenje(data: any): Observable<any>{
 
     const headers = new HttpHeaders({
@@ -68,6 +90,17 @@ export class ResenjaService {
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
     return this.http.post(environment.POVERENIK_APP + this.proveriIzjasnjenjeApi, data, {headers: headers, responseType: 'text'});
+
+  }
+
+  dobaviBrojacResenja(): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
+    });
+    return this.http.get(environment.POVERENIK_APP + this.brojacResenjeApi, {headers: headers, responseType: 'text'});
+
 
   }
 

@@ -37,6 +37,7 @@ import com.ftn.xml.helper.DodajZalbuCutanjeMapper;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaCutanje;
 import com.ftn.xml.model.korisnik.Korisnik;
+import com.ftn.xml.model.zahtev.ZahtevZaPristupInformacijama;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.repository.ResenjeRepository;
 import com.ftn.xml.repository.ZalbaCutanjeRepository;
@@ -446,6 +447,28 @@ public class ZalbaCutanjeService {
 			}
 		}
 		return zalbe;
+	}
+
+	public ZalbaCutanje dobaviZalbuPoId(long id) {
+			ResourceSet set = this.zalbaCutanjeRepository.pronadjiPoId(id);
+
+			try {
+				if (set.getSize() == 1) {
+
+					JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_cutanje");
+
+					Unmarshaller unmarshaller = context.createUnmarshaller();
+					Resource res = set.getResource(0);
+
+					ZalbaCutanje zalba = (ZalbaCutanje) unmarshaller
+							.unmarshal(((XMLResource) res).getContentAsDOM());
+
+					return zalba;
+				} else
+					return null;
+			} catch (Exception e) {
+				return null;
+			}
 	}
 
 }

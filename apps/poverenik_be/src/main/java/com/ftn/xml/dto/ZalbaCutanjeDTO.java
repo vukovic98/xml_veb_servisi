@@ -10,6 +10,7 @@ public class ZalbaCutanjeDTO {
 	public String ime_i_prezime;
 	public String datum_zalbe;
 	public String razresena;
+	public String email;
 
 	public ZalbaCutanjeDTO() {
 		super();
@@ -72,6 +73,14 @@ public class ZalbaCutanjeDTO {
 
 	public void setRazresena(String razresena) {
 		this.razresena = razresena;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

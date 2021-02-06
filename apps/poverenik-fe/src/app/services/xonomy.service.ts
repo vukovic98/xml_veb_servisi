@@ -223,13 +223,13 @@ export class XonomyService {
       "korisnik_email":{
         isReadOnly:true
       },
-      "ime_zalioca":{
+      "zalioc_ime":{
         isReadOnly:true
       },
-      "prezime_zalioca":{
+      "zalioc_prezime":{
         isReadOnly:true
       },
-      "naziv_zalbe":{
+      "zalioc_naziv_zalbe":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -242,7 +242,7 @@ export class XonomyService {
         hasText: true,
         asker: Xonomy.askString
       },
-      "adresa":{
+      "zalioc_adresa":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -256,7 +256,7 @@ export class XonomyService {
         asker: Xonomy.askString
       }
     ,
-    "sediste":{
+    "zalioc_sediste":{
       validate: function (jsElement) {
         if (jsElement.getText() == "") {
           Xonomy.warnings.push({
@@ -269,7 +269,7 @@ export class XonomyService {
       hasText: true,
       asker: Xonomy.askString
     },
-      "naziv_organa":{
+      "naziv":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -288,16 +288,10 @@ export class XonomyService {
       "godina_zalbe":{
         isReadOnly: true
       },
-      "datum_zahteva":{
+      "datum_odbijenog_zahteva":{
         isReadOnly: true
       },
-      "odluka":{
-        isReadOnly: true
-      },
-      "datum_zalbe":{
-        isReadOnly: true
-      },
-      "mesto_zalbe":{
+      "odluka_organa_vlasti":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -310,7 +304,23 @@ export class XonomyService {
         hasText: true,
         asker: Xonomy.askString
       },
-      
+      "datum_zakljucka_zalbe":{
+        isReadOnly: true
+      },
+      "mesto_zakljucka_zalbe":{
+        validate: function (jsElement) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+                htmlID: jsElement.htmlID,
+                text: "Овај елемент не сме бити празан."
+              }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+
       "drugi_podaci_za_kontakt":{
         validate: function (jsElement) {
           if (jsElement.getText() == "") {
@@ -324,8 +334,12 @@ export class XonomyService {
         hasText: true,
         asker: Xonomy.askString
       },
-      
+
       "broj_zahteva":{
+        isReadOnly: true
+      },
+
+      "potpis_zalioca":{
         isReadOnly: true
       }
     },

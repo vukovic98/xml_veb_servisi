@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ZalbaCutanjeDTO;
+import com.ftn.xml.dto.ZalbaCutanjeNaprednaDTO;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 import com.ftn.xml.service.ZalbaCutanjeService;
 
@@ -228,6 +229,21 @@ public class ZalbaCutanjeController {
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping("/napredna-pretraga")
+	public ResponseEntity<ArrayList<ZalbaCutanje>> naprednaPretraga(
+			@RequestBody ZalbaCutanjeNaprednaDTO dto) {
+		String ime = !dto.getZahtev().equalsIgnoreCase("null") ? "\"" + dto.getZahtev() + "\"" : null;
+		String mail = !dto.getMejl().equalsIgnoreCase("null") ? "\"" + dto.getMejl() + "\"" : null;
+		String organ = !dto.getOrgan().equalsIgnoreCase("null") ? "\"" + dto.getOrgan() + "\"" : null;
+
+		ArrayList<ZalbaCutanje> lista = this.zalbaCutanjeService.naprednaPretraga(ime, mail, organ, dto.isAnd());
+
+		if (!lista.isEmpty())
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 }

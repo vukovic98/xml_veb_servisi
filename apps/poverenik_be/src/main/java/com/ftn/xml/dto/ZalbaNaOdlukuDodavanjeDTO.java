@@ -16,15 +16,21 @@ public class ZalbaNaOdlukuDodavanjeDTO {
 	public String sediste_zalioca;
 	public String naziv_organa;
 	
-	public XMLGregorianCalendar datum_zahteva;
+	public String datum_zahteva;
 	
 	public String mesto_zalbe;
-	public XMLGregorianCalendar datum_zalbe;
+	public String datum_zalbe;
 	public String drugi_podaci;
 	
+
+
+	public ZalbaNaOdlukuDodavanjeDTO() {
+		super();
+	}
+
 	public ZalbaNaOdlukuDodavanjeDTO(long id, long broj_zahteva, String naziv_primaoca, String adresa_podnosioca,
-			String sediste_zalioca, String naziv_organa, XMLGregorianCalendar datum_zahteva, String mesto_zalbe,
-			XMLGregorianCalendar datum_zalbe, String drugi_podaci) {
+			String sediste_zalioca, String naziv_organa, String datum_zahteva, String mesto_zalbe, String datum_zalbe,
+			String drugi_podaci) {
 		super();
 		this.id = id;
 		this.broj_zahteva = broj_zahteva;
@@ -54,13 +60,7 @@ public class ZalbaNaOdlukuDodavanjeDTO {
 		this.mesto_zalbe = mesto_zalbe;
 	}
 
-	public XMLGregorianCalendar getDatum_zalbe() {
-		return datum_zalbe;
-	}
-
-	public void setDatum_zalbe(XMLGregorianCalendar datum_zalbe) {
-		this.datum_zalbe = datum_zalbe;
-	}
+	
 
 	public String getDrugi_podaci() {
 		return drugi_podaci;
@@ -110,13 +110,22 @@ public class ZalbaNaOdlukuDodavanjeDTO {
 		this.naziv_organa = naziv_organa;
 	}
 
-	public XMLGregorianCalendar getDatum_zahteva() {
+	public String getDatum_zahteva() {
 		return datum_zahteva;
 	}
 
-	public void setDatum_zahteva(XMLGregorianCalendar datum_zahteva) {
+	public void setDatum_zahteva(String datum_zahteva) {
 		this.datum_zahteva = datum_zahteva;
 	}
+
+	public String getDatum_zalbe() {
+		return datum_zalbe;
+	}
+
+	public void setDatum_zalbe(String datum_zalbe) {
+		this.datum_zalbe = datum_zalbe;
+	}
+
 	
 
 }

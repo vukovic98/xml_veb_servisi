@@ -245,11 +245,12 @@ public class ZalbaCutanjeRepository {
 	}
 	
 	public boolean postojiZalbaNaZahtev(long id) throws XMLDBException {
-		String xPath = "/lista_zalbi_cutanje/zalba_cutanje/broj_zahteva=" + id;
+		String xPath = "/lista_zalbi_cutanje/zalba_cutanje[broj_zahteva=" + id + "]";
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
-			if (set.getSize()!=0)
+			System.out.println(xPath + set.toString());
+			if (set.getSize() != 0)
 				return true;
 			else
 				return false;

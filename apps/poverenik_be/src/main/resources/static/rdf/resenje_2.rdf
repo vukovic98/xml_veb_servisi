@@ -1,0 +1,38 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:naslov xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Решење када је жалба основана</pred:naslov>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:datum_resenja xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2020-06-09</pred:datum_resenja>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:korisnik xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">nikola@maildrop.cc</pred:korisnik>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:organ xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Повереник за информације од јавног значаја и заштиту података о личности</pred:organ>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:podnosilac xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Vladimir Vukovic</pred:podnosilac>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:naziv_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">FTN</pred:naziv_ustanove>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2020-04-16</pred:datum_zahteva>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:trazeni_dokument xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Уговор о раду који је као последњи потписан између тог Факултета и ББ</pred:trazeni_dokument>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:taksa xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="double">390.00</pred:taksa>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:poverenik xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Милан Мариновић</pred:poverenik>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:broj_zalbe xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">2</pred:broj_zalbe>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/2">
+    <pred:ishod xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">ODBIJEN</pred:ishod>
+  </rdf:Description>
+</rdf:RDF>

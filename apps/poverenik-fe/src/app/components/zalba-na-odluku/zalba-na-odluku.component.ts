@@ -29,7 +29,7 @@ export class ZalbaNaOdlukuComponent implements OnInit {
   ngOnInit(): void {
   }
   preuzmiPDF() {
-    console.log(this.zalba[0].children[0])
+    console.log(this.zalba, "ZAL")
     this.service.preuzmiPDF(this.zalba[0].children[0]).subscribe(response => {
 
       let file = new Blob([response], { type: 'application/pdf' });
@@ -214,7 +214,6 @@ export class ZalbaNaOdlukuComponent implements OnInit {
   odustani(id: number) {
     this.service.odustani(id).subscribe(
       res => {
-        console.log(res,"aa");
         Swal.fire({
           title: 'Успешно сте одустали од жалбе!',
           icon: 'success',

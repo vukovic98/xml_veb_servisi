@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
@@ -50,7 +52,7 @@ public class ObavestenjeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/napredna-pretraga")
+	@PostMapping("/napredna-pretraga")
 	public ResponseEntity<ArrayList<Obavestenje>> naprednaPretraga(
 			@RequestBody ObavestenjeNaprednaDTO dto) {
 		String predmet = !dto.getPredmet().equalsIgnoreCase("null") ? "\"" + dto.getPredmet() + "\"" : null;
@@ -189,5 +191,49 @@ public class ObavestenjeController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@GetMapping("/generisiJSON/{obavestenje_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("obavestenje_id") long obavestenje_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/json/obavestenje_" + obavestenje_id + ".json";
+
+		try {
+			this.obavestenjeService.generisiJSON(obavestenje_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{obavestenje_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("obavestenje_id") long obavestenje_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/obavestenje_" + obavestenje_id + ".rdf";
+		try {
+			this.obavestenjeService.generisiRDF(obavestenje_id);
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
 	}
 }

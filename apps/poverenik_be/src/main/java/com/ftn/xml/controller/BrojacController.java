@@ -19,13 +19,13 @@ public class BrojacController {
 
 	@GetMapping("/zalbaCutanje")
 	public ResponseEntity<String> dobaviBrojacZalbeCutanje() {
-		String brojac = String.valueOf(this.brojacService.dobaviIdZalbeCutanje());
+		String brojac = String.valueOf(this.brojacService.dobaviIdZalbe());
 		return new ResponseEntity<String>(brojac, HttpStatus.OK);
 	}
 
 	@GetMapping("/zalbaOdluka")
 	public ResponseEntity<String> dobaviBrojacZalbeOdluka() {
-		String brojac = String.valueOf(this.brojacService.dobaviIdZalbeOdluka());
+		String brojac = String.valueOf(this.brojacService.dobaviIdZalbe());
 		return new ResponseEntity<String>(brojac, HttpStatus.OK);
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ftn.xml.soap.resenje.ResenjeServiceSoapBindingImpl;
 import com.ftn.xml.soap.zahtev.ZahtevServiceSoapBindingImpl;
 import com.ftn.xml.soap.zahtev_za_izjasnjenje_cutnja.ZahtevZaIzjasnjenjeCutnjaServiceSoapBindingImpl;
 import com.ftn.xml.soap.zahtev_za_izjasnjenje_odluka.ZahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl;
@@ -27,7 +28,17 @@ public class EndpointConfig {
     
     @Autowired
     ZahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl zahtevZaIzjasnjenjeOdlukaServiceSoapBindingImpl;
+    
+    @Autowired
+    ResenjeServiceSoapBindingImpl resenjeServiceSoapBindingImpl;
 
+    @Bean(name="resenjeEndpointBean")
+    public Endpoint resenjeEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, resenjeServiceSoapBindingImpl);
+        endpoint.publish("/resenje");
+        return endpoint;
+    }
+    
     @Bean(name="zahtevEndpointBean")
     public Endpoint zahtevEndpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, zahtevServiceSoapBindingImpl);

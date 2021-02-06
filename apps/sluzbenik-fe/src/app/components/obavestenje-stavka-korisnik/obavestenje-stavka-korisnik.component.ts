@@ -54,4 +54,35 @@ export class ObavestenjeStavkaKorisnikComponent implements OnInit {
       () => console.info('File downloaded successfully');
   }
 
+  preuzmiJSON() {
+    this.service.preuzmiJSON(this.obavestenje[0].children[0]).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `obavestenje_${this.obavestenje[0].children[0]}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDF() {
+    this.service.preuzmiRDF(this.obavestenje[0].children[0]).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `obavestenje_${this.obavestenje[0].children[0]}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
 }

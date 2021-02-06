@@ -24,9 +24,9 @@ public class BrojacService {
 	@Autowired
 	private BrojacRepository brojacRepository;
 
-	public int dobaviIdZalbeCutanje() {
+	public int dobaviIdZalbe() {
 		try {
-			Resource res = this.brojacRepository.dobaviIdZalbeCutanje();
+			Resource res = this.brojacRepository.dobaviIdZalbe();
 
 			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.brojac");
 
@@ -39,7 +39,7 @@ public class BrojacService {
 			
 			String brojacXml = String.valueOf(sledeci);
 			
-			this.brojacRepository.sacuvajIdZalbeCutanje(brojacXml);
+			this.brojacRepository.sacuvajIdZalbe(brojacXml);
 			
 			return trenutni.intValue();
 		} catch (Exception e) {
@@ -48,29 +48,7 @@ public class BrojacService {
 		}
 	}
 	
-	public int dobaviIdZalbeOdluka() {
-		try {
-			Resource res = this.brojacRepository.dobaviIdZalbeOdluka();
-
-			JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.brojac");
-
-			Unmarshaller unmarshaller = context.createUnmarshaller();
-
-			Brojac b = (Brojac) unmarshaller
-					.unmarshal(((XMLResource) res).getContentAsDOM());
-			
-			BigInteger trenutni = b.getBrojacZalbi();
-			int sledeci = trenutni.intValue() + 1;
-			
-			String brojacXml = String.valueOf(sledeci);
-			
-			this.brojacRepository.sacuvajIdZalbeOdluka(brojacXml);
-			
-			return trenutni.intValue();
-		} catch (Exception e) {
-			return -1;
-		}
-	}
+	
 	
 	public int dobaviIdResenja() {
 		try {

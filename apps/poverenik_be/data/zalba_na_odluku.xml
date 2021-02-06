@@ -12,12 +12,12 @@
             <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
             <zalioc_ime datatype="xs:string" property="pred:ime_zalioca">Vladimir</zalioc_ime>
             <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Vukovic</zalioc_prezime>
-            <zalioc_naziv_zalbe datatype="xs:string" property="pred:naziv_zalbe">Zalba1</zalioc_naziv_zalbe>
+            <zalioc_naziv_zalbe datatype="xs:string" property="pred:naziv_zalbe">Zalba 1</zalioc_naziv_zalbe>
             <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
             <zalioc_sediste datatype="xs:string" property="pred:sediste_zalioca">Novi Sad</zalioc_sediste>
         </podaci_o_zaliocu>
         <podaci_o_organu>
-            <naziv datatype="xs:string" property="pred:naziv_organa">FTN</naziv>
+            <naziv datatype="xs:string" property="pred:naziv_organa">FT N</naziv>
         </podaci_o_organu>
     </osnovni_podaci>
     <sadrzaj>
@@ -34,7 +34,7 @@
             <zalioc_prezime datatype="xs:string" property="pred:prezime_zalioca">Petrovic</zalioc_prezime>
             <zalioc_adresa datatype="xs:string" property="pred:adresa_zalioca">Mise Dimitrijevica 44</zalioc_adresa>
             <drugi_podaci_za_kontakt datatype="xs:string" property="pred:kontakt_zalioca">petrovicnik96@gmail.com</drugi_podaci_za_kontakt>
-            <potpis_zalioca datatype="xs:string" property="pred:potpis_zalioca">NikolaPetrovic</potpis_zalioca>
+            <potpis_zalioca datatype="xs:string" property="pred:potpis_zalioca"></potpis_zalioca>
         </podaci_o_zaliocu>
     </podnozje>
     <broj_zahteva datatype="xs:string" property="pred:broj_zahteva">3</broj_zahteva>

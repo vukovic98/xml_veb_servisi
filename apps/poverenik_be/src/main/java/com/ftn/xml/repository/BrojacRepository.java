@@ -27,7 +27,7 @@ public class BrojacRepository {
 	@Autowired
 	private ExistManager existManager;
 
-	public Resource dobaviIdZalbeCutanje() {
+	public Resource dobaviIdZalbe() {
 		String xPath = "/brojac";
 
 		ResourceSet set;
@@ -41,8 +41,8 @@ public class BrojacRepository {
 		}
 	}
 
-	public boolean sacuvajIdZalbeCutanje(String changedBrojac) {
-		String xPath = "/brojac/brojac_zalba_cutanje";
+	public boolean sacuvajIdZalbe(String changedBrojac) {
+		String xPath = "/brojac/brojac_zalbi";
 		try {
 			this.existManager.update(collectionId, documentId, xPath, changedBrojac, UPDATE);
 
@@ -51,33 +51,6 @@ public class BrojacRepository {
 			return false;
 		}
 
-	}
-
-
-
-	public Resource dobaviIdZalbeOdluka() {
-		String xPath = "/brojac";
-
-		ResourceSet set;
-		try {
-			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
-
-			return set.getResource(0);
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public boolean sacuvajIdZalbeOdluka(String promenjenBrojac) {
-		String xPath = "/brojac";
-		try {
-			this.existManager.update(collectionId, documentId, xPath, promenjenBrojac, UPDATE);
-
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-		
 	}
 
 	public Resource dobaviIdResenja() {

@@ -1,5 +1,5 @@
 <div class="pt-2">
-  <mat-grid-list cols="5" rowHeight="40" class="pt-2">
+  <mat-grid-list cols="9" rowHeight="40" class="pt-2">
     <mat-grid-tile>
       {{obavestenje[2].children[0]}}
     </mat-grid-tile>
@@ -12,9 +12,11 @@
     <mat-grid-tile>
       {{obavestenje[8].children[0]}}
     </mat-grid-tile>
-    <mat-grid-tile >
-      <button mat-button (click)="preuzmiPDF()" >Преузми PDF</button>
-      <button mat-button (click)="preuzmiHTML()" >Преузми HTML</button>
+    <mat-grid-tile colspan="4" >
+      <button mat-button (click)="preuzmiPDF()" data-toggle="tooltip" title="Преузми обавештење у PDF формату" >PDF</button>
+      <button mat-button (click)="preuzmiHTML()" data-toggle="tooltip" title="Преузми обавештење у HTML формату" >HTML</button>
+      <button mat-button (click)="preuzmiJSON()" data-toggle="tooltip" title="Преузми метаподатке обавештења у JSON формату" >JSON</button>
+      <button mat-button (click)="preuzmiRDF()" data-toggle="tooltip" title="Преузми метаподатке обавештења у RDF формату">RDF</button>
     </mat-grid-tile>
   </mat-grid-list>
   <mat-divider></mat-divider>

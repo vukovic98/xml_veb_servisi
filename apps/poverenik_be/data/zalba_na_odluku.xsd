@@ -40,7 +40,7 @@
   <xs:element name="naziv">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -80,7 +80,7 @@
   <xs:element name="datum_odbijenog_zahteva">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:date">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -111,7 +111,7 @@
   <xs:element name="datum_zakljucka_zalbe">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:date">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -155,7 +155,7 @@
   <xs:element name="zalioc_ime">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -165,7 +165,7 @@
   <xs:element name="zalioc_prezime">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -175,7 +175,7 @@
   <xs:element name="zalioc_naziv_zalbe">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>
@@ -203,7 +203,7 @@
   <xs:element name="potpis_zalioca">
     <xs:complexType>
       <xs:simpleContent>
-        <xs:extension base="xs:NCName">
+        <xs:extension base="xs:string">
           <xs:attribute name="datatype" use="required" type="xs:NMTOKEN"/>
           <xs:attribute name="property" use="required" type="xs:NMTOKEN"/>
         </xs:extension>

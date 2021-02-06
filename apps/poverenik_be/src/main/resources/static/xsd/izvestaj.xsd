@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.ftn.uns.ac.rs/izvestaj" xmlns:izvestaj="http://www.ftn.uns.ac.rs/izvestaj">
+  <xs:element name="lista_izvestaja">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="izvestaj:izvestaj"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="izvestaj">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="izvestaj:broj_zahteva"/>
+        <xs:element ref="izvestaj:broj_odbijenih_zahteva"/>
+        <xs:element ref="izvestaj:broj_zalbi_na_cutanje"/>
+        <xs:element ref="izvestaj:broj_zalbi_na_odluku"/>
+      </xs:sequence>
+      <xs:attribute name="datum" use="required" type="xs:date"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="broj_zahteva" type="xs:integer"/>
+  <xs:element name="broj_odbijenih_zahteva" type="xs:integer"/>
+  <xs:element name="broj_zalbi_na_cutanje" type="xs:integer"/>
+  <xs:element name="broj_zalbi_na_odluku" type="xs:integer"/>
+</xs:schema>

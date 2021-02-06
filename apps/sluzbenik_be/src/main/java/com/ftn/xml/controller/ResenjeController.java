@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class ResenjeController {
 	@Autowired
 	private ResenjeService resenjeService;
 	
-	@GetMapping("/napredna-pretraga")
+	@PostMapping("/napredna-pretraga")
 	public ResponseEntity<ArrayList<Resenje>> naprednaPretraga(
 			@RequestBody ResenjeNaprednaDTO dto) {
 		String zalba = !dto.getZalba().equalsIgnoreCase("null") ? "\"" + dto.getZalba() + "\"" : null;

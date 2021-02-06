@@ -29,6 +29,9 @@ public class ZahtevZaIzjasnjenjeOdlukaService {
 
 	@Autowired
 	private ZahtevZaIzjasnjenjeOdlukaRepository zahtevRepository;
+	
+	@Autowired
+	private ZalbaNaOdlukuService zalbaService;
 
 	public ZahteviZaIzjasnjenjeOdluka pronadjiSveZahteve() {
 		ResourceSet set = this.zahtevRepository.dobaviSve();
@@ -89,6 +92,8 @@ public class ZahtevZaIzjasnjenjeOdlukaService {
 			String zahtev = zahtevSW.toString();
 
 			String changedZahtev = this.removeNamespace(zahtev);
+			
+			this.zalbaService.dodajZalbuIzTeksta(changedZahtev);
 
 			return this.zahtevRepository.dodajZahtevZaIzjasnjenjeOdluka(changedZahtev);
 

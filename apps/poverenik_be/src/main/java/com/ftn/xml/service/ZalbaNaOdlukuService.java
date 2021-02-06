@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -82,8 +83,8 @@ public class ZalbaNaOdlukuService {
 					dto.setRazresena("ne");
 					dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 					
-					XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-					String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+					
+					String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 					dto.setDatum(date);
 
 					dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -133,8 +134,8 @@ public class ZalbaNaOdlukuService {
 				
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 				
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+				
+				String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 				dto.setDatum(date);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -182,8 +183,7 @@ public class ZalbaNaOdlukuService {
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue()).longValue());
 
 				// datum zalbe
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
+				String date = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
 				dto.setDatum(date);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
@@ -368,8 +368,8 @@ public class ZalbaNaOdlukuService {
 		FileWriter fw;
 		try {
 			rs = this.pronadjiZalbuPoId_Raw(id);
-			String pocetak = rs.substring(0, 15);
-			String ubaci = "xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
+			String pocetak = rs.substring(0, 16);
+			String ubaci = " xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
 			String kraj = rs.substring(16);
 			String novi = pocetak + ubaci + kraj;
 			fw = new FileWriter("src/main/resources/static/xml/zalba_na_odluku_"+id+".xml");
@@ -430,9 +430,8 @@ public class ZalbaNaOdlukuService {
 				
 				dto.setBroj_zahteva((z.getBrojZahteva().getValue().longValue()));
 
-				XMLGregorianCalendar xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
-				String date = xmlDate.getYear() + "-" + xmlDate.getMonth() + "-" + xmlDate.getDay();
-				dto.setDatum(date);
+				String xmlDate = z.getPodnozje().getDatumZakljuckaZalbe().getValue();
+				dto.setDatum(xmlDate);
 
 				dto.setIme(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocIme().getValue());
 				dto.setPrezime(z.getOsnovniPodaci().getPodaciOZaliocu().getZaliocPrezime().getValue());
@@ -451,6 +450,52 @@ public class ZalbaNaOdlukuService {
 		}
 		
 		return zalbeDTO;
+
+	}
+	
+	public ArrayList<ZalbaNaOdluku> naprednaPretraga(String zahtev, String mail, String organ, boolean and) {
+		List<String> ids = new ArrayList<>();
+		try {
+			ids = this.zalbaRepo.naprednaPretraga(zahtev, mail, organ, and);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ids = (ArrayList<String>) ids;
+		
+		ArrayList<ZalbaNaOdluku> lista = new ArrayList<>();
+		
+		for(String i : ids) {
+			ZalbaNaOdluku z = this.pronadjiZalbuPoId(Long.parseLong(i));
+			
+			lista.add(z);
+		}
+		
+		return lista;
+		
+	}
+	
+	public ZalbaNaOdluku pronadjiZalbuPoId(long id) {
+		ResourceSet set = this.zalbaRepo.dobaviPoId(id);
+		try {
+			if (set.getSize() == 1) {
+
+				JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.zalba_na_odluku");
+
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				Resource res = set.getResource(0);
+
+				ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller
+						.unmarshal(((XMLResource) res).getContentAsDOM());
+
+				return zalba;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
 
 	}
 }

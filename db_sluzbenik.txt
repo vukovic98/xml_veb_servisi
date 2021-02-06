@@ -1,0 +1,110 @@
+---SLUZBENIK EXIST DB---
+-------------------------------------------------------------
+File sistem: /db/sluzbenik
+-------------------------------------------------------------
+Fajl: brojac.xml
+Sadrzaj:
+	<brojac xmlns="http://www.ftn.uns.ac.rs/brojac">
+    		<brojac_zahtev>1</brojac_zahtev>
+    		<brojac_obavestenje>1</brojac_obavestenje>
+	</brojac>
+-------------------------------------------------------------
+Fajl: izvestaj.xml
+Sadrzaj:
+	<lista_izvestaja xmlns="http://www.ftn.uns.ac.rs/izvestaj">
+
+	</lista_izvestaja>
+-------------------------------------------------------------
+Fajl: korisnik.xml
+Sadrzaj:
+	<lista_korisnika xmlns="http://ftn.uns.ac.rs/korisnik">
+		<korisnik>
+			<ime_i_prezime>Sluzbenik Sluzbenik</ime_i_prezime>
+			<email>sluzbenik@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>S</uloga>
+		</korisnik>
+		<korisnik>
+			<ime_i_prezime>Vladimir Vukovic</ime_i_prezime>
+			<email>vladimirvukovic98@hotmail.rs</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+		</korisnik>
+		<korisnik>
+			<ime_i_prezime>Ivana Vlaisavljevic</ime_i_prezime>
+			<email>ivanazvucnik@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+		</korisnik>
+		<korisnik>
+			<email>pera@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+			<ime_i_prezime>Pera peric</ime_i_prezime>
+		</korisnik>
+		<korisnik>
+			<email>milica@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+			<ime_i_prezime>Milica Milic</ime_i_prezime>
+		</korisnik>
+		<korisnik>
+			<email>marko@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+			<ime_i_prezime>Marko Markovicc</ime_i_prezime>
+		</korisnik>
+	<korisnik>
+			<email>mirko98@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+			<ime_i_prezime>Mirko Mirkovic</ime_i_prezime>
+		</korisnik>
+	<korisnik>
+			<ime_i_prezime>Dusan Madzarevic</ime_i_prezime>
+			<email>dusan@maildrop.cc</email>
+			<lozinka>$2a$10$N/I5RC..guhrYn2.fpjkP.pbdK2T3Lf.KFSuFBPJ.01pOBGdUkC8.</lozinka>
+			<uloga>K</uloga>
+		</korisnik>
+	</lista_korisnika>
+-------------------------------------------------------------
+Fajl: obavestenje.xml
+Sadrzaj:
+	<lista_obavestenja xmlns="http://ftn.uns.ac.rs/obavestenje">
+
+	</lista_obavestenja>
+-------------------------------------------------------------
+Fajl: resenje.xml
+Sadrzaj:
+	<lista_resenja xmlns="http://ftn.uns.ac.rs/resenje">
+
+	</lista_resenja>
+-------------------------------------------------------------
+Fajl: zahtev.xml
+Sadrzaj:
+	<lista_zahteva_za_pristup_informacijama xmlns="http://www.ftn.uns.ac.rs/zahtev">
+	</lista_zahteva_za_pristup_informacijama>
+-------------------------------------------------------------
+Fajl: zahtev_za_izjasnjenje_cutanje.xml
+Sadrzaj:
+	<zahtevi_za_izjasnjenje_cutanje xmlns="http://ftn.uns.ac.rs/zalba_cutanje">
+
+	</zahtevi_za_izjasnjenje_cutanje>
+-------------------------------------------------------------
+Fajl: zahtev_za_izjasnjenje_odluka.xml
+Sadrzaj:
+	<zahtevi_za_izjasnjenje_odluka xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
+
+	</zahtevi_za_izjasnjenje_odluka>
+-------------------------------------------------------------
+Fajl: zalba_cutanje.xml
+Sadrzaj:
+	<lista_zalbi_cutanje xmlns="http://ftn.uns.ac.rs/zalba_cutanje">
+	</lista_zalbi_cutanje>
+-------------------------------------------------------------
+Fajl: zalba_na_odluku.xml
+Sadrzaj:
+	<lista_zalbi_na_odluku xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
+
+	</lista_zalbi_na_odluku>
+-------------------------------------------------------------

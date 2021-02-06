@@ -1,0 +1,72 @@
+---POVERENIK EXIST DB---
+-------------------------------------------------------------
+Fajl sistem: /db/poverenik
+-------------------------------------------------------------
+Fajl: korisnik.xml
+Sadrzaj:
+	<lista_korisnika xmlns="http://ftn.uns.ac.rs/korisnik">
+		<korisnik>
+			<ime_i_prezime>Poverenik Poverenik</ime_i_prezime>
+			<email>poverenik@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>P</uloga>
+		</korisnik>
+
+		<korisnik>
+			<ime_i_prezime>Vladimir Vukovic</ime_i_prezime>
+			<email>vladimirvukovic98@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+		</korisnik>
+		
+		<korisnik>
+			<ime_i_prezime>Ivana Vlaisavljevic</ime_i_prezime>
+			<email>ivanazvucnik@maildrop.cc</email>
+			<lozinka>$2a$10$nMZfWfEBE2qY1BZ.4Z25ye/LKwRD.wNzgtxre.8MUArJWGwQOqE2e</lozinka>
+			<uloga>K</uloga>
+		</korisnik>
+	</lista_korisnika>
+-------------------------------------------------------------
+Fajl: odgovor_zahtev_za_izjasnjenje.xml 
+Sadrzaj:
+	<odgovori_zahtev_za_izjasnjenje xmlns="http://ftn.uns.ac.rs/izjasnjenje/odgovor">
+	</odgovori_zahtev_za_izjasnjenje>
+-------------------------------------------------------------
+Fajl: resenje.xml
+Sadrzaj:
+	<lista_resenja xmlns="http://ftn.uns.ac.rs/resenje">
+		
+	</lista_resenja>
+-------------------------------------------------------------
+Fajl: zahtev.xml
+Sadrzaj:
+	<lista_zahteva_za_pristup_informacijama xmlns="http://www.ftn.uns.ac.rs/zahtev">
+	</lista_zahteva_za_pristup_informacijama>
+-------------------------------------------------------------
+Fajl: zahtev_za_izjasnjenje_cutanje.xml
+Sadrzaj:
+	<zahtevi_za_izjasnjenje_cutanje xmlns="http://ftn.uns.ac.rs/zahtev/cutanje">
+	</zahtevi_za_izjasnjenje_cutanje>
+-------------------------------------------------------------
+Fajl: zahtev_za_izjasnjenje_odluka.xml
+Sadrzaj:
+	<zahtevi_za_izjasnjenje_odluka xmlns="http://ftn.uns.ac.rs/zahtev/odluka">
+	</zahtevi_za_izjasnjenje_odluka>
+-------------------------------------------------------------
+Fajl: zalba_cutanje.xml
+Sadrzaj:
+	<lista_zalbi_cutanje xmlns="http://ftn.uns.ac.rs/zalba_cutanje">
+	</lista_zalbi_cutanje>
+-------------------------------------------------------------
+Fajl: zalba_na_odluku.xml
+Sadrzaj:
+	<lista_zalbi_na_odluku xmlns="http://ftn.uns.ac.rs/zalba_na_odluku">
+	</lista_zalbi_na_odluku>
+-------------------------------------------------------------
+Fajl: brojac.xml
+Sadrzaj:
+	<brojac xmlns="http://www.ftn.uns.ac.rs/brojac">
+		<brojac_zalbi>1</brojac_zalbi>
+		<brojac_resenje>1</brojac_resenje>
+	</brojac>
+-------------------------------------------------------------

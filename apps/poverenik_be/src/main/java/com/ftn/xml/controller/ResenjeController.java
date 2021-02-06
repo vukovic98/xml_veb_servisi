@@ -171,6 +171,8 @@ public class ResenjeController {
 			
 		} catch (JAXBException e) {
 			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 
 		if(ok)

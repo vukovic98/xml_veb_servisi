@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   POVERENIK_APP: "http://localhost:8082/",
-  SLUZBENIK_APP: "http://localhost:8081/"
+  SLUZBENIK_APP: "http://localhost:8081/",
+  MAIL_APP: "http://localhost:8084/"
 };
 
 /*

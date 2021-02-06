@@ -234,6 +234,8 @@ export class ZalbaCutanjeComponent implements OnInit {
 
 }
 
+
+
 odustani(id: number) {
   this.service.odustani(id).subscribe(
     res => {

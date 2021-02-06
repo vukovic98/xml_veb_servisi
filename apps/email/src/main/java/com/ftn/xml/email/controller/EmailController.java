@@ -17,7 +17,7 @@ import com.ftn.xml.email.service.EmailService;
 
 @RestController
 @RequestMapping(path = "/email", consumes = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class EmailController {
 
 	@Autowired

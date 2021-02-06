@@ -33,7 +33,7 @@ public class ZahtevZaIzjasnjenjeOdlukaRepository {
 	@Autowired
 	private FusekiManager fusekiManager;
 	
-	public ResourceSet pronadjiPoIdZalbeCutanje(long id_zalbe) {
+	public ResourceSet pronadjiPoIdZalbeOdluka(long id_zalbe) {
 		String xPath = "/zahtevi_za_izjasnjenje_odluka/zahtev_za_izjasnjenje_odluka[id_zalbe = "+id_zalbe+"]";
 
 		ResourceSet set;
@@ -47,11 +47,9 @@ public class ZahtevZaIzjasnjenjeOdlukaRepository {
 		}
 	}
 
-	public boolean sacuvajZahtev(String z, ZahtevZaIzjasnjenjeOdlukaFusekiDTO dto, int index) {
+	public boolean sacuvajZahtev(String z) {
 		try {
 			this.existManager.append(collectionId, documentId, "/zahtevi_za_izjasnjenje_odluka", z, APPEND);
-			//TODO
-			this.fusekiManager.dodajZahtevIzjasnjenjeOdluka(dto);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

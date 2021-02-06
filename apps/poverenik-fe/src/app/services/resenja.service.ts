@@ -80,7 +80,7 @@ export class ResenjaService {
       'Accept': 'application/xml',
       'Authorization' : 'Bearer ' + localStorage.getItem("accessToken")
     });
-    return this.http.post(environment.POVERENIK_APP + this.kreirajResenjeTekstApi, data, {headers: headers});
+    return this.http.post(environment.POVERENIK_APP + this.kreirajResenjeTekstApi, data, {headers: headers, responseType: 'text'});
 
   }
 
@@ -104,6 +104,15 @@ export class ResenjaService {
     return this.http.get(environment.POVERENIK_APP + this.brojacResenjeApi, {headers: headers, responseType: 'text'});
 
 
+  }
+
+  posaljiMejlResenje(data: any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.MAIL_APP + "email/resenje", data, {headers: headers});
   }
 
   preuzmiJSON(id: number): any {

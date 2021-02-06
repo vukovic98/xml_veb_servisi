@@ -104,7 +104,7 @@ public class ZalbaCutanjeController {
 			n.setIme_i_prezime(z.getPodnozje().getPodnosilacZalbe().getImeIPrezime().getContent());
 			n.setDatum_zalbe(z.getPodnozje().getMestoIDatum().getDatumZalbe().getValue());
 			n.setEmail(z.getPodnozje().getPodnosilacZalbe().getKorisnikEmail().getContent());
-			
+			n.setDatum_zahteva(z.getSadrzaj().getDatumZahteva());
 			
 			return new ResponseEntity<>(n, HttpStatus.OK);
 		} else

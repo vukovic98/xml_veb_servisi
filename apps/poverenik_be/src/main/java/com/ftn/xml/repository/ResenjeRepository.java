@@ -11,6 +11,7 @@ import org.xmldb.api.base.ResourceSet;
 import com.ftn.xml.db.ExistManager;
 import com.ftn.xml.db.FusekiManager;
 import com.ftn.xml.dto.ResenjeFusekiDTO;
+import com.ftn.xml.helper.DodajResenjeMapper;
 import com.ftn.xml.model.resenje.Resenje;
 import com.ftn.xml.model.zalba_cutanje.ZalbaCutanje;
 
@@ -40,7 +41,9 @@ public class ResenjeRepository {
 	@Autowired
 	private FusekiManager fusekiManager;
 	
-
+	@Autowired
+	private DodajResenjeMapper mapper;
+	
 	public ResourceSet getAll() {
 		String xPath = "/lista_resenja/resenje";
 		try {
@@ -96,7 +99,8 @@ public class ResenjeRepository {
 	public boolean sacuvajResenje(String z, ResenjeFusekiDTO dto, int index) {
 		try {
 			this.existManager.append(collectionId, documentId, "/lista_resenja", z, APPEND);
-			this.fusekiManager.dodajResenje(index + "", dto);
+			
+			//this.fusekiManager.dodajResenje(index + "", dto);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,7 +111,7 @@ public class ResenjeRepository {
 	public void dodajResenjeIzTeksta(String resenje, Resenje r) throws Exception {
 		String contextXPath = "/lista_resenja";
 		this.existManager.append(collectionId, documentId, contextXPath, resenje, APPEND);
-		//TODO this.fusekiManager.dodajResenje(id, dto);
+		this.fusekiManager.dodajResenje(r);
 	}
 	
 	public ResourceSet pretraga(String text) {

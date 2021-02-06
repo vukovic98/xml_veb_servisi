@@ -37,13 +37,13 @@ UPUTSTVA ZA POKRETANJE:
     1. Preuzeti Apache TomEE plus aplikativni server: http://tomee.apache.org/download-ng.html
     
   - XML baze
-    2. Preuzeti distribuciju eXist XML baze podataka: https://bintray.com/existdb/releases/exist/4.6.1/view
-    3. Preimenovati exist-x.x.x.war fajl u exist.war
-    4. Deployovati tj. kopirati exist.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom existS.war, a drugi put sa nazivom existP.war
-    5. Pokrenuti aplikativni server i pristupiti dashboardu exist-a: http://localhost:8080/existS za bazu službenika, a http://localhost:8080/existP za bazu poverenika
+      2. Preuzeti distribuciju eXist XML baze podataka: https://bintray.com/existdb/releases/exist/4.6.1/view
+      3. Preimenovati exist-x.x.x.war fajl u exist.war
+      4. Deployovati tj. kopirati exist.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom existS.war, a drugi put sa nazivom existP.war
+      5. Pokrenuti aplikativni server i pristupiti dashboardu exist-a: http://localhost:8080/existS za bazu službenika, a http://localhost:8080/existP za bazu poverenika
     
   - RDF baze
-    6. Preuzeti distribuciju Apache Jena Fuseki SPARQL servera: https://jena.apache.org/download/index.cgi#apache-jena-fuseki
-    7. Raspakovati apache-jena-fuseki-x.x.x.zip fajl
-    8. Deployovati tj. kopirati ekstrahovani fuseki.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom fusekiS.war, a drugi put sa nazivom fusekiP.war
-    9. Pokrenuti aplikativni server i pristupiti admin interfejsu Fuseki servera: http://localhost:8080/fusekiS za bazu službenika, a http://localhost:8080/fusekiP za bazu poverenika.
+      6. Preuzeti distribuciju Apache Jena Fuseki SPARQL servera: https://jena.apache.org/download/index.cgi#apache-jena-fuseki
+      7. Raspakovati apache-jena-fuseki-x.x.x.zip fajl
+      8. Deployovati tj. kopirati ekstrahovani fuseki.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom fusekiS.war, a drugi put sa nazivom fusekiP.war
+      9. Pokrenuti aplikativni server i pristupiti admin interfejsu Fuseki servera: http://localhost:8080/fusekiS za bazu službenika, a http://localhost:8080/fusekiP za bazu poverenika.

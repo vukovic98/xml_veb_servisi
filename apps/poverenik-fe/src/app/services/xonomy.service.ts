@@ -673,7 +673,11 @@ export class XonomyService {
           }
         },
         hasText: true,
-        asker: Xonomy.askString,
+        asker: Xonomy.askPicklist,
+        askerParameter: [
+          {value: "ODOBREN", caption: "ODOBREN"},
+          {value: "ODBIJEN", caption: "ODBIJEN"}
+          ],
         oneliner: true,
         attributes: {
           "datatype": {

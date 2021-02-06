@@ -34,7 +34,8 @@ UPUTSTVA ZA POKRETANJE:
     
     
 - Baze:
-    - Preuzeti Apache TomEE plus aplikativni server: http://tomee.apache.org/download-ng.html
+
+  Preuzeti Apache TomEE plus aplikativni server: http://tomee.apache.org/download-ng.html
     
   - XML baze
     -  Preuzeti distribuciju eXist XML baze podataka: https://bintray.com/existdb/releases/exist/4.6.1/view

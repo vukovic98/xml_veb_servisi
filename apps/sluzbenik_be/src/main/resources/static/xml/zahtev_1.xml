@@ -35,5 +35,5 @@
                 <kontakt datatype="xs:string" property="pred:kontakt_trazioca">0652359888</kontakt>
             </informacije_o_traziocu>
         </podnozje>
-        <status>CEKANJE</status>
+        <status>ODOBREN</status>
     </zahtev_za_pristup_informacijama>

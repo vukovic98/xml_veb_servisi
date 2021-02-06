@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
 
   signupForm = this.formBuilder.group({
       ime_i_prezime: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern("")]],
+      email: ['', [Validators.required, Validators.email]],
       lozinka: ['', [Validators.required]]
     });
 

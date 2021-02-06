@@ -527,7 +527,7 @@ public class FusekiManager {
 	
 	public void generisiJSONResenje(long id) throws FileNotFoundException {
 		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
-				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id + "> ?p ?o");
+				RESENJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id + "> ?p ?o");
 		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
 		ResultSet results = query.execSelect();
 		String filePath = "src/main/resources/static/json/resenje_" + id + ".json";

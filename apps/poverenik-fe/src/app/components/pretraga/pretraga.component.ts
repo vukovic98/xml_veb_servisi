@@ -216,7 +216,7 @@ export class PretragaComponent implements OnInit {
       document.body.appendChild(a);
       a.setAttribute('style', 'display: none');
       a.href = fileURL;
-      a.download = `zalba_cutanje_${id}.json`;
+      a.download = `zalba_cutanje_${id}.rdf`;
       a.click();
       window.URL.revokeObjectURL(fileURL);
       a.remove();

@@ -1,0 +1,30 @@
+<resenje xmlns:obav="http://www.ftn.uns.ac.rs/rdf/example"  xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"  about="http://www.ftn.uns.ac.rs/rdf/examples/resenje/1" broj="-1" vocab="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <osnovni_podaci>
+        <naslov datatype="xs:string" property="pred:naslov">Naslov</naslov>
+        <datum datatype="xs:date" property="pred:datum_resenja">2021-02-06</datum>
+        <korisnik_email datatype="xs:string" property="pred:korisnik">vladimirvukovic98@maildrop.cc</korisnik_email>
+    </osnovni_podaci>
+    <sadrzaj>
+        <uvod>
+            <organ datatype="xs:string" property="pred:organ">Повереник за информације од јавног значаја и заштиту података о личности</organ>
+            <podnosilac datatype="xs:string" property="pred:podnosilac">Vladimir Vukovic</podnosilac>
+            <ustanova>
+                <naziv datatype="xs:string" property="pred:naziv_ustanove">sss</naziv>
+                <ulica>sss</ulica>
+            </ustanova>
+            <datum_zahteva datatype="xs:date" property="pred:datum_zahteva">2020-12-20</datum_zahteva>
+        </uvod>
+        <doneto_resenje>
+            <trazeni_dokument datatype="xs:string" property="pred:trazeni_dokument"/>
+            <tekst_resenja>ss</tekst_resenja>
+        </doneto_resenje>
+        <obrazlozenje>
+            <tekst_obrazlozenja>sss</tekst_obrazlozenja>
+            <sud>dddd</sud>
+            <taksa datatype="xs:decimal" property="pred:taksa">555.0</taksa>
+        </obrazlozenje>
+    </sadrzaj>
+    <poverenik datatype="xs:string" property="pred:poverenik">Милан Мариновић</poverenik>
+    <broj_zalbe datatype="xs:string" property="pred:broj_zalbe">1</broj_zalbe>
+    <ishod datatype="xs:string" property="pred:ishod">ODBIJEN</ishod>
+</resenje>

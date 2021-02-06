@@ -1,0 +1,69 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zahteva" } ,
+        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.DatumZahteva@587d890b" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/taksa" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/2001/XMLSchema#double" , "value": "555.0" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/trazeni_dokument" } ,
+        "o": { "type": "literal" , "value": "" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ustanova" } ,
+        "o": { "type": "literal" , "value": "sss" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik_email" } ,
+        "o": { "type": "literal" , "value": "vladimirvukovic98@maildrop.cc" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naslov" } ,
+        "o": { "type": "literal" , "value": "Naslov" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/tekst_obrazlozenja" } ,
+        "o": { "type": "literal" , "value": "sss" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ishod" } ,
+        "o": { "type": "literal" , "value": "ODBIJEN" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sud" } ,
+        "o": { "type": "literal" , "value": "dddd" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/tekst_resenja" } ,
+        "o": { "type": "literal" , "value": "ss" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/organ" } ,
+        "o": { "type": "literal" , "value": "Повереник за информације од јавног значаја и заштиту података о личности" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/podnosilac" } ,
+        "o": { "type": "literal" , "value": "Vladimir Vukovic" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum" } ,
+        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.Datum@699a508e" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/poverenik" } ,
+        "o": { "type": "literal" , "value": "Милан Мариновић" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj" } ,
+        "o": { "type": "literal" , "value": "-1" }
+      }
+    ]
+  }
+}

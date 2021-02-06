@@ -241,11 +241,14 @@ public class ZalbaNaOdlukuController {
 		String organ = !dto.getOrgan().equalsIgnoreCase("null") ? "\"" + dto.getOrgan() + "\"" : null;
 
 		ArrayList<ZalbaNaOdluku> lista = this.zalbaService.naprednaPretraga(ime, mail, organ, dto.isAnd());
-
+		System.out.println(lista);
 		if (!lista.isEmpty())
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		else
+		{
+			System.out.println("USLO");
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
 	}
 
 }

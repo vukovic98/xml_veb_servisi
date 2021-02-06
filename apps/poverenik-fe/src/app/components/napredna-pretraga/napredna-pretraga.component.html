@@ -1,0 +1,163 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-navigation-bar></app-navigation-bar>
+  </div>
+  <div class="jumbotron row col-md-10 m-auto bg-light shadow mb-5 mt-5 p-3">
+
+    <div class="row">
+      <div class="mb-4 p-2">
+        <label for="dokument">Документ</label>
+        <select class="form-select mt-1" name="dokument" [(ngModel)]="dokument" id="dokument">
+          <option selected disabled>Одаберите документ</option>
+          <option value="1">Жалбе</option>
+          <option value="2">Решења</option>
+        </select>
+      </div>
+
+      <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+        <form [formGroup]="pretragaZalbaForma" (ngSubmit)="pretraziZalbe()" *ngIf="dokument == 1" class="m-3">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="zahtev2">Број захтева</label>
+                <input type="text" class="form-control mt-1" name="ime" formControlName="zahtev2" id="zahtev2" placeholder="Унесите број захтева">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="mejl">Мејл грађанина</label>
+                <input type="text" class="form-control mt-1" name="mejl" formControlName="mejl" id="mejl" placeholder="Унесите мејл грађанина">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="organ2">Орган</label>
+                <input type="text" class="form-control mt-1" name="organ2" formControlName="organ2" id="organ2" placeholder="Унесите име органа">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="and4">Логички оператор</label>
+                <select class="form-select mt-1" name="and4" formControlName="and4" id="and4">
+                  <option selected disabled>Одаберите оператор</option>
+                  <option value="true">AND (Логичко 'И')</option>
+                  <option value="false">OR (Логичко 'ИЛИ')</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="text-center">
+              <button id="zalbeBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btnColor">Претражи</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class=" col-md-10 m-auto" style="padding-left: 13%;">
+        <form [formGroup]="pretragaResenjeForma" (ngSubmit)="pretraziResenja()" *ngIf="dokument == 2" class="m-3">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="zalba">Број жалбе</label>
+                <input type="text" class="form-control mt-1" name="zalba" formControlName="zalba" id="zalba" placeholder="Унесите број жалбе">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="ishod">Исход</label>
+                <input type="text" class="form-control mt-1" name="ishod" formControlName="ishod" id="ishod" placeholder="Унесите исход (ODOBREN/ODBIJEN)">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="korisnik">Мејл корисника</label>
+                <input type="text" class="form-control mt-1" name="korisnik" formControlName="korisnik" id="korisnik" placeholder="Унесите мејл корисника">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="and3">Логички оператор</label>
+                <select class="form-select mt-1" name="and3" formControlName="and3" id="and3">
+                  <option selected disabled>Одаберите оператор</option>
+                  <option value="true">AND (Логичко 'И')</option>
+                  <option value="false">OR (Логичко 'ИЛИ')</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="text-center">
+              <button id="resenjeBtn" title="Одаберите документ и унесите текст да бисте претражили" class="btn btn-block mt-4 btnColor">Претражи</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row col-md-12 mt-3">
+      <mat-divider></mat-divider>
+      <mat-card-title class="mb-3 mt-5">Пронађени документи</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="6" rowHeight="40" class="mt-3">
+        <mat-grid-tile>Редни број документа</mat-grid-tile>
+        <mat-grid-tile>Тип документа</mat-grid-tile>
+        <mat-grid-tile [colspan]="4">Преузми</mat-grid-tile>
+      </mat-grid-list>
+      <mat-divider></mat-divider>
+
+
+      <mat-grid-list cols="6" rowHeight="40" class="pt-2" *ngFor="let r of resenja">
+        <mat-grid-tile>
+          {{r.children[5].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          РЕШЕЊЕ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+          <button mat-button  data-toggle="tooltip" title="Преузми решење у PDF формату" (click)="preuzmiPDFResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">PDF</button>
+          <button mat-button  data-toggle="tooltip" title="Преузми решење у HTML формату"(click)="preuzmiHTMLResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">HTML</button>
+          <button mat-button data-toggle="tooltip" title="Преузми метаподатке решења у JSON формату" (click)="preuzmiJSONResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">JSON</button>
+          <button mat-button  data-toggle="tooltip" title="Преузми метаподатке решења у RDF формату" (click)="preuzmiRDFResenje(r.children[5].children[0].split('/').pop())" style="padding-left: 10px!important;">RDF</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="6" rowHeight="40" class="pt-2" *ngFor="let z of zalbeNaOdluku">
+        <mat-grid-tile>
+          {{z.children[4].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ЖАЛБА НА ОДЛУКУ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+          <button mat-button data-toggle="tooltip" title="Преузми жалбу у PDF формату" (click)="preuzmiPDFZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">PDF</button>
+          <button mat-button data-toggle="tooltip" title="Преузми жалбу у HTML формату" (click)="preuzmiHTMLZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">HTML</button>
+          <button mat-button  data-toggle="tooltip" title="Преузми метаподатке жалбе у JSON формату"(click)="preuzmiJSONZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">JSON</button>
+          <button mat-button data-toggle="tooltip" title="Преузми метаподатке жалбе у RDF формату" (click)="preuzmiRDFZalbaNaOdluku(z.children[4].children[0].split('/').pop())" style="padding-left: 10px!important;">RDF</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-grid-list cols="6" rowHeight="40" class="pt-2" *ngFor="let z of zalbeNaCutanje">
+        <mat-grid-tile>
+          {{z.children[4].children[0].split('/').pop()}}
+        </mat-grid-tile>
+        <mat-grid-tile>
+          ЖАЛБА НА ЋУТАЊЕ
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+          <button mat-button data-toggle="tooltip" title="Преузми жалбу у PDF формату" (click)="preuzmiPDFZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">PDF</button>
+          <button mat-button data-toggle="tooltip" title="Преузми жалбу у HTML формату" (click)="preuzmiHTMLZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">HTML</button>
+          <button mat-button data-toggle="tooltip" title="Преузми метаподатке жалбе у JSON формату" (click)="preuzmiJSONZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">JSON</button>
+          <button mat-button data-toggle="tooltip" title="Преузми метаподатке жалбе у RDF формату" (click)="preuzmiRDFZalbaCutanje(z.children[0].children[4].split('/').pop())" style="padding-left: 10px!important;">RDF</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+    </div>
+
+  </div>
+</div>
+

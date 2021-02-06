@@ -31,7 +31,7 @@ public class IzvestajRepository {
 		ResourceSet set;
 		try {
 			set = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
-
+			System.out.println(set.getSize());
 			return set;
 		} catch (Exception e) {
 			e.printStackTrace();

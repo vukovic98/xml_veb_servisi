@@ -171,7 +171,7 @@ export class ZalbaNaOdlukuComponent implements OnInit {
 
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.open('POST', 'http://localhost:8081/ws/zahtev_za_izjasnjenje_odluka', true);
-    
+
         // The following variable contains the xml SOAP request.
         const sr =
             `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -181,7 +181,7 @@ export class ZalbaNaOdlukuComponent implements OnInit {
                    </dodajZahtevZaIzjasnjenjeOdluka>
                  </soap:Body>
                </soap:Envelope>`;
-    
+
         console.log("SOAP: "+sr);
 
         xmlhttp.onreadystatechange =  () => {
@@ -208,7 +208,6 @@ export class ZalbaNaOdlukuComponent implements OnInit {
 }
 
   preuzmiJSON() {
-    console.log(this.zalba[0].children[0])
     this.service.preuzmiJSON(this.zalba[0].children[0]).subscribe(response => {
       let file = new Blob([response], { type: 'application/json' });
       var fileURL = URL.createObjectURL(file);

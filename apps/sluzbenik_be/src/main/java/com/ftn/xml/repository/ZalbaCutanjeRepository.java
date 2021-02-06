@@ -197,7 +197,7 @@ public class ZalbaCutanjeRepository {
 	public void dodajZalbuIzTeksta(String zalba, ZalbaCutanje z) throws Exception {
 		String contextXPath = "/lista_zalbi_cutanje";
 		this.existManager.append(collectionId, documentId, contextXPath, zalba, APPEND);
-		//this.fusekiManager.dodajZalbuCutanje(z);
+		this.fusekiManager.dodajZalbuCutanje(z);
 	}
 	
 	public ResourceSet getAll() {

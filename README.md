@@ -43,7 +43,7 @@ UPUTSTVA ZA POKRETANJE:
       5. Pokrenuti aplikativni server i pristupiti dashboardu exist-a: http://localhost:8080/existS za bazu službenika, a http://localhost:8080/existP za bazu poverenika
     
   - RDF baze
-    -  6. Preuzeti distribuciju Apache Jena Fuseki SPARQL servera: https://jena.apache.org/download/index.cgi#apache-jena-fuseki
-    -  7. Raspakovati apache-jena-fuseki-x.x.x.zip fajl
-    -  8. Deployovati tj. kopirati ekstrahovani fuseki.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom fusekiS.war, a drugi put sa nazivom fusekiP.war
-    -  9. Pokrenuti aplikativni server i pristupiti admin interfejsu Fuseki servera: http://localhost:8080/fusekiS za bazu službenika, a http://localhost:8080/fusekiP za bazu poverenika.
+    -  Preuzeti distribuciju Apache Jena Fuseki SPARQL servera: https://jena.apache.org/download/index.cgi#apache-jena-fuseki
+    -  Raspakovati apache-jena-fuseki-x.x.x.zip fajl
+    -  Deployovati tj. kopirati ekstrahovani fuseki.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom fusekiS.war, a drugi put sa nazivom fusekiP.war
+    -  Pokrenuti aplikativni server i pristupiti admin interfejsu Fuseki servera: http://localhost:8080/fusekiS za bazu službenika, a http://localhost:8080/fusekiP za bazu poverenika.

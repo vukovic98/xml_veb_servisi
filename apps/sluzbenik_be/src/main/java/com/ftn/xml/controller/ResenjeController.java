@@ -5,9 +5,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.bind.JAXBException;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -137,6 +140,18 @@ public class ResenjeController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+
+	}
+	
+	@GetMapping(consumes = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<ArrayList<ResenjeDTO>> getAll() throws XMLDBException, JAXBException {
+
+		ArrayList<ResenjeDTO> resenja = this.resenjeService.getAll();
+		if (resenja.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		} else
+			return new ResponseEntity<>(resenja, HttpStatus.OK);
 
 	}
 }

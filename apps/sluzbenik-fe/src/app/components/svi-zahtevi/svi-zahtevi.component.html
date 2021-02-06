@@ -1,11 +1,12 @@
 <div class="row col-md-11 m-auto mb-5">
   <mat-card-title class="mb-3">Пристигли захтеви</mat-card-title>
   <mat-divider></mat-divider>
-  <mat-grid-list cols="11" rowHeight="40" class="mt-3 text-center">
+  <mat-grid-list cols="15" rowHeight="40" class="mt-3 text-center">
     <mat-grid-tile>Редни број захтева</mat-grid-tile>
-    <mat-grid-tile>Орган</mat-grid-tile>
-    <mat-grid-tile>Датум предаје захтева</mat-grid-tile>
-    <mat-grid-tile>Корисник</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Орган</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Датум предаје захтева</mat-grid-tile>
+    <mat-grid-tile [colspan]="2">Корисник</mat-grid-tile>
+    <mat-grid-tile>Статус захтева</mat-grid-tile>
     <mat-grid-tile [colspan]="4">Акције</mat-grid-tile>
     <mat-grid-tile [colspan]="2">Одговор</mat-grid-tile>
     <mat-grid-tile>Одбијање</mat-grid-tile>

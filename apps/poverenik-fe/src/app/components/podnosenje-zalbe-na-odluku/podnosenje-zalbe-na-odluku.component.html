@@ -1,8 +1,8 @@
 <div class="jumbotron col-md-10 m-auto bg-light shadow mt-5 mb-5 pb-3 pt-3">
     <h1 class="d-flex justify-content-center">Поднеси жалбу против одлуке органа власти</h1>
     <div class="d-flex justify-content-center">
-      <form class="row col-md-8 form-inline" ngForm="zalbaNaOdlukuForm" (ngSubmit)="sastaviZalbu()">
-        <div class="form-group col-md-4">
+      <form class="row col-md-8 m-auto form-inline" ngForm="zalbaNaOdlukuForm" (ngSubmit)="sastaviZalbu()">
+        <div class="form-group col-md-6 text-end">
           <label>Одаберите захтев:</label>
             <select
               [(ngModel)]="zahtev"
@@ -13,7 +13,7 @@
             </select>
 
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
           <button class="btn " >Састави жалбу</button>
         </div>
       </form>

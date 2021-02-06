@@ -1,18 +1,18 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:naziv_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">FTN</pred:naziv_ustanove>
+    <pred:naziv_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Факултет Техничких Наука</pred:naziv_ustanove>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:sediste_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Novi Sad</pred:sediste_ustanove>
+    <pred:sediste_ustanove xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Нови Сад</pred:sediste_ustanove>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:opis_informacije xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Informacija o ispitima</pred:opis_informacije>
+    <pred:opis_informacije xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Желим да сазнам своје оцене</pred:opis_informacije>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:mesto_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Backa Palanka</pred:mesto_zahteva>
+    <pred:mesto_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Нови Сад</pred:mesto_zahteva>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2021-02-05</pred:datum_zahteva>
+    <pred:datum_zahteva xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2021-02-06</pred:datum_zahteva>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
     <pred:korisnik xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">vladimirvukovic98@hotmail.rs</pred:korisnik>
@@ -21,15 +21,15 @@
     <pred:ime_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Vladimir Vukovic</pred:ime_trazioca>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:ulica_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Masarikova</pred:ulica_trazioca>
+    <pred:ulica_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Булевар Деспота Стефана</pred:ulica_trazioca>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:broj_kuce_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="integer">12</pred:broj_kuce_trazioca>
+    <pred:broj_kuce_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="integer">7</pred:broj_kuce_trazioca>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:mesto_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Backa Palanka</pred:mesto_trazioca>
+    <pred:mesto_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Нови Сад</pred:mesto_trazioca>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/rdf/examples/zahtev/1">
-    <pred:kontakt_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">0652359888</pred:kontakt_trazioca>
+    <pred:kontakt_trazioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">0655613333</pred:kontakt_trazioca>
   </rdf:Description>
 </rdf:RDF>

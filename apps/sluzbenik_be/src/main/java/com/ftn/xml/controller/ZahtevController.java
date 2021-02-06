@@ -118,6 +118,7 @@ public class ZahtevController {
 				n.setBroj_ulice_podnosioca(
 						z.getPodnozje().getInformacijeOTraziocu().getAdresa().getBroj().getValue() + "");
 				n.setKorisnik_email(z.getPodnozje().getInformacijeOTraziocu().getKorisnikEmail().getContent());
+				n.setStatus(z.getStatus());
 
 				for (Object o : z.getSadrzaj().getZahtevi().getContent()) {
 

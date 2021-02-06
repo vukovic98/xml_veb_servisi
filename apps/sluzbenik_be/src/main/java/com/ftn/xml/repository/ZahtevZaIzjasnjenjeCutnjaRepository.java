@@ -46,7 +46,7 @@ public class ZahtevZaIzjasnjenjeCutnjaRepository {
 
 	public boolean izbrisiZahtevZaIzjasnjenjeCutanje(String id) {
 		String id_zalbe = ID_STRING + id;
-		String xPath = "/zahtevi_za_izjasnjenje_cutanje/zahtev_za_izjasnjenje_cutanje[@about='" + id_zalbe + "']";
+		String xPath = "/zahtevi_za_izjasnjenje_cutanje/zalba_cutanje[@about='" + id_zalbe + "']";
 
 		try {
 			this.existManager.remove(collectionId, documentId, xPath, REMOVE);

@@ -255,4 +255,13 @@ public class ResenjeRepository {
 			return false;
 		}
 	}
+	
+	public ResourceSet getAll() {
+		String xPath = "/lista_resenja/resenje";
+		try {
+			return this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

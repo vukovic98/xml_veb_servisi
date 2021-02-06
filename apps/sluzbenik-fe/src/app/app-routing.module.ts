@@ -11,6 +11,7 @@ import {ZahteviZaIzjasnjenjeComponent} from './components/zahtevi-za-izjasnjenje
 import {SluzbenikPretragaComponent} from './components/sluzbenik-pretraga/sluzbenik-pretraga.component';
 import {IzvestajiComponent} from './components/izvestaji/izvestaji.component';
 import {SluzbenikNaprednaPretragaComponent} from './components/sluzbenik-napredna-pretraga/sluzbenik-napredna-pretraga.component';
+import {ResenjaComponent} from "./components/resenja/resenja.component";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'log-in'},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'zahtevi-izjasnjenje', component: ZahteviZaIzjasnjenjeComponent},
   {path: 'sluzbenik-pretraga', component: SluzbenikPretragaComponent},
   {path: 'sluzbenik-izvestaj', component: IzvestajiComponent},
-  {path: 'sluzbenik-napredna', component: SluzbenikNaprednaPretragaComponent}
+  {path: 'sluzbenik-napredna', component: SluzbenikNaprednaPretragaComponent},
+  {path: 'resenja', component: ResenjaComponent}
 ];
 
 @NgModule({

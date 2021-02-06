@@ -6,11 +6,11 @@
     "bindings": [
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_zahteva" } ,
-        "o": { "type": "literal" , "value": "Backa Palanka" }
+        "o": { "type": "literal" , "value": "Нови Сад" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_trazioca" } ,
-        "o": { "type": "literal" , "value": "12" }
+        "o": { "type": "literal" , "value": "7" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_trazioca" } ,
@@ -22,31 +22,31 @@
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zahteva" } ,
-        "o": { "type": "literal" , "value": "2021-02-05" }
+        "o": { "type": "literal" , "value": "2021-02-06" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sediste_ustanove" } ,
-        "o": { "type": "literal" , "value": "Novi Sad" }
+        "o": { "type": "literal" , "value": "Нови Сад" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/opis_informacije" } ,
-        "o": { "type": "literal" , "value": "Informacija o ispitima" }
+        "o": { "type": "literal" , "value": "Желим да сазнам своје оцене" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_ustanove" } ,
-        "o": { "type": "literal" , "value": "FTN" }
+        "o": { "type": "literal" , "value": "Факултет Техничких Наука" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_trazioca" } ,
-        "o": { "type": "literal" , "value": "Masarikova" }
+        "o": { "type": "literal" , "value": "Булевар Деспота Стефана" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_trazioca" } ,
-        "o": { "type": "literal" , "value": "Backa Palanka" }
+        "o": { "type": "literal" , "value": "Нови Сад" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/kontakt_trazioca" } ,
-        "o": { "type": "literal" , "value": "0652359888" }
+        "o": { "type": "literal" , "value": "0655613333" }
       }
     ]
   }

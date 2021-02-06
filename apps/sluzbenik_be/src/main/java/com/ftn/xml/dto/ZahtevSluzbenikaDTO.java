@@ -18,13 +18,14 @@ public class ZahtevSluzbenikaDTO {
 	public String ulica_podnosioca;
 	public String broj_ulice_podnosioca;
 	public String korisnik_email;
+	public String status;
 
 	public ZahtevSluzbenikaDTO() {
 		super();
 	}
 
 	public ZahtevSluzbenikaDTO(long id, String naziv_ustanove, String opis_zahteva, String opis_trazene_informacije,
-			String datum_zahteva, String kontakt, String korisnik, boolean odobren) {
+			String datum_zahteva, String kontakt, String korisnik, boolean odobren, String status) {
 		super();
 		this.id = id;
 		this.naziv_ustanove = naziv_ustanove;
@@ -34,6 +35,7 @@ public class ZahtevSluzbenikaDTO {
 		this.kontakt = kontakt;
 		this.korisnik = korisnik;
 		this.odobren = odobren;
+		this.status = status;
 	}
 
 	public long getId() {
@@ -42,6 +44,14 @@ public class ZahtevSluzbenikaDTO {
 
 	public String getKorisnik_email() {
 		return korisnik_email;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public void setKorisnik_email(String korisnik_email) {

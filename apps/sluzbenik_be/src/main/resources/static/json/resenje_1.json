@@ -6,31 +6,31 @@
     "bindings": [
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zahteva" } ,
-        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.DatumZahteva@587d890b" }
+        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.DatumZahteva@5f798256" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/taksa" } ,
-        "o": { "type": "literal" , "datatype": "http://www.w3.org/2001/XMLSchema#double" , "value": "555.0" }
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/2001/XMLSchema#double" , "value": "35000.0" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/trazeni_dokument" } ,
-        "o": { "type": "literal" , "value": "" }
+        "o": { "type": "literal" , "value": "Ocene" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ustanova" } ,
-        "o": { "type": "literal" , "value": "sss" }
+        "o": { "type": "literal" , "value": "FTN" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik_email" } ,
-        "o": { "type": "literal" , "value": "vladimirvukovic98@maildrop.cc" }
+        "o": { "type": "literal" , "value": "vladimirvukovic98@hotmail.rs" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naslov" } ,
-        "o": { "type": "literal" , "value": "Naslov" }
+        "o": { "type": "literal" , "value": "Ne moze" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/tekst_obrazlozenja" } ,
-        "o": { "type": "literal" , "value": "sss" }
+        "o": { "type": "literal" , "value": "Zbog sto nisi u SNS-u." }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ishod" } ,
@@ -38,11 +38,11 @@
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/sud" } ,
-        "o": { "type": "literal" , "value": "dddd" }
+        "o": { "type": "literal" , "value": "Uprava vodovoda" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/tekst_resenja" } ,
-        "o": { "type": "literal" , "value": "ss" }
+        "o": { "type": "literal" , "value": "Ne moze da s resi, nisi u SNS-u." }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/organ" } ,
@@ -54,7 +54,7 @@
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum" } ,
-        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.Datum@699a508e" }
+        "o": { "type": "literal" , "value": "com.ftn.xml.model.resenje.Datum@23306b96" }
       } ,
       {
         "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/poverenik" } ,

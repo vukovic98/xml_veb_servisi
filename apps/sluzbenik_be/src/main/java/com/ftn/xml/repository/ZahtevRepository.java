@@ -248,7 +248,7 @@ public class ZahtevRepository {
 	}
 
 	public ResourceSet pronadjiSveZahteve() {
-		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama[status='CEKANJE']";
+		String xPath = "/lista_zahteva_za_pristup_informacijama/zahtev_za_pristup_informacijama";
 
 		ResourceSet set;
 		try {

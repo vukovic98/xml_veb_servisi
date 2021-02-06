@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -316,6 +317,58 @@ public class ResenjeService {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	public ArrayList<ResenjeDTO> getAll() throws XMLDBException, JAXBException{
+
+		ResourceSet result = this.resenjeRepository.getAll();
+		ResourceIterator i = result.getIterator();
+		Resource res = null;
+		ArrayList<ResenjeDTO> resenja = new ArrayList<>();
+		JAXBContext context = JAXBContext.newInstance("com.ftn.xml.model.resenje");
+
+		while (i.hasMoreResources()) {
+
+			try {
+				Unmarshaller unmarshaller = context.createUnmarshaller();
+				res = i.nextResource();
+				Resenje r = (Resenje) unmarshaller.unmarshal(((XMLResource) res).getContentAsDOM());
+				ResenjeDTO dto = new ResenjeDTO();
+
+				String[] params = r.getAbout().split("/");
+				long id = Long.parseLong(params[params.length - 1]);
+				dto.setId(id);
+
+				dto.setIme_i_prezime(r.getSadrzaj().getUvod().getPodnosilac().getContent());
+				dto.setIshod(r.getIshod().getValue());
+
+				XMLGregorianCalendar xmlDateZahtev = r.getSadrzaj().getUvod().getDatumZahteva().getValue();
+				String dateZahtev = xmlDateZahtev.getYear() + "-" + xmlDateZahtev.getMonth() + "-"
+						+ xmlDateZahtev.getDay();
+				dto.setDatum_zahteva(dateZahtev);
+
+				XMLGregorianCalendar xmlDateResenje = r.getOsnovniPodaci().getDatum().getValue();
+				String dateResenje = xmlDateResenje.getYear() + "-" + xmlDateResenje.getMonth() + "-"
+						+ xmlDateResenje.getDay();
+				dto.setDatum_resenja(dateResenje);
+
+				dto.setUstanova(r.getSadrzaj().getUvod().getUstanova().getNaziv().getValue());
+				dto.setBroj_resenja(r.getBroj());
+				dto.setBroj_zalbe(r.getBrojZalbe().getValue().toString());
+
+				resenja.add(dto);
+			} finally {
+
+				// don't forget to cleanup resources
+				try {
+					((EXistResource) res).freeResources();
+				} catch (XMLDBException xe) {
+					xe.printStackTrace();
+				}
+			}
+		}
+		return resenja;
 
 	}
 }

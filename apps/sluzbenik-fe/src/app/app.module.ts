@@ -40,6 +40,8 @@ import { SluzbenikPretragaComponent } from './components/sluzbenik-pretraga/sluz
 import { SviDokumentiPretrageComponent } from './components/svi-dokumenti-pretrage/svi-dokumenti-pretrage.component';
 import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
 import { SluzbenikNaprednaPretragaComponent } from './components/sluzbenik-napredna-pretraga/sluzbenik-napredna-pretraga.component';
+import { ResenjaComponent } from './components/resenja/resenja.component';
+import { ResenjeComponent } from './components/resenje/resenje.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { SluzbenikNaprednaPretragaComponent } from './components/sluzbenik-napre
     SviDokumentiPretrageComponent,
     IzvestajiComponent,
     SluzbenikNaprednaPretragaComponent,
+    ResenjaComponent,
+    ResenjeComponent,
 
   ],
   imports: [

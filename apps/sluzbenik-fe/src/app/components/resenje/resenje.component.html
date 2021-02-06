@@ -1,0 +1,60 @@
+<div class="mt-2 pt-2">
+  <mat-grid-list *ngIf="odobreno==true" cols="12" rowHeight="40">
+    <mat-grid-tile>
+      {{resenje[0].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[2].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[3].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[4].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[5].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[6].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[7].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми решење у PDF формату" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми решење у XHTML формату" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке решења у JSON формату" mat-button (click)="preuzmiJSON()">ЈSON</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке решења у RDF формату" mat-button (click)="preuzmiRDF()">RDF</button></mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list *ngIf="odobreno==false" cols="12" rowHeight="40">
+    <mat-grid-tile>
+      {{resenje[1].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[2].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[3].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[4].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[5].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[6].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{resenje[7].children[0]}}
+    </mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми решење у PDF формату" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми решење у XHTML формату" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке решења у JSON формату" mat-button (click)="preuzmiJSON()">ЈSON</button></mat-grid-tile>
+    <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке решења у RDF формату" mat-button (click)="preuzmiRDF()">RDF</button></mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+</div>

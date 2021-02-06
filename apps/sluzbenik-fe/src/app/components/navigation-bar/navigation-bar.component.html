@@ -16,6 +16,9 @@
           <li class="nav-item pt-1" *ngIf="!userRole">
             <a class="nav-link mat-subheading-2 mb-0" id="svaObavestenjaLink" routerLink="/obavestenja-sluzbenik">Обавештења</a>
           </li>
+          <li class="nav-item pt-1" *ngIf="!userRole">
+            <a class="nav-link mat-subheading-2 mb-0" id="resenjaLink" routerLink="/resenja">Решења</a>
+          </li>
           <li class="nav-item pt-1" *ngIf="userRole">
             <a class="nav-link mat-subheading-2 mb-0" id="podnesiZahteviLink" routerLink="/dodaj-zahtev">Поднеси захтев</a>
           </li>
@@ -31,6 +34,7 @@
           <li class="nav-item pt-1" *ngIf="!userRole">
             <a class="nav-link mat-subheading-2 mb-0" id="sluzbenikIzvestajLink" routerLink="/sluzbenik-izvestaj">Годишњи извештаји</a>
           </li>
+
         </ul>
       </div>
       <span class="float-right w-25 text-end">

@@ -48,3 +48,5 @@ UPUTSTVA ZA POKRETANJE:
     -  Raspakovati apache-jena-fuseki-x.x.x.zip fajl
     -  Deployovati tj. kopirati ekstrahovani fuseki.war u /webapps direktorijum TomEE-a **dvaput**, jednom sa nazivom fusekiS.war, a drugi put sa nazivom fusekiP.war
     -  Pokrenuti aplikativni server i pristupiti admin interfejsu Fuseki servera: http://localhost:8080/fusekiS za bazu službenika, a http://localhost:8080/fusekiP za bazu poverenika.
+    
+  XML baze moraju da imaju određenu strukturu foldera i fajlova koja je data u db_sluzbenik.txt i db_poverenik.txt dokumentima.

@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ZalbaCutanjeNaprednaDTO;
@@ -97,4 +99,48 @@ public class ZalbaNaOdlukuController {
 
 	}
 		
+
+	@GetMapping("/generisiJSON/{zalba_na_odluku_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("zalba_na_odluku_id") long zalba_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/json/zalba_na_odluku_" + zalba_id + ".json";
+
+		try {
+			this.zalbaService.generisiJSON(zalba_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{zalba_na_odluku_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("zalba_na_odluku_id") long zalba_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/zalba_na_odluku_" + zalba_id + ".rdf";
+		try {
+			this.zalbaService.generisiRDF(zalba_id);
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
 }

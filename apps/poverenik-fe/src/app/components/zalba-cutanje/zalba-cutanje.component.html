@@ -1,5 +1,5 @@
 <div class="mt-2 pt-2">
-  <mat-grid-list *ngIf="resi==true" cols="10" rowHeight="40">
+  <mat-grid-list *ngIf="resi==true" cols="11" rowHeight="40">
     <mat-grid-tile>
       {{zalba[0].children[0]}}
     </mat-grid-tile>
@@ -15,7 +15,7 @@
     <mat-grid-tile>
       {{zalba[4].children[0]}}
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile colspan="2">
       <button id="resenjeButton" (click)="resiZalbu()" mat-button>{{poslatZahtev ? 'Састави решење' : 'Обавести службеника'}}</button>
     </mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми жалбу у PDF формату" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
@@ -23,7 +23,7 @@
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке жалбе у JSON формату" mat-button (click)="preuzmiJSON()">ЈSON</button></mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми метаподатке жалбе у RDF формату" mat-button (click)="preuzmiRDF()">RDF</button></mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list *ngIf="resi==false" cols="10" rowHeight="40">
+  <mat-grid-list *ngIf="resi==false" cols="11" rowHeight="40">
     <mat-grid-tile>
       {{zalba[0].children[0]}}
     </mat-grid-tile>
@@ -39,12 +39,12 @@
     <mat-grid-tile>
       {{zalba[4].children[0]}}
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="zalba[5].children[0]=='da'">
+    <mat-grid-tile colspan="2" *ngIf="zalba[5].children[0]=='da'">
       Да
     </mat-grid-tile>
-    <mat-grid-tile *ngIf="zalba[5].children[0]=='ne'">
+    <mat-grid-tile colspan="2" *ngIf="zalba[5].children[0]=='ne'">
       <button *ngIf="poverenikPregled==false" mat-button (click)="odustani(zalba[0].children[0])">Не, одустани</button>
-      <button *ngIf="poverenikPregled==true" id="resenjeButton" (click)="resiZalbu()" mat-button>{{poslatZahtev ? 'Састави решење' : 'Обавести службеника'}}</button>
+      <button *ngIf="poverenikPregled==true" id="resenjeeButton" (click)="resiZalbu()" mat-button>{{poslatZahtev ? 'Састави решење' : 'Обавести службеника'}}</button>
     </mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми жалбу у PDF формату" mat-button (click)="preuzmiPDF()">PDF</button></mat-grid-tile>
     <mat-grid-tile><button data-toggle="tooltip" title="Преузми жалбу у XHTML формату" mat-button (click)="preuzmiHTML()">XHTML</button></mat-grid-tile>

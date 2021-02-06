@@ -2,6 +2,11 @@ package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +16,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.transform.TransformerException;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
@@ -24,6 +30,8 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.db.FusekiManager;
+import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.dto.ZalbaNaOdlukuDTO;
 import com.ftn.xml.jaxb.util.MyValidationEventHandler;
 import com.ftn.xml.jaxb.util.XSLFORTransformerZalbaNaOdluku;
@@ -282,6 +290,47 @@ public class ZalbaNaOdlukuService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void generisiRDF(long id) throws SAXException, IOException {
+		String rdfFilePath = "src/main/resources/static/rdf/zalba_na_odluku_" + id + ".rdf";
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+		// dobavi zalbu po id i stavi je u xml fajl
+		String rs;
+		FileWriter fw;
+		try {
+			rs = this.pronadjiZalbuPoId_Raw(id);
+			String pocetak = rs.substring(0, 16);
+			String ubaci = " xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
+			String kraj = rs.substring(16);
+			String novi = pocetak + ubaci + kraj;
+			fw = new FileWriter("src/main/resources/static/xml/zalba_na_odluku_"+id+".xml");
+			fw.write(novi);
+			fw.close(); 
+		} catch (XMLDBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			metadataExtractor.extractMetadata(
+					new FileInputStream(new File("src/main/resources/static/xml/zalba_na_odluku_"+id+".xml")),
+					new FileOutputStream(new File(rdfFilePath)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void generisiJSON(long id) {
+		FusekiManager fm = new FusekiManager();
+		try {
+			fm.generisiJSONZalbaNaOdluku(id);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }

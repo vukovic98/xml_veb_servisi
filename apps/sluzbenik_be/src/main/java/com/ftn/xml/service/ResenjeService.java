@@ -1,6 +1,12 @@
 package com.ftn.xml.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +15,20 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.transform.TransformerException;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.ftn.xml.db.FusekiManager;
+import com.ftn.xml.jaxb.util.MetadataExtractor;
 import com.ftn.xml.dto.ResenjeDTO;
 import com.ftn.xml.dto.ResenjeFusekiDTO;
 import com.ftn.xml.jaxb.util.XSLFORTransformerResenje;
@@ -265,5 +275,47 @@ public class ResenjeService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public void generisiRDF(long id) throws SAXException, IOException {
+		String rdfFilePath = "src/main/resources/static/rdf/resenje_" + id + ".rdf";
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+		String rs;
+		FileWriter fw;
+		try {
+			rs = this.findById_RAW(id);
+			String pocetak = rs.substring(0, 8);
+			String ubaci = " xmlns:obav=\"http://www.ftn.uns.ac.rs/rdf/example\"  xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\" ";
+			String kraj = rs.substring(9);
+			String novi = pocetak + ubaci + kraj;
+			fw = new FileWriter("src/main/resources/static/xml/resenje_" + id + ".xml");
+			fw.write(novi);
+			fw.close();
+		} catch (XMLDBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			metadataExtractor.extractMetadata(
+					new FileInputStream(new File("src/main/resources/static/xml/resenje_" + id + ".xml")),
+					new FileOutputStream(new File(rdfFilePath)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void generisiJSON(long resenje_id) {
+		FusekiManager fm = new FusekiManager();
+		try {
+			fm.generisiJSONResenje(resenje_id);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

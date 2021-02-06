@@ -452,7 +452,9 @@ public ListaResenja naprednaPretraga(String zalba, String ishod, String korisnik
 			return null;
 		}
 
-	}public void generisiRDF(long id) throws SAXException, IOException {
+	}
+	
+	public void generisiRDF(long id) throws SAXException, IOException {
 		String rdfFilePath = "src/main/resources/static/rdf/resenje_" + id + ".rdf";
 		MetadataExtractor metadataExtractor = new MetadataExtractor();
 		String rs;

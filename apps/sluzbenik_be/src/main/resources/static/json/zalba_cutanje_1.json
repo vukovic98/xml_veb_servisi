@@ -1,0 +1,57 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/korisnik" } ,
+        "o": { "type": "literal" , "value": "vladimirvukovic98@maildrop.cc" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_zahteva" } ,
+        "o": { "type": "literal" , "value": "1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_poverenika" } ,
+        "o": { "type": "literal" , "value": "Novi Београд" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_poverenika" } ,
+        "o": { "type": "literal" , "value": "Булевар краља Александрa" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_organa" } ,
+        "o": { "type": "literal" , "value": "v v" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ime_prezime_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Vladimir Vukovic" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_poverenika" } ,
+        "o": { "type": "literal" , "value": "15" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/mesto_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Нови Сад" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/naziv_primaoca" } ,
+        "o": { "type": "literal" , "value": "            \n                    Повереникy за информације од јавног значаја и заштиту података о личности\n                " }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/datum_zalbe" } ,
+        "o": { "type": "literal" , "value": "2020-12-20" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/ulica_podnosioca" } ,
+        "o": { "type": "literal" , "value": "Булевар деспота Стефана" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.ftn.uns.ac.rs/rdf/examples/predicate/broj_kuce_podnosioca" } ,
+        "o": { "type": "literal" , "value": "7" }
+      }
+    ]
+  }
+}

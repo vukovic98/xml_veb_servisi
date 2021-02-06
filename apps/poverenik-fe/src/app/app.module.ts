@@ -33,6 +33,8 @@ import { DatePipe } from '@angular/common'
 import { PretragaComponent } from './components/pretraga/pretraga.component';
 import { PodnosenjeZalbeNaOdlukuComponent } from './components/podnosenje-zalbe-na-odluku/podnosenje-zalbe-na-odluku.component';
 import { DodajResenjeComponent } from './components/dodaj-resenje/dodaj-resenje.component';
+import { NaprednaPretragaComponent } from './components/napredna-pretraga/napredna-pretraga.component';
+import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { DodajResenjeComponent } from './components/dodaj-resenje/dodaj-resenje.
     PodnosenjeZalbeCutanjeComponent,
     PretragaComponent,
     PodnosenjeZalbeNaOdlukuComponent,
-    DodajResenjeComponent
+    DodajResenjeComponent,
+    NaprednaPretragaComponent,
+    IzvestajiComponent
 
   ],
   imports: [

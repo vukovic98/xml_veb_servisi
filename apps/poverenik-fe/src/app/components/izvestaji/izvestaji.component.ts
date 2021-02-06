@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IzvestajService} from '../../services/izvestaj.service';
 import * as txml from 'txml';
+import {IzvestajService} from '../../services/izvestaj.service';
 
 @Component({
   selector: 'app-izvestaji',
@@ -10,7 +10,6 @@ import * as txml from 'txml';
 export class IzvestajiComponent implements OnInit {
 
   public izvestaji: Array<any> = [];
-  public newIzvestaj: any;
 
   constructor(private service: IzvestajService) { }
 
@@ -21,41 +20,6 @@ export class IzvestajiComponent implements OnInit {
 
         this.izvestaji = obj[0].children;
       })
-  }
-
-  kreirajIzvestaj() {
-    this.service.kreirajIzvestaj()
-      .subscribe((response) => {
-        let obj: any = txml.parse(response);
-
-        this.newIzvestaj = obj[0].children;
-        console.log(this.newIzvestaj)
-        let soap: string = `<?xml version="1.0" encoding="utf-8"?>
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-          <soap:Body>
-          <dodajIzvestaj xmlns="http://www.ftn.uns.ac.rs/izvestaj">
-            <izvestaj datum="` + this.newIzvestaj[4].children[0] + `">
-                <broj_zahteva>` + this.newIzvestaj[0].children[0] + `</broj_zahteva>
-                <broj_odbijenih_zahteva>` + this.newIzvestaj[1].children[0] + `</broj_odbijenih_zahteva>
-                <broj_zalbi_na_cutanje>` + this.newIzvestaj[2].children[0] + `</broj_zalbi_na_cutanje>
-                <broj_zalbi_na_odluku>` + this.newIzvestaj[3].children[0] + `</broj_zalbi_na_odluku>
-            </izvestaj>
-            </dodajIzvestaj>
-          </soap:Body>
-        </soap:Envelope>`;
-
-        this.service.posaljiIzvestaj(soap)
-          .subscribe((response) => {})
-
-        this.service.dobaviSve()
-          .subscribe((response) => {
-            let obj: any = txml.parse(response);
-
-            this.izvestaji = obj[0].children;
-          })
-      })
-
-
   }
 
   preuzmiHTML(datum: string) {
@@ -90,5 +54,4 @@ export class IzvestajiComponent implements OnInit {
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
-
 }

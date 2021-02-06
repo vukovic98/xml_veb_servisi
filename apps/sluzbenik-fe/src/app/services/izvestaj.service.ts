@@ -13,8 +13,18 @@ export class IzvestajService {
   private kreirajIzvestajApi: string = "izvestaj/kreiraj-izvestaj"
   private preuzmiPDFApi: string = "izvestaj/generisiPDF/";
   private preuzmiHTMLApi: string = "izvestaj/generisiHTML/";
+  private posaljiIzvestajSOAPApi: string = 'ws/izvestaj';
 
   constructor(private http: HttpClient) { }
+
+  posaljiIzvestaj(data: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml'
+    });
+
+    return this.http.post(environment.POVERENIK_APP + this.posaljiIzvestajSOAPApi, data, {headers: headers, responseType: 'text'});
+  }
 
   dobaviSve():Observable<any> {
     const headers = new HttpHeaders({

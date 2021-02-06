@@ -2,6 +2,7 @@ package com.ftn.xml.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.ftn.xml.dto.ZahtevNaprednaDTO;
@@ -39,7 +41,7 @@ public class ZalbaCutanjeController {
 		String organ = !dto.getOrgan().equalsIgnoreCase("null") ? "\"" + dto.getOrgan() + "\"" : null;
 
 		ArrayList<ZalbaCutanje> lista = this.zalbaCutanjeService.naprednaPretraga(ime, mail, organ, dto.isAnd());
-
+		
 		if (!lista.isEmpty())
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		else
@@ -87,6 +89,50 @@ public class ZalbaCutanjeController {
 
 		try {
 			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiJSON/{zalba_cutanje_id}")
+	public ResponseEntity<byte[]> generisiJSON(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/json/zalba_cutanje_" + zalba_id + ".json";
+
+		try {
+			this.zalbaCutanjeService.generisiJSON(zalba_id);
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+	}
+	
+	@GetMapping("/generisiRDF/{zalba_cutanje_id}")
+	public ResponseEntity<byte[]> generisiRDF(@PathVariable("zalba_cutanje_id") long zalba_id) throws XMLDBException {
+
+		String filePath = "src/main/resources/static/rdf/zalba_cutanje_" + zalba_id + ".rdf";
+		try {
+			this.zalbaCutanjeService.generisiRDF(zalba_id);
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			File file = new File(filePath);
 			FileInputStream fileInputStream = new FileInputStream(file);
 			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 

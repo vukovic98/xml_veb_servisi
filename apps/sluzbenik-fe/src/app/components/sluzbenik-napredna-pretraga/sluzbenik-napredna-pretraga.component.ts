@@ -150,9 +150,11 @@ export class SluzbenikNaprednaPretragaComponent implements OnInit {
 
     this.service.pretragaZalbaCutanje(data)
       .subscribe((response) => {
+        console.log(response)
         let obj: any = txml.parse(response);
 
         this.zalbeNaCutanje = obj[0].children;
+        console.log(this.zalbeNaCutanje);
       })
 
     data = JsonToXML.parse("zalbaOdlukaNaprednaDTO", pretragaDTO, options);
@@ -363,4 +365,166 @@ export class SluzbenikNaprednaPretragaComponent implements OnInit {
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
+
+  preuzmiJSONResenje(id: number) {
+    this.generatorService.preuzmiJSONResenje(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `resenje_${id}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDFResenje(id: number) {
+    this.generatorService.preuzmiRDFResenje(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `resenje_${id}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiJSONZalbaNaOdluku(id: number) {
+    this.generatorService.preuzmiJSONOdluka(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zalba_na_odluku_${id}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDFZalbaNaOdluku(id: number) {
+    this.generatorService.preuzmiRDFOdluka(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zalba_na_odluku_${id}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiJSONZalbaCutanje(id: number) {
+    this.generatorService.preuzmiJSONCutanje(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zalba_cutanje_${id}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDFZalbaCutanje(id: number) {
+    this.generatorService.preuzmiRDFCutanje(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zalba_cutanje_${id}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiJSONObavestenje(id: number) {
+    this.obavestenjeService.preuzmiJSON(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `obavestenje_${id}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDFObavestenje(id: number) {
+    this.obavestenjeService.preuzmiRDF(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `obavestenje_${id}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiJSONZahtev(id: number) {
+    this.zahtevService.preuzmiJSON(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/json' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zahtev_${id}.json`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
+  preuzmiRDFZahtev(id: number) {
+    this.zahtevService.preuzmiRDF(id).subscribe(response => {
+      let file = new Blob([response], { type: 'application/pdf' });
+      var fileURL = URL.createObjectURL(file);
+      let a = document.createElement('a');
+      document.body.appendChild(a);
+      a.setAttribute('style', 'display: none');
+      a.href = fileURL;
+      a.download = `zahtev_${id}.rdf`;
+      a.click();
+      window.URL.revokeObjectURL(fileURL);
+      a.remove();
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
 }
+
+

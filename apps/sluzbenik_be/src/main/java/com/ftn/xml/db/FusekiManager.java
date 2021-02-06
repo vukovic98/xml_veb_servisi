@@ -44,6 +44,10 @@ public class FusekiManager {
 	private static final String PREDICATE_NAMESPACE = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/";
 	private static final String ZAHTEV_NAMED_GRAPH_URI = "/zahtevi";
 	private static final String OBAVESTENJE_NAMED_GRAPH_URI = "/obavestenja";
+	private static final String ZALBA_CUTANJE_NAMED_GRAPH_URI = "/zalbe_cutanje";
+	private static final String ZALBA_NA_ODLUKU_NAMED_GRAPH_URI = "/zalbe_na_odluku";
+	private static final String RESENJE_NAMED_GRAPH_URI = "/resenja";
+
 
 	
 	private ConnectionProperties conn;
@@ -618,6 +622,45 @@ public class FusekiManager {
 		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
 		ResultSet results = query.execSelect();
 		String filePath = "src/main/resources/static/json/obavestenje_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+	public void generisiJSONZalbaCutanje(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				ZALBA_CUTANJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_cutanje/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/zalba_cutanje_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+
+	public void generisiJSONZalbaNaOdluku(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + ZALBA_NA_ODLUKU_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/zalba_na_odluku/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/zalba_na_odluku_" + id + ".json";
+		File rdfFile = new File(filePath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
+	}
+	
+	public void generisiJSONResenje(long id) throws FileNotFoundException {
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				RESENJE_NAMED_GRAPH_URI, "<http://www.ftn.uns.ac.rs/rdf/examples/resenje/" + id + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String filePath = "src/main/resources/static/json/resenje_" + id + ".json";
 		File rdfFile = new File(filePath);
 		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
 		ResultSetFormatter.outputAsJSON(out, results);
